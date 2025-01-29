@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/cody.yang/source/repos/CSE3902/Sprint0/Sprint0/Content/Arial.spritefont","C:/Users/cody.yang/source/repos/CSE3902/Sprint0/Sprint0/Content/bin/DesktopGL/Content/Arial.xnb","FontDescriptionProcessor","SpriteFontContent",2068,70687,0.5932874
+"C:/Users/cody.yang/source/repos/CSE3902/Sprint0/Sprint0/Content/Sprite.png","C:/Users/cody.yang/source/repos/CSE3902/Sprint0/Sprint0/Content/bin/DesktopGL/Content/Sprite.xnb","TextureProcessor","Texture2DContent",19462,460125,0.0796387
