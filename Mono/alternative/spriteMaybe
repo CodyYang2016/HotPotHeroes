@@ -1,0 +1,60 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+//namespace Mono
+{
+    class Sprite
+    {
+        private Texture2D _texture;
+        public Vector2 Position;  // This will still be used for controlling the sprite's position
+        public Rectangle SourceRectangle;  // Used for sprite sheet or cropping
+        public Rectangle DestinationRectangle;  // Used for position and size
+
+        // Constructor to initialize the sprite with a texture
+        public Sprite(Texture2D texture)
+        {
+            _texture = texture;
+            SourceRectangle = new Rectangle(0, 0, _texture.Width, _texture.Height);  // Defaults to the full texture
+            DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);  // Defaults to the sprite's position and texture size
+        }
+
+        // Update logic for the sprite (for movement, animation, etc.)
+        public void Update(GameTime gameTime)
+        {
+            // Update position and size via the DestinationRectangle
+            DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, DestinationRectangle.Width, DestinationRectangle.Height);
+        }
+
+        // Draw the sprite
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(_texture, DestinationRectangle, SourceRectangle, Color.White);
+        }
+
+        // Set the sprite's position
+        public void SetPosition(Vector2 newPosition)
+        {
+            Position = newPosition;
+            DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, DestinationRectangle.Width, DestinationRectangle.Height);
+        }
+
+        // Optionally set a custom size for the sprite
+        public void SetSize(int width, int height)
+        {
+            DestinationRectangle = new Rectangle(DestinationRectangle.X, DestinationRectangle.Y, width, height);
+        }
+    }
+}
+
+
+
+// // In your game class
+// Sprite playerSprite = new Sprite(playerTexture);
+// playerSprite.SetPosition(new Vector2(100, 100)); // Move sprite to (100, 100)
+// playerSprite.SetSize(64, 64); // Resize sprite to 64x64
+
+// // In the Update method
+// playerSprite.Update(gameTime); // Update the sprite's position and destination rectangle
+
+// // In the Draw method
+// playerSprite.Draw(spriteBatch); // Draw the sprite
