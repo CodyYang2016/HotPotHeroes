@@ -33,6 +33,8 @@ namespace sprint0Test
             controllerMappings.Add(Keys.D3, new SetDispUpDownSprite(myGame));
             controllerMappings.Add(Keys.D4, new SetDispLeftRightSprite(myGame));
 
+            controllerMappings.Add(Keys.Y, new SetBlock(myGame));
+            controllerMappings.Add(Keys.T, new SetBlock(myGame));
         }
         public void Update()
         {
