@@ -1,0 +1,82 @@
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\DefaultFont.xnb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario.xnb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\sprint0.exe
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\sprint0.deps.json
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\sprint0.runtimeconfig.json
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\sprint0.dll
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\sprint0.pdb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\MonoGame.Framework.dll
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.dll
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.Direct2D1.dll
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.Direct3D11.dll
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.Direct3D9.dll
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.DXGI.dll
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.Mathematics.dll
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.MediaFoundation.dll
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.XAudio2.dll
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.XInput.dll
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.csproj.AssemblyReference.cache
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.AssemblyInfoInputs.cache
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.AssemblyInfo.cs
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.csproj.CoreCompileInputs.cache
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.csproj.Up2Date
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.dll
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\obj\Debug\net8.0-windows\refint\sprint0.dll
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.pdb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.genruntimeconfig.cache
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\obj\Debug\net8.0-windows\ref\sprint0.dll
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\mariojump.xnb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\mariowalkleft.xnb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\mariowalkright.xnb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario1.xnb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario2.xnb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(1).xnb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(2).xnb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(3).xnb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(4).xnb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(5).xnb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(6).xnb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(7).xnb
+C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(8).xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\DefaultFont.xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(1).xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(2).xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(3).xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(4).xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(5).xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(6).xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(7).xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario(8).xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario.xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario1.xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\mario2.xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\mariojump.xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\mariowalkleft.xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\Content\mariowalkright.xnb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\sprint0.exe
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\sprint0.deps.json
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\sprint0.runtimeconfig.json
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\sprint0.dll
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\sprint0.pdb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\MonoGame.Framework.dll
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.dll
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.Direct2D1.dll
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.Direct3D11.dll
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.Direct3D9.dll
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.DXGI.dll
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.Mathematics.dll
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.MediaFoundation.dll
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.XAudio2.dll
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\bin\Debug\net8.0-windows\SharpDX.XInput.dll
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.csproj.AssemblyReference.cache
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.AssemblyInfoInputs.cache
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.AssemblyInfo.cs
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.csproj.CoreCompileInputs.cache
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.csproj.Up2Date
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.dll
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\obj\Debug\net8.0-windows\refint\sprint0.dll
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.pdb
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\obj\Debug\net8.0-windows\sprint0.genruntimeconfig.cache
+C:\Users\Yuchen Dang\Desktop\Yuchen Dang's sprint0\sprint0\obj\Debug\net8.0-windows\ref\sprint0.dll

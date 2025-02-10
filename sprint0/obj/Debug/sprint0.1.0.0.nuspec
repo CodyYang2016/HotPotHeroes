@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>sprint0</id>
+    <version>1.0.0</version>
+    <authors>sprint0</authors>
+    <description>Package Description</description>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net8.0-windows7.0">
+        <dependency id="MonoGame.Content.Builder.Task" version="3.8.2.1105" exclude="Build,Analyzers" />
+        <dependency id="MonoGame.Framework.WindowsDX" version="3.8.2.1105" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net8.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WindowsForms" />
+      </group>
+    </frameworkReferences>
+    <contentFiles>
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/DefaultFont.xnb" buildAction="Content" />
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/mario(1).xnb" buildAction="Content" />
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/mario(2).xnb" buildAction="Content" />
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/mario(3).xnb" buildAction="Content" />
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/mario(4).xnb" buildAction="Content" />
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/mario(5).xnb" buildAction="Content" />
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/mario(6).xnb" buildAction="Content" />
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/mario(7).xnb" buildAction="Content" />
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/mario(8).xnb" buildAction="Content" />
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/mario.xnb" buildAction="Content" />
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/mario1.xnb" buildAction="Content" />
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/mario2.xnb" buildAction="Content" />
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/mariojump.xnb" buildAction="Content" />
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/mariowalkleft.xnb" buildAction="Content" />
+      <files include="any/net8.0-windows7.0/Content/bin/Windows/Content/mariowalkright.xnb" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\sprint0.runtimeconfig.json" target="lib\net8.0-windows7.0\sprint0.runtimeconfig.json" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\bin\Debug\net8.0-windows\sprint0.dll" target="lib\net8.0-windows7.0\sprint0.dll" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\DefaultFont.xnb" target="content\Content\bin\Windows\Content\DefaultFont.xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\DefaultFont.xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\DefaultFont.xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(1).xnb" target="content\Content\bin\Windows\Content\mario(1).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(1).xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\mario(1).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(2).xnb" target="content\Content\bin\Windows\Content\mario(2).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(2).xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\mario(2).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(3).xnb" target="content\Content\bin\Windows\Content\mario(3).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(3).xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\mario(3).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(4).xnb" target="content\Content\bin\Windows\Content\mario(4).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(4).xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\mario(4).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(5).xnb" target="content\Content\bin\Windows\Content\mario(5).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(5).xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\mario(5).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(6).xnb" target="content\Content\bin\Windows\Content\mario(6).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(6).xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\mario(6).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(7).xnb" target="content\Content\bin\Windows\Content\mario(7).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(7).xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\mario(7).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(8).xnb" target="content\Content\bin\Windows\Content\mario(8).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario(8).xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\mario(8).xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario.xnb" target="content\Content\bin\Windows\Content\mario.xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario.xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\mario.xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario1.xnb" target="content\Content\bin\Windows\Content\mario1.xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario1.xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\mario1.xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario2.xnb" target="content\Content\bin\Windows\Content\mario2.xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mario2.xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\mario2.xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mariojump.xnb" target="content\Content\bin\Windows\Content\mariojump.xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mariojump.xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\mariojump.xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mariowalkleft.xnb" target="content\Content\bin\Windows\Content\mariowalkleft.xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mariowalkleft.xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\mariowalkleft.xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mariowalkright.xnb" target="content\Content\bin\Windows\Content\mariowalkright.xnb" />
+    <file src="C:\Users\Yuchen Dang\Desktop\3902\sprint0\sprint0\Content\bin\Windows\Content\mariowalkright.xnb" target="contentFiles\any\net8.0-windows7.0\Content\bin\Windows\Content\mariowalkright.xnb" />
+  </files>
+</package>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/DefaultFont.spritefont</File>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/mario.png</File>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/mario(1).png</File>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/mario(2).png</File>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/mario(3).png</File>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/mario(4).png</File>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/mario(5).png</File>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/mario(6).png</File>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/mario(7).png</File>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/mario(8).png</File>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/mario1.png</File>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/mario2.png</File>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/mariojump.png</File>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/mariowalkleft.png</File>
+    <File>C:/Users/Yuchen Dang/Desktop/Yuchen Dang's sprint0/sprint0/Content/mariowalkright.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
