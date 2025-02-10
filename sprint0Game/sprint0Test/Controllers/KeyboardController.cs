@@ -34,6 +34,8 @@ namespace sprint0Test
             controllerMappings.Add(Keys.D4, new SetDispLeftRightSprite(myGame));
             controllerMappings.Add(Keys.D5, new SetDispItemA(myGame));
             controllerMappings.Add(Keys.D6, new SetDispBlockA(myGame));
+            controllerMappings.Add(Keys.O, new PreviousEnemyCommand(myGame.EnemyManager));
+            controllerMappings.Add(Keys.P, new NextEnemyCommand(myGame.EnemyManager));
 
 
         }

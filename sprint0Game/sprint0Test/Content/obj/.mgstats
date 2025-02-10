@@ -1,0 +1,4 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/cody.yang/source/repos/CSE3902/sprint0Game/sprint0Test/Content/font/font1.spritefont","C:/Users/cody.yang/source/repos/CSE3902/sprint0Game/sprint0Test/Content/bin/font/font1.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21538,0.8904324
+"C:/Users/cody.yang/source/repos/CSE3902/sprint0Game/sprint0Test/Content/mario.png","C:/Users/cody.yang/source/repos/CSE3902/sprint0Game/sprint0Test/Content/bin/mario.xnb","TextureProcessor","Texture2DContent",6584,304645,0.2947656
+"C:/Users/cody.yang/source/repos/CSE3902/sprint0Game/sprint0Test/Content/mario2.png","C:/Users/cody.yang/source/repos/CSE3902/sprint0Game/sprint0Test/Content/bin/mario2.xnb","TextureProcessor","Texture2DContent",945,17253,0.0151192

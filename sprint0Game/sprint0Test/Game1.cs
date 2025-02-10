@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using sprint0Test.Commands;
 using sprint0Test.Interfaces;
 using sprint0Test.Sprites;
 
@@ -15,7 +16,8 @@ public class Game1 : Game
     private Vector2 location;
     List<IController> controllerList;
     public ISprite sprite;
-    
+    public EnemyManager EnemyManager { get; private set; }
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -41,6 +43,15 @@ public class Game1 : Game
         spriteTexture = Content.Load<Texture2D>("mario2");
         sprite = new StandingInPlacePlayerSprite(spriteTexture);
         //sprite = new FixedAnimatedPlayerSprite(spriteTexture);
+        List<Texture2D> enemyTextures = new List<Texture2D> {
+
+        Content.Load<Texture2D>("enemy1"),
+        Content.Load<Texture2D>("enemy2"),
+        Content.Load<Texture2D>("enemy3")
+        };
+        EnemyManager = new EnemyManager(enemyTextures);
+
+
     }
 
     protected override void Update(GameTime gameTime)
@@ -52,7 +63,9 @@ public class Game1 : Game
         {
             controller.Update();
         }
-        sprite.Update();
+        sprite.Update(); 
+        EnemyManager.Update(gameTime);
+
 
         base.Update(gameTime);
     }
@@ -65,5 +78,7 @@ public class Game1 : Game
         sprite.Draw(_spriteBatch);
         _spriteBatch.End();
         base.Draw(gameTime);
+        EnemyManager.Draw(_spriteBatch);
+
     }
 }
