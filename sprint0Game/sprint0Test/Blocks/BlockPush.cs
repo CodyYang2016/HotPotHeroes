@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0Test;
 
-    public class BlockPush : ISprite
+    public class BlockPush : IBlock
     {
         public Vector2 Position { get; set; }   // Position on the map
         public Rectangle SourceRectangle { get; private set; } // For the sprite's texture

@@ -11,7 +11,7 @@ namespace sprint0Test;
         // Add more object types as needed (e.g., Door, Chest, etc.)
     }
 
-    public class Block : ISprite
+    public class Block : IBlock
     {
         public Vector2 Position { get; set; }   // Position on the map
         public ObjectType Type { get; set; }    // Type of the object (e.g., Staircase, Rock)

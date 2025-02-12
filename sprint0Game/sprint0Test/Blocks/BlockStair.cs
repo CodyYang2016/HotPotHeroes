@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0Test;
 
-    public class BlockStair : ISprite
+    public class BlockStair : IBlock
     {
         public Vector2 Position { get; set; }   // Position on the map
         public Rectangle SourceRectangle { get; private set; } // For the sprite's texture

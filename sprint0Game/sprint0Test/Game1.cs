@@ -16,8 +16,10 @@ public class Game1 : Game
     List<IController> controllerList;
     public ISprite sprite;
 
-    private List<ISprite> _gameObjects; // List to game objects
-    private List<ISprite> _active; // List to hold all active game objects
+    // Declare BlockSprites instance
+    private BlockSprites blockSprites;
+
+    private List<IBlock> _active; // List to hold all active game objects
     private int currentIndex = 0;
 
     public Game1()
@@ -35,8 +37,7 @@ public class Game1 : Game
         controllerList.Add(new KeyboardController(this));
         controllerList.Add(new MouseController(this));
 
-        _gameObjects = new List<ISprite>(); // Initialize the list
-        _active = new List<ISprite>();
+        _active = new List<IBlock>();
 
         base.Initialize();
     }
@@ -45,31 +46,27 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // TODO: use this.Content to load your game content here
+        // Load the player sprite
         spriteTexture = Content.Load<Texture2D>("mario2");
         sprite = new StandingInPlacePlayerSprite(spriteTexture);
-        //sprite = new FixedAnimatedPlayerSprite(spriteTexture);
 
-        var dungeonTexture = Content.Load<Texture2D>("TileSetDungeon"); // sprites of objects
-        // Add Blocks as rocks to the _gameObjects list
-        _gameObjects.Add(new Block(dungeonTexture, new Rectangle(984, 11, 16, 16),  ObjectType.Rock, new Vector2(100, 80), 3f));
-        _gameObjects.Add(new Block(dungeonTexture, new Rectangle(984, 27, 16, 16),  ObjectType.Rock, new Vector2(100, 80), 3f));
-        _gameObjects.Add(new Block(dungeonTexture, new Rectangle(984, 45, 16, 16),  ObjectType.Rock, new Vector2(100, 80), 3f));
-        _gameObjects.Add(new Block(dungeonTexture, new Rectangle(1001, 11, 16, 16), ObjectType.Rock, new Vector2(100, 80), 3f));
-        _gameObjects.Add(new Block(dungeonTexture, new Rectangle(1001, 27, 16, 16), ObjectType.Rock, new Vector2(100, 80), 3f));
-        _gameObjects.Add(new Block(dungeonTexture, new Rectangle(1001, 45, 16, 16), ObjectType.Rock, new Vector2(100, 80), 3f));
-        _gameObjects.Add(new Block(dungeonTexture, new Rectangle(1018, 11, 16, 16), ObjectType.Rock, new Vector2(100, 80), 3f));
-        _gameObjects.Add(new Block(dungeonTexture, new Rectangle(1018, 27, 16, 16), ObjectType.Rock, new Vector2(100, 80), 3f));
-        _gameObjects.Add(new Block(dungeonTexture, new Rectangle(1035, 11, 16, 16), ObjectType.Rock, new Vector2(100, 80), 3f));
-        _gameObjects.Add(new Block(dungeonTexture, new Rectangle(1035, 27, 16, 16), ObjectType.Rock, new Vector2(100, 80), 3f));
+        // Load the dungeon texture
+        var dungeonTexture = Content.Load<Texture2D>("TileSetDungeon");
+
+        // Create the BlockSprites instance
+        blockSprites = new BlockSprites(dungeonTexture);
+
+        // Add blocks to the active list (or do other logic as necessary)
+        _active.AddRange(blockSprites.gameObjects);
     }
 
     protected override void Update(GameTime gameTime)
     {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-        // TODO: Add your update logic here
-        foreach(IController controller in controllerList)
+
+        // Update controllers and sprite
+        foreach (IController controller in controllerList)
         {
             controller.Update();
         }
@@ -99,7 +96,7 @@ public class Game1 : Game
         base.Draw(gameTime);
     }
 
-    public void SetActiveList(ISprite newSprite)
+    public void SetActiveList(IBlock newSprite)
     {
         // Optionally, clear the _active list or keep adding/removing sprites as needed
         _active.Clear();  // For now, let's clear and add just one sprite
@@ -107,15 +104,18 @@ public class Game1 : Game
         // Add the new active sprite
         _active.Add(newSprite);
     }
-    // Method to get the list of all game objects
-    public List<ISprite> GetGameObjects()
+
+    // Method to get the list of all game objects from BlockSprites
+    public List<IBlock> GetGameObjects()
     {
-        return _gameObjects;
+        return blockSprites.gameObjects;
     }
+
     public int GetCurrentIndex()
     {
         return currentIndex;
     }
+
     public void SetCurrentIndex(int index)
     {
         currentIndex = index;
