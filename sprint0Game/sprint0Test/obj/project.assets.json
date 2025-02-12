@@ -238,19 +238,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\elija\\.nuget\\packages\\": {}
+    "/Users/davidjr./.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\elija\\OneDrive\\Desktop\\3902\\LinkGame2\\HotPotHeroes\\sprint0Game\\sprint0Test\\sprint0Test.csproj",
+      "projectUniqueName": "/Users/davidjr./Downloads/HotPotHeroes-main/sprint0Game/sprint0Test/sprint0Test.csproj",
       "projectName": "sprint0Test",
-      "projectPath": "C:\\Users\\elija\\OneDrive\\Desktop\\3902\\LinkGame2\\HotPotHeroes\\sprint0Game\\sprint0Test\\sprint0Test.csproj",
-      "packagesPath": "C:\\Users\\elija\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\elija\\OneDrive\\Desktop\\3902\\LinkGame2\\HotPotHeroes\\sprint0Game\\sprint0Test\\obj\\",
+      "projectPath": "/Users/davidjr./Downloads/HotPotHeroes-main/sprint0Game/sprint0Test/sprint0Test.csproj",
+      "packagesPath": "/Users/davidjr./.nuget/packages/",
+      "outputPath": "/Users/davidjr./Downloads/HotPotHeroes-main/sprint0Game/sprint0Test/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\elija\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/davidjr./.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -304,7 +304,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

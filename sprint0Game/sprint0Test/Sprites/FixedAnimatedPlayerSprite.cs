@@ -13,21 +13,19 @@ namespace sprint0Test.Sprites
         private int currentFrame = 0;
         private int totalFrames = 4;   
         private int threes = 0; 
-        //private Vector2 location; 
         public FixedAnimatedPlayerSprite (Texture2D texture)
         {
             this.texture = texture;
         }
 
+        /*Player class will start taking care of sprite location and be passed
+        to the draw method as a Vector2 location*/
         public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle sourceRectangle;
             Rectangle destinationRectangle;
             if(currentFrame == 0)
             {
-
-                //destinationRectangle = new Rectangle((int)location.X,
-                //(int)location.Y, 56, 72);
                 sourceRectangle = new Rectangle(58, 0, 29, 36);
                 destinationRectangle = new Rectangle(300,
                 200, 108, 144);
@@ -56,9 +54,7 @@ namespace sprint0Test.Sprites
                 destinationRectangle = new Rectangle(300,
                 200, 108, 144);
             }
-            //spriteBatch.Begin();
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
-            //spriteBatch.End();
         }
 
         public void Update()

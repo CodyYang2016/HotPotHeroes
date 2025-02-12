@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = sprint0Test
-build_property.ProjectDir = C:\Users\elija\OneDrive\Desktop\3902\LinkGame2\HotPotHeroes\sprint0Game\sprint0Test\
+build_property.ProjectDir = /Users/davidjr./Downloads/HotPotHeroes-main/sprint0Game/sprint0Test/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
