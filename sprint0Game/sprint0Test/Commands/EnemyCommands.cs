@@ -7,11 +7,11 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-
+using sprint0Test.Sprites;
 namespace sprint0Test.Commands
 {
-    internal class EnemyCommands
-         private EnemyManager enemyManager;
+    internal class EnemyCommands;
+    private EnemyManager enemyManager;
 
     public NextEnemyCommand(EnemyManager enemyManager)
     {
@@ -39,20 +39,12 @@ public class PreviousEnemyCommand : ICommand
     }
 }
 }
-Updating KeyboardController.cs(Add these mappings)
-Modify your RegisterCommand() function to include:
 
-csharp
-Copy
-Edit
 controllerMappings.Add(Keys.O, new PreviousEnemyCommand(myGame.EnemyManager));
 controllerMappings.Add(Keys.P, new NextEnemyCommand(myGame.EnemyManager));
-Game1.cs(Add EnemyManager)
-Modify Game1.cs to include:
 
-csharp
-Copy
-Edit
+
+
 public EnemyManager EnemyManager { get; private set; }
 
 protected override void LoadContent()
