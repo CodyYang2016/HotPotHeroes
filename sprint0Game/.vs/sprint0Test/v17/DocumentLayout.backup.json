@@ -42,8 +42,7 @@
               "RelativeToolTip": "sprint0Test\\Sprites\\EnemyManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T16:22:15.889Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-10T16:22:15.889Z"
             },
             {
               "$type": "Document",
@@ -55,8 +54,7 @@
               "RelativeToolTip": "sprint0Test\\Controllers\\KeyboardController.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T16:02:28.076Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-10T16:02:28.076Z"
             },
             {
               "$type": "Document",
@@ -68,8 +66,7 @@
               "RelativeToolTip": "sprint0Test\\Commands\\EnemyCommands.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T16:15:20.055Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-10T16:15:20.055Z"
             },
             {
               "$type": "Document",
@@ -79,7 +76,7 @@
               "RelativeDocumentMoniker": "sprint0Test\\Sprites\\Enemy.cs",
               "ToolTip": "C:\\Users\\cody.yang\\source\\repos\\CSE3902\\sprint0Game\\sprint0Test\\Sprites\\Enemy.cs",
               "RelativeToolTip": "sprint0Test\\Sprites\\Enemy.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAADUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAswCoAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-09T23:15:11.136Z",
               "EditorCaption": ""
@@ -94,8 +91,7 @@
               "RelativeToolTip": "sprint0Test\\Game1.cs",
               "ViewState": "AgIAAEUAAAAAAAAAAAAAAFAAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-07T18:18:10.067Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-07T18:18:10.067Z"
             }
           ]
         }

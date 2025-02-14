@@ -2,10 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace sprint0Test.Sprites
+namespace sprint0Test.Enemy
 {
     public class Enemy
     {
+        // look into extracting currentFrame, totalFrames, texture
         private Texture2D texture;
         private Vector2 position;
         private Vector2 velocity;
@@ -18,22 +19,22 @@ namespace sprint0Test.Sprites
         public Enemy(Texture2D texture, Vector2 startPosition, int totalFrames)
         {
             this.texture = texture;
-            this.position = startPosition;
-            this.velocity = new Vector2(2, 0); // Example movement speed
-            this.isAnimating = true;
-            this.animationTimer = 0f;
-            this.currentFrame = 0;
+            position = startPosition;
+            velocity = new Vector2(2, 0); //change
+            isAnimating = true;
+            animationTimer = 0f;
+            currentFrame = 0;
             this.totalFrames = totalFrames;
         }
 
         public void Update(GameTime gameTime)
         {
-            // Update movement
+
             position += velocity;
-            if (position.X > 800 || position.X < 0) // Example screen bounds
+            if (position.X > 800 || position.X < 0)  //change
                 velocity *= -1;
 
-            // Update animation
+
             if (isAnimating)
             {
                 animationTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;

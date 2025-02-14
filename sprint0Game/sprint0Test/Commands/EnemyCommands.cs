@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using sprint0Test.Sprites;
+using sprint0Test.Enemy;
 namespace sprint0Test.Commands
 {
     internal class EnemyCommands;
@@ -39,9 +39,6 @@ public class PreviousEnemyCommand : ICommand
     }
 }
 }
-
-controllerMappings.Add(Keys.O, new PreviousEnemyCommand(myGame.EnemyManager));
-controllerMappings.Add(Keys.P, new NextEnemyCommand(myGame.EnemyManager));
 
 
 

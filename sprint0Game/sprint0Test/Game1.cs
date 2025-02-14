@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using sprint0Test.Commands;
+using sprint0Test.Enemy;
 using sprint0Test.Interfaces;
 using sprint0Test.Sprites;
 

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace sprint0Test.Sprites
+namespace sprint0Test.Enemy
 {
     public class EnemyManager
     {
@@ -20,7 +20,7 @@ namespace sprint0Test.Sprites
             enemies = new List<Enemy>();
             for (int i = 0; i < enemyTextures.Count; i++)
             {
-                enemies.Add(new Enemy(enemyTextures[i], new Vector2(100 + (i * 100), 200), 3));
+                enemies.Add(new Enemy(enemyTextures[i], new Vector2(100 + i * 100, 200), 3));
             }
             currentEnemyIndex = 0;
         }
