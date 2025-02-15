@@ -22,23 +22,27 @@ namespace sprint0Test
     
         public void RegisterCommand()
         {
-            controllerMappings.Add(Keys.NumPad0, new SetQuitCommand(myGame));
-            controllerMappings.Add(Keys.NumPad1, new SetDispFixedSprite(myGame));
-            controllerMappings.Add(Keys.NumPad2, new SetDispFixedAnimatedSprite(myGame));
-            controllerMappings.Add(Keys.NumPad3, new SetDispUpDownSprite(myGame));
-            controllerMappings.Add(Keys.NumPad4, new SetDispLeftRightSprite(myGame));
-            controllerMappings.Add(Keys.D0, new SetQuitCommand(myGame));
-            controllerMappings.Add(Keys.D1, new SetDispFixedSprite(myGame));
-            controllerMappings.Add(Keys.D2, new SetDispFixedAnimatedSprite(myGame));
-            controllerMappings.Add(Keys.D3, new SetDispUpDownSprite(myGame));
-            controllerMappings.Add(Keys.D4, new SetDispLeftRightSprite(myGame));
+
             controllerMappings.Add(Keys.D5, new SetDispItemA(myGame));
             controllerMappings.Add(Keys.D6, new SetDispBlockA(myGame));
+            controllerMappings.Add(Keys.Q, new SetQuitCommand(myGame));
+            controllerMappings.Add(Keys.R, new RestartGameCommand(myGame));
+            controllerMappings.Add(Keys.W, new MoveUpCommand(myGame));
+            controllerMappings.Add(Keys.A, new MoveLeftCommand(myGame));
+            controllerMappings.Add(Keys.S, new MoveDownCommand(myGame));
+            controllerMappings.Add(Keys.D, new MoveRightCommand(myGame));
+
+            controllerMappings.Add(Keys.E, new TakeDamageCommand(myGame));
+            controllerMappings.Add(Keys.Z, new LinkAttackCommand(myGame));
+            controllerMappings.Add(Keys.M, new UseItemCommand(myGame));
 
         }
         public void Update()
         {
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
+
+            bool currentPressedKey = false;
+            bool lastPressedKey = false;
             foreach (Keys key in pressedKeys)
             {
                 controllerMappings[key].Execute();
