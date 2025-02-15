@@ -26,3 +26,6 @@ C:\Users\david\OneDrive\Desktop\sprint0Game\sprint0Test\obj\Debug\net8.0\ref\spr
 C:\Users\david\OneDrive\Desktop\sprint0Game\sprint0Test\bin\Debug\net8.0\Content\mario.xnb
 C:\Users\david\OneDrive\Desktop\sprint0Game\sprint0Test\bin\Debug\net8.0\Content\mario2.xnb
 C:\Users\david\OneDrive\Desktop\sprint0Game\sprint0Test\bin\Debug\net8.0\Content\font\font1.xnb
+D:\HotPotHeroes-main\HotPotHeroes\sprint0Game\sprint0Test\obj\Debug\net8.0\sprint0Test.dll
+D:\HotPotHeroes-main\HotPotHeroes\sprint0Game\sprint0Test\obj\Debug\net8.0\refint\sprint0Test.dll
+D:\HotPotHeroes-main\HotPotHeroes\sprint0Game\sprint0Test\obj\Debug\net8.0\sprint0Test.pdb
