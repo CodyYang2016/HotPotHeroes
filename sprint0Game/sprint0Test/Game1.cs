@@ -12,7 +12,10 @@ namespace sprint0Test
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
+        private Texture2D spriteTexture;
+        private Vector2 location;
+        List<IController> controllerList;
+        public ISprite sprite;
         private Link link;
 
         public Game1()
@@ -23,11 +26,16 @@ namespace sprint0Test
 
         protected override void Initialize()
         {
+            controllerList = new List<IController>();
+            location = new Vector2();
+            controllerList.Add(new KeyboardController(this));
+            controllerList.Add(new MouseController(this));
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+            sprite = new StandingInPlacePlayerSprite(spriteTexture);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             var link1 = Content.Load<Texture2D>("Link1");
@@ -85,7 +93,12 @@ namespace sprint0Test
 
         protected override void Update(GameTime gameTime)
         {
-            var kstate = Keyboard.GetState();
+
+
+           /* 
+           These needed to be handled by keyboard controller and command classes
+        
+           var kstate = Keyboard.GetState();
 
             if (kstate.IsKeyDown(Keys.W) || kstate.IsKeyDown(Keys.Up)) link.MoveUp();
             else if (kstate.IsKeyDown(Keys.S) || kstate.IsKeyDown(Keys.Down)) link.MoveDown();
@@ -104,6 +117,13 @@ namespace sprint0Test
 
             if (kstate.IsKeyDown(Keys.Q)) Exit();
             if (kstate.IsKeyDown(Keys.R)) RestartGame();
+            */
+            foreach(IController controller in controllerList)
+            {
+                controller.Update();
+            }
+            sprite.Update();
+            base.Update(gameTime);
 
         }
 
