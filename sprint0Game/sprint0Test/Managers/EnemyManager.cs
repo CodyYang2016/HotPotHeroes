@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using sprint0Test.Enemy;
 
 namespace HotpotHeroes.sprint0Game.sprint0Test.Managers
