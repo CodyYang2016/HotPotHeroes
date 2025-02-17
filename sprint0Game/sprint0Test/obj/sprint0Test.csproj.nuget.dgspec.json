@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\elija\\OneDrive\\Desktop\\3902\\LinkGame2\\HotPotHeroes\\sprint0Game\\sprint0Test\\sprint0Test.csproj": {}
+    "C:\\Users\\elija\\OneDrive\\Desktop\\3902\\Gamer3\\HotPotHeroes\\sprint0Game\\sprint0Test\\sprint0Test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\elija\\OneDrive\\Desktop\\3902\\LinkGame2\\HotPotHeroes\\sprint0Game\\sprint0Test\\sprint0Test.csproj": {
+    "C:\\Users\\elija\\OneDrive\\Desktop\\3902\\Gamer3\\HotPotHeroes\\sprint0Game\\sprint0Test\\sprint0Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\elija\\OneDrive\\Desktop\\3902\\LinkGame2\\HotPotHeroes\\sprint0Game\\sprint0Test\\sprint0Test.csproj",
+        "projectUniqueName": "C:\\Users\\elija\\OneDrive\\Desktop\\3902\\Gamer3\\HotPotHeroes\\sprint0Game\\sprint0Test\\sprint0Test.csproj",
         "projectName": "sprint0Test",
-        "projectPath": "C:\\Users\\elija\\OneDrive\\Desktop\\3902\\LinkGame2\\HotPotHeroes\\sprint0Game\\sprint0Test\\sprint0Test.csproj",
+        "projectPath": "C:\\Users\\elija\\OneDrive\\Desktop\\3902\\Gamer3\\HotPotHeroes\\sprint0Game\\sprint0Test\\sprint0Test.csproj",
         "packagesPath": "C:\\Users\\elija\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\elija\\OneDrive\\Desktop\\3902\\LinkGame2\\HotPotHeroes\\sprint0Game\\sprint0Test\\obj\\",
+        "outputPath": "C:\\Users\\elija\\OneDrive\\Desktop\\3902\\Gamer3\\HotPotHeroes\\sprint0Game\\sprint0Test\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\elija\\AppData\\Roaming\\NuGet\\NuGet.Config"
