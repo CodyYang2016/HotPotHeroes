@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using HotpotHeroes.sprint0Game.sprint0Test.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using sprint0Test.Enemy;
 using sprint0Test.Interfaces;
 using sprint0Test.Sprites;
 

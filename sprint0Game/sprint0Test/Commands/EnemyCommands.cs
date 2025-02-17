@@ -7,67 +7,77 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using HotpotHeroes.sprint0Game.sprint0Test.Managers;
 using sprint0Test.Enemy;
 namespace sprint0Test.Commands
 {
-    internal class EnemyCommands;
-    private EnemyManager enemyManager;
-
-    public NextEnemyCommand(EnemyManager enemyManager)
+    public class EnemyCommands
     {
-        this.enemyManager = enemyManager;
+        private static int currentEnemyIndex = 0; // Tracks the currently selected enemy
+
+        /// <summary>
+        /// Select the next enemy in the list.
+        /// </summary>
+        public static void NextEnemy()
+        {
+            if (EnemyManager.Instance.GetEnemyCount() > 0)
+            {
+                currentEnemyIndex = (currentEnemyIndex + 1) % EnemyManager.Instance.GetEnemyCount();
+            }
+        }
+
+        /// <summary>
+        /// Select the previous enemy in the list.
+        /// </summary>
+        public static void PreviousEnemy()
+        {
+            if (EnemyManager.Instance.GetEnemyCount() > 0)
+            {
+                currentEnemyIndex = (currentEnemyIndex - 1 + EnemyManager.Instance.GetEnemyCount()) % EnemyManager.Instance.GetEnemyCount();
+            }
+        }
+
+        /// <summary>
+        /// Move the selected enemy left.
+        /// </summary>
+        public static void MoveEnemyLeft()
+        {
+            IEnemy enemy = EnemyManager.Instance.GetEnemy(currentEnemyIndex);
+            if (enemy != null)
+            {
+                enemy.SetPosition(enemy.GetPosition() + new Vector2(-5, 0)); // Move left
+            }
+        }
+
+        /// <summary>
+        /// Move the selected enemy right.
+        /// </summary>
+        public static void MoveEnemyRight()
+        {
+            IEnemy enemy = EnemyManager.Instance.GetEnemy(currentEnemyIndex);
+            if (enemy != null)
+            {
+                enemy.SetPosition(enemy.GetPosition() + new Vector2(5, 0)); // Move right
+            }
+        }
+
+        /// <summary>
+        /// Make the selected enemy attack.
+        /// </summary>
+        public static void EnemyAttack()
+        {
+            IEnemy enemy = EnemyManager.Instance.GetEnemy(currentEnemyIndex);
+            enemy?.PerformAttack();
+        }
+
+        /// <summary>
+        /// Make the selected enemy take damage.
+        /// </summary>
+        public static void EnemyTakeDamage()
+        {
+            IEnemy enemy = EnemyManager.Instance.GetEnemy(currentEnemyIndex);
+            enemy?.TakeDamage(1);
+        }
     }
-
-    public void Execute()
-    {
-        enemyManager.NextEnemy();
-    }
 }
-
-public class PreviousEnemyCommand : ICommand
-{
-    private EnemyManager enemyManager;
-
-    public PreviousEnemyCommand(EnemyManager enemyManager)
-    {
-        this.enemyManager = enemyManager;
-    }
-
-    public void Execute()
-    {
-        enemyManager.PreviousEnemy();
-    }
-}
-}
-
-
-
-public EnemyManager EnemyManager { get; private set; }
-
-protected override void LoadContent()
-{
-    List<Texture2D> enemyTextures = new List<Texture2D>
-    {
-        Content.Load<Texture2D>("enemy1"),
-        Content.Load<Texture2D>("enemy2"),
-        Content.Load<Texture2D>("enemy3")
-    };
-
-    EnemyManager = new EnemyManager(enemyTextures);
-}
-
-protected override void Update(GameTime gameTime)
-{
-    EnemyManager.Update(gameTime);
-    base.Update(gameTime);
-}
-
-protected override void Draw(GameTime gameTime)
-{
-    spriteBatch.Begin();
-    EnemyManager.Draw(spriteBatch);
-    spriteBatch.End();
-    base.Draw(gameTime);
-}
-
 
