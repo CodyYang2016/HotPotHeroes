@@ -17,6 +17,8 @@ namespace sprint0Test
         List<IController> controllerList;
         public ISprite sprite;
         private Link link;
+        private BlockSprites blockSprites;
+
 
         public Game1()
         {
@@ -28,7 +30,8 @@ namespace sprint0Test
         {
             controllerList = new List<IController>();
             location = new Vector2();
-            controllerList.Add(new KeyboardController(this));
+            //controllerList.Add(new KeyboardController(this));
+            controllerList.Add(new KeyboardController(this, blockSprites));
             controllerList.Add(new MouseController(this));
             base.Initialize();
         }
@@ -37,6 +40,7 @@ namespace sprint0Test
         {
             sprite = new StandingInPlacePlayerSprite(spriteTexture);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteTexture = Content.Load<Texture2D>("mario2");
 
             var link1 = Content.Load<Texture2D>("Link1");
             var link2 = Content.Load<Texture2D>("Link2");
@@ -63,6 +67,10 @@ namespace sprint0Test
             var linkRS3 = Content.Load<Texture2D>("LinkRS3");
             var linkRS4 = Content.Load<Texture2D>("LinkRS4");
             var linkH = Content.Load<Texture2D>("Linkh");
+
+            var dungeonTexture = Content.Load<Texture2D>("TileSetDungeon");
+            blockSprites = new BlockSprites(dungeonTexture);
+            
 
             Dictionary<(LinkAction, LinkDirection), List<Texture2D>> linkMap =
                 new Dictionary<(LinkAction, LinkDirection), List<Texture2D>>();

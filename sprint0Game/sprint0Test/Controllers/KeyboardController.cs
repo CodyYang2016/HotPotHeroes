@@ -12,10 +12,12 @@ namespace sprint0Test
     {
         private Dictionary<Keys, ICommand> controllerMappings;
         private Game1 myGame;
+         private BlockSprites blockSprites;
 
-        public KeyboardController(Game1 game)
+        public KeyboardController(Game1 game, BlockSprites blockSprites)
         {
             myGame = game;
+            this.blockSprites = blockSprites;
             controllerMappings = new Dictionary<Keys, ICommand>();
             RegisterCommand();
         }
@@ -35,14 +37,16 @@ namespace sprint0Test
             controllerMappings.Add(Keys.E, new TakeDamageCommand(myGame));
             controllerMappings.Add(Keys.Z, new LinkAttackCommand(myGame));
             controllerMappings.Add(Keys.M, new UseItemCommand(myGame));
+            controllerMappings.Add(Keys.Y, new SetBlock(blockSprites));
+            controllerMappings.Add(Keys.T, new SetBlock(blockSprites));
 
         }
         public void Update()
         {
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
 
-            bool currentPressedKey = false;
-            bool lastPressedKey = false;
+            //bool currentPressedKey = false;
+            //bool lastPressedKey = false;
             foreach (Keys key in pressedKeys)
             {
                 controllerMappings[key].Execute();
