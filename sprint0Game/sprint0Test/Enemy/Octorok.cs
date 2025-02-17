@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using HotpotHeroes.sprint0Game.sprint0Test.Managers;
 
-namespace HotpotHeroes.sprint0Game.sprint0Test.Enemy
+namespace sprint0Test.Enemy
 {
     public class Octorok : AbstractEnemy
     {

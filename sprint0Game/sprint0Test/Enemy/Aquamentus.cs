@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotpotHeroes.sprint0Game.sprint0Test.Enemy
+namespace sprint0Test.Enemy
 {
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;

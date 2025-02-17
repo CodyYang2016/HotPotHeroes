@@ -10,7 +10,7 @@ using System.Xml;
 using HotpotHeroes.sprint0Game.sprint0Test.Managers;
 // LINK TO PLAYER CLASS BEING BUILT OUTSIDE OF MY OWN CODE
 
-namespace HotpotHeroes.sprint0Game.sprint0Test.Enemy
+namespace sprint0Test.Enemy
 {
     public abstract class AbstractEnemy : IEnemy
     {
