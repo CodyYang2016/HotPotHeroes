@@ -60,5 +60,12 @@ namespace HotpotHeroes.sprint0Game.sprint0Test.Managers
             }
             return null;
         }
+        public void SpawnEnemies()
+        {
+            enemies.Add(new Octorok(new Vector2(100,100)));
+            enemies.Add(new Octorok(new Vector2(200,100)));
+            enemies.Add(new Aquamentus(new Vector2(300,100)));
+            // enemies.Add(new Moblin(new Vector2(200,200))):
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using HotpotHeroes.sprint0Game.sprint0Test.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -31,6 +32,7 @@ public class Game1 : Game
         //controllerList.Add(new KeyboardController(this, blockSprites));
         controllerList.Add(new MouseController(this));
         
+        
         base.Initialize();
     }
 
@@ -43,6 +45,9 @@ public class Game1 : Game
         var dungeonTexture = Content.Load<Texture2D>("TileSetDungeon");
         blockSprites = new BlockSprites(dungeonTexture);
         controllerList.Add(new KeyboardController(this, blockSprites));
+        TextureManager.Instance.LoadContent(this);
+        EnemyManager.Instance.SpawnEnemies();
+        
     }
 
     protected override void Update(GameTime gameTime)
@@ -58,6 +63,8 @@ public class Game1 : Game
 
         blockSprites.UpdateActiveBlocks(); // Call to update active blocks
 
+        EnemyManager.Instance.Update(gameTime);
+
         base.Update(gameTime);
     }
 
@@ -69,6 +76,7 @@ public class Game1 : Game
         sprite.Draw(_spriteBatch);
 
         blockSprites.DrawActiveBlocks(_spriteBatch); // Call to draw active blocks
+        EnemyManager.Instance.Draw(_spriteBatch);
 
         _spriteBatch.End();
         base.Draw(gameTime);

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using HotpotHeroes.sprint0Game.sprint0Test.Managers;
 
 namespace sprint0Test.Enemy
 {
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
-    using global::HotpotHeroes.sprint0Game.sprint0Test.Managers;
 
-    namespace HotpotHeroes.sprint0Game.sprint0Test.Enemy
-    {
+    
         public class Aquamentus : AbstractEnemy
         {
             public Aquamentus(Vector2 startPosition)
@@ -31,6 +25,6 @@ namespace sprint0Test.Enemy
                 ProjectileManager.Instance.SpawnProjectile(position, dir + new Vector2(-0.1f, 0), TextureManager.Instance.GetTexture("Dragon_Projectile"));
             }
         }
-    }
+    
 
 }

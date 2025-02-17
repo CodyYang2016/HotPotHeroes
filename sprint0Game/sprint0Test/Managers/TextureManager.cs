@@ -23,7 +23,7 @@ namespace HotpotHeroes.sprint0Game.sprint0Test.Managers
         public void LoadContent(Game game)
         {
             // Load the sprite sheet containing enemy textures
-            Texture2D enemySpriteSheet = game.Content.Load<Texture2D>("zeldaenemy");
+            Texture2D enemySpriteSheet = game.Content.Load<Texture2D>("DungeonEnemy");
             Texture2D bossSpriteSheet = game.Content.Load<Texture2D>("ZeldaBoss");
             Texture2D worldSpriteSheet = game.Content.Load<Texture2D>("ZeldaOverWorld");
 
