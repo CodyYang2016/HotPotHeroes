@@ -12,10 +12,12 @@ namespace sprint0Test
     {
         private Dictionary<Keys, ICommand> controllerMappings;
         private Game1 myGame;
+        private BlockSprites blockSprites;
 
-        public KeyboardController(Game1 game)
+        public KeyboardController(Game1 game, BlockSprites blockSprites)
         {
             myGame = game;
+            this.blockSprites = blockSprites;
             controllerMappings = new Dictionary<Keys, ICommand>();
             RegisterCommand();
         }
@@ -33,8 +35,8 @@ namespace sprint0Test
             controllerMappings.Add(Keys.D3, new SetDispUpDownSprite(myGame));
             controllerMappings.Add(Keys.D4, new SetDispLeftRightSprite(myGame));
 
-            controllerMappings.Add(Keys.Y, new SetBlock(myGame));
-            controllerMappings.Add(Keys.T, new SetBlock(myGame));
+            controllerMappings.Add(Keys.Y, new SetBlock(blockSprites));
+            controllerMappings.Add(Keys.T, new SetBlock(blockSprites));
         }
         public void Update()
         {

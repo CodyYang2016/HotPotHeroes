@@ -21,6 +21,9 @@ public class BlockSprites
     // The list of game objects
     public List<IBlock> gameObjects = new List<IBlock>();
 
+    private List<IBlock> _active = new List<IBlock>(); // The active game objects list
+    private int currentIndex = 0; // The current index for managing blocks
+
     // Constructor to initialize blocks
     public BlockSprites(Texture2D dungeonTexture)
     {
@@ -35,5 +38,54 @@ public class BlockSprites
         gameObjects.Add(new Block(dungeonTexture, blue, ObjectType.Rock, new Vector2(100, 80), 3f));
         gameObjects.Add(new Block(dungeonTexture, dragon, ObjectType.Rock, new Vector2(100, 80), 3f));
         gameObjects.Add(new BlockStair(dungeonTexture, stair, new Vector2(100, 80), 3f));
+    }
+
+    // Set the active list of blocks
+    public void SetActiveList(IBlock newSprite)
+    {
+        _active.Clear(); // Optionally clear the _active list or keep adding/removing sprites as needed
+        _active.Add(newSprite);
+    }
+
+    // Get all game objects (blocks) from the list
+    public List<IBlock> GetGameObjects()
+    {
+        return gameObjects;
+    }
+
+    // Get the current index
+    public int GetCurrentIndex()
+    {
+        return currentIndex;
+    }
+
+    // Set the current index
+    public void SetCurrentIndex(int index)
+    {
+        currentIndex = index;
+    }
+
+    // Optionally, you can add an accessor for the _active list
+    public List<IBlock> GetActiveList()
+    {
+        return _active;
+    }
+
+    // Update the active blocks
+    public void UpdateActiveBlocks()
+    {
+        foreach (var block in _active)
+        {
+            block.Update();
+        }
+    }
+
+    // Draw the active blocks
+    public void DrawActiveBlocks(SpriteBatch spriteBatch)
+    {
+        foreach (var block in _active)
+        {
+            block.Draw(spriteBatch);
+        }
     }
 }

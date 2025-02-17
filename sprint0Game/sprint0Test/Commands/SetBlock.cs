@@ -1,35 +1,32 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using sprint0Test.Interfaces;
 
 namespace sprint0Test
 {
     class SetBlock : ICommand
     {
-        private Game1 myGame;
+        private BlockSprites blockSprites;
 
-        public SetBlock(Game1 game)
+        public SetBlock(BlockSprites blockSprites)
         {
-            myGame = game;
+            this.blockSprites = blockSprites;
         }
 
         public void Execute()
         {
-            // Access the list of game objects
-            var _gameObjects = myGame.GetGameObjects();  // Assuming GetGameObjects() returns the list of all game objects
+            // Access the list of game objects from BlockSprites
+            var _gameObjects = blockSprites.GetGameObjects();
 
             // Increment the current index and cycle it if needed
-            int currentIndex = myGame.GetCurrentIndex();  // Assuming this tracks the current index of the game object
+            int currentIndex = blockSprites.GetCurrentIndex();  // Use BlockSprites to get the current index
             currentIndex = (currentIndex + 1) % _gameObjects.Count;  // Cycle the index
 
-            // Set the new active object
-            myGame.SetActiveList(_gameObjects[currentIndex]);
+            // Set the new active object using BlockSprites
+            blockSprites.SetActiveList(_gameObjects[currentIndex]);
 
-            // Update the index back to Game1 (if necessary)
-            myGame.SetCurrentIndex(currentIndex);
-            
+            // Update the index back to BlockSprites
+            blockSprites.SetCurrentIndex(currentIndex);
         }
     }
 }
