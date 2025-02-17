@@ -7,19 +7,19 @@ using sprint0Test;
 public class BlockSprites
 {
     // Define all the block rectangles
-    public Rectangle tile = new Rectangle(984, 11, 16, 16);
-    public Rectangle black = new Rectangle(984, 27, 16, 16);
-    public Rectangle brick = new Rectangle(984, 45, 16, 16);
-    public Rectangle block = new Rectangle(1001, 11, 16, 16);
-    public Rectangle sand = new Rectangle(1001, 27, 16, 16);
-    public Rectangle ramp = new Rectangle(1001, 45, 16, 16);
-    public Rectangle fish = new Rectangle(1018, 11, 16, 16);
-    public Rectangle blue = new Rectangle(1018, 27, 16, 16);
-    public Rectangle dragon = new Rectangle(1035, 11, 16, 16);
-    public Rectangle stair = new Rectangle(1035, 27, 16, 16);
+    private Rectangle tile = new Rectangle(984, 11, 16, 16);
+    private Rectangle black = new Rectangle(984, 27, 16, 16);
+    private Rectangle brick = new Rectangle(984, 45, 16, 16);
+    private Rectangle block = new Rectangle(1001, 11, 16, 16);
+    private Rectangle sand = new Rectangle(1001, 27, 16, 16);
+    private Rectangle ramp = new Rectangle(1001, 45, 16, 16);
+    private Rectangle fish = new Rectangle(1018, 11, 16, 16);
+    private Rectangle blue = new Rectangle(1018, 27, 16, 16);
+    private Rectangle dragon = new Rectangle(1035, 11, 16, 16);
+    private Rectangle stair = new Rectangle(1035, 27, 16, 16);
 
     // The list of game objects
-    public List<IBlock> gameObjects = new List<IBlock>();
+    private List<IBlock> gameObjects = new List<IBlock>();
 
     private List<IBlock> _active = new List<IBlock>(); // The active game objects list
     private int currentIndex = 0; // The current index for managing blocks

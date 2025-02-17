@@ -37,6 +37,9 @@ namespace sprint0Test
 
             controllerMappings.Add(Keys.Y, new SetBlock(blockSprites));
             controllerMappings.Add(Keys.T, new SetBlock(blockSprites));
+
+            controllerMappings.Add(Keys.O, new PreviousEnemyCommand());
+            controllerMappings.Add(Keys.P, new NextEnemyCommand());
         }
         public void Update()
         {

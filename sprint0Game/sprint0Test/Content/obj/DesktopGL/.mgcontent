@@ -6,6 +6,31 @@
   <SourceFiles>
     <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/DungeonEnemy.png</File>
     <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/font/font1.spritefont</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/Link1.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/Link2.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkB1.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkB2.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkBS1.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkBS2.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkBS3.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkBS4.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/Linkh.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkL1.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkL2.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkLS1.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkLS2.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkLS3.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkLS4.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkR1.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkR2.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkRS1.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkRS2.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkRS3.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkRS4.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkS1.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkS2.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkS3.png</File>
+    <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/LinkS4.png</File>
     <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/mario.png</File>
     <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/mario2.png</File>
     <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/TileSetDungeon.png</File>
@@ -13,6 +38,31 @@
     <File>c:/Users/elija/OneDrive/Desktop/3902/Gamer3/HotPotHeroes/sprint0Game/sprint0Test/Content/ZeldaOverWorld.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
