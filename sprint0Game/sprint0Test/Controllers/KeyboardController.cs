@@ -40,6 +40,7 @@ namespace sprint0Test
 
             controllerMappings.Add(Keys.O, new PreviousEnemyCommand());
             controllerMappings.Add(Keys.P, new NextEnemyCommand());
+            controllerMappings.Add(Keys.L, new EnemyAttackCommand());
         }
         public void Update()
         {
