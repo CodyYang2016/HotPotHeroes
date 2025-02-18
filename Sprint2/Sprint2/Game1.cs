@@ -7,7 +7,6 @@ using sprint0Test.Sprites;
 
 namespace sprint0Test
 {
-
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
@@ -30,6 +29,7 @@ namespace sprint0Test
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+          
             var link1 = Content.Load<Texture2D>("Link1");
             var link2 = Content.Load<Texture2D>("Link2");
             var linkB1 = Content.Load<Texture2D>("LinkB1");
@@ -38,48 +38,71 @@ namespace sprint0Test
             var linkL2 = Content.Load<Texture2D>("LinkL2");
             var linkR1 = Content.Load<Texture2D>("LinkR1");
             var linkR2 = Content.Load<Texture2D>("LinkR2");
+
             var linkS1 = Content.Load<Texture2D>("LinkS1");
             var linkS2 = Content.Load<Texture2D>("LinkS2");
             var linkS3 = Content.Load<Texture2D>("LinkS3");
             var linkS4 = Content.Load<Texture2D>("LinkS4");
+
             var linkBS1 = Content.Load<Texture2D>("LinkBS1");
             var linkBS2 = Content.Load<Texture2D>("LinkBS2");
             var linkBS3 = Content.Load<Texture2D>("LinkBS3");
             var linkBS4 = Content.Load<Texture2D>("LinkBS4");
+
             var linkLS1 = Content.Load<Texture2D>("LinkLS1");
             var linkLS2 = Content.Load<Texture2D>("LinkLS2");
             var linkLS3 = Content.Load<Texture2D>("LinkLS3");
             var linkLS4 = Content.Load<Texture2D>("LinkLS4");
+
             var linkRS1 = Content.Load<Texture2D>("LinkRS1");
             var linkRS2 = Content.Load<Texture2D>("LinkRS2");
             var linkRS3 = Content.Load<Texture2D>("LinkRS3");
             var linkRS4 = Content.Load<Texture2D>("LinkRS4");
+
             var linkH = Content.Load<Texture2D>("Linkh");
 
+       
             Dictionary<(LinkAction, LinkDirection), List<Texture2D>> linkMap =
                 new Dictionary<(LinkAction, LinkDirection), List<Texture2D>>();
 
+            // Idle
             linkMap.Add((LinkAction.Idle, LinkDirection.Down), new List<Texture2D> { link1 });
             linkMap.Add((LinkAction.Idle, LinkDirection.Up), new List<Texture2D> { linkB1 });
             linkMap.Add((LinkAction.Idle, LinkDirection.Left), new List<Texture2D> { linkL1 });
             linkMap.Add((LinkAction.Idle, LinkDirection.Right), new List<Texture2D> { linkR1 });
 
-            linkMap.Add((LinkAction.Walking, LinkDirection.Down), new List<Texture2D> { link1, link2 });
-            linkMap.Add((LinkAction.Walking, LinkDirection.Up), new List<Texture2D> { linkB1, linkB2 });
-            linkMap.Add((LinkAction.Walking, LinkDirection.Left), new List<Texture2D> { linkL1, linkL2 });
-            linkMap.Add((LinkAction.Walking, LinkDirection.Right), new List<Texture2D> { linkR1, linkR2 });
+            // Walking
+            linkMap.Add((LinkAction.Walking, LinkDirection.Down),
+                new List<Texture2D> { link1, link2 });
+            linkMap.Add((LinkAction.Walking, LinkDirection.Up),
+                new List<Texture2D> { linkB1, linkB2 });
+            linkMap.Add((LinkAction.Walking, LinkDirection.Left),
+                new List<Texture2D> { linkL1, linkL2 });
+            linkMap.Add((LinkAction.Walking, LinkDirection.Right),
+                new List<Texture2D> { linkR1, linkR2 });
 
-            linkMap.Add((LinkAction.Attacking, LinkDirection.Down), new List<Texture2D> { linkS1, linkS2, linkS3, linkS4 });
-            linkMap.Add((LinkAction.Attacking, LinkDirection.Up), new List<Texture2D> { linkBS1, linkBS2, linkBS3, linkBS4 });
-            linkMap.Add((LinkAction.Attacking, LinkDirection.Left), new List<Texture2D> { linkLS1, linkLS2, linkLS3, linkLS4 });
-            linkMap.Add((LinkAction.Attacking, LinkDirection.Right), new List<Texture2D> { linkRS1, linkRS2, linkRS3, linkRS4 });
+            // Attacking
+            linkMap.Add((LinkAction.Attacking, LinkDirection.Down),
+                new List<Texture2D> { linkS1, linkS2, linkS3, linkS4 });
+            linkMap.Add((LinkAction.Attacking, LinkDirection.Up),
+                new List<Texture2D> { linkBS1, linkBS2, linkBS3, linkBS4 });
+            linkMap.Add((LinkAction.Attacking, LinkDirection.Left),
+                new List<Texture2D> { linkLS1, linkLS2, linkLS3, linkLS4 });
+            linkMap.Add((LinkAction.Attacking, LinkDirection.Right),
+                new List<Texture2D> { linkRS1, linkRS2, linkRS3, linkRS4 });
 
-            linkMap.Add((LinkAction.Damaged, LinkDirection.Down), new List<Texture2D> { linkH });
-            linkMap.Add((LinkAction.Damaged, LinkDirection.Up), new List<Texture2D> { linkH });
-            linkMap.Add((LinkAction.Damaged, LinkDirection.Left), new List<Texture2D> { linkH });
-            linkMap.Add((LinkAction.Damaged, LinkDirection.Right), new List<Texture2D> { linkH });
+            // Damaged
+            linkMap.Add((LinkAction.Damaged, LinkDirection.Down),
+                new List<Texture2D> { linkH });
+            linkMap.Add((LinkAction.Damaged, LinkDirection.Up),
+                new List<Texture2D> { linkH });
+            linkMap.Add((LinkAction.Damaged, LinkDirection.Left),
+                new List<Texture2D> { linkH });
+            linkMap.Add((LinkAction.Damaged, LinkDirection.Right),
+                new List<Texture2D> { linkH });
 
             LinkSprite linkSprite = new LinkSprite(linkMap);
+       
             link = new Link(linkSprite, new Vector2(200, 200));
         }
 
@@ -87,33 +110,79 @@ namespace sprint0Test
         {
             var kstate = Keyboard.GetState();
 
-            if (kstate.IsKeyDown(Keys.W) || kstate.IsKeyDown(Keys.Up)) link.MoveUp();
-            else if (kstate.IsKeyDown(Keys.S) || kstate.IsKeyDown(Keys.Down)) link.MoveDown();
-            else if (kstate.IsKeyDown(Keys.A) || kstate.IsKeyDown(Keys.Left)) link.MoveLeft();
-            else if (kstate.IsKeyDown(Keys.D) || kstate.IsKeyDown(Keys.Right)) link.MoveRight();
-            else link.Stop();
+            // 移动与方向
+            if (kstate.IsKeyDown(Keys.W) || kstate.IsKeyDown(Keys.Up))
+            {
+                link.MoveUp();
+            }
+            else if (kstate.IsKeyDown(Keys.S) || kstate.IsKeyDown(Keys.Down))
+            {
+                link.MoveDown();
+            }
+            else if (kstate.IsKeyDown(Keys.A) || kstate.IsKeyDown(Keys.Left))
+            {
+                link.MoveLeft();
+            }
+            else if (kstate.IsKeyDown(Keys.D) || kstate.IsKeyDown(Keys.Right))
+            {
+                link.MoveRight();
+            }
+            else
+            {
+                link.Stop();
+            }
 
-            if (kstate.IsKeyDown(Keys.Z) || kstate.IsKeyDown(Keys.N)) link.Attack();
+            // 攻击
+            if (kstate.IsKeyDown(Keys.Z) || kstate.IsKeyDown(Keys.N))
+            {
+                link.Attack();
+            }
 
-            if (kstate.IsKeyDown(Keys.E)) link.TakeDamage();
+            // 受到伤害
+            if (kstate.IsKeyDown(Keys.E))
+            {
+                link.TakeDamage();
+            }
 
-            if (kstate.IsKeyDown(Keys.D1)) link.SwitchItem(1);
-            if (kstate.IsKeyDown(Keys.D2)) link.SwitchItem(-1);
+            // 切换物品
+            if (kstate.IsKeyDown(Keys.D1))
+            {
+                link.SwitchItem(1);
+            }
+            if (kstate.IsKeyDown(Keys.D2))
+            {
+                link.SwitchItem(-1);
+            }
 
-            if (kstate.IsKeyDown(Keys.X) || kstate.IsKeyDown(Keys.M)) link.UseItem();
+            // 使用物品
+            if (kstate.IsKeyDown(Keys.X) || kstate.IsKeyDown(Keys.M))
+            {
+                link.UseItem();
+            }
 
-            if (kstate.IsKeyDown(Keys.Q)) Exit();
-            // if (kstate.IsKeyDown(Keys.R)) RestartGame();
+            // 退出游戏
+            if (kstate.IsKeyDown(Keys.Q))
+            {
+                Exit();
+            }
 
+            // 别忘了让 Link 做 Update，这样才会切换帧、执行动画
+            link.Update();
+
+            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
+
             link.Draw(_spriteBatch);
+
             _spriteBatch.End();
             base.Draw(gameTime);
         }
     }
 }
+
+
