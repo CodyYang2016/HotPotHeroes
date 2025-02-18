@@ -132,19 +132,19 @@ namespace sprint0Test
                 link.Stop();
             }
 
-            // 攻击
+           
             if (kstate.IsKeyDown(Keys.Z) || kstate.IsKeyDown(Keys.N))
             {
                 link.Attack();
             }
 
-            // 受到伤害
+          
             if (kstate.IsKeyDown(Keys.E))
             {
                 link.TakeDamage();
             }
 
-            // 切换物品
+            
             if (kstate.IsKeyDown(Keys.D1))
             {
                 link.SwitchItem(1);
@@ -154,19 +154,18 @@ namespace sprint0Test
                 link.SwitchItem(-1);
             }
 
-            // 使用物品
             if (kstate.IsKeyDown(Keys.X) || kstate.IsKeyDown(Keys.M))
             {
                 link.UseItem();
             }
 
-            // 退出游戏
+          
             if (kstate.IsKeyDown(Keys.Q))
             {
                 Exit();
             }
 
-            // 别忘了让 Link 做 Update，这样才会切换帧、执行动画
+           
             link.Update();
 
             base.Update(gameTime);

@@ -1,18 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Yuchen Dang\\Desktop\\3902\\sprint2\\",
+  "WorkspaceRootPath": "C:\\Users\\Yuchen Dang\\Desktop\\3902\\HotPotHeroes\\Sprint2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A27D356A-2B25-4D14-A766-E2863E3863B1}|sprint2\\sprint2.csproj|c:\\users\\yuchen dang\\desktop\\3902\\sprint2\\sprint2\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A27D356A-2B25-4D14-A766-E2863E3863B1}|sprint2\\sprint2.csproj|solutionrelative:sprint2\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Yuchen Dang\\Desktop\\3902\\HotPotHeroes\\Sprint2\\sprint2\\Game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:sprint2\\Game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A27D356A-2B25-4D14-A766-E2863E3863B1}|sprint2\\sprint2.csproj|c:\\users\\yuchen dang\\desktop\\3902\\sprint2\\sprint2\\link\\link.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A27D356A-2B25-4D14-A766-E2863E3863B1}|sprint2\\sprint2.csproj|solutionrelative:sprint2\\link\\link.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Yuchen Dang\\Desktop\\3902\\HotPotHeroes\\Sprint2\\sprint2\\Link\\Link.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:sprint2\\Link\\Link.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A27D356A-2B25-4D14-A766-E2863E3863B1}|sprint2\\sprint2.csproj|c:\\users\\yuchen dang\\desktop\\3902\\sprint2\\sprint2\\link\\linksprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A27D356A-2B25-4D14-A766-E2863E3863B1}|sprint2\\sprint2.csproj|solutionrelative:sprint2\\link\\linksprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Yuchen Dang\\Desktop\\3902\\HotPotHeroes\\Sprint2\\sprint2\\Link\\LinkSprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:sprint2\\Link\\LinkSprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -36,24 +36,23 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "LinkSprite.cs",
-              "DocumentMoniker": "C:\\Users\\Yuchen Dang\\Desktop\\3902\\sprint2\\sprint2\\Link\\LinkSprite.cs",
-              "RelativeDocumentMoniker": "sprint2\\Link\\LinkSprite.cs",
-              "ToolTip": "C:\\Users\\Yuchen Dang\\Desktop\\3902\\sprint2\\sprint2\\Link\\LinkSprite.cs",
-              "RelativeToolTip": "sprint2\\Link\\LinkSprite.cs",
+              "DocumentMoniker": "C:\\Users\\Yuchen Dang\\Desktop\\3902\\HotPotHeroes\\Sprint2\\Sprint2\\Link\\LinkSprite.cs",
+              "RelativeDocumentMoniker": "Sprint2\\Link\\LinkSprite.cs",
+              "ToolTip": "C:\\Users\\Yuchen Dang\\Desktop\\3902\\HotPotHeroes\\Sprint2\\Sprint2\\Link\\LinkSprite.cs",
+              "RelativeToolTip": "Sprint2\\Link\\LinkSprite.cs",
               "ViewState": "AgIAAC4AAAAAAAAAAAAAAF8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T23:51:51.977Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-17T23:51:51.977Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Link.cs",
-              "DocumentMoniker": "C:\\Users\\Yuchen Dang\\Desktop\\3902\\sprint2\\sprint2\\Link\\Link.cs",
-              "RelativeDocumentMoniker": "sprint2\\Link\\Link.cs",
-              "ToolTip": "C:\\Users\\Yuchen Dang\\Desktop\\3902\\sprint2\\sprint2\\Link\\Link.cs",
-              "RelativeToolTip": "sprint2\\Link\\Link.cs",
-              "ViewState": "AgIAAKAAAAAAAAAAAAAAANEAAAAAAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\Yuchen Dang\\Desktop\\3902\\HotPotHeroes\\Sprint2\\Sprint2\\Link\\Link.cs",
+              "RelativeDocumentMoniker": "Sprint2\\Link\\Link.cs",
+              "ToolTip": "C:\\Users\\Yuchen Dang\\Desktop\\3902\\HotPotHeroes\\Sprint2\\Sprint2\\Link\\Link.cs",
+              "RelativeToolTip": "Sprint2\\Link\\Link.cs",
+              "ViewState": "AgIAAMIAAAAAAAAAAAAAABsAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-17T23:51:28.372Z",
               "EditorCaption": ""
@@ -62,11 +61,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Game1.cs",
-              "DocumentMoniker": "C:\\Users\\Yuchen Dang\\Desktop\\3902\\sprint2\\sprint2\\Game1.cs",
-              "RelativeDocumentMoniker": "sprint2\\Game1.cs",
-              "ToolTip": "C:\\Users\\Yuchen Dang\\Desktop\\3902\\sprint2\\sprint2\\Game1.cs",
-              "RelativeToolTip": "sprint2\\Game1.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAQwB8AAAAKAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\Yuchen Dang\\Desktop\\3902\\HotPotHeroes\\Sprint2\\Sprint2\\Game1.cs",
+              "RelativeDocumentMoniker": "Sprint2\\Game1.cs",
+              "ToolTip": "C:\\Users\\Yuchen Dang\\Desktop\\3902\\HotPotHeroes\\Sprint2\\Sprint2\\Game1.cs",
+              "RelativeToolTip": "Sprint2\\Game1.cs",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAQwKcAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-17T23:50:20.115Z",
               "EditorCaption": ""
