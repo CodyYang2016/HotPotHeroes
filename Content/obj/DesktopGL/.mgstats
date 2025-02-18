@@ -1,7 +1,0 @@
-Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/cody.yang/source/repos/BlockBranch/Content/mario.png","C:/Users/cody.yang/source/repos/BlockBranch/Content/bin/DesktopGL/mario.xnb","TextureProcessor","Texture2DContent",6584,304645,0.3361807
-"C:/Users/cody.yang/source/repos/BlockBranch/Content/mario2.png","C:/Users/cody.yang/source/repos/BlockBranch/Content/bin/DesktopGL/mario2.xnb","TextureProcessor","Texture2DContent",945,17253,0.0111105
-"C:/Users/cody.yang/source/repos/BlockBranch/Content/TileSetDungeon.png","C:/Users/cody.yang/source/repos/BlockBranch/Content/bin/DesktopGL/TileSetDungeon.xnb","TextureProcessor","Texture2DContent",74652,5826381,0.6456855
-"C:/Users/cody.yang/source/repos/BlockBranch/Content/ZeldaBoss.png","C:/Users/cody.yang/source/repos/BlockBranch/Content/bin/DesktopGL/ZeldaBoss.xnb","TextureProcessor","Texture2DContent",24440,584981,0.5273431
-"C:/Users/cody.yang/source/repos/BlockBranch/Content/zeldaenemy.png","C:/Users/cody.yang/source/repos/BlockBranch/Content/bin/DesktopGL/zeldaenemy.xnb","TextureProcessor","Texture2DContent",18943,416869,0.0518266
-"C:/Users/cody.yang/source/repos/BlockBranch/Content/ZeldaOverWorld.png","C:/Users/cody.yang/source/repos/BlockBranch/Content/bin/DesktopGL/ZeldaOverWorld.xnb","TextureProcessor","Texture2DContent",13494,242893,0.0245584
