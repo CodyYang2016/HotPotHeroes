@@ -5,6 +5,8 @@ using System;
 using sprint0Test.Interfaces;
 using System.Collections.Generic;
 
+// DISCUSS KEYBOARD STATES
+
 namespace sprint0Test
 {
 
@@ -13,6 +15,8 @@ namespace sprint0Test
         private Dictionary<Keys, ICommand> controllerMappings;
         private Game1 myGame;
         private BlockSprites blockSprites;
+        private KeyboardState previousState; // Store previous keyboard state
+
 
         public KeyboardController(Game1 game, BlockSprites blockSprites)
         {
@@ -46,11 +50,18 @@ namespace sprint0Test
         }
         public void Update()
         {
-            Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
+            KeyboardState currentState = Keyboard.GetState();
+            Keys[] pressedKeys = currentState.GetPressedKeys();
+
             foreach (Keys key in pressedKeys)
             {
-                controllerMappings[key].Execute();
+                if (currentState.IsKeyDown(key) && previousState.IsKeyUp(key)) // Detect new key press
+                {
+                    controllerMappings[key].Execute();
+                }
             }
+
+            previousState = currentState; // Update previous state
         }
     }
 
