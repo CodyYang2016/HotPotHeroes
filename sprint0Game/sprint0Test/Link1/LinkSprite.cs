@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using sprint0Test.Link1;
+using sprint0Test;
 
 namespace sprint0Test.Link1
 
@@ -45,7 +46,12 @@ namespace sprint0Test.Link1
         {
             CurrentAction = action;
             CurrentDirection = dir;
-            currentFrames = spriteMap[(action, dir)];
+            if (!spriteMap.TryGetValue((CurrentAction, CurrentDirection), out currentFrames))
+            {
+                Console.WriteLine($"ERROR: Key ({CurrentAction}, {CurrentDirection}) not found in spriteMap!");
+                currentFrames = new List<Texture2D>(); // Assign an empty list to prevent crashes
+            }
+            // currentFrames = spriteMap[(action, dir)];
             currentFrameIndex = 0;
             frameCounter = 0;
         }

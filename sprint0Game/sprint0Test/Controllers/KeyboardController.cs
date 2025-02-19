@@ -19,10 +19,19 @@ namespace sprint0Test
         private BlockSprites blockSprites;
         private KeyboardState previousState; // Store previous keyboard state
         private Link Link;
-        Dictionary<(LinkAction, LinkDirection), List<Texture2D>> linkMap = new Dictionary<(LinkAction, LinkDirection), List<Texture2D>>();
+        Dictionary<(LinkAction, LinkDirection), List<Texture2D>> map = new Dictionary<(LinkAction, LinkDirection), List<Texture2D>>();
+        public enum LinkDirection1
+        {
+            Up, Down, Left, Right
+        }
 
-        public LinkAction CurrentAction { get; private set; }
-        public LinkDirection CurrentDirection { get; private set; }
+        public enum LinkAction1
+        {
+            Idle, Walking, Attacking, Damaged, UsingItem
+        }
+
+        public LinkAction1 CurrentAction { get; private set; }
+        public LinkDirection1 CurrentDirection { get; private set; }
 
 
         public KeyboardController(Game1 game, BlockSprites blockSprites)
@@ -31,7 +40,7 @@ namespace sprint0Test
             this.blockSprites = blockSprites;
             controllerMappings = new Dictionary<Keys, ICommand>();
             RegisterCommand();
-            LinkSprite linkSprite = new LinkSprite(linkMap);
+            LinkSprite linkSprite = new LinkSprite(map);
 
             Link = new Link(linkSprite, new Vector2(200, 200));
         }
