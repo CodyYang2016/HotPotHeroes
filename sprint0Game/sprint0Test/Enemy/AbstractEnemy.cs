@@ -1,14 +1,8 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using sprint0Test.Enemy;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 using HotpotHeroes.sprint0Game.sprint0Test.Managers;
-// LINK TO PLAYER CLASS BEING BUILT OUTSIDE OF MY OWN CODE
 
 namespace sprint0Test.Enemy
 {
@@ -16,24 +10,51 @@ namespace sprint0Test.Enemy
     {
         protected Vector2 position;
         protected int health;
-        protected Texture2D texture;
-        protected IEnemyState currentState;
-        protected float detectionRadius = 100f; // Default detection range
-        protected float attackRange = 30f; // Default attack range
+        protected float detectionRadius = 100f;
+        protected float attackRange = 30f;
         protected float scale = 3f;
+        protected IEnemyState currentState;
 
-        public AbstractEnemy(Vector2 startposition, Texture2D enemyTexture)
+        // Animation properties
+        protected Texture2D[] animationFrames;
+        protected int currentFrame = 0;
+        protected double frameTime = 0.1;
+        protected double frameTimer = 0.0;
+
+        public AbstractEnemy(Vector2 startPosition, Texture2D[] textures)
         {
-            position = startposition;
-            texture = enemyTexture;
-            health = 3;  // Default health
-            currentState = new AttackState(this);  // Default state
+            position = startPosition;
+
+            if (textures == null || textures.Length == 0)
+            {
+                Console.WriteLine("Error: animationFrames array is NULL or EMPTY in " + this.GetType().Name);
+                animationFrames = new Texture2D[1]; // Assign a dummy array to prevent null reference issues
+            }
+            else
+            {
+                animationFrames = textures;
+            }
+
+            health = 3;
+            currentState = new AttackState(this);
         }
 
         public virtual void Update(GameTime gameTime)
         {
             currentState.Update(gameTime);
+            UpdateAnimation(gameTime);
         }
+
+        private void UpdateAnimation(GameTime gameTime)
+        {
+            frameTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            if (frameTimer >= frameTime)
+            {
+                frameTimer = 0;
+                currentFrame = (currentFrame + 1) % animationFrames.Length; // Loop through frames
+            }
+        }
+
         public void SetScale(float newScale)
         {
             scale = newScale;
@@ -41,7 +62,11 @@ namespace sprint0Test.Enemy
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+            if (animationFrames.Length > 0)
+            {
+                Vector2 origin = new Vector2(animationFrames[currentFrame].Width / 2, animationFrames[currentFrame].Height / 2);
+                spriteBatch.Draw(animationFrames[currentFrame], position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0f);
+            }
         }
 
         public void TakeDamage(int damage)
@@ -56,22 +81,6 @@ namespace sprint0Test.Enemy
             currentState = newState;
         }
 
-        //public bool DetectPlayer()
-        //{
-        //    // Placeholder: Detect if player is within a certain range
-        //    return Vector2.Distance(position, Player.Instance.position) < detectionRadius;
-        //}
-
-        //public bool IsInAttackRange()
-        //{
-        //    return Vector2.Distance(position, Player.Instance.position) < attackRange;
-        //}
-
-        //public Vector2 GetDirectionToPlayer()
-        //{
-        //    return Vector2.Normalize(Player.Instance.position - position);
-        //}
-
         public void SetPosition(Vector2 newPosition)
         {
             position = newPosition;
@@ -81,15 +90,15 @@ namespace sprint0Test.Enemy
         {
             return position;
         }
+
         public virtual void PerformAttack()
         {
-            // Overriden
+            // Overridden in subclasses
         }
 
         public void Destroy()
         {
             // EnemyManager.Instance.RemoveEnemy(this);
         }
-
     }
 }

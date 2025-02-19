@@ -7,7 +7,11 @@ namespace sprint0Test.Enemy
     public class Octorok : AbstractEnemy
     {
         public Octorok(Vector2 startPosition)
-            : base(startPosition, TextureManager.Instance.GetTexture("Octopus"))
+            : base(startPosition, new Texture2D[]
+        {
+            TextureManager.Instance.GetTexture("Octopus_Idle1"),
+            TextureManager.Instance.GetTexture("Octopus_Idle2")
+        })
         {
             detectionRadius = 150f; // Detects player from medium distance
             attackRange = 100f; // Attacks from range

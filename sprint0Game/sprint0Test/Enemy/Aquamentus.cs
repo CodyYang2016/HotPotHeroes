@@ -10,7 +10,15 @@ namespace sprint0Test.Enemy
         public class Aquamentus : AbstractEnemy
         {
             public Aquamentus(Vector2 startPosition)
-                : base(startPosition, TextureManager.Instance.GetTexture("Dragon"))
+                : base(startPosition, new Texture2D[]
+                {
+                    TextureManager.Instance.GetTexture("Dragon_Idle1"),
+                    TextureManager.Instance.GetTexture("Dragon_Idle2"),
+                  //TextureManager.Instance.GetTexture("Dragon_Idle3"),
+                  //TextureManager.Instance.GetTexture("Dragon_Idle4")
+
+
+                })
             {
                 detectionRadius = 250f; // Large detection range
                 attackRange = 200f; // Attacks from far away

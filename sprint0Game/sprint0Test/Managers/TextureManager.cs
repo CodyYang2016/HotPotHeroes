@@ -30,10 +30,17 @@ namespace HotpotHeroes.sprint0Game.sprint0Test.Managers
 
             
             // Slice the sprite sheet into individual textures (example: Octorok and Stalfos)
-            textures["Dragon"] = CutTexture(bossSpriteSheet, new Rectangle(1, 11, 24, 32));
+            textures["Dragon_Idle1"] = CutTexture(bossSpriteSheet, new Rectangle(1, 11, 24, 32));
+            textures["Dragon_Idle2"] = CutTexture(bossSpriteSheet, new Rectangle(25, 11, 24, 32));
+          //textures["Dragon_Idle3"] = CutTexture(bossSpriteSheet, new Rectangle(49, 11, 24, 32));
+          //textures["Dragon_Idle4"] = CutTexture(bossSpriteSheet, new Rectangle(64, 11, 24, 32));
+
+
             //next one is 25,11 
             textures["Dragon_Projectile"] = CutTexture(bossSpriteSheet, new Rectangle(109, 25, 10, 16));
-            textures["Octopus"] = CutTexture(worldSpriteSheet, new Rectangle(1, 11, 16, 16));
+            textures["Octopus_Idle1"] = CutTexture(worldSpriteSheet, new Rectangle(1, 11, 16, 16));
+            textures["Octopus_Idle2"] = CutTexture(worldSpriteSheet, new Rectangle(17, 11, 16, 16));
+
             //Octopus Projectile
             textures["Octopus_Projectile"] = CutTexture(bossSpriteSheet, new Rectangle(77, 26, 9, 17));
            
