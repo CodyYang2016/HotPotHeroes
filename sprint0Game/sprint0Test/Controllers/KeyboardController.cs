@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using sprint0Test.Interfaces;
 using System.Collections.Generic;
+using sprint0Test.Commands;
 
 // DISCUSS KEYBOARD STATES
 
@@ -47,6 +48,8 @@ namespace sprint0Test
             controllerMappings.Add(Keys.L, new EnemyAttackCommand());
             controllerMappings.Add(Keys.J, new MoveEnemyLeftCommand());
             controllerMappings.Add(Keys.K, new MoveEnemyRightCommand());
+            controllerMappings.Add(Keys.U, new CycleItemCommand(myGame, -1));
+            controllerMappings.Add(Keys.I, new CycleItemCommand(myGame, 1));
         }
         public void Update()
         {

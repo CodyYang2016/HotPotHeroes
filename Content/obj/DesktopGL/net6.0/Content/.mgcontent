@@ -4,6 +4,8 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/cody.yang/source/repos/Cody2/Content/boomerang.png</File>
+    <File>C:/Users/cody.yang/source/repos/Cody2/Content/heart.png</File>
     <File>C:/Users/cody.yang/source/repos/Cody2/Content/mario.png</File>
     <File>C:/Users/cody.yang/source/repos/Cody2/Content/mario2.png</File>
     <File>C:/Users/cody.yang/source/repos/Cody2/Content/TileSetDungeon.png</File>
@@ -12,6 +14,8 @@
     <File>C:/Users/cody.yang/source/repos/Cody2/Content/ZeldaOverWorld.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -58,3 +58,5 @@ C:\Users\cody.yang\source\repos\Cody2\obj\Debug\net6.0\refint\BlockBranch.dll
 C:\Users\cody.yang\source\repos\Cody2\obj\Debug\net6.0\BlockBranch.pdb
 C:\Users\cody.yang\source\repos\Cody2\obj\Debug\net6.0\BlockBranch.genruntimeconfig.cache
 C:\Users\cody.yang\source\repos\Cody2\obj\Debug\net6.0\ref\BlockBranch.dll
+C:\Users\cody.yang\source\repos\Cody2\bin\Debug\net6.0\Content\boomerang.xnb
+C:\Users\cody.yang\source\repos\Cody2\bin\Debug\net6.0\Content\heart.xnb

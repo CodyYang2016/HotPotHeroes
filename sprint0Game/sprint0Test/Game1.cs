@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using sprint0Test.Interfaces;
+using sprint0Test.Items;
 using sprint0Test.Sprites;
 
 namespace sprint0Test;
@@ -17,6 +18,10 @@ public class Game1 : Game
     public ISprite sprite;
 
     private BlockSprites blockSprites;
+    private ItemFactory itemFactory;
+    public List<IItem> itemList;
+    public int currentItemIndex;
+    public IItem currentItem;
 
     public Game1()
     {
@@ -47,7 +52,25 @@ public class Game1 : Game
         controllerList.Add(new KeyboardController(this, blockSprites));
         TextureManager.Instance.LoadContent(this);
         EnemyManager.Instance.SpawnEnemy();
-        
+        itemFactory = new ItemFactory();
+
+        //Register Textures
+        itemFactory.RegisterTexture("Heart", Content.Load<Texture2D>("heart"));
+        itemFactory.RegisterTexture("Boomerang", Content.Load<Texture2D>("boomerang"));
+
+        //Register Item Creation Logic
+        itemFactory.RegisterItem("Heart", position => new Heart(itemFactory.GetTexture("Heart"), position));
+        itemFactory.RegisterItem("Boomerang", position => new Boomerang(itemFactory.GetTexture("Boomerang"), position, 1, 8));
+
+        //Create Initial Item List
+        itemList = new List<IItem>
+    {
+        itemFactory.CreateItem("Heart", new Vector2(200, 200)),
+        itemFactory.CreateItem("Boomerang", new Vector2(200, 200))
+
+    };
+                currentItemIndex = 1;
+        currentItem = itemList[currentItemIndex];
     }
 
     protected override void Update(GameTime gameTime)
@@ -60,6 +83,8 @@ public class Game1 : Game
             controller.Update();
         }
         sprite.Update();
+        currentItem.Update(gameTime);
+
 
         blockSprites.UpdateActiveBlocks(); // Call to update active blocks
 
@@ -74,6 +99,8 @@ public class Game1 : Game
 
         _spriteBatch.Begin();
         sprite.Draw(_spriteBatch);
+        currentItem.Draw(_spriteBatch);
+
 
         blockSprites.DrawActiveBlocks(_spriteBatch); // Call to draw active blocks
         EnemyManager.Instance.Draw(_spriteBatch);

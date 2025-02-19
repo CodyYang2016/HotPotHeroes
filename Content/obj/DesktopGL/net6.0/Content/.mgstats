@@ -1,4 +1,6 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/cody.yang/source/repos/Cody2/Content/boomerang.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/boomerang.xnb","TextureProcessor","Texture2DContent",2526,80725,0.2612631
+"C:/Users/cody.yang/source/repos/Cody2/Content/heart.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/heart.xnb","TextureProcessor","Texture2DContent",144,3669,0.0076238
 "C:/Users/cody.yang/source/repos/Cody2/Content/mario.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/mario.xnb","TextureProcessor","Texture2DContent",6584,304645,0.2439348
 "C:/Users/cody.yang/source/repos/Cody2/Content/mario2.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/mario2.xnb","TextureProcessor","Texture2DContent",945,17253,0.0069947
 "C:/Users/cody.yang/source/repos/Cody2/Content/TileSetDungeon.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/TileSetDungeon.xnb","TextureProcessor","Texture2DContent",74652,5826381,0.2656142
