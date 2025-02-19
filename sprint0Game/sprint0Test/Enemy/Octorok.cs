@@ -17,14 +17,14 @@ namespace sprint0Test.Enemy
             attackRange = 100f; // Attacks from range
         }
 
-        public override void PerformAttack()
-        {
-            // Octorok shoots a projectile
-            ProjectileManager.Instance.SpawnProjectile(
-                position,position,
-                // GetDirectionToPlayer(),
-                TextureManager.Instance.GetTexture("Octopus_Projectile") // 🔹 Uses correct projectile texture
-            );
+        //public override void PerformAttack()
+        //{
+        //    // Octorok shoots a projectile
+        //    ProjectileManager.Instance.SpawnProjectile(
+        //        position,position,
+        //        // GetDirectionToPlayer(),
+        //        TextureManager.Instance.GetTexture("Octopus_Projectile") // 🔹 Uses correct projectile texture
+        //    );
         }
     }
-}
+// }

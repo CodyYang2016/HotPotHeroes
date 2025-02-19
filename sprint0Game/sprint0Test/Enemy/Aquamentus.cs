@@ -26,16 +26,19 @@ namespace sprint0Test.Enemy
                 
             }
 
-            public override void PerformAttack()
-            {
-            // Aquamentus shoots fireballs in a spread pattern
+        public override void PerformAttack()
+        {
             Console.WriteLine("Aquamentus attacks!");
-                Vector2 dir = new Vector2(-1,0);
-                ProjectileManager.Instance.SpawnProjectile(position, dir, TextureManager.Instance.GetTexture("Dragon_Projectile"));
-                ProjectileManager.Instance.SpawnProjectile(position, dir + new Vector2(0.1f, 0), TextureManager.Instance.GetTexture("Dragon_Projectile"));
-                ProjectileManager.Instance.SpawnProjectile(position, dir + new Vector2(-0.1f, 0), TextureManager.Instance.GetTexture("Dragon_Projectile"));
-            }
+
+            // Main fireball direction (left)
+            Vector2 baseDirection = new Vector2(-1, 0);
+
+            // Spawn three fireballs with slightly varied directions for a spread effect
+            ProjectileManager.Instance.SpawnProjectile(position, baseDirection);
+            ProjectileManager.Instance.SpawnProjectile(position, baseDirection + new Vector2(0.1f, 0));
+            ProjectileManager.Instance.SpawnProjectile(position, baseDirection + new Vector2(-0.1f, 0));
         }
+    }
     
 
 }

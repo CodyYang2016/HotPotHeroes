@@ -37,7 +37,7 @@ namespace HotpotHeroes.sprint0Game.sprint0Test.Managers
 
 
             //next one is 25,11 
-            textures["Dragon_Projectile"] = CutTexture(bossSpriteSheet, new Rectangle(109, 25, 10, 16));
+            textures["Fireball"] = CutTexture(bossSpriteSheet, new Rectangle(109, 25, 10, 16));
             textures["Octopus_Idle1"] = CutTexture(worldSpriteSheet, new Rectangle(1, 11, 16, 16));
             textures["Octopus_Idle2"] = CutTexture(worldSpriteSheet, new Rectangle(17, 11, 16, 16));
 

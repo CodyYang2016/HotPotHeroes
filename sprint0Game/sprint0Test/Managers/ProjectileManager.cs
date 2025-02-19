@@ -1,8 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using HotpotHeroes.sprint0Game.sprint0Test.Projectiles;
+using BlockBranch.sprint0Game.sprint0Test.Projectiles;
 using HotpotHeroes.sprint0Game.sprint0Test.Managers;
+using System;
+
+
 
 namespace HotpotHeroes.sprint0Game.sprint0Test.Managers
 {
@@ -11,30 +14,35 @@ namespace HotpotHeroes.sprint0Game.sprint0Test.Managers
         private static ProjectileManager _instance;
         public static ProjectileManager Instance => _instance ??= new ProjectileManager();
 
-        private List<Projectile> projectiles;
+        private List<IProjectile> projectiles; // Stores all projectile types
+        private const int MAX_PROJECTILES = 100; // Prevent excessive projectiles
 
         private ProjectileManager()
         {
-            projectiles = new List<Projectile>();
+            projectiles = new List<IProjectile>();
         }
 
-        public void SpawnProjectile(Vector2 position, Vector2 direction, Texture2D texture)
+        public void SpawnProjectile(Vector2 position, Vector2 direction)
         {
-            projectiles.Add(new Projectile(position, direction, texture));
+            if (projectiles.Count >= MAX_PROJECTILES)
+            {
+                Console.WriteLine("Warning: Max projectile limit reached. Cannot spawn more projectiles.");
+                return;
+            }
+
+            // Create a Fireball projectile
+            projectiles.Add(new Fireball(position, direction));
         }
 
         public void Update(GameTime gameTime)
         {
-            for (int i = projectiles.Count - 1; i >= 0; i--)
+            foreach (var projectile in projectiles)
             {
-                projectiles[i].Update(gameTime);
-
-                // Remove inactive projectiles
-                if (!projectiles[i].IsActive())
-                {
-                    projectiles.RemoveAt(i);
-                }
+                projectile.Update(gameTime);
             }
+
+            // Remove all inactive projectiles
+            projectiles.RemoveAll(p => !p.IsActive());
         }
 
         public void Draw(SpriteBatch spriteBatch)
