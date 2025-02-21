@@ -28,7 +28,7 @@ namespace sprint0Test
     
         public void RegisterCommand()
         {
-            controllerMappings.Add(new SetQuitCommand(myGame));
+            controllerMappings.Add(new QuitCommand(myGame));
             controllerMappings.Add(new SetDispFixedSprite(myGame));
             controllerMappings.Add(new SetDispFixedAnimatedSprite(myGame));
             controllerMappings.Add(new SetDispUpDownSprite(myGame));
