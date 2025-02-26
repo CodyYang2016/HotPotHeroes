@@ -1,6 +1,6 @@
 ﻿//using Microsoft.Xna.Framework;
 //using Microsoft.Xna.Framework.Graphics;
-//using HotpotHeroes.sprint0Game.sprint0Test.Managers;
+// using sprint0Test.Managers;
 
 
 //namespace HotpotHeroes.sprint0Game.sprint0Test.Enemy
@@ -20,7 +20,7 @@
 //            // Moblin does a melee attack
 //            if (IsInAttackRange())
 //            {
-//                Player.Instance.TakeDamage(2);
+//                Player.Instance.TakeDamage();
 //            }
 //        }
 //    }

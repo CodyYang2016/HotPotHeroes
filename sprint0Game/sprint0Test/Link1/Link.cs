@@ -1,95 +1,72 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using sprint0Test.Link1;
+using sprint0Test.Items;
+using sprint0Test.Sprites;
+
 
 namespace sprint0Test.Link1
-
 {
-    public enum LinkDirection
-    {
-        Up, Down, Left, Right
-    }
-
-    public enum LinkAction
-    {
-        Idle, Walking, Attacking, Damaged, UsingItem
-    }
-
     public class Link
     {
         private LinkSprite sprite;
         private Vector2 position;
         private float speed = 2f;
-
-
-        private bool isAttacking = false;      
-        private bool isUsingItem = false;     
-        private int attackFrameCounter = 0;     
+        private bool isAttacking = false;
+        private bool isUsingItem = false;
+        private int attackFrameCounter = 0;
         private int itemFrameCounter = 0;
-        private int currentItemIndex = 0;   
+        private int currentItemIndex = 0;
         private List<Item> inventory = new List<Item>();
 
-      
-        private int screenMinX = 0;
-        private int screenMinY = 0;
-        private int screenMaxX = 800; 
-        private int screenMaxY = 480; 
+        private readonly int screenMinX = 0;
+        private readonly int screenMinY = 0;
+        private readonly int screenMaxX = 800;
+        private readonly int screenMaxY = 480;
 
+        public Vector2 Position => position;
+        public IReadOnlyList<Item> Inventory => inventory.AsReadOnly();
+        
         public Link(LinkSprite linkSprite, Vector2 startPos)
         {
             sprite = linkSprite;
             position = startPos;
-
             sprite.Scale = 2f;
-
             sprite.SetState(LinkAction.Idle, LinkDirection.Down);
         }
 
         public void MoveUp()
         {
-            if (!isAttacking && !isUsingItem)
-            {
-                if (sprite.CurrentAction != LinkAction.Walking || sprite.CurrentDirection != LinkDirection.Up)
-                {
-                    sprite.SetState(LinkAction.Walking, LinkDirection.Up);
-                }
-                position.Y -= speed;
-            }
+            Move(LinkDirection.Up);
         }
 
         public void MoveDown()
         {
-            if (!isAttacking && !isUsingItem)
-            {
-                if (sprite.CurrentAction != LinkAction.Walking || sprite.CurrentDirection != LinkDirection.Down)
-                {
-                    sprite.SetState(LinkAction.Walking, LinkDirection.Down);
-                }
-                position.Y += speed;
-            }
+            Move(LinkDirection.Down);
         }
 
         public void MoveLeft()
         {
-            if (!isAttacking && !isUsingItem)
-            {
-                if (sprite.CurrentAction != LinkAction.Walking || sprite.CurrentDirection != LinkDirection.Left)
-                {
-                    sprite.SetState(LinkAction.Walking, LinkDirection.Left);
-                }
-                position.X -= speed;
-            }
+            Move(LinkDirection.Left);
         }
 
         public void MoveRight()
         {
-            if (!isAttacking && !isUsingItem)
+            Move(LinkDirection.Right);
+        }
+
+        private void Move(LinkDirection direction)
+        {
+            if (isAttacking || isUsingItem) return;
+            
+            sprite.SetState(LinkAction.Walking, direction);
+            switch (direction)
             {
-                if (sprite.CurrentAction != LinkAction.Walking || sprite.CurrentDirection != LinkDirection.Right)
-                {
-                    sprite.SetState(LinkAction.Walking, LinkDirection.Right);
-                }
-                position.X += speed;
+                case LinkDirection.Up: position.Y -= speed; break;
+                case LinkDirection.Down: position.Y += speed; break;
+                case LinkDirection.Left: position.X -= speed; break;
+                case LinkDirection.Right: position.X += speed; break;
             }
         }
 
@@ -97,10 +74,7 @@ namespace sprint0Test.Link1
         {
             if (!isAttacking && !isUsingItem)
             {
-                if (sprite.CurrentAction != LinkAction.Idle)
-                {
-                    sprite.SetState(LinkAction.Idle, sprite.CurrentDirection);
-                }
+                sprite.SetState(LinkAction.Idle, sprite.CurrentDirection);
             }
         }
 
@@ -125,6 +99,10 @@ namespace sprint0Test.Link1
             }
         }
 
+
+
+
+        // TakeDamage(int) is not implemented in the original code
         public void TakeDamage()
         {
             if (!isAttacking && !isUsingItem)
@@ -133,7 +111,6 @@ namespace sprint0Test.Link1
             }
         }
 
-    
         public void SwitchItem(int direction)
         {
             if (inventory.Count > 0)
@@ -142,54 +119,35 @@ namespace sprint0Test.Link1
             }
         }
 
+        public void AddItem(Item item)
+        {
+            inventory.Add(item);
+        }
+
         public void Update()
         {
-          
             sprite.Update();
 
-            if (isAttacking)
+            if (isAttacking && ++attackFrameCounter > 32)
             {
-                attackFrameCounter++;
-                if (attackFrameCounter > 32)
-                {
-                    isAttacking = false;
-                    sprite.SetState(LinkAction.Idle, sprite.CurrentDirection);
-                    attackFrameCounter = 0;
-                }
+                isAttacking = false;
+                sprite.SetState(LinkAction.Idle, sprite.CurrentDirection);
             }
 
-          
-            if (isUsingItem)
+            if (isUsingItem && ++itemFrameCounter > 20)
             {
-                itemFrameCounter++;
-                if (itemFrameCounter > 20)
-                {
-                    isUsingItem = false;
-                    sprite.SetState(LinkAction.Idle, sprite.CurrentDirection);
-                    itemFrameCounter = 0;
-                }
+                isUsingItem = false;
+                sprite.SetState(LinkAction.Idle, sprite.CurrentDirection);
             }
 
-           
             Vector2 scaledSize = sprite.GetScaledDimensions();
-            float linkWidth = scaledSize.X;
-            float linkHeight = scaledSize.Y;
-
-            if (position.X < screenMinX) position.X = screenMinX;
-            if (position.Y < screenMinY) position.Y = screenMinY;
-           
-            if (position.X > screenMaxX - linkWidth)
-                position.X = screenMaxX - linkWidth;
-            if (position.Y > screenMaxY - linkHeight)
-                position.Y = screenMaxY - linkHeight;
+            position.X = MathHelper.Clamp(position.X, screenMinX, screenMaxX - scaledSize.X);
+            position.Y = MathHelper.Clamp(position.Y, screenMinY, screenMaxY - scaledSize.Y);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            // 直接调用 sprite 的 Draw，即可自动放大
             sprite.Draw(spriteBatch, position);
         }
     }
 }
-
-

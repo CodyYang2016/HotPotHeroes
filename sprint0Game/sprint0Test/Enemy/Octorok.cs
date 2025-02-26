@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using HotpotHeroes.sprint0Game.sprint0Test.Managers;
+using sprint0Test.Managers;
 
 namespace sprint0Test.Enemy
 {

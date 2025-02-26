@@ -1,5 +1,5 @@
 ﻿using BlockBranch.sprint0Game.sprint0Test.Projectiles;
-using HotpotHeroes.sprint0Game.sprint0Test.Managers;
+using sprint0Test.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

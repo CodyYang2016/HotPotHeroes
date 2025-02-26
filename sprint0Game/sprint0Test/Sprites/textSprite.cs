@@ -11,7 +11,7 @@ namespace sprint0Test.Sprites
     class textSprite : ISprite
     {
         private Game1 game;
-        private SpriteFont text;
+        //private SpriteFont text;
         private String message;
         private Vector2 location;
         //private Vector2 location; 

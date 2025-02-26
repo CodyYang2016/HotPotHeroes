@@ -2,12 +2,12 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using BlockBranch.sprint0Game.sprint0Test.Projectiles;
-using HotpotHeroes.sprint0Game.sprint0Test.Managers;
+using sprint0Test.Managers;
 using System;
 
 
 
-namespace HotpotHeroes.sprint0Game.sprint0Test.Managers
+namespace sprint0Test.Managers
 {
     public class ProjectileManager
     {

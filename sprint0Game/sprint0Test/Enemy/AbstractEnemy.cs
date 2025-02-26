@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using HotpotHeroes.sprint0Game.sprint0Test.Managers;
+using sprint0Test.Managers;
 
 namespace sprint0Test.Enemy
 {

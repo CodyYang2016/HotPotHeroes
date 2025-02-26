@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using HotpotHeroes.sprint0Game.sprint0Test.Managers;
+using sprint0Test.Managers;
 using System;
 
 namespace sprint0Test.Enemy
@@ -28,7 +28,6 @@ namespace sprint0Test.Enemy
 
         public override void PerformAttack()
         {
-            Console.WriteLine("Aquamentus attacks!");
 
             // Main fireball direction (left)
             Vector2 baseDirection = new Vector2(-1, 0);

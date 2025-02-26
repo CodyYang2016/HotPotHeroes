@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint0Test.Enemy;
 
-namespace HotpotHeroes.sprint0Game.sprint0Test.Managers
+namespace sprint0Test.Managers
 {
     public class EnemyManager
     {

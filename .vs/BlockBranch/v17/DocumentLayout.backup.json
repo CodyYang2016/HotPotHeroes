@@ -3,12 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|c:\\users\\cody.yang\\source\\repos\\cody2\\sprint0game\\sprint0test\\link1\\linksprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|solutionrelative:sprint0game\\sprint0test\\link1\\linksprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|c:\\users\\cody.yang\\source\\repos\\cody2\\sprint0game\\sprint0test\\link1\\linkv1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|solutionrelative:sprint0game\\sprint0test\\link1\\linkv1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|c:\\users\\cody.yang\\source\\repos\\cody2\\sprint0game\\sprint0test\\enemy\\aquamentus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|solutionrelative:sprint0game\\sprint0test\\enemy\\aquamentus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|c:\\users\\cody.yang\\source\\repos\\cody2\\sprint0game\\sprint0test\\link1\\linksprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|solutionrelative:sprint0game\\sprint0test\\link1\\linksprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|c:\\users\\cody.yang\\source\\repos\\cody2\\sprint0game\\sprint0test\\enemy\\octorok.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|solutionrelative:sprint0game\\sprint0test\\enemy\\octorok.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|c:\\users\\cody.yang\\source\\repos\\cody2\\sprint0game\\sprint0test\\enemy\\moblin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|solutionrelative:sprint0game\\sprint0test\\enemy\\moblin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|c:\\users\\cody.yang\\source\\repos\\cody2\\sprint0game\\sprint0test\\enemy\\abstractenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|solutionrelative:sprint0game\\sprint0test\\enemy\\abstractenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|c:\\users\\cody.yang\\source\\repos\\cody2\\sprint0game\\sprint0test\\link1\\link.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|solutionrelative:sprint0game\\sprint0test\\link1\\link.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|c:\\users\\cody.yang\\source\\repos\\cody2\\sprint0game\\sprint0test\\managers\\enemymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|solutionrelative:sprint0game\\sprint0test\\managers\\enemymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|c:\\users\\cody.yang\\source\\repos\\cody2\\sprint0game\\sprint0test\\managers\\projectilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|solutionrelative:sprint0game\\sprint0test\\managers\\projectilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|c:\\users\\cody.yang\\source\\repos\\cody2\\sprint0game\\sprint0test\\managers\\texturemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|solutionrelative:sprint0game\\sprint0test\\managers\\texturemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{87F6E069-1AEB-4838-912F-9B5D5DE88869}|BlockBranch.csproj|c:\\users\\cody.yang\\source\\repos\\cody2\\sprint0game\\sprint0test\\controllers\\keyboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,11 +58,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "Game1.cs",
               "DocumentMoniker": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Game1.cs",
               "RelativeDocumentMoniker": "sprint0Game\\sprint0Test\\Game1.cs",
@@ -39,47 +71,149 @@
               "ViewState": "AgIAAH4AAAAAAAAAAIAwwJMAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-19T03:24:38.045Z",
-              "IsPinned": true,
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LinkV1.cs",
+              "DocumentMoniker": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Link1\\LinkV1.cs",
+              "RelativeDocumentMoniker": "sprint0Game\\sprint0Test\\Link1\\LinkV1.cs",
+              "ToolTip": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Link1\\LinkV1.cs*",
+              "RelativeToolTip": "sprint0Game\\sprint0Test\\Link1\\LinkV1.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T18:17:08.17Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "Octorok.cs",
+              "DocumentMoniker": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Enemy\\Octorok.cs",
+              "RelativeDocumentMoniker": "sprint0Game\\sprint0Test\\Enemy\\Octorok.cs",
+              "ToolTip": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Enemy\\Octorok.cs",
+              "RelativeToolTip": "sprint0Game\\sprint0Test\\Enemy\\Octorok.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T18:16:40.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AbstractEnemy.cs",
+              "DocumentMoniker": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Enemy\\AbstractEnemy.cs",
+              "RelativeDocumentMoniker": "sprint0Game\\sprint0Test\\Enemy\\AbstractEnemy.cs",
+              "ToolTip": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Enemy\\AbstractEnemy.cs",
+              "RelativeToolTip": "sprint0Game\\sprint0Test\\Enemy\\AbstractEnemy.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T18:16:26.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Link.cs",
+              "DocumentMoniker": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Link1\\Link.cs",
+              "RelativeDocumentMoniker": "sprint0Game\\sprint0Test\\Link1\\Link.cs",
+              "ToolTip": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Link1\\Link.cs",
+              "RelativeToolTip": "sprint0Game\\sprint0Test\\Link1\\Link.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGkAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T18:03:01.079Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Aquamentus.cs",
               "DocumentMoniker": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Enemy\\Aquamentus.cs",
               "RelativeDocumentMoniker": "sprint0Game\\sprint0Test\\Enemy\\Aquamentus.cs",
               "ToolTip": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Enemy\\Aquamentus.cs",
               "RelativeToolTip": "sprint0Game\\sprint0Test\\Enemy\\Aquamentus.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAMwB4AAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-19T04:37:13.639Z",
+              "WhenOpened": "2025-02-24T18:14:54.167Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "LinkSprite.cs",
               "DocumentMoniker": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Link1\\LinkSprite.cs",
               "RelativeDocumentMoniker": "sprint0Game\\sprint0Test\\Link1\\LinkSprite.cs",
               "ToolTip": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Link1\\LinkSprite.cs",
               "RelativeToolTip": "sprint0Game\\sprint0Test\\Link1\\LinkSprite.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAADUAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-19T04:04:03.742Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
+              "Title": "EnemyManager.cs",
+              "DocumentMoniker": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Managers\\EnemyManager.cs",
+              "RelativeDocumentMoniker": "sprint0Game\\sprint0Test\\Managers\\EnemyManager.cs",
+              "ToolTip": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Managers\\EnemyManager.cs",
+              "RelativeToolTip": "sprint0Game\\sprint0Test\\Managers\\EnemyManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T18:16:03.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProjectileManager.cs",
+              "DocumentMoniker": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Managers\\ProjectileManager.cs",
+              "RelativeDocumentMoniker": "sprint0Game\\sprint0Test\\Managers\\ProjectileManager.cs",
+              "ToolTip": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Managers\\ProjectileManager.cs",
+              "RelativeToolTip": "sprint0Game\\sprint0Test\\Managers\\ProjectileManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T18:15:58.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Moblin.cs",
+              "DocumentMoniker": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Enemy\\Moblin.cs",
+              "RelativeDocumentMoniker": "sprint0Game\\sprint0Test\\Enemy\\Moblin.cs",
+              "ToolTip": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Enemy\\Moblin.cs*",
+              "RelativeToolTip": "sprint0Game\\sprint0Test\\Enemy\\Moblin.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T18:15:01.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TextureManager.cs",
+              "DocumentMoniker": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Managers\\TextureManager.cs",
+              "RelativeDocumentMoniker": "sprint0Game\\sprint0Test\\Managers\\TextureManager.cs",
+              "ToolTip": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Managers\\TextureManager.cs*",
+              "RelativeToolTip": "sprint0Game\\sprint0Test\\Managers\\TextureManager.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T18:15:51.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "KeyboardController.cs",
               "DocumentMoniker": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Controllers\\KeyboardController.cs",
               "RelativeDocumentMoniker": "sprint0Game\\sprint0Test\\Controllers\\KeyboardController.cs",
               "ToolTip": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\sprint0Game\\sprint0Test\\Controllers\\KeyboardController.cs",
               "RelativeToolTip": "sprint0Game\\sprint0Test\\Controllers\\KeyboardController.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAABUAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAABYAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-19T03:57:22.939Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-19T03:57:22.939Z"
             }
           ]
         }

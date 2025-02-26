@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotpotHeroes.sprint0Game.sprint0Test.Managers
+namespace sprint0Test.Managers
 {
     public class TextureManager
     {
