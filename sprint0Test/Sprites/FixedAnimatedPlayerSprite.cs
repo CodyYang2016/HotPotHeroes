@@ -57,7 +57,7 @@ namespace sprint0Test.Sprites
                 200, 108, 144);
             }
             //spriteBatch.Begin();
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+            //spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
             //spriteBatch.End();
         }
 

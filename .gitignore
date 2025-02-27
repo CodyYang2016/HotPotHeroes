@@ -1,4 +1,4 @@
-**/Content/
+# **/Content/
 # Ignore build directories
 bin/
 obj/
