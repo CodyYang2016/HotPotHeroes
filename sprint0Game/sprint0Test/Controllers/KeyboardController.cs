@@ -56,6 +56,8 @@ namespace sprint0Test
 
             controllerMappings.Add(Keys.U, new CycleItemCommand(myGame, -1));
             controllerMappings.Add(Keys.I, new CycleItemCommand(myGame, 1));
+            controllerMappings.Add(Keys.F, new TestFireballCommand());
+
         }
         public void HandleGame1SpecificCommands(KeyboardState kstate)
         {

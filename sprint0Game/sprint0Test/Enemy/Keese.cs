@@ -52,7 +52,7 @@ public class Keese : AbstractEnemy
             Vector2 direction = Vector2.Normalize(Link.Instance.Position - position);
             position += direction * 2f;
 
-            if (Vector2.Distance(position, Link.Instance.Position) < 10f && attackTimer >= attackCooldown)
+            if (Vector2.Distance(position, Link.Instance.Position) < 0.2f && attackTimer >= attackCooldown)
             {
                 PerformAttack();
                 isSwooping = false;

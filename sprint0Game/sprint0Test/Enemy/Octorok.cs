@@ -27,7 +27,7 @@ namespace sprint0Test.Enemy
             ProjectileManager.Instance.SpawnProjectile(
                 position, 
                 GetDirectionToPlayer(),
-                TextureManager.Instance.GetTexture("Octopus_Projectile") // 🔹 Uses correct projectile texture
+                "Octupus_Projectile" // 🔹 Uses correct projectile texture
             );
         }
     }
