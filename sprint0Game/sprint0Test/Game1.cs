@@ -145,7 +145,9 @@ public class Game1 : Game
 
         LinkSprite linkSprite = new LinkSprite(linkMap);
 
-        Link = new Link(linkSprite, new Vector2(200, 200));
+        // Link = new Link(linkSprite, new Vector2(200, 200));
+        Link.Initialize(linkSprite, new Vector2(200, 200));
+
         controllerList.Add(new KeyboardController(this, Link, blockSprites));
     }
 
@@ -164,6 +166,8 @@ public class Game1 : Game
         blockSprites.UpdateActiveBlocks(); // Call to update active blocks
 
         EnemyManager.Instance.Update(gameTime);
+        ProjectileManager.Instance.Update(gameTime);
+
 
         base.Update(gameTime);
     }
@@ -175,8 +179,15 @@ public class Game1 : Game
         _spriteBatch.Begin();
         sprite.Draw(_spriteBatch);
         currentItem.Draw(_spriteBatch);
-        Link.Draw(_spriteBatch);
-
+        // ✅ Use Link.Instance instead of Link (Singleton Access)
+        if (Link.Instance != null)  // Prevents crash if Link wasn't initialized
+        {
+            Link.Instance.Draw(_spriteBatch);
+        }
+        else
+        {
+            Console.WriteLine("Error: Link.Instance is null in Draw()!");
+        }
         blockSprites.DrawActiveBlocks(_spriteBatch); // Call to draw active blocks
         EnemyManager.Instance.Draw(_spriteBatch);
 

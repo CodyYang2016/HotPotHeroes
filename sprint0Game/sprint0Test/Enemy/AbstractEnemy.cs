@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using sprint0Test.Managers;
+using sprint0Test.Link1;
 
 namespace sprint0Test.Enemy
 {
@@ -69,7 +70,7 @@ namespace sprint0Test.Enemy
             }
         }
 
-        public void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage)
         {
             health -= damage;
             if (health <= 0)
@@ -100,5 +101,24 @@ namespace sprint0Test.Enemy
         {
             // EnemyManager.Instance.RemoveEnemy(this);
         }
+
+        public bool IsInAttackRange()
+        {
+            return Vector2.Distance(position, Link.Instance.Position) < attackRange;
+        }
+
+        public Vector2 GetDirectionToPlayer()
+        {
+            // Normalize direction vector to get unit vector pointing towards the player
+            Vector2 direction = Link.Instance.Position - position;
+
+            if (direction != Vector2.Zero)
+            {
+                direction.Normalize(); // Ensures the vector has a length of 1
+            }
+
+            return direction;
+        }
+
     }
 }

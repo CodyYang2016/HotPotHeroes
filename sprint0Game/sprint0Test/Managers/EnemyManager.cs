@@ -17,15 +17,64 @@ namespace sprint0Test.Managers
 
         public EnemyManager()
         {
-            enemyPool = new List<IEnemy>
+           enemyPool = new List<IEnemy>();
+           Dictionary<string, Texture2D> Octorok_textures = new Dictionary<string, Texture2D>
             {
-                new Octorok(new Vector2(100, 100)),
-                new Octorok(new Vector2(200, 100)),
-                new Aquamentus(new Vector2(300, 100))
-                // new Moblin(new Vector2(200, 200)) // Add more enemies as needed
+                { "Octopus_Idle1", TextureManager.Instance.GetTexture("Octopus_Idle1") },
+                { "Octopus_Idle2", TextureManager.Instance.GetTexture("Octopus_Idle2") }
             };
 
-            activeEnemy = enemyPool[0]; // Default first enemy
+            Dictionary<string, Texture2D> Keese_textures = new Dictionary<string, Texture2D>
+            {
+                { "Bat_1", TextureManager.Instance.GetTexture("Bat_1") },
+                { "Bat_2", TextureManager.Instance.GetTexture("Bat_2") }
+            };
+
+            Dictionary<string, Texture2D> Aquamentus_textures = new Dictionary<string, Texture2D>
+            {
+                { "Dragon_Idle1", TextureManager.Instance.GetTexture("Dragon_Idle1") },
+                { "Dragon_Idle2", TextureManager.Instance.GetTexture("Dragon_Idle2") }
+            };
+
+            Dictionary<string, Texture2D> Moblin_textures = new Dictionary<string, Texture2D>
+            {
+                { "Goblin_1", TextureManager.Instance.GetTexture("Goblin_1") },
+                { "Goblin_2", TextureManager.Instance.GetTexture("Goblin_2") },
+                { "Goblin_3", TextureManager.Instance.GetTexture("Goblin_3") },
+                { "Goblin_4", TextureManager.Instance.GetTexture("Goblin_4") }
+            };
+
+            Dictionary<string, Texture2D> Darknut_textures = new Dictionary<string, Texture2D>
+            {
+                { "Darknut_Idle_Down_1", TextureManager.Instance.GetTexture("Darknut_Idle_Down_1") },
+                { "Darknut_Idle_Down_2", TextureManager.Instance.GetTexture("Darknut_Idle_Down_2") },
+                // { "Darknut_Idle_Up_1", TextureManager.Instance.GetTexture("Darknut_Idle_Up_1") },
+                // { "Darknut_Idle_Side_1", TextureManager.Instance.GetTexture("Darknut_Idle_Side_1") },
+                // { "Darknut_Idle_Side_2", TextureManager.Instance.GetTexture("Darknut_Idle_Side_2") }
+            };
+
+            Dictionary<string, Texture2D> Stalfos_textures = new Dictionary<string, Texture2D>
+            {
+                { "Skeleton", TextureManager.Instance.GetTexture("Skeleton") }
+            };
+            enemyPool.Add(new Octorok(new Vector2(100, 100), Octorok_textures));
+            enemyPool.Add(new Keese(new Vector2(200, 100), Keese_textures));
+            enemyPool.Add(new Aquamentus(new Vector2(300, 100), Aquamentus_textures));
+            enemyPool.Add(new Moblin(new Vector2(400, 100), Moblin_textures));
+            enemyPool.Add(new Darknut(new Vector2(500, 100), Darknut_textures));
+            enemyPool.Add(new Stalfos(new Vector2(600, 100), Stalfos_textures));
+
+            // ✅ Prevent out-of-range errors when selecting an active enemy
+            if (enemyPool.Count > 0)
+            {
+                activeEnemy = enemyPool[0]; // Default first enemy
+            }
+            else
+            {
+                activeEnemy = null; // Handle the case where no enemies are added
+                Console.WriteLine("Warning: Enemy pool is empty!");
+            }
+
         }
 
         public void SpawnEnemy()

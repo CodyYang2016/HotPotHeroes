@@ -1,30 +1,34 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using sprint0Test.Managers;
 
 namespace sprint0Test.Enemy
 {
     public class Octorok : AbstractEnemy
     {
-        public Octorok(Vector2 startPosition)
+        public Octorok(Vector2 startPosition, Dictionary<string, Texture2D> Octorok_textures)
             : base(startPosition, new Texture2D[]
+            {
+            Octorok_textures["Octopus_Idle1"],
+            Octorok_textures["Octopus_Idle2"]
+            })
         {
-            TextureManager.Instance.GetTexture("Octopus_Idle1"),
-            TextureManager.Instance.GetTexture("Octopus_Idle2")
-        })
-        {
-            detectionRadius = 150f; // Detects player from medium distance
-            attackRange = 100f; // Attacks from range
+
+            {
+                detectionRadius = 150f; // Detects player from medium distance
+                attackRange = 100f; // Attacks from range
+            }
         }
 
-        //public override void PerformAttack()
-        //{
-        //    // Octorok shoots a projectile
-        //    ProjectileManager.Instance.SpawnProjectile(
-        //        position,position,
-        //        // GetDirectionToPlayer(),
-        //        TextureManager.Instance.GetTexture("Octopus_Projectile") // 🔹 Uses correct projectile texture
-        //    );
+        public override void PerformAttack()
+        {
+            // Octorok shoots a projectile
+            ProjectileManager.Instance.SpawnProjectile(
+                position, 
+                GetDirectionToPlayer(),
+                TextureManager.Instance.GetTexture("Octopus_Projectile") // 🔹 Uses correct projectile texture
+            );
         }
     }
-// }
+ }

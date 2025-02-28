@@ -1,13 +1,14 @@
-﻿using BlockBranch.sprint0Game.sprint0Test.Projectiles;
+﻿using sprint0Test.Projectiles;
 using sprint0Test.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace BlockBranch.sprint0Game.sprint0Test.Projectiles
+namespace sprint0Test.Projectiles
 {
     public class Fireball : AbstractProjectile, IProjectile
     {
-        public Fireball(Vector2 startPosition, Vector2 direction)
+        public Fireball(Vector2 startPosition, Vector2 direction, Texture2D Fireball)
+
             : base(startPosition, direction, TextureManager.Instance.GetTexture("Fireball"), 300f)
         {
         }

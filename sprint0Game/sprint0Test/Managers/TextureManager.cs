@@ -29,24 +29,41 @@ namespace sprint0Test.Managers
 
 
             
-            // Slice the sprite sheet into individual textures (example: Octorok and Stalfos)
+            // Dragon
             textures["Dragon_Idle1"] = CutTexture(bossSpriteSheet, new Rectangle(1, 11, 24, 32));
             textures["Dragon_Idle2"] = CutTexture(bossSpriteSheet, new Rectangle(25, 11, 24, 32));
-          //textures["Dragon_Idle3"] = CutTexture(bossSpriteSheet, new Rectangle(49, 11, 24, 32));
-          //textures["Dragon_Idle4"] = CutTexture(bossSpriteSheet, new Rectangle(64, 11, 24, 32));
-
-
-            //next one is 25,11 
+            //textures["Dragon_Idle3"] = CutTexture(bossSpriteSheet, new Rectangle(49, 11, 24, 32));
+            //textures["Dragon_Idle4"] = CutTexture(bossSpriteSheet, new Rectangle(64, 11, 24, 32));
             textures["Fireball"] = CutTexture(bossSpriteSheet, new Rectangle(109, 25, 10, 16));
+
+
+            //Octopus
             textures["Octopus_Idle1"] = CutTexture(worldSpriteSheet, new Rectangle(1, 11, 16, 16));
             textures["Octopus_Idle2"] = CutTexture(worldSpriteSheet, new Rectangle(17, 11, 16, 16));
-
-            //Octopus Projectile
             textures["Octopus_Projectile"] = CutTexture(bossSpriteSheet, new Rectangle(77, 26, 9, 17));
            
-            //next one 18, 11
-            textures["Goblin"] = CutTexture(enemySpriteSheet, new Rectangle(82, 11, 16, 16));
-            //next one 99,11
+            //Moblin
+            textures["Goblin_1"] = CutTexture(worldSpriteSheet, new Rectangle(100, 28, 15, 17));
+            textures["Goblin_2"] = CutTexture(worldSpriteSheet, new Rectangle(117, 28, 15, 16));
+            // textures["Goblin_3"] = CutTexture(worldSpriteSheet, new Rectangle(131, 11, 16, 16));
+            // textures["Goblin_4"] = CutTexture(worldSpriteSheet, new Rectangle(148, 11, 16, 16));
+
+            // Stalfos
+            textures["Skeleton"] = CutTexture(enemySpriteSheet, new Rectangle(1, 59, 15, 16));
+
+            // Darknut
+            textures["Darknut_Idle_Down_1"] = CutTexture(enemySpriteSheet, new Rectangle(1, 106, 16, 17));
+            textures["Darknut_Idle_Down_2"] = CutTexture(enemySpriteSheet, new Rectangle(18, 106, 16, 17));
+            // textures["Darknut_Idle_Up_1"] = CutTexture(enemySpriteSheet, new Rectangle(35, 106, 16, 17));
+            // textures["Darknut_Idle_Side_1"] = CutTexture(enemySpriteSheet, new Rectangle(52, 106, 16, 17));
+            // textures["Darknut_Idle_Side_2"] = CutTexture(enemySpriteSheet, new Rectangle(69, 106, 16, 17));
+
+            // Keese
+            textures["Bat_1"] = CutTexture(enemySpriteSheet, new Rectangle(184, 28, 15, 16));
+            textures["Bat_2"] = CutTexture(enemySpriteSheet, new Rectangle(200, 28, 15, 16));
+
+
+
         }
 
         private Texture2D CutTexture(Texture2D spriteSheet, Rectangle sourceRect)
