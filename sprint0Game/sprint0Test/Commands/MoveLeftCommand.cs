@@ -9,28 +9,26 @@ using sprint0Test.Sprites;
 
 
 
+
 namespace sprint0Test
 {
     class MoveLeftCommand : ICommand
     {
 
         private Game1 myGame;
-        private Link myPlayer;
 
-
-
-        public MoveLeftCommand(Game1 game, Link player)
+        public MoveLeftCommand(Game1 game)
         {
             myGame = game;
-            myPlayer = player;
         }
 
         public void Execute()
         {
-            if (myPlayer != null)
-                myPlayer.MoveLeft(); 
+
+            if (Link.Instance != null)
+                Link.Instance.MoveLeft();
             else
-                Console.WriteLine("Error: myPlayer is null in MoveLeftCommand.");
+                Console.WriteLine("Error: Link.Instance is null in MoveLeftCommand.");
         }
     }
 }

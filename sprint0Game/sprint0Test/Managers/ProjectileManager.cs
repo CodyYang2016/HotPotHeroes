@@ -1,13 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using BlockBranch.sprint0Game.sprint0Test.Projectiles;
-using HotpotHeroes.sprint0Game.sprint0Test.Managers;
+using sprint0Test.Projectiles;
+using sprint0Test.Managers;
 using System;
 
 
 
-namespace HotpotHeroes.sprint0Game.sprint0Test.Managers
+namespace sprint0Test.Managers
 {
     public class ProjectileManager
     {
@@ -22,7 +22,7 @@ namespace HotpotHeroes.sprint0Game.sprint0Test.Managers
             projectiles = new List<IProjectile>();
         }
 
-        public void SpawnProjectile(Vector2 position, Vector2 direction)
+        public void SpawnProjectile(Vector2 position, Vector2 direction, Texture2D projectileTexture)
         {
             if (projectiles.Count >= MAX_PROJECTILES)
             {
@@ -30,9 +30,10 @@ namespace HotpotHeroes.sprint0Game.sprint0Test.Managers
                 return;
             }
 
-            // Create a Fireball projectile
-            projectiles.Add(new Fireball(position, direction));
+            // Create and add a projectile (e.g., Fireball) with the given texture
+            projectiles.Add(new Fireball(position, direction, projectileTexture));
         }
+
 
         public void Update(GameTime gameTime)
         {

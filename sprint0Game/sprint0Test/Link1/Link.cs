@@ -1,11 +1,17 @@
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
+using sprint0Test.Items;
+using sprint0Test.Sprites;
 
 namespace sprint0Test.Link1
 {
     public class Link
     {
+        private static Link instance; // Singleton instance
+
         private LinkSprite sprite;
         private Vector2 position;
         private float speed = 2f;
@@ -21,10 +27,24 @@ namespace sprint0Test.Link1
         private readonly int screenMaxX = 800;
         private readonly int screenMaxY = 480;
 
+        // ? Singleton access property
+        public static Link Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    throw new InvalidOperationException("Link instance has not been initialized!");
+                }
+                return instance;
+            }
+        }
+
         public Vector2 Position => position;
         public IReadOnlyList<Item> Inventory => inventory.AsReadOnly();
-        
-        public Link(LinkSprite linkSprite, Vector2 startPos)
+
+        // ? Private constructor to prevent direct instantiation
+        private Link(LinkSprite linkSprite, Vector2 startPos)
         {
             sprite = linkSprite;
             position = startPos;
@@ -32,30 +52,28 @@ namespace sprint0Test.Link1
             sprite.SetState(LinkAction.Idle, LinkDirection.Down);
         }
 
-        public void MoveUp()
+        // ? Public method to initialize the singleton
+        public static void Initialize(LinkSprite sprite, Vector2 startPos)
         {
-            Move(LinkDirection.Up);
+            if (instance == null)
+            {
+                instance = new Link(sprite, startPos);
+            }
+            else
+            {
+                throw new InvalidOperationException("Link has already been initialized!");
+            }
         }
 
-        public void MoveDown()
-        {
-            Move(LinkDirection.Down);
-        }
-
-        public void MoveLeft()
-        {
-            Move(LinkDirection.Left);
-        }
-
-        public void MoveRight()
-        {
-            Move(LinkDirection.Right);
-        }
+        public void MoveUp() => Move(LinkDirection.Up);
+        public void MoveDown() => Move(LinkDirection.Down);
+        public void MoveLeft() => Move(LinkDirection.Left);
+        public void MoveRight() => Move(LinkDirection.Right);
 
         private void Move(LinkDirection direction)
         {
             if (isAttacking || isUsingItem) return;
-            
+
             sprite.SetState(LinkAction.Walking, direction);
             switch (direction)
             {

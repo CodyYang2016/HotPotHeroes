@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlockBranch.sprint0Game.sprint0Test.Projectiles
+namespace sprint0Test.Projectiles
 {
     public interface IProjectile
     {

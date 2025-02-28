@@ -8,6 +8,15 @@ using sprint0Test;
 namespace sprint0Test.Link1
 
 {
+    public enum LinkDirection
+    {
+        Up, Down, Left, Right
+    }
+
+    public enum LinkAction
+    {
+        Idle, Walking, Attacking, Damaged, UsingItem
+    }
     public class LinkSprite
     {
         // ӳ��: (LinkAction, LinkDirection) -> �ö���/�����µ�һ��֡

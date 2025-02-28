@@ -43,13 +43,14 @@ namespace sprint0Test
 
             controllerMappings.Add(Keys.Q, new QuitCommand(myGame));
 
-            controllerMappings.Add(Keys.W, new MoveUpCommand(myGame, Link));
-            controllerMappings.Add(Keys.A, new MoveLeftCommand(myGame, Link));
-            controllerMappings.Add(Keys.S, new MoveDownCommand(myGame, Link));
-            controllerMappings.Add(Keys.D, new MoveRightCommand(myGame, Link));
 
-            controllerMappings.Add(Keys.Z, new LinkAttackCommand(myGame, Link));
-            controllerMappings.Add(Keys.E, new TakeDamageCommand(myGame, Link));
+            controllerMappings.Add(Keys.W, new MoveUpCommand(myGame));
+            controllerMappings.Add(Keys.A, new MoveLeftCommand(myGame));
+            controllerMappings.Add(Keys.S, new MoveDownCommand(myGame));
+            controllerMappings.Add(Keys.D, new MoveRightCommand(myGame));
+
+            controllerMappings.Add(Keys.Z, new LinkAttackCommand(myGame));
+            controllerMappings.Add(Keys.E, new TakeDamageCommand(myGame));
 
             controllerMappings.Add(Keys.Y, new SetBlock(blockSprites));
             controllerMappings.Add(Keys.T, new SetBlock(blockSprites));

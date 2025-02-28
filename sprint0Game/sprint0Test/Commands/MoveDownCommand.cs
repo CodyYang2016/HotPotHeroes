@@ -12,26 +12,18 @@ namespace sprint0Test
     {
 
         private Game1 myGame;
-        private Link myPlayer;
 
-
-        //LinkSprite linkSprite = new LinkSprite(linkMap);
-
-
-
-        public MoveDownCommand(Game1 game, Link player)
+        public MoveDownCommand(Game1 game)
         {
             myGame = game;
-            myPlayer = player;
         }
-
 
         public void Execute()
         {
-            if (myPlayer != null)
-                myPlayer.MoveDown(); 
+            if (Link.Instance != null)
+                Link.Instance.MoveDown();
             else
-                Console.WriteLine("Error: myPlayer is null in MoveDownCommand.");
+                Console.WriteLine("Error: Link.Instance is null in MoveDownCommand.");
         }
     }
 }
