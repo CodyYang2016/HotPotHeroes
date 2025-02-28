@@ -10,6 +10,8 @@ namespace sprint0Test
 {
     public interface IBlock
     {
+
+        public Vector2 Position { get; set; }
         void Draw(SpriteBatch spriteBatch);
         void Update();
     

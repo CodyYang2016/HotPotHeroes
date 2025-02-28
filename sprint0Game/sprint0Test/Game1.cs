@@ -8,6 +8,8 @@ using sprint0Test.Items;
 using sprint0Test.Sprites;
 using sprint0Test.Link1;
 
+using System;
+
 namespace sprint0Test;
 
 public class Game1 : Game
@@ -26,6 +28,10 @@ public class Game1 : Game
 
     public IItem currentItem;
 
+    private PlayerBlockCollisionHandler playerBlockCollisionHandler;
+    private PlayerEnemyCollisionHandler playerEnemyCollisionHandler;
+    private PlayerItemCollisionHandler playerItemCollisionHandler;
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -35,11 +41,9 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        
         controllerList = new List<IController>();
-        //controllerList.Add(new KeyboardController(this, blockSprites));
+        //controllerList.Add(new KeyboardController(this, Link, blockSprites));
         controllerList.Add(new MouseController(this));
-        
         
         base.Initialize();
     }
@@ -52,10 +56,13 @@ public class Game1 : Game
 
         var dungeonTexture = Content.Load<Texture2D>("TileSetDungeon");
         blockSprites = new BlockSprites(dungeonTexture);
-        controllerList.Add(new KeyboardController(this, blockSprites));
         TextureManager.Instance.LoadContent(this);
         EnemyManager.Instance.SpawnEnemy();
         itemFactory = new ItemFactory();
+
+        playerBlockCollisionHandler = new PlayerBlockCollisionHandler();
+        playerEnemyCollisionHandler = new PlayerEnemyCollisionHandler();
+        playerItemCollisionHandler = new PlayerItemCollisionHandler();
 
         //Register Textures
         itemFactory.RegisterTexture("Heart", Content.Load<Texture2D>("heart"));
@@ -135,7 +142,7 @@ public class Game1 : Game
         linkMap.Add((LinkAction.Attacking, LinkDirection.Right),
             new List<Texture2D> { linkRS1, linkRS2, linkRS3, linkRS4 });
 
-        // Damaged
+        // Damageda
         linkMap.Add((LinkAction.Damaged, LinkDirection.Down),
             new List<Texture2D> { linkH });
         linkMap.Add((LinkAction.Damaged, LinkDirection.Up),
@@ -148,6 +155,7 @@ public class Game1 : Game
         LinkSprite linkSprite = new LinkSprite(linkMap);
 
         Link = new Link(linkSprite, new Vector2(200, 200));
+        controllerList.Add(new KeyboardController(this, Link, blockSprites));
     }
 
     protected override void Update(GameTime gameTime)
@@ -163,31 +171,17 @@ public class Game1 : Game
         currentItem.Update(gameTime);
 
 
+        playerBlockCollisionHandler.HandleCollisionList(Link, blockSprites._active);
+        playerEnemyCollisionHandler.HandleCollision(Link, EnemyManager.Instance.GetActiveEnemy());
+        playerItemCollisionHandler.HandleCollision(Link, currentItem);
+        
+        
+        
         blockSprites.UpdateActiveBlocks(); // Call to update active blocks
 
         EnemyManager.Instance.Update(gameTime);
 
         base.Update(gameTime);
-        var kstate = Keyboard.GetState();
-
-        if (kstate.IsKeyDown(Keys.W) || kstate.IsKeyDown(Keys.Up)) Link.MoveUp();
-        else if (kstate.IsKeyDown(Keys.S) || kstate.IsKeyDown(Keys.Down)) Link.MoveDown();
-        else if (kstate.IsKeyDown(Keys.A) || kstate.IsKeyDown(Keys.Left)) Link.MoveLeft();
-        else if (kstate.IsKeyDown(Keys.D) || kstate.IsKeyDown(Keys.Right)) Link.MoveRight();
-        else Link.Stop();
-
-        if (kstate.IsKeyDown(Keys.Z) || kstate.IsKeyDown(Keys.N)) Link.Attack();
-
-        if (kstate.IsKeyDown(Keys.E)) Link.TakeDamage();
-
-        if (kstate.IsKeyDown(Keys.D1)) Link.SwitchItem(1);
-        if (kstate.IsKeyDown(Keys.D2)) Link.SwitchItem(-1);
-
-        if (kstate.IsKeyDown(Keys.X) || kstate.IsKeyDown(Keys.M)) Link.UseItem();
-
-        if (kstate.IsKeyDown(Keys.Q)) Exit();
-
-
     }
 
     protected override void Draw(GameTime gameTime)
@@ -198,8 +192,6 @@ public class Game1 : Game
         sprite.Draw(_spriteBatch);
         currentItem.Draw(_spriteBatch);
         Link.Draw(_spriteBatch);
-
-
 
         blockSprites.DrawActiveBlocks(_spriteBatch); // Call to draw active blocks
         EnemyManager.Instance.Draw(_spriteBatch);

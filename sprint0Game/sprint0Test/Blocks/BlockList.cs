@@ -21,7 +21,8 @@ public class BlockSprites
     // The list of game objects
     private List<IBlock> gameObjects = new List<IBlock>();
 
-    private List<IBlock> _active = new List<IBlock>(); // The active game objects list
+    public List<IBlock> _active = new List<IBlock>(); // The active game objects list
+    public List<Block> temp = new List<Block>(); // Temp list
     private int currentIndex = 0; // The current index for managing blocks
 
     // Constructor to initialize blocks
@@ -31,13 +32,13 @@ public class BlockSprites
         gameObjects.Add(new Block(dungeonTexture, tile, ObjectType.Rock, new Vector2(100, 80), 3f));
         gameObjects.Add(new Block(dungeonTexture, black, ObjectType.Rock, new Vector2(100, 80), 3f));
         gameObjects.Add(new Block(dungeonTexture, brick, ObjectType.Rock, new Vector2(100, 80), 3f));
-        gameObjects.Add(new BlockPush(dungeonTexture, block, new Vector2(100, 80), 3f));
+        //gameObjects.Add(new BlockPush(dungeonTexture, block, new Vector2(100, 80), 3f));
         gameObjects.Add(new Block(dungeonTexture, sand, ObjectType.Rock, new Vector2(100, 80), 3f));
         gameObjects.Add(new Block(dungeonTexture, ramp, ObjectType.Rock, new Vector2(100, 80), 3f));
         gameObjects.Add(new Block(dungeonTexture, fish, ObjectType.Rock, new Vector2(100, 80), 3f));
         gameObjects.Add(new Block(dungeonTexture, blue, ObjectType.Rock, new Vector2(100, 80), 3f));
         gameObjects.Add(new Block(dungeonTexture, dragon, ObjectType.Rock, new Vector2(100, 80), 3f));
-        gameObjects.Add(new BlockStair(dungeonTexture, stair, new Vector2(100, 80), 3f));
+        //gameObjects.Add(new BlockStair(dungeonTexture, stair, new Vector2(100, 80), 3f));
     }
 
     // Set the active list of blocks
@@ -45,6 +46,9 @@ public class BlockSprites
     {
         _active.Clear(); // Optionally clear the _active list or keep adding/removing sprites as needed
         _active.Add(newSprite);
+        temp.Clear();
+        _active.Add(newSprite);
+
     }
 
     // Get all game objects (blocks) from the list
