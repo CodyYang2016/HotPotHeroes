@@ -1,7 +1,7 @@
-**/Content/
+#**/Content/
 # Ignore build directories
-bin/
-obj/
+#bin/
+#obj/
 
 # Ignore MGCB intermediate files
 *.mgcb.cache

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/boomerang.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/DungeonEnemy.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/heart.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/Link1.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/Link2.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkB1.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkB2.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkBS1.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkBS2.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkBS3.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkBS4.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/Linkh.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkL1.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkL2.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkLS1.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkLS2.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkLS3.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkLS4.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkR1.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkR2.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkRS1.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkRS2.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkRS3.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkRS4.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkS1.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkS2.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkS3.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/LinkS4.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/TileSetDungeon.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/ZeldaBoss.png</File>
+    <File>D:/SprintTestFixedNew/SprintTestFixedNew/Content/ZeldaOverWorld.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
