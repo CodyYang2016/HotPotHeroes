@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cody.yang\\source\\repos\\NewCody2\\BlockBranch.csproj": {}
+    "C:\\Users\\cody.yang\\source\\repos\\Cody2\\BlockBranch.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cody.yang\\source\\repos\\NewCody2\\BlockBranch.csproj": {
+    "C:\\Users\\cody.yang\\source\\repos\\Cody2\\BlockBranch.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cody.yang\\source\\repos\\NewCody2\\BlockBranch.csproj",
+        "projectUniqueName": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\BlockBranch.csproj",
         "projectName": "BlockBranch",
-        "projectPath": "C:\\Users\\cody.yang\\source\\repos\\NewCody2\\BlockBranch.csproj",
+        "projectPath": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\BlockBranch.csproj",
         "packagesPath": "C:\\Users\\cody.yang\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cody.yang\\source\\repos\\NewCody2\\obj\\",
+        "outputPath": "C:\\Users\\cody.yang\\source\\repos\\Cody2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

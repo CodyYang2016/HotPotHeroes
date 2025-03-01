@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/cody.yang/source/repos/NewCody2/Content/mario2.png</SourceFile>
-  <SourceTime>2025-02-28T16:31:44.7720032-05:00</SourceTime>
-  <DestFile>C:/Users/cody.yang/source/repos/NewCody2/Content/bin/DesktopGL/Content/mario2.xnb</DestFile>
-  <DestTime>2025-02-28T16:38:41.4232727-05:00</DestTime>
+  <SourceFile>C:/Users/cody.yang/source/repos/Cody2/Content/mario2.png</SourceFile>
+  <SourceTime>2025-02-20T12:42:39.7508684-05:00</SourceTime>
+  <DestFile>C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/mario2.xnb</DestFile>
+  <DestTime>2025-02-24T13:14:44.8215118-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
