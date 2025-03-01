@@ -58,8 +58,8 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        spriteTexture = Content.Load<Texture2D>("mario2");
-        sprite = new StandingInPlacePlayerSprite(spriteTexture);
+        //spriteTexture = Content.Load<Texture2D>("mario2");
+        //sprite = new StandingInPlacePlayerSprite(spriteTexture);
 
         var dungeonTexture = Content.Load<Texture2D>("TileSetDungeon");
         blockSprites = new BlockSprites(dungeonTexture);
@@ -84,6 +84,12 @@ public class Game1 : Game
     };
                 currentItemIndex = 1;
         currentItem = itemList[currentItemIndex];
+
+
+        // 6) 初始化房间管理器
+        //   原房间尺寸256×176，窗口800×480，计算缩放
+        roomScale = Math.Min(800f / 256f, 480f / 176f);
+        roomManager = new RoomManager(dungeonTexture, roomScale);
 
         // Link update code
         var link1 = Content.Load<Texture2D>("Link1");
@@ -145,7 +151,7 @@ public class Game1 : Game
         linkMap.Add((LinkAction.Attacking, LinkDirection.Right),
             new List<Texture2D> { linkRS1, linkRS2, linkRS3, linkRS4 });
 
-        // Damageda
+        // Damage
         linkMap.Add((LinkAction.Damaged, LinkDirection.Down),
             new List<Texture2D> { linkH });
         linkMap.Add((LinkAction.Damaged, LinkDirection.Up),
@@ -166,10 +172,7 @@ public class Game1 : Game
 
         controllerList.Add(new KeyboardController(this, Link, blockSprites));
 
-        // 6) 初始化房间管理器
-        //   原房间尺寸256×176，窗口800×480，计算缩放
-       // roomScale = Math.Min(800f / 256f, 480f / 176f);
-       // roomManager = new RoomManager(dungeonTexture, roomScale);
+
     }
 
     protected override void Update(GameTime gameTime)
@@ -181,7 +184,7 @@ public class Game1 : Game
         {
             controller.Update();
         }
-        sprite.Update();
+        // sprite.Update();
         currentItem.Update(gameTime);
 
         blockSprites.UpdateActiveBlocks(); // Call to update active blocks
@@ -196,11 +199,11 @@ public class Game1 : Game
 
 
         base.Update(gameTime);
-        Vector2 linkSize = new Vector2(spriteTexture.Width, spriteTexture.Height);
-        //if (roomManager.IsLinkAtDoor(Link.Instance.Position, linkSize))
-        //{
-        //    roomManager.SwitchToNextRoom();
-        //}
+        Vector2 linkSize = Link.Instance.Sprite.GetScaledDimensions();
+        if (roomManager.IsLinkAtDoor(Link.Instance.Position, linkSize))
+        {
+            roomManager.SwitchToNextRoom();
+        }
     }
 
     protected override void Draw(GameTime gameTime)
@@ -208,7 +211,8 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         _spriteBatch.Begin();
-        sprite.Draw(_spriteBatch);
+        roomManager.DrawRoom(_spriteBatch);
+        // sprite.Draw(_spriteBatch);
         currentItem.Draw(_spriteBatch);
         // ✅ Use Link.Instance instead of Link (Singleton Access)
         if (Link.Instance != null)  // Prevents crash if Link wasn't initialized
@@ -221,7 +225,7 @@ public class Game1 : Game
         }
         blockSprites.DrawActiveBlocks(_spriteBatch); // Call to draw active blocks
         EnemyManager.Instance.Draw(_spriteBatch);
-        // roomManager.DrawRoom(_spriteBatch);
+
 
 
         _spriteBatch.End();
