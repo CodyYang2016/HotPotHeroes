@@ -14,7 +14,9 @@ namespace sprint0Test
  
     public class KeyboardController : IController
     {
-        private Dictionary<Keys, ICommand> controllerMappings;
+        private Dictionary<Keys, ICommand> continuousCommands;
+        private Dictionary<Keys, ICommand> singlePressCommands;
+        private KeyboardState previousKeyboardState;
         private Link Link;
         private Game1 myGame;
         private BlockSprites blockSprites;
@@ -24,100 +26,61 @@ namespace sprint0Test
             myGame = game;
             this.Link = link;
             this.blockSprites = blockSprites;
-            
-           
-            //LinkSprite linkSprite = new LinkSprite(map);
-            //Link = new Link(linkSprite, new Vector2(200, 200));
-            
-            controllerMappings = new Dictionary<Keys, ICommand>();
+
+            continuousCommands = new Dictionary<Keys, ICommand>();
+            singlePressCommands = new Dictionary<Keys, ICommand>();
+
             RegisterCommand();
+            previousKeyboardState = Keyboard.GetState(); // Initialize previous state
         }
-    
+
         public void RegisterCommand()
         {
-            controllerMappings.Add(Keys.O, new PreviousEnemyCommand());
-            controllerMappings.Add(Keys.P, new NextEnemyCommand());
-            controllerMappings.Add(Keys.L, new EnemyAttackCommand());
-            controllerMappings.Add(Keys.J, new MoveEnemyLeftCommand());
-            controllerMappings.Add(Keys.K, new MoveEnemyRightCommand());
+            // Commands that should execute always when held
+            continuousCommands.Add(Keys.W, new MoveUpCommand(myGame));
+            continuousCommands.Add(Keys.A, new MoveLeftCommand(myGame));
+            continuousCommands.Add(Keys.S, new MoveDownCommand(myGame));
+            continuousCommands.Add(Keys.D, new MoveRightCommand(myGame));
 
-            controllerMappings.Add(Keys.Q, new QuitCommand(myGame));
-
-
-            controllerMappings.Add(Keys.W, new MoveUpCommand(myGame));
-            controllerMappings.Add(Keys.A, new MoveLeftCommand(myGame));
-            controllerMappings.Add(Keys.S, new MoveDownCommand(myGame));
-            controllerMappings.Add(Keys.D, new MoveRightCommand(myGame));
-
-            controllerMappings.Add(Keys.Z, new LinkAttackCommand(myGame));
-            controllerMappings.Add(Keys.E, new TakeDamageCommand(myGame));
-
-            controllerMappings.Add(Keys.Y, new SetBlock(blockSprites));
-            controllerMappings.Add(Keys.T, new SetBlock(blockSprites));
-
-            controllerMappings.Add(Keys.U, new CycleItemCommand(myGame, -1));
-            controllerMappings.Add(Keys.I, new CycleItemCommand(myGame, 1));
+            // Commands that should execute once when key is pressed
+            singlePressCommands.Add(Keys.O, new PreviousEnemyCommand());
+            singlePressCommands.Add(Keys.P, new NextEnemyCommand());
+            singlePressCommands.Add(Keys.L, new EnemyAttackCommand());
+            singlePressCommands.Add(Keys.Q, new QuitCommand(myGame));
+            singlePressCommands.Add(Keys.Z, new LinkAttackCommand(myGame));
+            singlePressCommands.Add(Keys.E, new TakeDamageCommand(myGame));
+            singlePressCommands.Add(Keys.Y, new SetBlock(blockSprites));
+            singlePressCommands.Add(Keys.U, new CycleItemCommand(myGame, -1));
+            singlePressCommands.Add(Keys.I, new CycleItemCommand(myGame, 1));
         }
-        public void HandleGame1SpecificCommands(KeyboardState kstate)
-        {
-            if (kstate.IsKeyDown(Keys.W) || kstate.IsKeyDown(Keys.Up)) Link.MoveUp();
-            else if (kstate.IsKeyDown(Keys.S) || kstate.IsKeyDown(Keys.Down)) Link.MoveDown();
-            else if (kstate.IsKeyDown(Keys.A) || kstate.IsKeyDown(Keys.Left)) Link.MoveLeft();
-            else if (kstate.IsKeyDown(Keys.D) || kstate.IsKeyDown(Keys.Right)) Link.MoveRight();
-            // else Link.Stop();
 
-            if (kstate.IsKeyDown(Keys.Z) || kstate.IsKeyDown(Keys.N)) Link.Attack();
-            if (kstate.IsKeyDown(Keys.E)) Link.TakeDamage();
-
-            if (kstate.IsKeyDown(Keys.D1)) Link.SwitchItem(1);
-            if (kstate.IsKeyDown(Keys.D2)) Link.SwitchItem(-1);
-
-            if (kstate.IsKeyDown(Keys.X) || kstate.IsKeyDown(Keys.M)) Link.UseItem();
-
-            if (kstate.IsKeyDown(Keys.Q)) myGame.Exit(); // Quit game
-        }
         public void Update()
         {
-
-            Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
-            foreach (Keys key in pressedKeys)
-            {
-                controllerMappings[key].Execute();
-
-            }
-            //The code below worked for stopping infinate loops but broke everything else, 
-            //im saving it cause its probably a little thing I can fix and use
-           /* KeyboardState currentState = Keyboard.GetState();
+            KeyboardState currentState = Keyboard.GetState();
             Keys[] pressedKeys = currentState.GetPressedKeys();
 
-            bool handled = false;
-
-            // Process all pressed keys
+            // Handle continuous commands
             foreach (Keys key in pressedKeys)
             {
-                if (currentState.IsKeyDown(key) && previousState.IsKeyUp(key)) // Detect new key press
+                if (continuousCommands.TryGetValue(key, out var command))
                 {
-                    // Check if the key exists in controllerMappings
-                    if (controllerMappings.TryGetValue(key, out var command))
-                    {
-                        command.Execute();
-                        handled = true; // Mark as handled
-                    }
+                    command.Execute();
                 }
             }
 
-            // Always process Game1-specific hardcoded commands
-            HandleGame1SpecificCommands(currentState);
+            // Handle single-execution commands (triggered only on new key press)
+            foreach (Keys key in pressedKeys)
+            {
+                if (singlePressCommands.TryGetValue(key, out var command) &&
+                    previousKeyboardState.IsKeyUp(key)) // Ensures it runs only once per press
+                {
+                    command.Execute();
+                }
+            }
 
-            previousState = currentState; // Update previous state
-            */
+            // Update previous state for next frame comparison
+            previousKeyboardState = currentState;
         }
-
-        // Method to handle Game1-specific commands (Hardcoded Inputs)
-
-
     }
-
-
 }
 
