@@ -120,5 +120,16 @@ namespace sprint0Test.Enemy
             return direction;
         }
 
+        public virtual Vector2 GetDimensions()
+        {
+            if (animationFrames.Length > 0 && animationFrames[currentFrame] != null)
+            {
+                return new Vector2(animationFrames[currentFrame].Width * scale, animationFrames[currentFrame].Height * scale);
+            }
+            return Vector2.Zero; // Return (0,0) if no valid texture
+        }
+
+
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint0Test.Enemy;
+using sprint0Test.Projectiles;
 
 namespace sprint0Test.Managers
 {
@@ -57,6 +58,8 @@ namespace sprint0Test.Managers
             {
                 { "Skeleton", TextureManager.Instance.GetTexture("Skeleton") }
             };
+
+
             enemyPool.Add(new Octorok(new Vector2(100, 100), Octorok_textures));
             enemyPool.Add(new Keese(new Vector2(200, 100), Keese_textures));
             enemyPool.Add(new Aquamentus(new Vector2(300, 100)));

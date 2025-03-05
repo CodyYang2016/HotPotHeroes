@@ -51,4 +51,14 @@ public class Stalfos : AbstractEnemy
         Console.WriteLine("Stalfos swings sword at Link!");
         Link.Instance.TakeDamage(); // Apply damage to the player character
     }
+
+    public override Vector2 GetDimensions()
+    {
+        if (animationFrames.Length > 0 && animationFrames[0] != null)
+        {
+            return new Vector2(animationFrames[0].Width * scale, animationFrames[0].Height * scale);
+        }
+        return Vector2.Zero; // Return (0,0) if no texture is found
+    }
+
 }
