@@ -59,7 +59,7 @@ namespace sprint0Test
             KeyboardState currentState = Keyboard.GetState();
             Keys[] pressedKeys = currentState.GetPressedKeys();
 
-            // Handle continuous commands
+            // Handle continuous commands 
             foreach (Keys key in pressedKeys)
             {
                 if (continuousCommands.TryGetValue(key, out var command))
@@ -68,17 +68,17 @@ namespace sprint0Test
                 }
             }
 
-            // Handle single-execution commands (triggered only on new key press)
+            // Handle single click commands 
             foreach (Keys key in pressedKeys)
             {
                 if (singlePressCommands.TryGetValue(key, out var command) &&
-                    previousKeyboardState.IsKeyUp(key)) // Ensures it runs only once per press
+                    previousKeyboardState.IsKeyUp(key)) //only run once per press
                 {
                     command.Execute();
                 }
             }
 
-            // Update previous state for next frame comparison
+            // Update previous state
             previousKeyboardState = currentState;
         }
     }
