@@ -37,9 +37,11 @@ public abstract class AbstractProjectile : IProjectile
     {
         if (isActive && texture != null)
         {
-            spriteBatch.Draw(texture, position, Color.White);
+            Vector2 origin = new Vector2(texture.Width / 2, texture.Height / 2);
+            spriteBatch.Draw(texture, position, null, Color.White, 0f, origin, 1f, SpriteEffects.None, 0f);
         }
     }
+
 
     public void Deactivate()
     {

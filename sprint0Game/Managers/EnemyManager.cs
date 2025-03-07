@@ -62,7 +62,7 @@ namespace sprint0Test.Managers
 
             enemyPool.Add(new Octorok(new Vector2(100, 100), Octorok_textures));
             enemyPool.Add(new Keese(new Vector2(200, 100), Keese_textures));
-            enemyPool.Add(new Aquamentus(new Vector2(300, 100)));
+            enemyPool.Add(new Aquamentus(new Vector2(300, 100), 60));
             enemyPool.Add(new Moblin(new Vector2(400, 100), Moblin_textures));
             enemyPool.Add(new Darknut(new Vector2(500, 100), Darknut_textures));
             enemyPool.Add(new Stalfos(new Vector2(600, 100), Stalfos_textures));

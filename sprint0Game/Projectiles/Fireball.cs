@@ -18,6 +18,8 @@ namespace sprint0Test.Projectiles
             base.Update(gameTime);
             // Additional logic if needed (e.g., fireball explosion on impact)
         }
+
+
     }
 
 }
