@@ -26,9 +26,9 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/cody.yang/source/repos/Cody2/Content/LinkS2.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/LinkS2.xnb","TextureProcessor","Texture2DContent",423,1813,0.0139873
 "C:/Users/cody.yang/source/repos/Cody2/Content/LinkS3.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/LinkS3.xnb","TextureProcessor","Texture2DContent",409,1557,0.0126269
 "C:/Users/cody.yang/source/repos/Cody2/Content/LinkS4.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/LinkS4.xnb","TextureProcessor","Texture2DContent",389,1301,0.0057411
-"C:/Users/cody.yang/source/repos/Cody2/Content/mario.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/mario.xnb","TextureProcessor","Texture2DContent",6584,304645,0.2439348
-"C:/Users/cody.yang/source/repos/Cody2/Content/mario2.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/mario2.xnb","TextureProcessor","Texture2DContent",945,17253,0.0069947
-"C:/Users/cody.yang/source/repos/Cody2/Content/TileSetDungeon.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/TileSetDungeon.xnb","TextureProcessor","Texture2DContent",74652,5826381,0.2656142
-"C:/Users/cody.yang/source/repos/Cody2/Content/ZeldaBoss.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/ZeldaBoss.xnb","TextureProcessor","Texture2DContent",24440,584981,0.0496212
-"C:/Users/cody.yang/source/repos/Cody2/Content/zeldaenemy.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/zeldaenemy.xnb","TextureProcessor","Texture2DContent",18943,416869,0.0378989
-"C:/Users/cody.yang/source/repos/Cody2/Content/ZeldaOverWorld.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/ZeldaOverWorld.xnb","TextureProcessor","Texture2DContent",13494,242893,0.0221972
+"C:/Users/cody.yang/source/repos/Cody2/Content/mario.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/mario.xnb","TextureProcessor","Texture2DContent",6584,304645,0.3314959
+"C:/Users/cody.yang/source/repos/Cody2/Content/mario2.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/mario2.xnb","TextureProcessor","Texture2DContent",945,17253,0.0118983
+"C:/Users/cody.yang/source/repos/Cody2/Content/TileSetDungeon.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/TileSetDungeon.xnb","TextureProcessor","Texture2DContent",74652,5826381,0.3058376
+"C:/Users/cody.yang/source/repos/Cody2/Content/ZeldaBoss.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/ZeldaBoss.xnb","TextureProcessor","Texture2DContent",24440,584981,0.0437713
+"C:/Users/cody.yang/source/repos/Cody2/Content/zeldaenemy.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/zeldaenemy.xnb","TextureProcessor","Texture2DContent",18943,416869,0.0265034
+"C:/Users/cody.yang/source/repos/Cody2/Content/ZeldaOverWorld.png","C:/Users/cody.yang/source/repos/Cody2/Content/bin/DesktopGL/Content/ZeldaOverWorld.xnb","TextureProcessor","Texture2DContent",13494,242893,0.0222897
