@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -13,6 +13,6 @@ namespace sprint0Test
         public Vector2 Position { get; }
 
         public Rectangle SourceRectangle { get; }
-
+    
     }
 }

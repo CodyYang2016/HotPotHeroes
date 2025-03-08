@@ -15,6 +15,6 @@ namespace sprint0Test
         public Rectangle SourceRectangle { get; }
         void Draw(SpriteBatch spriteBatch);
         void Update();
-
+    
     }
 }

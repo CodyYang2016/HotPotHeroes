@@ -6,15 +6,15 @@ using sprint0Test;
 
 namespace sprint0Test;
 
-public class PlayerItemCollisionHandler
-{
-    public void HandleCollisionList(Link player, List<IItem> _active)
-    {
-        foreach (var block in _active)
+    public class PlayerItemCollisionHandler
+    {        
+        public void HandleCollisionList(Link player, List<IItem> _active)
         {
-            HandleCollision(block);
+            foreach (var block in _active)
+            {
+                HandleCollision(block);
+            }
         }
-    }
 
     public void HandleCollision(IItem block)
     {
@@ -41,5 +41,5 @@ public class PlayerItemCollisionHandler
 
 }
 
-
+    
 

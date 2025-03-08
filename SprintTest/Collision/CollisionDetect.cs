@@ -9,18 +9,27 @@ namespace sprint0Test;
 public class CollisionDetect
 {
 
-    public static bool isTouchingLeft(Link player, IBlock block)
+    public static bool isTouchingLeft(ICollidable block)
     {
 
-        int width = 16;
-        int height = 16;
-        float scale = 2f;
+        int width = block.SourceRectangle.X;
+        int height = block.SourceRectangle.Y;
+        //float scale = 2f;
         float scale2 = 3f;
-        Rectangle playerRect = new Rectangle((int)player.Position.X, (int)player.Position.Y, (int)(width * scale), (int)(height * scale));
-        Rectangle blockRect = new Rectangle((int)block.Position.X, (int)block.Position.Y, (int)(width * scale2), (int)(height * scale2));
+        Vector2 linkSize = Link.Instance.Sprite.GetScaledDimensions(); // Getdaw scaled dimensions
         
-
-        // return  playerRect.Right + player.Speed > blockRect.Left &&
+        Rectangle playerRect = new Rectangle(
+            (int)Link.Instance.Position.X,
+            (int)Link.Instance.Position.Y,
+            (int)linkSize.X,
+            (int)linkSize.Y
+        ); 
+        Rectangle blockRect = new Rectangle(
+            (int)block.Position.X, 
+            (int)block.Position.Y, 
+            (int)(width * scale2), 
+            (int)(height * scale2));
+        
         return  playerRect.Right > blockRect.Left &&
                 playerRect.Left < blockRect.Left &&
                 playerRect.Bottom > blockRect.Top &&
@@ -28,16 +37,28 @@ public class CollisionDetect
                 
     }
 
-    public static bool isTouchingRight(Link player, IBlock block)
+    public static bool isTouchingRight(ICollidable block)
     {
         int width = 16;
         int height = 16;
-        float scale = 2f;
+        //float scale = 2f;
         float scale2 = 3f;
 
-        Rectangle playerRect = new Rectangle((int)player.Position.X, (int)player.Position.Y, (int)(width * scale), (int)(height * scale));
+        Vector2 linkSize = Link.Instance.Sprite.GetScaledDimensions(); // Get scaled dimensions
         
-        Rectangle blockRect = new Rectangle((int)block.Position.X, (int)block.Position.Y, (int)(width * scale2), (int)(height * scale2));
+        Rectangle playerRect = new Rectangle(
+            (int)Link.Instance.Position.X,
+            (int)Link.Instance.Position.Y,
+            (int)linkSize.X,
+            (int)linkSize.Y
+        ); 
+        
+        Rectangle blockRect = new Rectangle(
+            (int)block.Position.X, 
+            (int)block.Position.Y, 
+            (int)(width * scale2), 
+            (int)(height * scale2)
+        );
 
         // Check for collision on the right side when the player is moving right
         return playerRect.Left < blockRect.Right &&
@@ -47,16 +68,28 @@ public class CollisionDetect
             //player.Speed.X > 0; // Assuming player is moving right (positive speed)
     }
 
-    public static bool isTouchingBottom(Link player, IBlock block)
+    public static bool isTouchingBottom(ICollidable block)
     {
         int width = 16;
         int height = 16;
-        float scale = 2f;
+        //float scale = 2f;
         float scale2 = 3f;
 
-        Rectangle playerRect = new Rectangle((int)player.Position.X, (int)player.Position.Y, (int)(width * scale), (int)(height * scale));
+        Vector2 linkSize = Link.Instance.Sprite.GetScaledDimensions(); // Get scaled dimensions
         
-        Rectangle blockRect = new Rectangle((int)block.Position.X, (int)block.Position.Y, (int)(width * scale2), (int)(height * scale2));
+        Rectangle playerRect = new Rectangle(
+            (int)Link.Instance.Position.X,
+            (int)Link.Instance.Position.Y,
+            (int)linkSize.X,
+            (int)linkSize.Y
+        ); 
+        
+        Rectangle blockRect = new Rectangle(
+            (int)block.Position.X, 
+            (int)block.Position.Y, 
+            (int)(width * scale2), 
+            (int)(height * scale2)
+        );
 
         // Check for collision on the right side when the player is moving right
         return playerRect.Top < blockRect.Bottom &&
@@ -66,18 +99,28 @@ public class CollisionDetect
            //player.Speed.Y > 0; // Assuming player is moving down (positive speed)
     }
 
-    public static bool isTouchingTop(Link player, IBlock block)
+    public static bool isTouchingTop(ICollidable block)
     {
         int width = 16;
         int height = 16;
-        float scale = 2f;
+        //float scale = 2f;
         float scale2 = 3f;
 
-        Rectangle playerRect = new Rectangle((int)player.Position.X, (int)player.Position.Y, (int)(width * scale), (int)(height * scale));
+        Vector2 linkSize = Link.Instance.Sprite.GetScaledDimensions(); // Get scaled dimensions
         
-        Rectangle blockRect = new Rectangle((int)block.Position.X, (int)block.Position.Y, (int)(width * scale2), (int)(height * scale2));
-
-        // Check for collision on the right side when the player is moving right
+        Rectangle playerRect = new Rectangle(
+            (int)Link.Instance.Position.X,
+            (int)Link.Instance.Position.Y,
+            (int)linkSize.X,
+            (int)linkSize.Y
+        ); 
+        
+        Rectangle blockRect = new Rectangle(
+            (int)block.Position.X, 
+            (int)block.Position.Y, 
+            (int)(width * scale2), 
+            (int)(height * scale2)
+        );
         
         return playerRect.Bottom > blockRect.Top &&
            playerRect.Top < blockRect.Top && 
@@ -86,8 +129,5 @@ public class CollisionDetect
             //player.Speed.X > 0; // Assuming player is moving right (positive speed)
             
     }
-
-
-
 
 }

@@ -22,26 +22,26 @@ public class CollisionDetect2
         float yPos = block.GetPosition().Y;
 
         Vector2 linkSize = Link.Instance.Sprite.GetScaledDimensions(); // Get scaled dimensions
-
+        
         Rectangle playerRect = new Rectangle(
             (int)Link.Instance.Position.X,
             (int)Link.Instance.Position.Y,
             (int)linkSize.X,
             (int)linkSize.Y
-        );
+        ); 
 
         Rectangle blockRect = new Rectangle(
             (int)(xPos - (width * scale2 / 2)),  // Adjusted for origin
             (int)(yPos - (height * scale2 / 2)), // Adjusted for origin
             (int)(width * scale2),
             (int)(height * scale2)
-        );
+        );        
 
-        return playerRect.Right > blockRect.Left &&
+        return  playerRect.Right > blockRect.Left &&
                 playerRect.Left < blockRect.Left &&
                 playerRect.Bottom > blockRect.Top &&
                 playerRect.Top < blockRect.Bottom;
-
+                
     }
 
     public static bool isTouchingRight(Link player, IEnemy block)
@@ -73,8 +73,8 @@ public class CollisionDetect2
         return playerRect.Left < blockRect.Right &&
             playerRect.Right > blockRect.Right &&
             playerRect.Bottom > blockRect.Top &&
-            playerRect.Top < blockRect.Bottom;
-        //player.Speed.X > 0; // Assuming player is moving right (positive speed)
+            playerRect.Top < blockRect.Bottom; 
+            //player.Speed.X > 0; // Assuming player is moving right (positive speed)
     }
 
     public static bool isTouchingBottom(Link player, IEnemy block)
@@ -93,7 +93,7 @@ public class CollisionDetect2
             (int)linkSize.X,
             (int)linkSize.Y
         );
-
+    
         Rectangle blockRect = new Rectangle(
             (int)(xPos - (width * scale2 / 2)),  // Adjusted for origin
             (int)(yPos - (height * scale2 / 2)), // Adjusted for origin
@@ -106,7 +106,7 @@ public class CollisionDetect2
             playerRect.Bottom > blockRect.Bottom &&
             playerRect.Left < blockRect.Right &&
             playerRect.Right > blockRect.Left;
-        //player.Speed.Y > 0; // Assuming player is moving down (positive speed)
+           //player.Speed.Y > 0; // Assuming player is moving down (positive speed)
     }
 
     public static bool isTouchingTop(Link player, IEnemy block)
@@ -134,11 +134,11 @@ public class CollisionDetect2
         );
 
         return playerRect.Bottom > blockRect.Top &&
-           playerRect.Top < blockRect.Top &&
+           playerRect.Top < blockRect.Top && 
            playerRect.Left < blockRect.Right &&
            playerRect.Right > blockRect.Left;
-        //player.Speed.X > 0; // Assuming player is moving right (positive speed)
-
+            //player.Speed.X > 0; // Assuming player is moving right (positive speed)
+            
     }
 
 

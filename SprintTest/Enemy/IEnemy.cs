@@ -13,6 +13,7 @@ namespace sprint0Test.Enemy
         void ChangeState(IEnemyState newState);
         void SetPosition(Vector2 newPosition);
         Vector2 GetPosition();
+        Vector2 GetDimensions();
         void PerformAttack(); 
     }
 }
