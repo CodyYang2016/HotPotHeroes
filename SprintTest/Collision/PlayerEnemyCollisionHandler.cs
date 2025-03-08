@@ -44,13 +44,5 @@ namespace sprint0Test
             }
         }
 
-        public void HandleCollision()
-        {
-            if (Link.Instance.Position.Y > 250)
-            {
-                Link.Instance.MoveUp();
-                Link.Instance.TakeDamage();
-            }
-        }
     }
 }
