@@ -1,15 +1,11 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace sprint0Test.Projectiles
 {
     public interface IProjectile
     {
+        Vector2 Position { get; set; } // ✅ Add this line
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
         void Deactivate();

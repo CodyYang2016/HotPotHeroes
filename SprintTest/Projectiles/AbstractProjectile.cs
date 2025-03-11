@@ -4,12 +4,19 @@ using sprint0Test.Projectiles;
 
 public abstract class AbstractProjectile : IProjectile
 {
-    protected Vector2 position;
+    protected Vector2 position;  // Backing field for Position
     protected Vector2 direction;
     protected Texture2D texture;
     protected bool isActive;
     protected float speed;
     protected float lifetime;
+
+    // ✅ Expose position via property for IProjectile interface compliance
+    public Vector2 Position
+    {
+        get => position;
+        set => position = value;
+    }
 
     public AbstractProjectile(Vector2 startPosition, Vector2 direction, Texture2D texture, float speed, float lifetime = 5.0f)
     {
@@ -54,7 +61,7 @@ public abstract class AbstractProjectile : IProjectile
     // ✅ Reset function for reusing the projectile from the pool
     public void Reset(Vector2 newPosition, Vector2 newDirection)
     {
-        position = newPosition;
+        Position = newPosition;
         direction = newDirection;
         lifetime = 5.0f;  // Reset lifetime
         isActive = true;  // Reactivate projectile

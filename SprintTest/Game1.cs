@@ -10,7 +10,8 @@ using sprint0Test.Link1;
 using System;
 using sprint0Test.Dungeon;
 using sprint0Test;
-
+using sprint0Test.Managers;
+using System.Diagnostics;
 namespace sprint0Test;
 
 public class Game1 : Game
@@ -209,6 +210,8 @@ public class Game1 : Game
 
         base.Update(gameTime);
         Vector2 linkSize = Link.Instance.GetScaledDimensions();
+
+        base.Update(gameTime);
         if (roomManager.IsLinkAtDoor(Link.Instance.Position, linkSize))
         {
             // Get mouse state
@@ -228,6 +231,8 @@ public class Game1 : Game
 
         _spriteBatch.Begin();
         roomManager.DrawRoom(_spriteBatch);
+        ProjectileManager.Instance.Draw(_spriteBatch); // Ensure this is present
+
         // sprite.Draw(_spriteBatch);
         var items = roomManager.GetCurrentRoomItems();
         if (items != null)

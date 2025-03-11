@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint0Test.Projectiles;
@@ -24,70 +25,77 @@ namespace sprint0Test.Managers
         // ✅ Use a pooling system instead of creating new projectiles every time
         public void SpawnProjectile(Vector2 position, Vector2 direction, string projectileType)
         {
+            Debug.WriteLine($"SpawnProjectile() called with type: {projectileType}");
+
             if (activeProjectiles.Count >= MAX_PROJECTILES)
             {
-                Console.WriteLine("Max projectile limit reached. Cannot spawn more projectiles.");
+                Debug.WriteLine("Max projectile limit reached. Cannot spawn more projectiles.");
                 return;
             }
 
             IProjectile projectile = null;
 
-            // ✅ Reuse a projectile from the pool if available
             if (projectilePool.Count > 0)
             {
                 projectile = projectilePool.Dequeue();
-                Console.WriteLine($"Reusing projectile from pool: {projectileType}");
+                Debug.WriteLine($"Reusing projectile from pool: {projectileType}");
             }
             else
             {
-                // ✅ Create a new projectile if the pool is empty
-                Texture2D fireball = TextureManager.Instance.GetTexture("Fireball");  // Dragon texture
-                Texture2D octupus = TextureManager.Instance.GetTexture("Octupus_Projectile");  // Side Texture
+                Texture2D fireball = TextureManager.Instance.GetTexture("Fireball");
+                if (fireball == null)
+                {
+                    Debug.WriteLine("Fireball texture is NULL!");
+                    return;
+                }
+
                 switch (projectileType)
                 {
                     case "Fireball":
                         projectile = new Fireball(position, direction, fireball);
+                        Debug.WriteLine($"Created new Fireball at {position}");
                         break;
-                    //case "Octupus_Projectile":
-                    //    projectile = new Octupus_Projectile(position, direction, octupus);
-                    //    break;
-                    //case "MagicBeam":
-                    //    projectile = new MagicBeam(position, direction, texture);
-                    //    break;
                     default:
-                        Console.WriteLine($"Unknown projectile type: {projectileType}");
+                        Debug.WriteLine($"Unknown projectile type: {projectileType}");
                         return;
                 }
             }
 
-            // ✅ Reset projectile properties before reusing
             (projectile as AbstractProjectile)?.Reset(position, direction);
 
             activeProjectiles.Add(projectile);
-            Console.WriteLine($"Spawned {projectileType} at {position}, moving {direction}. Total: {activeProjectiles.Count}");
+            Debug.WriteLine($"Spawned {projectileType} at {position}, moving {direction}. Active projectiles: {activeProjectiles.Count}");
         }
 
         public void Update(GameTime gameTime)
         {
+            Debug.WriteLine($"Updating projectiles. Active count: {activeProjectiles.Count}");
+
             for (int i = activeProjectiles.Count - 1; i >= 0; i--)
             {
                 activeProjectiles[i].Update(gameTime);
+                Debug.WriteLine($"Projectile {i} position: {activeProjectiles[i].Position}");
 
-                // ✅ If projectile is inactive, move it back to the pool
                 if (!activeProjectiles[i].IsActive())
                 {
+                    Debug.WriteLine($"Projectile {i} became inactive and was removed.");
                     projectilePool.Enqueue(activeProjectiles[i]);
                     activeProjectiles.RemoveAt(i);
                 }
             }
         }
 
+
         public void Draw(SpriteBatch spriteBatch)
         {
+            Debug.WriteLine($"Drawing {activeProjectiles.Count} projectiles.");
+
             foreach (var projectile in activeProjectiles)
             {
+                Debug.WriteLine($"Drawing projectile at {projectile.Position}");
                 projectile.Draw(spriteBatch);
             }
         }
+
     }
 }

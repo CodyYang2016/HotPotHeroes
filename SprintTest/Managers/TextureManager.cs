@@ -34,7 +34,7 @@ namespace sprint0Test.Managers
             textures["Dragon_Idle2"] = CutTexture(bossSpriteSheet, new Rectangle(25, 11, 24, 32));
             //textures["Dragon_Idle3"] = CutTexture(bossSpriteSheet, new Rectangle(49, 11, 24, 32));
             //textures["Dragon_Idle4"] = CutTexture(bossSpriteSheet, new Rectangle(64, 11, 24, 32));
-            textures["Fireball"] = CutTexture(bossSpriteSheet, new Rectangle(109, 25, 10, 16));
+            textures["Fireball"] = CutTexture(bossSpriteSheet, new Rectangle(107, 11, 10, 16));
 
 
             //Octopus
