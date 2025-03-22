@@ -20,6 +20,7 @@ namespace sprint0Test.Link1
         private int attackFrameCounter = 0;
         private int itemFrameCounter = 0;
         private int currentItemIndex = 0;
+        private int currentHealth = 6;
         private List<Item> inventory = new List<Item>();
 
         private readonly int screenMinX = 0;

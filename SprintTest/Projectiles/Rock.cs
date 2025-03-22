@@ -5,19 +5,20 @@ using sprint0Test.Projectiles;
 
 namespace sprint0Test.Projectiles
 {
-    public class Fireball : AbstractProjectile, IProjectile
+    public class Rock : AbstractProjectile, IProjectile
     {
-        public Fireball(Vector2 startPosition, Vector2 direction, Texture2D fireballTexture)
-            : base(startPosition, direction, fireballTexture, 300f)  // ✅ Use the passed texture
+        public Rock(Vector2 startPosition, Vector2 direction, Texture2D rockTexture)
+            : base(startPosition, direction, rockTexture, 250f) // ✅ Adjust speed if needed
         {
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            // Additional logic if needed (e.g., fireball explosion on impact)
+            // Additional logic if needed (e.g., collision effects, rock breaking on impact)
         }
 
+        // ✅ Ensure Position is accessible through the interface
         public new Vector2 Position
         {
             get => base.Position;

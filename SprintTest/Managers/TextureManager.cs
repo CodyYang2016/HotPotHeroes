@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using sprint0Test.Projectiles;
 
 namespace sprint0Test.Managers
 {
@@ -40,7 +41,7 @@ namespace sprint0Test.Managers
             //Octopus
             textures["Octopus_Idle1"] = CutTexture(worldSpriteSheet, new Rectangle(1, 11, 16, 16));
             textures["Octopus_Idle2"] = CutTexture(worldSpriteSheet, new Rectangle(17, 11, 16, 16));
-            textures["Octopus_Projectile"] = CutTexture(bossSpriteSheet, new Rectangle(77, 26, 9, 17));
+            textures["Rock"] = CutTexture(worldSpriteSheet, new Rectangle(77, 26, 9, 17));
            
             //Moblin
             textures["Goblin_1"] = CutTexture(worldSpriteSheet, new Rectangle(100, 28, 15, 17));

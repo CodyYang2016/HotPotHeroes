@@ -43,6 +43,8 @@ namespace sprint0Test.Managers
             else
             {
                 Texture2D fireball = TextureManager.Instance.GetTexture("Fireball");
+                Texture2D rockTexture = TextureManager.Instance.GetTexture("Rock");
+
                 if (fireball == null)
                 {
                     Debug.WriteLine("Fireball texture is NULL!");
@@ -54,6 +56,10 @@ namespace sprint0Test.Managers
                     case "Fireball":
                         projectile = new Fireball(position, direction, fireball);
                         Debug.WriteLine($"Created new Fireball at {position}");
+                        break;
+                    case "Rock":
+                        projectile = new Rock(position, direction, rockTexture);
+                        Debug.WriteLine($"Created new Rock at {position}");
                         break;
                     default:
                         Debug.WriteLine($"Unknown projectile type: {projectileType}");

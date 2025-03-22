@@ -9,7 +9,7 @@ namespace sprint0Test.Enemy
 {
     public abstract class AbstractEnemy : IEnemy
     {
-        protected Vector2 position;
+        public Vector2 position;
         protected int health;
         protected float detectionRadius = 0.2f;
         protected float attackRange = 0.2f;
@@ -128,6 +128,12 @@ namespace sprint0Test.Enemy
             }
             return Vector2.Zero; // Return (0,0) if no valid texture
         }
+
+        public bool DetectPlayer()
+        {
+            return Vector2.Distance(position, Link.Instance.Position) <= detectionRadius;
+        }
+
 
 
 

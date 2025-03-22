@@ -22,7 +22,7 @@ namespace sprint0Test.Enemy
                 TextureManager.Instance.GetTexture("Dragon_Idle2")
             })
         {
-            attackRange = 200f; // Set custom attack range for Aquamentus
+            attackRange = 50f; // Set custom attack range for Aquamentus
             upperLimit = startPosition.Y - movementRange;
             lowerLimit = startPosition.Y + movementRange;
         }
@@ -31,17 +31,16 @@ namespace sprint0Test.Enemy
         {
             base.Update(gameTime);
 
-            // Reduce cooldown timer
-            if (currentCooldown > 0)
-            {
-                currentCooldown -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
+            // ✅ Always decrement cooldown, even if it's below 0
+            currentCooldown -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            // Attack if Link is in range and cooldown is over
-            if (IsInAttackRange() && currentCooldown <= 0)
+            if (currentCooldown <= 0f)
             {
-                PerformAttack();
-                currentCooldown = attackCooldown; // Reset cooldown
+                if (IsInAttackRange())
+                {
+                    PerformAttack();
+                    currentCooldown = attackCooldown;
+                }
             }
 
             // Move up and down
@@ -52,9 +51,14 @@ namespace sprint0Test.Enemy
             }
         }
 
+
+
+
+
+
+
         public override void PerformAttack()
         {
-            Console.WriteLine("Aquamentus is attacking!");
 
             // Get direction to Link
             Vector2 directionToLink = GetDirectionToPlayer();
