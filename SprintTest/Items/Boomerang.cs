@@ -19,6 +19,9 @@ public class Boomerang : IItem
         private bool isReturning;
         private bool isActive;
 
+        private bool isCollected;
+        public bool IsCollected => isCollected;
+
         public Boomerang(Texture2D spriteSheet, Vector2 startPosition, int totalFrames, int framesPerImage = 8)
         {
             this.sprite = new RotatingAnimatedSprite(spriteSheet, totalFrames, framesPerImage);

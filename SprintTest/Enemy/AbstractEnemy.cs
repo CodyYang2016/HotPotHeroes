@@ -11,6 +11,7 @@ namespace sprint0Test.Enemy
     {
         public Vector2 position;
         protected int health;
+        public int Health => health;
         protected float detectionRadius = 0.2f;
         protected float attackRange = 0.2f;
         protected float scale = 3f;
@@ -21,6 +22,8 @@ namespace sprint0Test.Enemy
         protected int currentFrame = 0;
         protected double frameTime = 0.1;
         protected double frameTimer = 0.0;
+        public bool IsDead => currentState is DeadState;
+
 
         public AbstractEnemy(Vector2 startPosition, Texture2D[] textures)
         {

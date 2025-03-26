@@ -114,12 +114,14 @@ namespace sprint0Test.Link1
             }
         }
 
+        // int damage
         public void TakeDamage()
         {
             if (!isAttacking && !isUsingItem)
             {
                 sprite.SetState(LinkAction.Damaged, sprite.CurrentDirection);
             }
+            // currentHealth -= damage;
         }
 
         public void SwitchItem(int direction)

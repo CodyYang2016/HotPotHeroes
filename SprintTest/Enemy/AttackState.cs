@@ -14,12 +14,31 @@ namespace sprint0Test.Enemy
 
         public override void Update(GameTime gameTime)
         {
+            // 🔁 First check if the player is no longer in detection range
+            if (!enemy.DetectPlayer())
+            {
+                enemy.ChangeState(new IdleState(enemy));
+                return;
+            }
+
+            if (enemy.Health <= 0)
+            {
+                enemy.ChangeState(new DeadState(enemy));
+                return;
+            }
+
+
+            // ✅ Still sees the player, perform attack logic
             attackTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (attackTimer >= attackCooldown)
             {
-                enemy.PerformAttack();
-                attackTimer = 0f; // 🔁 Reset the timer so it happens again after 3 seconds
+                if (enemy.IsInAttackRange())
+                {
+                    enemy.PerformAttack();
+                }
+
+                attackTimer = 0f; // 🔁 Reset the timer
             }
         }
     }

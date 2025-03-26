@@ -14,6 +14,10 @@ namespace sprint0Test.Enemy
         void SetPosition(Vector2 newPosition);
         Vector2 GetPosition();
         Vector2 GetDimensions();
-        void PerformAttack(); 
+        void PerformAttack();
+        bool IsDead { get; }
+
+
+        int Health { get; }
     }
 }

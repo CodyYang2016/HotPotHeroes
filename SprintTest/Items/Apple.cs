@@ -16,6 +16,8 @@ namespace sprint0Test.Items
         public string name { get; private set; }
 
         private bool isCollected;
+        public bool IsCollected => isCollected;
+
 
         public Apple(string name, Texture2D texture, Vector2 position)
         {
