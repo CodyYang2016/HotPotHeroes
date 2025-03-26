@@ -35,7 +35,9 @@ public class Game1 : Game
     private PlayerBlockCollisionHandler playerBlockCollisionHandler;
     private PlayerEnemyCollisionHandler playerEnemyCollisionHandler;
     private PlayerItemCollisionHandler playerItemCollisionHandler;
-
+    private EnemyBlockCollisionHandler enemyBlockCollisionHandler;
+    private PlayerProjectileCollisionHandler playerProjectileCollisionHandler;
+    private ProjectileBlockCollisionHandler projectileBlockCollisionHandler;
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -174,6 +176,9 @@ public class Game1 : Game
         playerBlockCollisionHandler = new PlayerBlockCollisionHandler();
         playerEnemyCollisionHandler = new PlayerEnemyCollisionHandler();
         playerItemCollisionHandler = new PlayerItemCollisionHandler();
+        enemyBlockCollisionHandler = new EnemyBlockCollisionHandler();
+        playerProjectileCollisionHandler = new PlayerProjectileCollisionHandler();
+        projectileBlockCollisionHandler = new ProjectileBlockCollisionHandler();
 
         // Link = new Link(linkSprite, new Vector2(200, 200));
         Link.Initialize(linkSprite, new Vector2(200, 200));
@@ -206,7 +211,11 @@ public class Game1 : Game
 
         playerBlockCollisionHandler.HandleCollisionList(blockSprites._active);
         playerEnemyCollisionHandler.HandleCollision(EnemyManager.Instance.GetActiveEnemy());
-        playerItemCollisionHandler.HandleCollisionList(Link.Instance, roomManager.GetCurrentRoomItems());
+        playerItemCollisionHandler.HandleCollisionList(roomManager.GetCurrentRoomItems());
+        enemyBlockCollisionHandler.HandleCollisionList(blockSprites._active, EnemyManager.Instance.GetActiveEnemy());
+        playerProjectileCollisionHandler.HandleCollisionList(ProjectileManager.Instance.GetActiveProjectiles());
+        projectileBlockCollisionHandler.HandleCollisionList(blockSprites._active, ProjectileManager.Instance.GetActiveProjectiles());
+
 
         base.Update(gameTime);
         Vector2 linkSize = Link.Instance.GetScaledDimensions();

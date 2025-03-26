@@ -14,23 +14,21 @@ namespace sprint0Test;
     public class Block : IBlock
     {
         public Vector2 Position { get; set; }   // Position on the map
-        public ObjectType Type { get; set; }    // Type of the object (e.g., Staircase, Rock)
         public Rectangle SourceRectangle { get; private set; } // For the sprite's texture
         public float Scale { get; set; }
+        public bool IsVisible { get; set; }  // Flag to indicate if the block is visible
 
         private Texture2D _texture;
 
-        // Constructor
-        public Block(Texture2D texture, Rectangle sourceRectangle, ObjectType type, Vector2 position, float scale = 1.0f)
+        public Block(Texture2D texture, Rectangle sourceRectangle, Vector2 position, float scale = 1.0f, bool isVisible = true)
         {
             _texture = texture;
             Position = position;
-            Type = type;
             SourceRectangle = sourceRectangle;
             Scale = scale;
+            IsVisible = isVisible;
         }
 
-        // Update behavior (if applicable, like animation or physics)
         public virtual void Update()
         {
             // Update logic for interactable objects can go here
@@ -39,6 +37,7 @@ namespace sprint0Test;
         // Draw the object sprite on screen
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            
             // Use the Position and SourceRectangle for drawing
             Rectangle destination = new Rectangle(
                 (int)Position.X,
@@ -47,22 +46,11 @@ namespace sprint0Test;
                 (int)(SourceRectangle.Height * Scale)
             );
 
-            spriteBatch.Draw(_texture, destination, SourceRectangle, Color.White);
+            // if (IsVisible)
+            // {
+                spriteBatch.Draw(_texture, destination, SourceRectangle, Color.White);
+            // }
         }
 
-        // Interact method (overridden by specific objects for custom behavior)
-        public virtual void Interact()
-        {
-            switch (Type)
-            {
-                case ObjectType.Staircase:
-                    // Logic for moving to a different room
-                    break;
-                case ObjectType.Rock:
-                    // Logic for pushing the rock
-                    break;
-                // Add cases for more types of objects
-            }
-        }
     }
 

@@ -102,6 +102,10 @@ namespace sprint0Test.Managers
                 projectile.Draw(spriteBatch);
             }
         }
+        public List<IProjectile> GetActiveProjectiles()
+        {
+            return activeProjectiles;
+        }
 
     }
 }

@@ -12,7 +12,7 @@ namespace sprint0Test.Enemy
         public Vector2 position;
         protected int health;
         public int Health => health;
-        protected float detectionRadius = 0.2f;
+        protected float detectionRadius = 0.6f;
         protected float attackRange = 0.2f;
         protected float scale = 3f;
         protected IEnemyState currentState;

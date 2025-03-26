@@ -17,27 +17,27 @@ namespace sprint0Test
             }
         }
 
-        public void HandleCollision(IEnemy block)
+        public void HandleCollision(IEnemy enemy)
         {
-            if (CollisionDetect2.isTouchingLeft(Link.Instance, block))
+            if (CollisionDetectEnemy.isTouchingLeft(enemy))
             {
                 Link.Instance.MoveLeft();
                 Link.Instance.TakeDamage();
             }
 
-            if (CollisionDetect2.isTouchingRight(Link.Instance, block))
+            if (CollisionDetectEnemy.isTouchingRight(enemy))
             {
                 Link.Instance.MoveRight();
                 Link.Instance.TakeDamage();
             }
 
-            if (CollisionDetect2.isTouchingBottom(Link.Instance, block))
+            if (CollisionDetectEnemy.isTouchingBottom(enemy))
             {
                 Link.Instance.MoveDown();
                 Link.Instance.TakeDamage();
             }
 
-            if (CollisionDetect2.isTouchingTop(Link.Instance, block))
+            if (CollisionDetectEnemy.isTouchingTop(enemy))
             {
                 Link.Instance.MoveUp();
                 Link.Instance.TakeDamage();
