@@ -5,22 +5,28 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using sprint0Test.Interfaces;
 using sprint0Test.Items;
-using sprint0Test.Sprites;
 using sprint0Test.Link1;
 using System;
 using sprint0Test.Dungeon;
-using sprint0Test;
-using sprint0Test.Managers;
-using System.Diagnostics;
 namespace sprint0Test;
 
 public class Game1 : Game
 {
+
+    public enum GameState
+    {
+    Playing,
+    Paused
+    }
+
+    private PauseMenu _pauseMenu;
+    public GameState _currentGameState = GameState.Playing;
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     public Texture2D spriteTexture;
     List<IController> controllerList;
     public ISprite sprite;
+    private SpriteFont _menuFont;
     private BlockSprites blockSprites;
     private ItemFactory itemFactory;
     public List<IItem> itemList;
@@ -43,7 +49,6 @@ public class Game1 : Game
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        // 设置窗口尺寸 800x480
         _graphics.PreferredBackBufferWidth = 800;
         _graphics.PreferredBackBufferHeight = 480;
         _graphics.ApplyChanges();
@@ -52,17 +57,15 @@ public class Game1 : Game
     protected override void Initialize()
     {
         controllerList = new List<IController>();
-        //controllerList.Add(new KeyboardController(this, Link, blockSprites));
-        controllerList.Add(new MouseController(this));
-
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        //spriteTexture = Content.Load<Texture2D>("mario2");
-        //sprite = new StandingInPlacePlayerSprite(spriteTexture);
+        _menuFont = Content.Load<SpriteFont>("MenuFont");
+        _pauseMenu = new PauseMenu(Content.Load<SpriteFont>("MenuFont"));
+        _pauseMenu.OnOptionSelected = HandleMenuSelection;
 
         var dungeonTexture = Content.Load<Texture2D>("TileSetDungeon");
         blockSprites = new BlockSprites(dungeonTexture);
@@ -188,8 +191,36 @@ public class Game1 : Game
 
     }
 
+    private void HandleMenuSelection(int selectedIndex)
+    {
+        switch (selectedIndex)
+        {
+        case 0: // Resume
+            _currentGameState = GameState.Playing;
+            break;
+        case 1: // Restart
+            RestartGame();
+            break;
+        case 2: // Quit
+            Exit();
+            break;
+        }
+    }
+    private void RestartGame()
+    {
+        Initialize();
+        _currentGameState = GameState.Playing;
+    }
+
     protected override void Update(GameTime gameTime)
     {
+
+        if (_currentGameState == GameState.Paused)
+        {
+        _pauseMenu.Update();
+        return;
+        
+        }
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
@@ -197,6 +228,10 @@ public class Game1 : Game
         {
             controller.Update();
         }
+        switch (_currentGameState)
+        {
+        case GameState.Playing:
+
         // sprite.Update();
         foreach (var item in roomManager.GetCurrentRoomItems())
         {
@@ -232,13 +267,21 @@ public class Game1 : Game
                 roomManager.NextRoom();
             }
         }
+        break;
+
+        case GameState.Paused:
+        return;
+        }
+ 
     }
 
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
-
         _spriteBatch.Begin();
+
+    if (_currentGameState == GameState.Playing)
+    {
         roomManager.DrawRoom(_spriteBatch);
         ProjectileManager.Instance.Draw(_spriteBatch); // Ensure this is present
 
@@ -251,7 +294,6 @@ public class Game1 : Game
                 item.Draw(_spriteBatch);
             }
         }
-        // ✅ Use Link.Instance instead of Link (Singleton Access)
         if (Link.Instance != null)  // Prevents crash if Link wasn't initialized
         {
             Link.Instance.Draw(_spriteBatch);
@@ -262,9 +304,11 @@ public class Game1 : Game
         }
         blockSprites.DrawActiveBlocks(_spriteBatch); // Call to draw active blocks
         EnemyManager.Instance.Draw(_spriteBatch);
-
-
-
+    }
+    else if (_currentGameState == GameState.Paused)
+    {
+        _pauseMenu.Draw(_spriteBatch, GraphicsDevice);
+    }
         _spriteBatch.End();
         base.Draw(gameTime);
     }
