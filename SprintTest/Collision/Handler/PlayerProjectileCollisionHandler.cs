@@ -20,32 +20,35 @@ namespace sprint0Test
 
         public void HandleCollision(IProjectile projectile)
         {
-            if (CollisionDetectProjectile.isTouchingLeft(projectile))
-            {
-                Link.Instance.MoveLeft();
-                Link.Instance.TakeDamage();
-                projectile.Deactivate();
-            }
+            if(!projectile.IsFriendly()){
 
-            if (CollisionDetectProjectile.isTouchingRight(projectile))
-            {
-                Link.Instance.MoveRight();
-                Link.Instance.TakeDamage();
-                projectile.Deactivate();
-            }
+                if (CollisionDetectProjectile.isTouchingLeft(projectile))
+                {
+                    Link.Instance.MoveLeft();
+                    Link.Instance.TakeDamage();
+                    projectile.Deactivate();
+                }
 
-            if (CollisionDetectProjectile.isTouchingBottom(projectile))
-            {
-                Link.Instance.MoveDown();
-                Link.Instance.TakeDamage();
-                projectile.Deactivate();
-            }
+                if (CollisionDetectProjectile.isTouchingRight(projectile))
+                {
+                    Link.Instance.MoveRight();
+                    Link.Instance.TakeDamage();
+                    projectile.Deactivate();
+                }
 
-            if (CollisionDetectProjectile.isTouchingTop(projectile))
-            {
-                Link.Instance.MoveUp();
-                Link.Instance.TakeDamage();
-                projectile.Deactivate();
+                if (CollisionDetectProjectile.isTouchingBottom(projectile))
+                {
+                    Link.Instance.MoveDown();
+                    Link.Instance.TakeDamage();
+                    projectile.Deactivate();
+                }
+
+                if (CollisionDetectProjectile.isTouchingTop(projectile))
+                {
+                    Link.Instance.MoveUp();
+                    Link.Instance.TakeDamage();
+                    projectile.Deactivate();
+                }
             }
         }
 

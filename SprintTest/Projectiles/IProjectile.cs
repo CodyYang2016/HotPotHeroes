@@ -10,5 +10,7 @@ namespace sprint0Test.Projectiles
         void Draw(SpriteBatch spriteBatch);
         void Deactivate();
         bool IsActive();
+
+        bool IsFriendly();
     }
 }

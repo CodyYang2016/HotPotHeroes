@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using sprint0Test.Items;
 using sprint0Test.Sprites;
+using sprint0Test.Managers;
+using System.Diagnostics;
 
 namespace sprint0Test.Link1
 {
@@ -100,6 +102,27 @@ namespace sprint0Test.Link1
                 isAttacking = true;
                 attackFrameCounter = 0;
                 sprite.SetState(LinkAction.Attacking, sprite.CurrentDirection);
+
+                Vector2 direction = position; 
+                int offset = 45;
+                if (sprite.CurrentDirection == LinkDirection.Up) {
+                    direction.Y -= offset;
+                    //Console.WriteLine("Attack UP");
+                }
+                if (sprite.CurrentDirection == LinkDirection.Down) {
+                    direction.Y += offset;
+                    //Console.WriteLine("Attack Down");
+                }
+                if (sprite.CurrentDirection == LinkDirection.Left) {
+                    direction.X -= offset;
+                    //Console.WriteLine("Attack Left");
+                }
+                if (sprite.CurrentDirection == LinkDirection.Right) {
+                    direction.X += offset;
+                    //Console.WriteLine("Attack Right");
+                }
+
+                ProjectileManager.Instance.SpawnProjectile(direction, direction, "Sword");
             }
         }
 
