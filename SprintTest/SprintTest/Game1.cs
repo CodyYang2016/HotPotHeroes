@@ -19,10 +19,8 @@ namespace sprint0Test
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        // 为命令类和其它功能提供公共贴图访问
         public Texture2D spriteTexture;
 
-        // 用于示例的玩家精灵 (若命令类要切换不同的sprite，可用这个)
         public ISprite sprite;
 
         // BlockSprites
@@ -31,7 +29,6 @@ namespace sprint0Test
         // ItemFactory
         private ItemFactory itemFactory;
 
-        // 仅为旧的 CycleItemCommand 使用；若不再使用可注释掉
         public List<IItem> itemList;
         public int currentItemIndex;
         public IItem currentItem;
@@ -40,7 +37,6 @@ namespace sprint0Test
         private RoomManager roomManager;
         private float roomScale;
 
-        // 各种碰撞处理器
         private PlayerBlockCollisionHandler playerBlockCollisionHandler;
         private PlayerEnemyCollisionHandler playerEnemyCollisionHandler;
         private PlayerItemCollisionHandler playerItemCollisionHandler;
@@ -48,7 +44,6 @@ namespace sprint0Test
         private PlayerProjectileCollisionHandler playerProjectileCollisionHandler;
         private ProjectileBlockCollisionHandler projectileBlockCollisionHandler;
 
-        // 控制器列表
         private List<IController> controllerList;
 
         public Game1()
@@ -57,7 +52,6 @@ namespace sprint0Test
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            // 设置窗口尺寸 800x480
             _graphics.PreferredBackBufferWidth = 800;
             _graphics.PreferredBackBufferHeight = 480;
             _graphics.ApplyChanges();
@@ -66,7 +60,6 @@ namespace sprint0Test
         protected override void Initialize()
         {
             controllerList = new List<IController>();
-            // 仅鼠标控制器
             controllerList.Add(new MouseController(this));
 
             base.Initialize();
@@ -76,19 +69,16 @@ namespace sprint0Test
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // 给 spriteTexture 赋值，用于 SetDispxxxSprite 等命令
-            // 如果你没有 "Link1.png"，可换成其他贴图名称
+            
             spriteTexture = Content.Load<Texture2D>("Link1");
 
-            // 1) 加载地牢图集
             Texture2D dungeonTexture = Content.Load<Texture2D>("TileSetDungeon");
             blockSprites = new BlockSprites(dungeonTexture);
 
-            // 2) 初始化 TextureManager 并加载敌人
             TextureManager.Instance.LoadContent(this);
             EnemyManager.Instance.SpawnEnemy();
 
-            // 3) 初始化物品工厂
+           
             itemFactory = new ItemFactory();
             itemFactory.RegisterTexture("Heart", Content.Load<Texture2D>("heart"));
             itemFactory.RegisterTexture("RedPotion", Content.Load<Texture2D>("red-potion"));
@@ -112,11 +102,9 @@ namespace sprint0Test
             itemFactory.RegisterItem("Crystal", pos => new Crystal("Crystal", itemFactory.GetTexture("Crystal"), pos));
             // itemFactory.RegisterItem("Boomerang", pos => new Boomerang(itemFactory.GetTexture("Boomerang"), pos, 1, 8));
 
-            // 4) 初始化房间管理器
             roomScale = Math.Min(800f / 256f, 480f / 176f);
             roomManager = new RoomManager(dungeonTexture, roomScale, itemFactory);
 
-            // 5) 构建 Link 动画
             var link1 = Content.Load<Texture2D>("Link1");
             var link2 = Content.Load<Texture2D>("Link2");
             var linkB1 = Content.Load<Texture2D>("LinkB1");
@@ -163,7 +151,6 @@ namespace sprint0Test
 
             LinkSprite linkSprite = new LinkSprite(linkMap);
 
-            // 初始化碰撞处理器
             playerBlockCollisionHandler = new PlayerBlockCollisionHandler();
             playerEnemyCollisionHandler = new PlayerEnemyCollisionHandler();
             playerItemCollisionHandler = new PlayerItemCollisionHandler();
@@ -171,10 +158,8 @@ namespace sprint0Test
             playerProjectileCollisionHandler = new PlayerProjectileCollisionHandler();
             projectileBlockCollisionHandler = new ProjectileBlockCollisionHandler();
 
-            // 初始化 Link (Singleton)
             Link.Initialize(linkSprite, new Vector2(200, 200));
 
-            // 初始化键盘控制器
             controllerList.Add(new KeyboardController(this, Link.Instance, blockSprites));
         }
 
@@ -186,26 +171,22 @@ namespace sprint0Test
                 Exit();
             }
 
-            // 如果 roomManager 或 Link.Instance 未初始化，先跳过
             if (roomManager == null || Link.Instance == null)
             {
                 base.Update(gameTime);
                 return;
             }
 
-            // 更新所有控制器
             foreach (IController controller in controllerList)
             {
                 controller.Update();
             }
 
-            // 如果 sprite 不为 null, 就更新
             if (sprite != null)
             {
                 sprite.Update();
             }
 
-            // 更新当前房间物品
             var items = roomManager.GetCurrentRoomItems();
             if (items != null)
             {
@@ -214,35 +195,29 @@ namespace sprint0Test
                     item.Update(gameTime);
                 }
             }
-
-            // 更新 Blocks
+            
             blockSprites.UpdateActiveBlocks();
-
-            // 更新敌人
+           
             EnemyManager.Instance.Update(gameTime);
-
-            // 更新投射物
+            
             ProjectileManager.Instance.Update(gameTime);
-
-            // 更新 Link
+          
             Link.Instance.Update();
-
-            // 处理碰撞
+           
             playerBlockCollisionHandler.HandleCollisionList(blockSprites._active);
             playerEnemyCollisionHandler.HandleCollision(EnemyManager.Instance.GetActiveEnemy());
             playerItemCollisionHandler.HandleCollisionList(items);
             enemyBlockCollisionHandler.HandleCollisionList(blockSprites._active, EnemyManager.Instance.GetActiveEnemy());
             playerProjectileCollisionHandler.HandleCollisionList(ProjectileManager.Instance.GetActiveProjectiles());
             projectileBlockCollisionHandler.HandleCollisionList(blockSprites._active, ProjectileManager.Instance.GetActiveProjectiles());
-
-            // 判断 Link 是否在门口
+         
             Vector2 linkSize = Link.Instance.GetScaledDimensions();
             if (roomManager.IsLinkAtDoor(Link.Instance.Position, linkSize))
             {
                 MouseState mouseState = Mouse.GetState();
                 if (mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    // 切换到下一个房间并获取在新房间的生成位置
+                    
                     Vector2 spawnPos = roomManager.SwitchToNextRoom();
                     Link.Instance.SetPosition(spawnPos);
                 }
@@ -256,25 +231,25 @@ namespace sprint0Test
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
 
-            // 如果 roomManager 不为空，则绘制当前房间
+            
             if (roomManager != null)
             {
                 roomManager.DrawRoom(_spriteBatch);
             }
 
-            // 绘制投射物
+           
             ProjectileManager.Instance.Draw(_spriteBatch);
 
-            // 绘制 Link
+            
             if (Link.Instance != null)
             {
                 Link.Instance.Draw(_spriteBatch);
             }
 
-            // 绘制 Blocks
+            
             blockSprites.DrawActiveBlocks(_spriteBatch);
 
-            // 绘制敌人
+            
             EnemyManager.Instance.Draw(_spriteBatch);
 
             _spriteBatch.End();
