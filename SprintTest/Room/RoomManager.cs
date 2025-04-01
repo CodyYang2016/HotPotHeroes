@@ -20,6 +20,19 @@ namespace sprint0Test.Dungeon
         private List<IItem> currentRoomItems = new List<IItem>();
         private ItemFactory itemFactory;
         private Dictionary<int, string> roomIdMap = new Dictionary<int, string>();
+
+        // 记录当前房间的门字母，供切换后确定生成位置
+        private char previousDoorLetter;
+
+        // 门连接映射：当前房间门→新房间中应出现的门（例如：A → C, B → D, C → A, D → B）
+        private static readonly Dictionary<char, char> OppositeDoorMapping = new Dictionary<char, char>()
+        {
+            { 'A', 'C' },
+            { 'B', 'D' },
+            { 'C', 'A' },
+            { 'D', 'B' }
+        };
+
         public RoomManager(Texture2D dungeonTexture, float scale, ItemFactory itemFactory)
         {
             this.dungeonTexture = dungeonTexture;
@@ -129,6 +142,23 @@ namespace sprint0Test.Dungeon
             else
             {
                 currentRoomItems.Clear();
+            }
+        }
+
+        private Vector2 GetSpawnPositionForNextRoom()
+        {
+            char targetDoor;
+            if (OppositeDoorMapping.TryGetValue(previousDoorLetter, out targetDoor))
+            {
+                // 返回目标门的目标区域经过缩放后的位置
+                Rectangle dest = ScaleRect(Room.DoorDestinations[targetDoor]);
+                return new Vector2(dest.X, dest.Y);
+            }
+            else
+            {
+                // 若找不到对应关系，返回当前房间门位置
+                Rectangle dest = ScaleRect(Room.DoorDestinations[previousDoorLetter]);
+                return new Vector2(dest.X, dest.Y);
             }
         }
 
