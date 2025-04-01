@@ -1,119 +1,43 @@
 ﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 
-namespace sprint0Test.Dungeon
+public class DungeonLayout
 {
-    public class DungeonLayout
+    private Dictionary<string, RoomData> rooms = new();
+
+    public DungeonLayout()
     {
-        // 假设我们有 3 行 × 3 列的地牢
-        private RoomData[,] rooms;
-
-        public DungeonLayout()
-        {
-            rooms = new RoomData[3, 3];
-            InitializeRooms();
-        }
-
-        private void InitializeRooms()
-        {
-            //// 这里演示一个小地图:
-            ////   (0,0)房间: 上门无, 下门 -> (1,0), 左门无, 右门 -> (0,1)
-            ////   (0,1)房间: ...
-            ////   ...
-            //// 你可以在这里把你贴图的 Interiors, 碰撞信息, 门连接, 都手动写进去
-
-            //// ===== 示例: (0,0)房间 =====
-            //RoomData room00 = new RoomData();
-            //room00.RoomID = "A1"; // 自定义名称
-            //// 定义门
-            //room00.Doors["Up"] = null;     // 没有上门
-            //room00.Doors["Down"] = new Point(1, 0); // 下门连到(1,0)
-            //room00.Doors["Left"] = null;
-            //room00.Doors["Right"] = new Point(0, 1);
-            //// 定义瓦片碰撞: 这里随便举例, 16×11瓦片
-            //room00.CollisionMap = new bool[16, 11];
-            //// 假设边缘都是墙
-            //for (int x = 0; x < 16; x++)
-            //{
-            //    for (int y = 0; y < 11; y++)
-            //    {
-            //        bool isWall = (x == 0 || x == 15 || y == 0 || y == 10);
-            //        room00.CollisionMap[x, y] = !isWall;
-            //        // 这里 isWall=false 表示可以走, 你可以倒过来
-            //    }
-            //}
-
-            //rooms[0, 0] = room00;
-
-            //// ===== 示例: (0,1)房间 =====
-            //RoomData room01 = new RoomData();
-            //room01.RoomID = "A2";
-            //room01.Doors["Up"] = null;
-            //room01.Doors["Down"] = null;
-            //room01.Doors["Left"] = new Point(0, 0); // 左门连回 (0,0)
-            //room01.Doors["Right"] = null;
-            //// 瓦片碰撞 (同理)
-            //room01.CollisionMap = new bool[16, 11];
-            //// ...
-            //rooms[0, 1] = room01;
-
-            //// 依次初始化其他房间...
-            //// 直到把(2,2)都填完
-            int rows = 3, cols = 3; // Set grid size
-            for (int row = 0; row < rows; row++)
-            {
-                for (int col = 0; col < cols; col++)
-                {
-                    RoomData room = new RoomData();
-
-                    room.RoomID = $"Room_{row}_{col}";
-
-                    room.Doors["Up"] = (row > 0) ? new Point(row - 1, col) : null;
-                    room.Doors["Down"] = (row < rows - 1) ? new Point(row + 1, col) : null;
-                    room.Doors["Left"] = (col > 0) ? new Point(row, col - 1) : null;
-                    room.Doors["Right"] = (col < cols - 1) ? new Point(row, col + 1) : null;
-
-                    room.CollisionMap = new bool[16, 11];
-                    for (int x = 0; x < 16; x++)
-                    {
-                        for (int y = 0; y < 11; y++)
-                        {
-                            bool isWall = (x == 0 || x == 15 || y == 0 || y == 10);
-                            room.CollisionMap[x, y] = !isWall;
-                        }
-                    }
-
-                    rooms[row, col] = room;
-                }
-            }
-        }
-
-        public RoomData GetRoom(int row, int col)
-        {
-            if (row < 0 || row >= 3 || col < 0 || col >= 3)
-                return null;
-            return rooms[row, col];
-        }
+        InitializeRooms();
     }
 
-    // 存储一个房间的数据
-    public class RoomData
+    private void InitializeRooms()
     {
-        public string RoomID; // 例如 "A1"
-        // Doors 存储上下左右四个门对应的房间坐标 (row,col)
-        // 若为 null 表示无门或墙
-        public Dictionary<string, Point?> Doors;
-        // 瓦片碰撞信息: [x,y] = true 表示可走, false表示是墙
-        public bool[,] CollisionMap;
+        var room1a = new RoomData("1a");
+        room1a.Doors["Right"] = "1b";
+        room1a.Doors["Down"] = "2a";
+        rooms["1a"] = room1a;
 
-        public RoomData()
-        {
-            Doors = new Dictionary<string, Point?>()
-            {
-                { "Up", null }, { "Down", null },
-                { "Left", null }, { "Right", null }
-            };
-        }
+        var room1b = new RoomData("1b");
+        room1b.Doors["Left"] = "1a";
+        room1b.Doors["Down"] = "2b";
+        rooms["1b"] = room1b;
+
+        var room2a = new RoomData("2a");
+        room2a.Doors["Up"] = "1a";
+        room2a.Doors["Right"] = "2b";
+        rooms["2a"] = room2a;
+
+        var room2b = new RoomData("2b");
+        room2b.Doors["Up"] = "1b";
+        room2b.Doors["Left"] = "2a";
+        rooms["2b"] = room2b;
+
+        // Add more as needed
     }
+
+    public RoomData GetRoom(string roomID)
+    {
+        return rooms.TryGetValue(roomID, out var room) ? room : null;
+    }
+
+    public IEnumerable<RoomData> GetAllRooms() => rooms.Values;
 }
-

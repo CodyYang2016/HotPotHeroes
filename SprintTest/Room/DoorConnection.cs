@@ -1,4 +1,4 @@
-﻿namespace sprint0Test.Dungeon
+﻿/*namespace sprint0Test.Dungeon
 {
     public enum DoorSide
     {
@@ -25,3 +25,4 @@
     }
 }
 
+*/

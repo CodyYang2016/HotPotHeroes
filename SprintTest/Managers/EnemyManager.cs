@@ -59,7 +59,7 @@ namespace sprint0Test.Managers
             };
             enemyPool.Add(new Octorok(new Vector2(100, 100), Octorok_textures));
             enemyPool.Add(new Keese(new Vector2(200, 100), Keese_textures));
-            enemyPool.Add(new Aquamentus(new Vector2(300, 100), 50.0f) );
+            enemyPool.Add(new Aquamentus(new Vector2(300, 100), 50.0f));
             enemyPool.Add(new Moblin(new Vector2(400, 100), Moblin_textures));
             enemyPool.Add(new Darknut(new Vector2(500, 100), Darknut_textures));
             enemyPool.Add(new Stalfos(new Vector2(600, 100), Stalfos_textures));
@@ -119,5 +119,66 @@ namespace sprint0Test.Managers
 
 
         }
+        public IEnemy CreateOctorok(Vector2 position)
+        {
+            var textures = new Dictionary<string, Texture2D>
+    {
+        { "Octopus_Idle1", TextureManager.Instance.GetTexture("Octopus_Idle1") },
+        { "Octopus_Idle2", TextureManager.Instance.GetTexture("Octopus_Idle2") }
+    };
+            return new Octorok(position, textures);
+        }
+
+        public IEnemy CreateKeese(Vector2 position)
+        {
+            var textures = new Dictionary<string, Texture2D>
+    {
+        { "Bat_1", TextureManager.Instance.GetTexture("Bat_1") },
+        { "Bat_2", TextureManager.Instance.GetTexture("Bat_2") }
+    };
+            return new Keese(position, textures);
+        }
+
+        public IEnemy CreateAquamentus(Vector2 position)
+        {
+            var textures = new Texture2D[]
+            {
+        TextureManager.Instance.GetTexture("Dragon_Idle1"),
+        TextureManager.Instance.GetTexture("Dragon_Idle2")
+            };
+            return new Aquamentus(position, 50.0f); // Note: Aquamentus handles texture loading internally
+        }
+
+        public IEnemy CreateMoblin(Vector2 position)
+        {
+            var textures = new Dictionary<string, Texture2D>
+    {
+        { "Goblin_1", TextureManager.Instance.GetTexture("Goblin_1") },
+        { "Goblin_2", TextureManager.Instance.GetTexture("Goblin_2") },
+        { "Goblin_3", TextureManager.Instance.GetTexture("Goblin_3") },
+        { "Goblin_4", TextureManager.Instance.GetTexture("Goblin_4") }
+    };
+            return new Moblin(position, textures);
+        }
+
+        public IEnemy CreateDarknut(Vector2 position)
+        {
+            var textures = new Dictionary<string, Texture2D>
+    {
+        { "Darknut_Idle_Down_1", TextureManager.Instance.GetTexture("Darknut_Idle_Down_1") },
+        { "Darknut_Idle_Down_2", TextureManager.Instance.GetTexture("Darknut_Idle_Down_2") }
+    };
+            return new Darknut(position, textures);
+        }
+
+        public IEnemy CreateStalfos(Vector2 position)
+        {
+            var textures = new Dictionary<string, Texture2D>
+    {
+        { "Skeleton", TextureManager.Instance.GetTexture("Skeleton") }
+    };
+            return new Stalfos(position, textures);
+        }
+
     }
 }

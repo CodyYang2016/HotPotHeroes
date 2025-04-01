@@ -99,7 +99,7 @@ public class Game1 : Game
         // 6) 初始化房间管理器
         //   原房间尺寸256×176，窗口800×480，计算缩放
         roomScale = Math.Min(800f / 256f, 480f / 176f);
-        roomManager = new RoomManager(dungeonTexture, roomScale, itemFactory);
+        roomManager = new RoomManager(itemFactory);
 
         // Link update code
         var link1 = Content.Load<Texture2D>("Link1");
@@ -197,11 +197,7 @@ public class Game1 : Game
         {
             controller.Update();
         }
-        // sprite.Update();
-        foreach (var item in roomManager.GetCurrentRoomItems())
-        {
-            item.Update(gameTime);
-        }
+
 
         blockSprites.UpdateActiveBlocks(); // Call to update active blocks
 
@@ -219,19 +215,12 @@ public class Game1 : Game
 
         base.Update(gameTime);
         Vector2 linkSize = Link.Instance.GetScaledDimensions();
+        roomManager.Update(gameTime); // ✅ This is crucial
+
 
         base.Update(gameTime);
-        if (roomManager.IsLinkAtDoor(Link.Instance.Position, linkSize))
-        {
-            // Get mouse state
-            MouseState mouseState = Mouse.GetState();
+        roomManager.CheckDoorTransition(Link.Instance.Position, Link.Instance.GetScaledDimensions());
 
-            // Move to the next room only if the player left-clicks
-            if (mouseState.LeftButton == ButtonState.Pressed)
-            {
-                roomManager.NextRoom();
-            }
-        }
     }
 
     protected override void Draw(GameTime gameTime)
@@ -239,7 +228,7 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         _spriteBatch.Begin();
-        roomManager.DrawRoom(_spriteBatch);
+        roomManager.Draw(_spriteBatch);
         ProjectileManager.Instance.Draw(_spriteBatch); // Ensure this is present
 
         // sprite.Draw(_spriteBatch);
