@@ -35,13 +35,13 @@ namespace sprint0Test.Managers
 
             IProjectile projectile = null;
 
-            if (projectilePool.Count > 0)
+/*            if (projectilePool.Count > 0)
             {
                 projectile = projectilePool.Dequeue();
                 Debug.WriteLine($"Reusing projectile from pool: {projectileType}");
             }
             else
-            {
+            {*/
                 Texture2D fireball = TextureManager.Instance.GetTexture("Fireball");
                 Texture2D rockTexture = TextureManager.Instance.GetTexture("Rock");
 
@@ -69,7 +69,7 @@ namespace sprint0Test.Managers
                         Debug.WriteLine($"Unknown projectile type: {projectileType}");
                         return;
                 }
-            }
+            // }
 
             (projectile as AbstractProjectile)?.Reset(position, direction);
             (projectile as AbstractMelee)?.Reset(position, direction);

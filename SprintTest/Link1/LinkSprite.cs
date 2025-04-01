@@ -27,9 +27,18 @@ namespace sprint0Test.Link1
 
         private int framesPerImage = 8;
 
+        private bool isVisible = true; // Track visibility
+
         public float Scale { get; set; } = 1f;
         public LinkAction CurrentAction { get; private set; }
         public LinkDirection CurrentDirection { get; private set; }
+
+        // IsVisible property
+        public bool IsVisible
+        {
+            get => isVisible;
+            set => isVisible = value;
+        }
 
         public LinkSprite(Dictionary<(LinkAction, LinkDirection), List<Texture2D>> map)
         {

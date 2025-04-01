@@ -12,14 +12,14 @@ namespace sprint0Test
 {
     public class ProjectileEnemyCollisionHandler
     {
-        public void HandleCollisionList(List<IEnemy> _active, List<IProjectile> projectiles)
+        public void HandleCollisionList(IEnemy enemy, List<IProjectile> projectiles)
         {
             foreach (var projectile in projectiles)
             {
-                foreach (var enemy in _active)
-                {
+  /*              foreach (var enemy in _active)
+                {*/
                     HandleCollision(enemy, projectile);
-                }
+/*                }*/
             }
         }
 

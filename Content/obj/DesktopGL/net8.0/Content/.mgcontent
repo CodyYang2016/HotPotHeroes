@@ -4,42 +4,62 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/boomerang.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/DungeonEnemy.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/heart.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/Link1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/Link2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkB1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkB2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkBS1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkBS2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkBS3.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkBS4.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/Linkh.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkL1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkL2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkLS1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkLS2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkLS3.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkLS4.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkR1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkR2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkRS1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkRS2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkRS3.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkRS4.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkS1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkS2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkS3.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/LinkS4.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/mario.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/mario2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/TileSetDungeon.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/ZeldaBoss.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/zeldaenemy.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/sprint3 extra/Content/ZeldaOverWorld.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/apple.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/blue-potion.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/blue-rupee.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/boomerang.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/crystal.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/DungeonEnemy.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/green-potion.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/green-rupee.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/heart.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/Link1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/Link2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkB1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkB2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkBS1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkBS2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkBS3.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkBS4.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/Linkh.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkL1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkL2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkLS1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkLS2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkLS3.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkLS4.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkR1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkR2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkRS1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkRS2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkRS3.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkRS4.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkS1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkS2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkS3.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/LinkS4.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/mario.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/mario2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/MenuFont.spritefont</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/PauseFont.spritefont</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/red-potion.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/red-rupee.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/TileSetDungeon.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/ZeldaBoss.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/zeldaenemy.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4FunctionalityCheck/Content/ZeldaOverWorld.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

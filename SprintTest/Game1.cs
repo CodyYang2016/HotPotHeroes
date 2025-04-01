@@ -12,15 +12,24 @@ using sprint0Test.Dungeon;
 using sprint0Test;
 using sprint0Test.Managers;
 using System.Diagnostics;
+using sprint0Test.Enemy;
 namespace sprint0Test;
 
 public class Game1 : Game
 {
+    public enum GameState
+    {
+        Playing,
+        Paused
+    }
+    private PauseMenu _pauseMenu;
+    public GameState _currentGameState = GameState.Playing;
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     public Texture2D spriteTexture;
     List<IController> controllerList;
     public ISprite sprite;
+    private SpriteFont _menuFont;
     private BlockSprites blockSprites;
     private ItemFactory itemFactory;
     public List<IItem> itemList;
@@ -38,6 +47,22 @@ public class Game1 : Game
     private EnemyBlockCollisionHandler enemyBlockCollisionHandler;
     private PlayerProjectileCollisionHandler playerProjectileCollisionHandler;
     private ProjectileBlockCollisionHandler projectileBlockCollisionHandler;
+    private ProjectileEnemyCollisionHandler projectileEnemyCollisionHandler;
+
+    // Pause-related fields
+    private bool isPaused;
+    private SpriteFont pauseFont;
+
+    private KeyboardState previousKeyboardState;
+
+    private int playerCollisionCount = 0;
+    private float respawnTimer = 8f;
+    private bool isRespawning = false;
+    private bool isFlashing = false;
+    private float flashTimer = 0.6f;
+    private float flashDuration = 0.6f;
+    private int flashCount = 0;
+    private Vector2 respawnPosition;
 
     public Game1()
     {
@@ -64,6 +89,13 @@ public class Game1 : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         //spriteTexture = Content.Load<Texture2D>("mario2");
         //sprite = new StandingInPlacePlayerSprite(spriteTexture);
+
+        _menuFont = Content.Load<SpriteFont>("MenuFont");
+        _pauseMenu = new PauseMenu(Content.Load<SpriteFont>("MenuFont"));
+        _pauseMenu.OnOptionSelected = HandleMenuSelection;
+        pauseFont = Content.Load<SpriteFont>("PauseFont"); // Load the font
+
+
 
         var dungeonTexture = Content.Load<Texture2D>("TileSetDungeon");
         blockSprites = new BlockSprites(dungeonTexture);
@@ -180,6 +212,7 @@ public class Game1 : Game
         enemyBlockCollisionHandler = new EnemyBlockCollisionHandler();
         playerProjectileCollisionHandler = new PlayerProjectileCollisionHandler();
         projectileBlockCollisionHandler = new ProjectileBlockCollisionHandler();
+        projectileEnemyCollisionHandler = new ProjectileEnemyCollisionHandler();
 
         // Link = new Link(linkSprite, new Vector2(200, 200));
         Link.Initialize(linkSprite, new Vector2(200, 200));
@@ -189,8 +222,58 @@ public class Game1 : Game
 
     }
 
+    private void HandlePlayerCollision(IEnemy enemy)
+    {
+        if (!isRespawning && (CollisionDetectEnemy.isTouchingLeft(enemy) ||
+                              CollisionDetectEnemy.isTouchingRight(enemy) ||
+                              CollisionDetectEnemy.isTouchingTop(enemy) ||
+                              CollisionDetectEnemy.isTouchingBottom(enemy)))
+        {
+            playerCollisionCount++;
+            if (playerCollisionCount >= 6)
+            {
+                StartRespawnSequence();
+            }
+        }
+    }
+
+    private void StartRespawnSequence()
+    {
+        isFlashing = true;
+        flashCount = 0;
+        flashTimer = 0f;
+        respawnPosition = Link.Instance.Position;
+    }
+
+    private void HandleMenuSelection(int selectedIndex)
+    {
+        switch (selectedIndex)
+        {
+            case 0: // Resume
+                _currentGameState = GameState.Playing;
+                break;
+            case 1: // Restart
+                RestartGame();
+                break;
+            case 2: // Quit
+                Exit();
+                break;
+        }
+    }
+    private void RestartGame()
+    {
+        Initialize();
+        _currentGameState = GameState.Playing;
+    }
+
     protected override void Update(GameTime gameTime)
     {
+        if (_currentGameState == GameState.Paused)
+        {
+            _pauseMenu.Update();
+            return;
+
+        }
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
@@ -216,9 +299,64 @@ public class Game1 : Game
         enemyBlockCollisionHandler.HandleCollisionList(blockSprites._active, EnemyManager.Instance.GetActiveEnemy());
         playerProjectileCollisionHandler.HandleCollisionList(ProjectileManager.Instance.GetActiveProjectiles());
         projectileBlockCollisionHandler.HandleCollisionList(blockSprites._active, ProjectileManager.Instance.GetActiveProjectiles());
+        projectileEnemyCollisionHandler.HandleCollisionList(EnemyManager.Instance.GetActiveEnemy(), ProjectileManager.Instance.GetActiveProjectiles());
 
         base.Update(gameTime);
         Vector2 linkSize = Link.Instance.GetScaledDimensions();
+
+
+        // Toggle pause only when Tab is pressed once
+        var keyboardState = Keyboard.GetState();
+        if (keyboardState.IsKeyDown(Keys.Tab) && previousKeyboardState.IsKeyUp(Keys.Tab))
+        {
+            isPaused = !isPaused;
+        }
+        previousKeyboardState = keyboardState; // Store state for next frame
+
+        // If paused, do not update game logic
+        if (isPaused)
+            return;
+
+        foreach (IController controller in controllerList)
+        {
+            controller.Update();
+        }
+        // sprite.Update();
+        foreach (var item in roomManager.GetCurrentRoomItems())
+        {
+            item.Update(gameTime);
+        }
+
+        float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+        if (isFlashing)
+        {
+            flashTimer += elapsed;
+            if (flashTimer >= flashDuration)
+            {
+                flashTimer = 0f;
+                flashCount++;
+                Link.Instance.IsVisible = !Link.Instance.IsVisible;  // Toggling visibility
+                if (flashCount >= 8) 
+                {
+                    isFlashing = false;
+                    isRespawning = true;
+                    respawnTimer = 8f;
+                    Link.Instance.IsVisible = false; // Set Link as invisible during respawn
+                }
+            }
+        }
+        else if (isRespawning)
+        {
+            respawnTimer -= elapsed;
+            if (respawnTimer <= 0)
+            {
+                isRespawning = false;
+                Link.Instance.SetPosition(respawnPosition); // Set position via method
+                Link.Instance.IsVisible = true;
+                playerCollisionCount = 0; // Reset collision count after respawn
+            }
+        }
 
         base.Update(gameTime);
         if (roomManager.IsLinkAtDoor(Link.Instance.Position, linkSize))
@@ -239,33 +377,47 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         _spriteBatch.Begin();
-        roomManager.DrawRoom(_spriteBatch);
-        ProjectileManager.Instance.Draw(_spriteBatch); // Ensure this is present
-
-        // sprite.Draw(_spriteBatch);
-        var items = roomManager.GetCurrentRoomItems();
-        if (items != null)
+        if (_currentGameState == GameState.Playing)
         {
-            foreach (var item in items)
+            roomManager.DrawRoom(_spriteBatch);
+            ProjectileManager.Instance.Draw(_spriteBatch); // Ensure this is present
+
+            // sprite.Draw(_spriteBatch);
+            var items = roomManager.GetCurrentRoomItems();
+            if (items != null)
             {
-                item.Draw(_spriteBatch);
+                foreach (var item in items)
+                {
+                    item.Draw(_spriteBatch);
+                }
             }
+            if (Link.Instance != null)  // Prevents crash if Link wasn't initialized
+            {
+                Link.Instance.Draw(_spriteBatch);
+            }
+            else
+            {
+                Console.WriteLine("Error: Link.Instance is null in Draw()!");
+            }
+            blockSprites.DrawActiveBlocks(_spriteBatch); // Call to draw active blocks
+            EnemyManager.Instance.Draw(_spriteBatch);
         }
-        // ✅ Use Link.Instance instead of Link (Singleton Access)
-        if (Link.Instance != null)  // Prevents crash if Link wasn't initialized
+        else if (_currentGameState == GameState.Paused)
         {
-            Link.Instance.Draw(_spriteBatch);
+            _pauseMenu.Draw(_spriteBatch, GraphicsDevice);
         }
-        else
+
+        // Draw pause message if paused
+        if (isPaused)
         {
-            Console.WriteLine("Error: Link.Instance is null in Draw()!");
+            string pauseText = "Game Paused\nPress 'Tab' to Resume";
+            Vector2 textSize = pauseFont.MeasureString(pauseText);
+            Vector2 position = new Vector2((_graphics.PreferredBackBufferWidth - textSize.X) / 2,
+                                           (_graphics.PreferredBackBufferHeight - textSize.Y) / 2);
+            _spriteBatch.DrawString(pauseFont, pauseText, position, Color.White);
         }
-        blockSprites.DrawActiveBlocks(_spriteBatch); // Call to draw active blocks
-        EnemyManager.Instance.Draw(_spriteBatch);
-
-
-
         _spriteBatch.End();
         base.Draw(gameTime);
     }
+    
 }
