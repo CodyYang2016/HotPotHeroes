@@ -22,7 +22,7 @@ public class Game1 : Game
     public Texture2D spriteTexture;
     List<IController> controllerList;
     public ISprite sprite;
-    private BlockSprites blockSprites;
+    //private BlockSprites blockSprites;
     private ItemFactory itemFactory;
     public List<IItem> itemList;
     public int currentItemIndex;
@@ -65,7 +65,7 @@ public class Game1 : Game
         //sprite = new StandingInPlacePlayerSprite(spriteTexture);
 
         var dungeonTexture = Content.Load<Texture2D>("TileSetDungeon");
-        blockSprites = new BlockSprites(dungeonTexture);
+        //blockSprites = new BlockSprites(dungeonTexture);
 
         // Initialize the BlockManager and load the texture into it
         //blockManager = new BlockManager();
@@ -187,7 +187,7 @@ public class Game1 : Game
         // Link = new Link(linkSprite, new Vector2(200, 200));
         Link.Initialize(linkSprite, new Vector2(200, 200));
 
-        controllerList.Add(new KeyboardController(this, Link, blockSprites));
+        controllerList.Add(new KeyboardController(this, Link));
 
 
     }
@@ -203,7 +203,7 @@ public class Game1 : Game
         }
 
 
-        blockSprites.UpdateActiveBlocks(); // Call to update active blocks
+        //blockSprites.UpdateActiveBlocks(); // Call to update active blocks
         BlockManager.Instance.Update();
 
         EnemyManager.Instance.Update(gameTime);
@@ -253,7 +253,7 @@ public class Game1 : Game
         {
             Console.WriteLine("Error: Link.Instance is null in Draw()!");
         }
-        blockSprites.DrawActiveBlocks(_spriteBatch); // Call to draw active blocks
+        //blockSprites.DrawActiveBlocks(_spriteBatch); // Call to draw active blocks
         BlockManager.Instance.Draw(_spriteBatch);
         EnemyManager.Instance.Draw(_spriteBatch);
 

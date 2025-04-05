@@ -19,13 +19,13 @@ namespace sprint0Test
         private KeyboardState previousKeyboardState;
         private Link Link;
         private Game1 myGame;
-        private BlockSprites blockSprites;
+        //private BlockSprites blockSprites;
 
-        public KeyboardController(Game1 game, Link link, BlockSprites blockSprites)
+        public KeyboardController(Game1 game, Link link)
         {
             myGame = game;
             this.Link = link;
-            this.blockSprites = blockSprites;
+
 
             continuousCommands = new Dictionary<Keys, ICommand>();
             singlePressCommands = new Dictionary<Keys, ICommand>();
@@ -49,7 +49,6 @@ namespace sprint0Test
             singlePressCommands.Add(Keys.Q, new QuitCommand(myGame));
             singlePressCommands.Add(Keys.Z, new LinkAttackCommand(myGame));
             singlePressCommands.Add(Keys.E, new TakeDamageCommand(myGame));
-            singlePressCommands.Add(Keys.Y, new SetBlock(blockSprites));
             singlePressCommands.Add(Keys.U, new CycleItemCommand(myGame, -1));
             singlePressCommands.Add(Keys.I, new CycleItemCommand(myGame, 1));
         }
