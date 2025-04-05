@@ -12,7 +12,6 @@ namespace sprint0Test.Dungeon
 {
     public class SampleRoom : AbstractRoom
     {
-
         public SampleRoom(string id)
         {
             RoomID = id;
@@ -58,6 +57,8 @@ namespace sprint0Test.Dungeon
             BlockManager.Instance.CreateBlock(new Vector2(200, 200), BlockType.Dragon);
             Console.WriteLine($"Blocks count: {BlockManager.Instance.GetBlocksCount()}"); // Or something similar
 
+            // === Create the Perimeter ===
+            Perimeter perimeter = new Perimeter(); // This will automatically add blocks to the room's perimeter
         }
     }
 }

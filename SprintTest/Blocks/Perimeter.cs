@@ -10,9 +10,9 @@ public class Perimeter
 {
     public List<IBlock> perimeter = new List<IBlock>();
 
-    public Perimeter(Texture2D dungeonTexture)
+    public Perimeter()
     {
-        int roomWidth = 28;  // Number of tiles in width
+        int roomWidth = 14;  // Number of tiles in width
         int roomHeight = 9; // Number of tiles in height
         int tileSize = 44;   // Each tile is 48x48 pixels
         Vector2 roomStart = new Vector2(40, 38); // Starting position of the room
@@ -29,12 +29,12 @@ public class Perimeter
             Vector2 topPos = new Vector2(roomStart.X + x * tileSize, roomStart.Y);
             Vector2 bottomPos = new Vector2(roomStart.X + x * tileSize, roomStart.Y + (roomHeight - 1) * tileSize);
 
-            if (topPos != topDoor)  // Don't place brick at the top door
+            if ((topPos != topDoor) && (topPos.X != topDoor.X - tileSize))  // Don't place brick at the top door
                 BlockManager.Instance.CreateBlock(topPos, BlockType.Tile, 3f, false);
                 //perimeter.Add(BlockManager.Instance.CreateBlock(topPos, BlockType.Tile, 3f, false));
 
-            if (bottomPos != bottomDoor) // Don't place brick at the bottom door
-                BlockManager.Instance.CreateBlock(topPos, BlockType.Tile, 3f, false);
+            if (bottomPos != bottomDoor && (bottomPos.X != bottomDoor.X - tileSize)) // Don't place brick at the bottom door
+                BlockManager.Instance.CreateBlock(bottomPos, BlockType.Tile, 3f, false);
         };
 
         for (int y = 0; y < roomHeight; y++)
@@ -42,10 +42,10 @@ public class Perimeter
             Vector2 leftPos = new Vector2(roomStart.X, roomStart.Y + y * tileSize);
             Vector2 rightPos = new Vector2(roomStart.X + (roomWidth - 1) * tileSize, roomStart.Y + y * tileSize);
 
-            if (leftPos != leftDoor) // Don't place brick at the left door
+            if (leftPos != leftDoor && (leftPos.Y != leftDoor.Y - tileSize) && (leftPos.Y != leftDoor.Y + tileSize)) // Don't place brick at the left door
                 BlockManager.Instance.CreateBlock(leftPos, BlockType.Tile, 3f, false);
 
-            if (rightPos != rightDoor)  // Don't place brick at the right door
+            if (rightPos != rightDoor && (leftPos.Y != leftDoor.Y - tileSize) && (leftPos.Y != leftDoor.Y + tileSize))  // Don't place brick at the right door
                 BlockManager.Instance.CreateBlock(rightPos, BlockType.Tile, 3f, false);
                 
         };
