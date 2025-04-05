@@ -16,43 +16,45 @@ namespace sprint0Test.Dungeon
         {
             RoomID = id;
 
+            RoomData = new RoomData(id);
+            RoomData.Doors["Right"] = "4b"; // Only right is open; other doors will show as closed
 
-            // For demo purposes. In practice, RoomManager can also assign these.
-            AdjacentRooms["Right"] = "1b";
-            AdjacentRooms["Down"] = "2a";
+            TilesetTexture = TextureManager.Instance.GetTexture("Dungeon"); // Texture containing door sprites
+
+            // Optionally: define adjacent room IDs for navigation logic
+            AdjacentRooms["Right"] = "4b";
         }
-
+        
         public override void Initialize()
         {
             base.Initialize();
+
+            DoorHitboxes["Right"] = new Rectangle(750, 300, 32, 64); // if you want collisions too
+
+            // Clear the enemies list 
+            // if isCleared == FALSE:
+            // Enemies.ADD
+            // else:
+            // Add nothing 
+            base.Initialize();
+
             DoorHitboxes["Right"] = new Rectangle(750, 300, 32, 64);
 
-            var octorokTextures = new Dictionary<string, Texture2D>
+            if (!RoomData.HasBeenCleared)
             {
-                { "Octopus_Idle1", TextureManager.Instance.GetTexture("Octopus_Idle1") },
-                { "Octopus_Idle2", TextureManager.Instance.GetTexture("Octopus_Idle2") }
-            };
-            
-            var Keese_textures = new Dictionary<string, Texture2D>
-            {
-                { "Bat_1", TextureManager.Instance.GetTexture("Bat_1") },
-                { "Bat_2", TextureManager.Instance.GetTexture("Bat_2") }
-            };
+                Enemies.Add(EnemyManager.Instance.CreateOctorok(new Vector2(300, 300)));
+                Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(200, 200)));
+            }
 
+            // (Item and block spawning can stay or follow similar logic)
+        
 
-            // === Spawn Enemies ===
-            Enemies.Add(new Octorok(new Vector2(300, 300), octorokTextures));
-            Enemies.Add(new Keese(new Vector2(200, 200), Keese_textures));
-
-            // === Spawn Items ===
             Texture2D appleTexture = TextureManager.Instance.GetTexture("Apple");
             Texture2D heartTexture = TextureManager.Instance.GetTexture("Heart");
 
             // Items.Add(new Apple("Apple", appleTexture, new Vector2(300, 120)));
-           //  Items.Add(new Heart("Heart", heartTexture, new Vector2(320, 160)));
-
-            // === Optionally: Add Blocks if desired ===
-            // Blocks.Add(new SolidBlock(new Vector2(400, 100)));
+            // Items.Add(new Heart("Heart", heartTexture, new Vector2(320, 160)));
         }
     }
+
 }

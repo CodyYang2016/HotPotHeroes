@@ -168,5 +168,13 @@ namespace sprint0Test.Link1
             return sprite.GetScaledDimensions(); // Forward call to LinkSprite
         }
 
+
+        //new code
+        public void SetPosition(Vector2 newPos)
+        {
+            position = newPos;
+        }
+
+
     }
 }

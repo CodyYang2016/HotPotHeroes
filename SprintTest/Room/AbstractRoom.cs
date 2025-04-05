@@ -6,8 +6,11 @@ using System.Collections.Generic;
 using System;
 using sprint0Test.Managers;
 
+
 public abstract class AbstractRoom : IRoom
 {
+    public RoomData RoomData { get; set; }
+
     public string RoomID { get; protected set; }
 
     public List<IEnemy> Enemies { get; protected set; } = new List<IEnemy>();
@@ -34,6 +37,13 @@ public abstract class AbstractRoom : IRoom
 
         Enemies.RemoveAll(e => e.IsDead);
         Items.RemoveAll(i => i.IsCollected);
+
+        // ✅ Mark the room as cleared if all enemies are dead
+        if (!RoomData.HasBeenCleared && Enemies.Count == 0)
+        {
+            RoomData.HasBeenCleared = true;
+            // Optional: open door, drop reward, play sound, etc.
+        }
     }
 
     // Compute the scale based on window size
@@ -67,9 +77,24 @@ public abstract class AbstractRoom : IRoom
         spriteBatch.Draw(TilesetTexture, scaledExteriorDest, RoomData.ExteriorSource, Color.White);
         spriteBatch.Draw(TilesetTexture, scaledInteriorDest, RoomData.InteriorSource, Color.White);
 
+        // === Draw Doors ===
+        DrawDoor(spriteBatch, "Up", RoomData.Door_Top, RoomData.Not_Door_Top, RoomData.Top_Dest, scale);
+        DrawDoor(spriteBatch, "Down", RoomData.Door_Bottom, RoomData.Not_Door_Bottom, RoomData.Bottom_Dest, scale);
+        DrawDoor(spriteBatch, "Left", RoomData.Door_Left, RoomData.Not_Door_Left, RoomData.Left_Dest, scale);
+        DrawDoor(spriteBatch, "Right", RoomData.Door_Right, RoomData.Not_Door_Right, RoomData.Right_Dest, scale);
+
+
         // Draw enemies, blocks, and items
         foreach (var block in Blocks) block.Draw(spriteBatch);
         foreach (var enemy in Enemies) enemy.Draw(spriteBatch);
         foreach (var item in Items) item.Draw(spriteBatch);
     }
+    private void DrawDoor(SpriteBatch spriteBatch, string direction, Rectangle doorSource, Rectangle notDoorSource, Rectangle destination, float scale)
+    {
+        Rectangle scaledDest = ScaleRectangle(destination, scale);
+        bool hasDoor = RoomData.Doors.ContainsKey(direction) && RoomData.Doors[direction] != null;
+        Rectangle source = hasDoor ? doorSource : notDoorSource;
+        spriteBatch.Draw(TilesetTexture, scaledDest, source, Color.White);
+    }
+
 }

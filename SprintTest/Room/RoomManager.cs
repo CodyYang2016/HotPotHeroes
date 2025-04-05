@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Input;
 using sprint0Test.Managers;
+using sprint0Test.Link1;
 
 public class RoomManager
 {
@@ -110,10 +111,6 @@ public class RoomManager
         IRoom room = CurrentRoom;
         if (room == null) return;
 
-        MouseState mouseState = Mouse.GetState();
-        bool clicked = mouseState.LeftButton == ButtonState.Pressed &&
-                       previousMouseState.LeftButton == ButtonState.Released;
-
         Rectangle linkRect = new Rectangle((int)linkPos.X, (int)linkPos.Y, (int)linkSize.X, (int)linkSize.Y);
 
         foreach (var kvp in room.DoorHitboxes)
@@ -121,16 +118,34 @@ public class RoomManager
             string direction = kvp.Key;
             Rectangle doorRect = kvp.Value;
 
-            if (clicked && linkRect.Intersects(doorRect))
+            if (linkRect.Intersects(doorRect))
             {
                 MoveToAdjacentRoom(direction);
+                PositionPlayerAtEntry(direction); // ⬅️ See next point
                 break;
             }
         }
-
-        previousMouseState = mouseState;
-
     }
+    public void PositionPlayerAtEntry(string fromDirection)
+    {
+        string toDirection = fromDirection switch
+        {
+            "Up" => "Down",
+            "Down" => "Up",
+            "Left" => "Right",
+            "Right" => "Left",
+            _ => null
+        };
+
+        if (toDirection != null && CurrentRoom.DoorHitboxes.TryGetValue(toDirection, out var entryRect))
+        {
+            // Put Link slightly inside the room from that door
+            Vector2 newPos = new Vector2(entryRect.X + 8, entryRect.Y + 8); // adjust as needed
+            Link.Instance.SetPosition(newPos);
+        }
+    }
+
+
 
 
 

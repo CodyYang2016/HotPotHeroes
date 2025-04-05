@@ -14,6 +14,7 @@ public class Keese : AbstractEnemy
     private bool isSwooping = false;
     private float attackCooldown = 3f;
     private float attackTimer = 0f;
+    private int health = 1;
 
     public Keese(Vector2 startPosition, Dictionary<string, Texture2D> Keese_textures)
         : base(startPosition, new Texture2D[]
