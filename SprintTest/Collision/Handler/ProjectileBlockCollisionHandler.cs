@@ -14,8 +14,12 @@ namespace sprint0Test
     {
         public void HandleCollisionList(List<IBlock> blocks, List<IProjectile> projectiles)
         {
+            if (blocks == null || projectiles == null) return;
+
             foreach (var projectile in projectiles)
             {
+                if (projectile == null) continue;
+
                 foreach (var block in blocks)
                 {
                     HandleCollision(block, projectile);
@@ -23,26 +27,30 @@ namespace sprint0Test
             }
         }
 
+
         public void HandleCollision(IBlock block, IProjectile projectile)
         {
-            if (CollisionDetectEntities.isTouchingLeft(block, projectile))
+            if (block != null)
             {
-                projectile.Deactivate();
-            }
+                if (CollisionDetectEntities.isTouchingLeft(block, projectile))
+                {
+                    projectile.Deactivate();
+                }
 
-            if (CollisionDetectEntities.isTouchingRight(block, projectile))
-            {
-                projectile.Deactivate();
-            }
+                if (CollisionDetectEntities.isTouchingRight(block, projectile))
+                {
+                    projectile.Deactivate();
+                }
 
-            if (CollisionDetectEntities.isTouchingBottom(block, projectile))
-            {
-                projectile.Deactivate();
-            }
+                if (CollisionDetectEntities.isTouchingBottom(block, projectile))
+                {
+                    projectile.Deactivate();
+                }
 
-            if (CollisionDetectEntities.isTouchingTop(block, projectile))
-            {
-                projectile.Deactivate();
+                if (CollisionDetectEntities.isTouchingTop(block, projectile))
+                {
+                    projectile.Deactivate();
+                }
             }
         }
 

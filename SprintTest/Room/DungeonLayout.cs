@@ -11,87 +11,85 @@ public class DungeonLayout
 
     private void InitializeRooms()
     {
-        var room1b = new RoomData("1b");
-        room1b.Doors["Right"] = "1c";
-        rooms["1b"] = room1b;
+        var r1b = new RoomData("r1b");
+        r1b.Doors["Right"] = "r1c";
+        rooms["r1b"] = r1b;
 
-        var room1c = new RoomData("1c");
-        room1c.Doors["Up"] = "2c";
-        room1c.Doors["Right"] = "1d";
-        room1c.Doors["Left"] = "1b";
-        rooms["1c"] = room1c;
+        var r1c = new RoomData("r1c");
+        r1c.Doors["Up"] = "r2c";
+        r1c.Doors["Right"] = "r1d";
+        r1c.Doors["Left"] = "r1b";
+        rooms["r1c"] = r1c;
 
-        var room1d = new RoomData("1d");
-        room1d.Doors["Left"] = "1c";
-        rooms["1d"] = room1d;
+        var r1d = new RoomData("r1d");
+        r1d.Doors["Left"] = "r1c";
+        rooms["r1d"] = r1d;
 
-        var room2c = new RoomData("2c");
-        room2c.Doors["Up"] = "3c";
-        room2c.Doors["Down"] = "1c";
-        rooms["2c"] = room2c;
+        var r2c = new RoomData("r2c");
+        r2c.Doors["Up"] = "r3c";
+        r2c.Doors["Down"] = "r1c";
+        rooms["r2c"] = r2c;
 
-        var room3c = new RoomData("3c");
-        room3c.Doors["Up"] = "4c";
-        room3c.Doors["Down"] = "2c";
-        room3c.Doors["Left"] = "3b";
-        room3c.Doors["Right"] = "3d";
-        rooms["3c"] = room3c;
+        var r3c = new RoomData("r3c");
+        r3c.Doors["Up"] = "r4c";
+        r3c.Doors["Down"] = "r2c";
+        r3c.Doors["Left"] = "r3b";
+        r3c.Doors["Right"] = "r3d";
+        rooms["r3c"] = r3c;
 
-        var room3b = new RoomData("3b");
-        room3c.Doors["Up"]= "4b";
-        room3b.Doors["Right"] = "3c";
-        rooms["3b"] = room3b;
+        var r3b = new RoomData("r3b");
+        r3b.Doors["Right"] = "r3c";
+        rooms["r3b"] = r3b;
 
-        var room3d = new RoomData("3d");
-        room3c.Doors["Up"] = "4d";  
-        room3d.Doors["Left"] = "3c";
-        rooms["3d"] = room3d;
+        var r3d = new RoomData("r3d");
+        r3d.Doors["Left"] = "r3c";
+        rooms["r3d"] = r3d;
 
-        var room4a = new RoomData("4a");
-        room4a.Doors["Right"] = "4b";
-        rooms["4a"] = room4a;
+        var r4a = new RoomData("r4a");
+        r4a.Doors["Right"] = "r4b";
+        rooms["r4a"] = r4a;
 
-        var room4b = new RoomData("4b");
-        rooms["4b"].Doors["Left"] = "4a";
-        rooms["4b"].Doors["Right"] = "4c";
-        rooms["4b"].Doors["Down"] = "3b";
+        var r4b = new RoomData("r4b");
+        r4b.Doors["Left"] = "r4a";
+        r4b.Doors["Right"] = "r4c";
+        r4b.Doors["Down"] = "r3b";
+        rooms["r4b"] = r4b;
 
-        var room4c = new RoomData("4c");
-        rooms["4c"].Doors["Left"] = "4b";
-        rooms["4c"].Doors["Right"] = "4d";
-        rooms["4c"].Doors["Down"] = "3c";
-        rooms["4c"].Doors["Up"] = "5c";
-        rooms["4c"] = room4c;
+        var r4c = new RoomData("r4c");
+        r4c.Doors["Left"] = "r4b";
+        r4c.Doors["Right"] = "r4d";
+        r4c.Doors["Down"] = "r3c";
+        r4c.Doors["Up"] = "r5c";
+        rooms["r4c"] = r4c;
 
-        var room4d = new RoomData("4d");
-        room4d.Doors["Left"] = "4c";
-        room4d.Doors["Right"] = "4e";
-        room4d.Doors["Down"] = "3d";
-        rooms["4d"] = room4d;
+        var r4d = new RoomData("r4d");
+        r4d.Doors["Left"] = "r4c";
+        r4d.Doors["Right"] = "r4e";
+        r4d.Doors["Down"] = "r3d";
+        rooms["r4d"] = r4d;
 
-        var room4e = new RoomData("4e");
-        room4e.Doors["Left"] = "4d";
-        room4e.Doors["Up"] = "5e";
-        rooms["4e"] = room4e;
+        var r4e = new RoomData("r4e");
+        r4e.Doors["Left"] = "r4d";
+        r4e.Doors["Up"] = "r5e";
+        rooms["r4e"] = r4e;
 
-        var room5c = new RoomData("5c");
-        room5c.Doors["Down"] = "4c";
-        room5c.Doors["Up"] = "6c";
-        rooms["5c"] = room5c;
+        var r5c = new RoomData("r5c");
+        r5c.Doors["Down"] = "r4c";
+        r5c.Doors["Up"] = "r6c";
+        rooms["r5c"] = r5c;
 
-        var room5e = new RoomData("5e");
-        room5e.Doors["Down"] = "4e";
-        rooms["5e"] = room5e;
+        var r5e = new RoomData("r5e");
+        r5e.Doors["Down"] = "r4e";
+        rooms["r5e"] = r5e;
 
-        var room6c = new RoomData("6c");
-        room6c.Doors["Down"] = "5c";
-        room6c.Doors["Left"] = "6b";
-        rooms["6c"] = room6c;
+        var r6c = new RoomData("r6c");
+        r6c.Doors["Down"] = "r5c";
+        r6c.Doors["Left"] = "r6b";
+        rooms["r6c"] = r6c;
 
-        var room6b = new RoomData("6b");
-        room6b.Doors["Right"] = "5a";
-        rooms["6b"] = room6b;
-
+        var r6b = new RoomData("r6b");
+        r6b.Doors["Right"] = "r5a";
+        rooms["r6b"] = r6b;
 
         // Add more as needed
     }

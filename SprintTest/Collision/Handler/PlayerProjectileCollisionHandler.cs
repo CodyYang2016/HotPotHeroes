@@ -5,6 +5,7 @@ using sprint0Test.Link1;
 using sprint0Test;
 using sprint0Test.Enemy;
 using sprint0Test.Projectiles;
+using System;
 
 namespace sprint0Test
 {
@@ -12,40 +13,46 @@ namespace sprint0Test
     {
         public void HandleCollisionList(List<IProjectile> _active)
         {
-            foreach (var block in _active)
+            if (_active == null) return;
+
+            foreach (var projectile in _active)
             {
-                HandleCollision(block);
+                HandleCollision(projectile);
             }
         }
 
+
         public void HandleCollision(IProjectile projectile)
         {
-            if (CollisionDetectEntity.isTouchingLeft(projectile))
+            if (projectile != null)
             {
-                Link.Instance.MoveLeft();
-                Link.Instance.TakeDamage();
-                projectile.Deactivate();
-            }
+                if (CollisionDetectEntity.isTouchingLeft(projectile))
+                {
+                    Link.Instance.MoveLeft();
+                    Link.Instance.TakeDamage();
+                    projectile.Deactivate();
+                }
 
-            if (CollisionDetectEntity.isTouchingRight(projectile))
-            {
-                Link.Instance.MoveRight();
-                Link.Instance.TakeDamage();
-                projectile.Deactivate();
-            }
+                if (CollisionDetectEntity.isTouchingRight(projectile))
+                {
+                    Link.Instance.MoveRight();
+                    Link.Instance.TakeDamage();
+                    projectile.Deactivate();
+                }
 
-            if (CollisionDetectEntity.isTouchingBottom(projectile))
-            {
-                Link.Instance.MoveDown();
-                Link.Instance.TakeDamage();
-                projectile.Deactivate();
-            }
+                if (CollisionDetectEntity.isTouchingBottom(projectile))
+                {
+                    Link.Instance.MoveDown();
+                    Link.Instance.TakeDamage();
+                    projectile.Deactivate();
+                }
 
-            if (CollisionDetectEntity.isTouchingTop(projectile))
-            {
-                Link.Instance.MoveUp();
-                Link.Instance.TakeDamage();
-                projectile.Deactivate();
+                if (CollisionDetectEntity.isTouchingTop(projectile))
+                {
+                    Link.Instance.MoveUp();
+                    Link.Instance.TakeDamage();
+                    projectile.Deactivate();
+                }
             }
         }
 

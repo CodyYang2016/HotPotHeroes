@@ -10,26 +10,19 @@ using System.Collections.Generic;
 
 namespace sprint0Test.Dungeon
 {
-    public class SampleRoom : AbstractRoom
+    public class r3c : AbstractRoom
     {
-        public SampleRoom(string id)
+        public r3c(string id)
         {
             RoomID = id;
 
             RoomData = new RoomData(id);
-            RoomData.Doors["Right"] = "4b"; // Only right is open; other doors will show as closed
 
-            TilesetTexture = TextureManager.Instance.GetTexture("Dungeon"); // Texture containing door sprites
-
-            // Optionally: define adjacent room IDs for navigation logic
-            AdjacentRooms["Right"] = "4b";
         }
         
         public override void Initialize()
         {
-            base.Initialize();
 
-            DoorHitboxes["Right"] = new Rectangle(750, 300, 32, 64); // if you want collisions too
 
             // Clear the enemies list 
             // if isCleared == FALSE:
@@ -54,6 +47,7 @@ namespace sprint0Test.Dungeon
 
             // Items.Add(new Apple("Apple", appleTexture, new Vector2(300, 120)));
             // Items.Add(new Heart("Heart", heartTexture, new Vector2(320, 160)));
+            BlockManager.Instance.CreateBlock(new Vector2(100, 200), BlockType.Brick);
         }
     }
 

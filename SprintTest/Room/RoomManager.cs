@@ -7,6 +7,8 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework.Input;
 using sprint0Test.Managers;
 using sprint0Test.Link1;
+using sprint0Test.Dungeon;
+using SprintTest.Room;
 
 public class RoomManager
 {
@@ -18,7 +20,7 @@ public class RoomManager
     {
         this.itemFactory = itemFactory;
         GenerateRooms();
-        SwitchToRoom("1a");
+        SwitchToRoom("r4a");
     }
     private float scale = 1.0f; // Add this field to your class if not present
 
@@ -36,32 +38,31 @@ public class RoomManager
     private void GenerateRooms()
     {
         DungeonLayout layout = new DungeonLayout();
-
-        // Load the shared texture (make sure it's loaded in TextureManager)
         Texture2D tileset = TextureManager.Instance.GetTexture("tileSheet");
 
         foreach (RoomData data in layout.GetAllRooms())
         {
-            var room = new SampleRoom(data.RoomID);
+            AbstractRoom room;
 
-            // ✅ Assign texture and visual source rectangles
+
+            room = new BasicRoom(data); // new generic room class
+
             room.TilesetTexture = tileset;
             room.ExteriorSource = RoomData.ExteriorSource;
-            room.InteriorSource = RoomData.InteriorSource; // You can later make this per-room
+            room.InteriorSource = RoomData.InteriorSource;
 
-            // ✅ Assign door connections
+            // Adjacent rooms are already set in RoomData — just copy them
             foreach (var door in data.Doors)
             {
                 if (!string.IsNullOrEmpty(door.Value))
-                {
                     room.AdjacentRooms[door.Key] = door.Value;
-                }
             }
 
             room.Initialize();
             Rooms[data.RoomID] = room;
         }
     }
+
 
 
 
@@ -77,13 +78,13 @@ public class RoomManager
         }
     }
 
-    public void MoveToAdjacentRoom(string direction)
+/*    public void MoveToAdjacentRoom(string direction)
     {
         if (CurrentRoom != null && CurrentRoom.AdjacentRooms.TryGetValue(direction, out var nextRoomID))
         {
             SwitchToRoom(nextRoomID);
         }
-    }
+    }*/
 
     public void Update(GameTime gameTime)
     {
@@ -120,7 +121,7 @@ public class RoomManager
 
             if (linkRect.Intersects(doorRect))
             {
-                MoveToAdjacentRoom(direction);
+                SwitchToRoom(direction);
                 PositionPlayerAtEntry(direction); // ⬅️ See next point
                 break;
             }

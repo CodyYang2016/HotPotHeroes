@@ -57,13 +57,7 @@ namespace sprint0Test.Managers
             {
                 { "Skeleton", TextureManager.Instance.GetTexture("Skeleton") }
             };
-            enemyPool.Add(new Octorok(new Vector2(100, 100), Octorok_textures));
-            enemyPool.Add(new Keese(new Vector2(200, 100), Keese_textures));
-            enemyPool.Add(new Aquamentus(new Vector2(300, 100), 50.0f));
-            enemyPool.Add(new Moblin(new Vector2(400, 100), Moblin_textures));
-            enemyPool.Add(new Darknut(new Vector2(500, 100), Darknut_textures));
-            enemyPool.Add(new Stalfos(new Vector2(600, 100), Stalfos_textures));
-
+            enemyPool.Add(new Octorok(new Vector2(200, 200), Octorok_textures));
             // ✅ Prevent out-of-range errors when selecting an active enemy
             if (enemyPool.Count > 0)
             {

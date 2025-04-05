@@ -92,12 +92,16 @@ public class Game1 : Game
         _pauseMenu.OnOptionSelected = HandleMenuSelection;
         pauseFont = Content.Load<SpriteFont>("PauseFont"); // Load the font
 
+        masterCollisionHandler = new MasterCollisionHandler(); // Initialize the collision handler
 
 
         var dungeonTexture = Content.Load<Texture2D>("TileSetDungeon");
         TextureManager.Instance.LoadContent(this);
         EnemyManager.Instance.SpawnEnemy();
         itemFactory = new ItemFactory();
+
+        // Load BlockManager
+        BlockManager.LoadTexture(dungeonTexture);
 
         //Register Textures
         itemFactory.RegisterTexture("Heart", Content.Load<Texture2D>("heart"));
@@ -201,16 +205,20 @@ public class Game1 : Game
             new List<Texture2D> { linkH });
 
         LinkSprite linkSprite = new LinkSprite(linkMap);
+        Console.WriteLine("roomItems: " + (roomManager.GetCurrentRoomItems() != null));
+        Console.WriteLine("enemies: " + (EnemyManager.Instance.GetActiveEnemy() != null));
+        Console.WriteLine("projectiles: " + (ProjectileManager.Instance.GetActiveProjectiles() != null));
+        Console.WriteLine("blocks: " + (BlockManager.Instance.GetActiveBlocks() != null));
+        Link.Initialize(linkSprite, new Vector2(200, 200));
+
 
         masterCollisionHandler.HandleCollisions(
+
             roomManager.GetCurrentRoomItems(),
             EnemyManager.Instance.GetActiveEnemy(),
             ProjectileManager.Instance.GetActiveProjectiles(),
             BlockManager.Instance.GetActiveBlocks());
-        //blockSprites._active);
 
-        // Link = new Link(linkSprite, new Vector2(200, 200));
-        Link.Initialize(linkSprite, new Vector2(200, 200));
 
         controllerList.Add(new KeyboardController(this, Link));
 
@@ -290,7 +298,6 @@ public class Game1 : Game
             EnemyManager.Instance.GetActiveEnemy(),
             ProjectileManager.Instance.GetActiveProjectiles(),
             BlockManager.Instance.GetActiveBlocks());
-        //blockSprites._active);
         base.Update(gameTime);
         Vector2 linkSize = Link.Instance.GetScaledDimensions();
         roomManager.Update(gameTime); // ✅ This is crucial    
@@ -356,12 +363,14 @@ public class Game1 : Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
-
         _spriteBatch.Begin();
+
         if (_currentGameState == GameState.Playing)
         {
             roomManager.Draw(_spriteBatch);
             ProjectileManager.Instance.Draw(_spriteBatch);
+            BlockManager.Instance.Draw(_spriteBatch);
+
 
             var items = roomManager.GetCurrentRoomItems();
             if (items != null)

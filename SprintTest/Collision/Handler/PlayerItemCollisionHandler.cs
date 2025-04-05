@@ -7,35 +7,41 @@ using sprint0Test;
 namespace sprint0Test;
 
     public class PlayerItemCollisionHandler
-    {        
-        public void HandleCollisionList(List<IItem> _active)
+    {
+    public void HandleCollisionList(List<IItem> _active)
+    {
+        if (_active == null) return;
+
+        foreach (var item in _active)
         {
-            foreach (var block in _active)
-            {
-                HandleCollision(block);
-            }
+            HandleCollision(item);
         }
+    }
+
 
     public void HandleCollision(IItem item)
     {
-        if (CollisionDetectItem.isTouchingLeft(item))
+        if (item != null)
         {
-            // Link.Instance.TakeDamage();
-        }
+            if (CollisionDetectItem.isTouchingLeft(item))
+            {
+                // Link.Instance.TakeDamage();
+            }
 
-        if (CollisionDetectItem.isTouchingRight(item))
-        {
-            // Link.Instance.TakeDamage();
-        }
+            if (CollisionDetectItem.isTouchingRight(item))
+            {
+                // Link.Instance.TakeDamage();
+            }
 
-        if (CollisionDetectItem.isTouchingBottom(item))
-        {
-            // Link.Instance.TakeDamage();
-        }
+            if (CollisionDetectItem.isTouchingBottom(item))
+            {
+                // Link.Instance.TakeDamage();
+            }
 
-        if (CollisionDetectItem.isTouchingTop(item))
-        {
-            // Link.Instance.TakeDamage();
+            if (CollisionDetectItem.isTouchingTop(item))
+            {
+                // Link.Instance.TakeDamage();
+            }
         }
     }
 
