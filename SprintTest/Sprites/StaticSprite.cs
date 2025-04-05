@@ -15,6 +15,9 @@ namespace sprint0Test.Sprites
         private float scale;
         public StaticSprite(Texture2D texture, float scale = 1.0f)
         {
+            if (texture == null)
+                throw new ArgumentNullException(nameof(texture), "❌ Tried to create a StaticSprite with a null texture!");
+
             this.texture = texture;
             this.scale = scale;
         }

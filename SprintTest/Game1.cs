@@ -281,11 +281,7 @@ public class Game1 : Game
         {
             controller.Update();
         }
-        // sprite.Update();
-        foreach (var item in roomManager.GetCurrentRoomItems())
-        {
-            item.Update(gameTime);
-        }
+
 
         blockSprites.UpdateActiveBlocks(); // Call to update active blocks
 
@@ -303,8 +299,7 @@ public class Game1 : Game
 
         base.Update(gameTime);
         Vector2 linkSize = Link.Instance.GetScaledDimensions();
-        roomManager.Update(gameTime); // ✅ This is crucial
-    
+        roomManager.Update(gameTime); // ✅ This is crucial    
 
 
         // Toggle pause only when Tab is pressed once
@@ -362,7 +357,6 @@ public class Game1 : Game
 
         base.Update(gameTime);
         roomManager.CheckDoorTransition(Link.Instance.Position, Link.Instance.GetScaledDimensions());
-
     }
 
     protected override void Draw(GameTime gameTime)
@@ -373,9 +367,8 @@ public class Game1 : Game
         if (_currentGameState == GameState.Playing)
         {
             roomManager.Draw(_spriteBatch);
-            ProjectileManager.Instance.Draw(_spriteBatch); // Ensure this is present
+            ProjectileManager.Instance.Draw(_spriteBatch);
 
-            // sprite.Draw(_spriteBatch);
             var items = roomManager.GetCurrentRoomItems();
             if (items != null)
             {
@@ -384,7 +377,8 @@ public class Game1 : Game
                     item.Draw(_spriteBatch);
                 }
             }
-            if (Link.Instance != null)  // Prevents crash if Link wasn't initialized
+
+            if (Link.Instance != null)
             {
                 Link.Instance.Draw(_spriteBatch);
             }
@@ -392,7 +386,8 @@ public class Game1 : Game
             {
                 Console.WriteLine("Error: Link.Instance is null in Draw()!");
             }
-            blockSprites.DrawActiveBlocks(_spriteBatch); // Call to draw active blocks
+
+            blockSprites.DrawActiveBlocks(_spriteBatch);
             EnemyManager.Instance.Draw(_spriteBatch);
         }
         else if (_currentGameState == GameState.Paused)
@@ -400,16 +395,17 @@ public class Game1 : Game
             _pauseMenu.Draw(_spriteBatch, GraphicsDevice);
         }
 
-        // Draw pause message if paused
         if (isPaused)
         {
             string pauseText = "Game Paused\nPress 'Tab' to Resume";
             Vector2 textSize = pauseFont.MeasureString(pauseText);
-            Vector2 position = new Vector2((_graphics.PreferredBackBufferWidth - textSize.X) / 2,
-                                           (_graphics.PreferredBackBufferHeight - textSize.Y) / 2);
+            Vector2 position = new Vector2(
+                (_graphics.PreferredBackBufferWidth - textSize.X) / 2,
+                (_graphics.PreferredBackBufferHeight - textSize.Y) / 2);
             _spriteBatch.DrawString(pauseFont, pauseText, position, Color.White);
         }
         _spriteBatch.End();
+
         base.Draw(gameTime);
     }
     

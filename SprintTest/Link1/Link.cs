@@ -187,6 +187,15 @@ namespace sprint0Test.Link1
         }
 
 
+<<<<<<< HEAD
+=======
+        //new code
+        public void SetPosition(Vector2 newPos)
+        {
+            position = newPos;
+        }
+
+>>>>>>> 86e1a91520b16eda2bb17f8a17cc830ee881bbfd
 
     }
 }
