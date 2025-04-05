@@ -22,7 +22,7 @@ namespace sprint0Test.Managers
             projectilePool = new Queue<IProjectile>();  // Initialize pool
         }
 
-        // ✅ Use a pooling system instead of creating new projectiles every time
+        // Use a pooling system instead of creating new projectiles every time
         public void SpawnProjectile(Vector2 position, Vector2 direction, string projectileType)
         {
             Debug.WriteLine($"SpawnProjectile() called with type: {projectileType}");
@@ -35,13 +35,13 @@ namespace sprint0Test.Managers
 
             IProjectile projectile = null;
 
-            if (projectilePool.Count > 0)
+/*            if (projectilePool.Count > 0)
             {
                 projectile = projectilePool.Dequeue();
                 Debug.WriteLine($"Reusing projectile from pool: {projectileType}");
             }
             else
-            {
+            {*/
                 Texture2D fireball = TextureManager.Instance.GetTexture("Fireball");
                 Texture2D rockTexture = TextureManager.Instance.GetTexture("Rock");
 
@@ -61,13 +61,18 @@ namespace sprint0Test.Managers
                         projectile = new Rock(position, direction, rockTexture);
                         Debug.WriteLine($"Created new Rock at {position}");
                         break;
+                    case "Sword":
+                        projectile = new Sword(position, fireball);
+                        Debug.WriteLine($"Created new Sword at {position}");
+                        break;
                     default:
                         Debug.WriteLine($"Unknown projectile type: {projectileType}");
                         return;
                 }
-            }
+            // }
 
             (projectile as AbstractProjectile)?.Reset(position, direction);
+            (projectile as AbstractMelee)?.Reset(position, direction);
 
             activeProjectiles.Add(projectile);
             Debug.WriteLine($"Spawned {projectileType} at {position}, moving {direction}. Active projectiles: {activeProjectiles.Count}");
@@ -102,6 +107,7 @@ namespace sprint0Test.Managers
                 projectile.Draw(spriteBatch);
             }
         }
+
         public List<IProjectile> GetActiveProjectiles()
         {
             return activeProjectiles;

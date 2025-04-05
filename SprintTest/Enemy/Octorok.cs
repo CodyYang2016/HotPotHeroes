@@ -13,6 +13,7 @@ namespace sprint0Test.Enemy
         private float movementSpeed = 1.5f;
         private float changeDirectionCooldown = 2.0f;
         private float currentCooldown = 0f;
+        private int health = 2;
 
         public Octorok(Vector2 startPosition, Dictionary<string, Texture2D> Octorok_textures)
             : base(startPosition, new Texture2D[]

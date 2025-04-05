@@ -13,6 +13,7 @@ public class Darknut : AbstractEnemy
     private bool isBlocking = false;
     private float attackCooldown = 2f;
     private float attackTimer = 0f;
+    private int health = 3;
 
     public Darknut(Vector2 startPosition, Dictionary<string, Texture2D> Darknut_textures)
         : base(startPosition, new Texture2D[]

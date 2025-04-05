@@ -14,6 +14,7 @@ namespace sprint0Test.Enemy
         private float movementSpeed = 1.5f;
         private float changeDirectionCooldown = 2.0f;
         private float currentCooldown = 0f;
+        private int health = 3;
 
         public Moblin(Vector2 startPosition, Dictionary<string, Texture2D> Moblin_textures)
             : base(startPosition, new Texture2D[]

@@ -27,9 +27,26 @@ namespace sprint0Test.Managers
             Texture2D enemySpriteSheet = game.Content.Load<Texture2D>("DungeonEnemy");
             Texture2D bossSpriteSheet = game.Content.Load<Texture2D>("ZeldaBoss");
             Texture2D worldSpriteSheet = game.Content.Load<Texture2D>("ZeldaOverWorld");
+            Texture2D tileSheet = game.Content.Load<Texture2D>("TileSetDungeon");
+            Texture2D apple = game.Content.Load<Texture2D>("Apple");
+            Texture2D heart = game.Content.Load<Texture2D>("Heart");
+
+            //Room Exteriors if neccesary
+            textures["Room_Exterior"] = CutTexture(tileSheet, new Rectangle(521, 11, 256, 176));
+            textures["ExteriorDest"] = CutTexture(tileSheet, new Rectangle(0, 0, 256, 176));
+            textures["Room_Interior"] = CutTexture(tileSheet, new Rectangle(554, 44, 192, 112));
+            textures["Door_A"] = CutTexture(tileSheet, new Rectangle(849, 11, 32, 32));
+            textures["Door_B"] = CutTexture(tileSheet, new Rectangle(849, 44, 32, 32));
+            textures["Door_C"] = CutTexture(tileSheet, new Rectangle(849, 110, 32, 32));
+            textures["Door_D"] = CutTexture(tileSheet, new Rectangle(849, 77, 32, 32));
+            textures["tileSheet"] = tileSheet;
 
 
-            
+            /*            //Items
+                        textures["apple"] = CutTexture(apple, new Rectangle(53, 63, 54, 62));
+                        textures["heart"] = CutTexture(heart, new Rectangle(31, 27, 32, 29));*/
+
+
             // Dragon
             textures["Dragon_Idle1"] = CutTexture(bossSpriteSheet, new Rectangle(1, 11, 24, 32));
             textures["Dragon_Idle2"] = CutTexture(bossSpriteSheet, new Rectangle(25, 11, 24, 32));
@@ -42,7 +59,7 @@ namespace sprint0Test.Managers
             textures["Octopus_Idle1"] = CutTexture(worldSpriteSheet, new Rectangle(1, 11, 16, 16));
             textures["Octopus_Idle2"] = CutTexture(worldSpriteSheet, new Rectangle(17, 11, 16, 16));
             textures["Rock"] = CutTexture(worldSpriteSheet, new Rectangle(77, 26, 9, 17));
-           
+
             //Moblin
             textures["Goblin_1"] = CutTexture(worldSpriteSheet, new Rectangle(100, 28, 15, 17));
             textures["Goblin_2"] = CutTexture(worldSpriteSheet, new Rectangle(117, 28, 15, 16));

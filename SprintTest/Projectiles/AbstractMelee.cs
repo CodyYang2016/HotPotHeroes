@@ -4,39 +4,35 @@ using sprint0Test.Projectiles;
 
 namespace sprint0Test.Projectiles
 {
-    public abstract class AbstractProjectile : IProjectile
+    public abstract class AbstractMelee : IProjectile
     {
         protected Vector2 position;  // Backing field for Position
         protected Vector2 direction;
         protected Texture2D texture;
         protected bool isActive;
         protected bool isFriendly;
-        protected float speed;
         protected float lifetime;
 
-        // ✅ Expose position via property for IProjectile interface compliance
         public Vector2 Position
         {
             get => position;
             set => position = value;
         }
 
-        public AbstractProjectile(Vector2 startPosition, Vector2 direction, Texture2D texture, float speed, float lifetime = 5.0f)
+        public AbstractMelee(Vector2 startPosition, Texture2D texture, float lifetime = 1.0f, bool isFriendly = true)
         {
             this.position = startPosition;
-            this.direction = direction;
             this.texture = texture;
-            this.speed = speed;
             this.lifetime = lifetime;
             this.isActive = true;
-            this.isFriendly = false;
+            this.isFriendly = true;
         }
 
         public virtual void Update(GameTime gameTime)
         {
             if (!isActive) return;
 
-            position += direction * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //position += direction * (float)gameTime.ElapsedGameTime.TotalSeconds;
             lifetime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (lifetime <= 0)
             {
@@ -67,12 +63,11 @@ namespace sprint0Test.Projectiles
             return isFriendly;
         }
 
-        // ✅ Reset function for reusing the projectile from the pool
         public void Reset(Vector2 newPosition, Vector2 newDirection)
         {
             Position = newPosition;
             direction = newDirection;
-            lifetime = 5.0f;  // Reset lifetime
+            lifetime = 1.0f;  // Reset lifetime
             isActive = true;  // Reactivate projectile
         }
     }

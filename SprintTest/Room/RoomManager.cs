@@ -1,412 +1,152 @@
-﻿/*
+﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-
-namespace sprint0Test.Dungeon
-{
-    public class RoomManager
-    {
-        public List<Room> Rooms = new List<Room>();
-        public int CurrentRoomIndex = 0;
-
-        private Texture2D dungeonTexture; // TileSetDungeon.png
-        private float scale;             // 房间在屏幕上的缩放系数 (若窗口是800×480, room是256×176, etc.)
-
-        public RoomManager(Texture2D dungeonTexture, float scale)
-        {
-            this.dungeonTexture = dungeonTexture;
-            this.scale = scale;
-
-            GenerateAllRooms();
-        }
-
-        // 生成若干房间
-        private void GenerateAllRooms()
-        {
-            // 1) 生成 R1–R42 的源坐标
-            List<Rectangle> interiors = GenerateInteriors(); // R1..R42
-
-            // 2) 随机生成 5 个房间演示 (你也可以一次把42都用上)
-            Random rand = new Random();
-            char[] doorLetters = new char[] { 'A', 'B', 'C', 'D' };
-
-            for (int i = 0; i < 5; i++)
-            {
-                Rectangle interiorSrc = interiors[rand.Next(interiors.Count)];
-                char door = doorLetters[rand.Next(doorLetters.Length)];
-                Room r = new Room(interiorSrc, door);
-                Rooms.Add(r);
-            }
-        }
-
-        // 你给的 R1-R6, R7-R12, R13-R18... R37-R42
-        // 每行6个, 总共7行 => 42个
-        // 假设每个 Interior 大小 193×112 (从(1,193)到(194,305)宽193,高112)
-        // 这里写一个示例自动生成
-        private List<Rectangle> GenerateInteriors()
-        {
-            var list = new List<Rectangle>();
-            // 每行 6 个, x 起点=1, x步长=196 (1->197->393->589->785->981?), 宽=193
-            // y 起点=193, 高=112
-            // 下一行 y+115(比如 193->308->423->538->653->768->883? )，共7行
-            int totalRows = 7;  // R1–R6(第1行), R7–R12(第2行)... R37–R42(第7行)
-            int totalCols = 6;  // 每行6个
-
-            int startX = 1;
-            int stepX = 196; // 1->197->393->589->785->981
-            int width = 193;
-
-            int startY = 193;
-            int stepY = 115; // 193->308->423->538->653->768->883
-            int height = 112;
-
-            for (int row = 0; row < totalRows; row++)
-            {
-                for (int col = 0; col < totalCols; col++)
-                {
-                    int x = startX + col * stepX;
-                    int y = startY + row * stepY;
-                    Rectangle r = new Rectangle(x, y, width, height);
-                    list.Add(r);
-                }
-            }
-            return list;
-        }
-
-        public Room GetCurrentRoom()
-        {
-            return Rooms[CurrentRoomIndex];
-        }
-
-        // 原有的 NextRoom 方法
-        public void NextRoom()
-        {
-            CurrentRoomIndex = (CurrentRoomIndex + 1) % Rooms.Count;
-        }
-
-        // 新增：提供 SwitchToNextRoom 方法供外部调用
-        public void SwitchToNextRoom()
-        {
-            NextRoom();
-        }
-
-        // 绘制当前房间
-        public void DrawRoom(SpriteBatch spriteBatch)
-        {
-            Room room = GetCurrentRoom();
-
-            // 1) 绘制外墙
-            Rectangle destExterior = ScaleRect(Room.ExteriorDest);
-            spriteBatch.Draw(
-                dungeonTexture,
-                destExterior,
-                Room.ExteriorSource,
-                Color.White
-            );
-
-            // 2) 绘制内室
-            Rectangle destInterior = ScaleRect(Room.InteriorDest);
-            spriteBatch.Draw(
-                dungeonTexture,
-                destInterior,
-                room.InteriorSource,
-                Color.White
-            );
-
-            // 3) 绘制四个边(A/B/C/D)：只有 room.DoorLetter 那个是门，其它是墙
-            foreach (var kvp in Room.DoorDestinations)
-            {
-                char edge = kvp.Key;
-                Rectangle dest = ScaleRect(kvp.Value);
-
-                Rectangle source;
-                if (edge == room.DoorLetter)
-                    source = Room.DoorSource[edge];  // 门
-                else
-                    source = Room.WallSource[edge];  // 墙
-
-                spriteBatch.Draw(dungeonTexture, dest, source, Color.White);
-            }
-        }
-
-        // 判断 Link 是否进入了当前房间的“门”区域
-        public bool IsLinkAtDoor(Vector2 linkPos, Vector2 linkSize)
-        {
-            Room room = GetCurrentRoom();
-            Rectangle doorDestLocal = Room.DoorDestinations[room.DoorLetter]; // 未缩放
-            // 转换成缩放后
-            Rectangle doorDestScaled = ScaleRect(doorDestLocal);
-
-            Rectangle linkRect = new Rectangle(
-                (int)linkPos.X, (int)linkPos.Y,
-                (int)linkSize.X, (int)linkSize.Y
-            );
-            return linkRect.Intersects(doorDestScaled);
-        }
-
-        // 返回当前房间“可活动区域”（Interior + 这扇门的区域）
-        public Rectangle GetWalkableArea()
-        {
-            // interiorDest
-            Rectangle interior = Room.InteriorDest;
-            // door
-            Rectangle doorLocal = Room.DoorDestinations[GetCurrentRoom().DoorLetter];
-
-            // 简单做个 union：把 interior 跟 door 合并成一个大的矩形
-            Rectangle unionLocal = Rectangle.Union(interior, doorLocal);
-            return ScaleRect(unionLocal);
-        }
-
-        private Rectangle ScaleRect(Rectangle r)
-        {
-            return new Rectangle(
-                (int)(r.X * scale),
-                (int)(r.Y * scale),
-                (int)(r.Width * scale),
-                (int)(r.Height * scale)
-            );
-        }
-    }
-}
-*/
-
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using sprint0Test.Dungeon;
 using sprint0Test.Items;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Input;
+using sprint0Test.Managers;
+using sprint0Test.Link1;
 
-namespace sprint0Test.Dungeon
+public class RoomManager
 {
-    public class RoomManager
+    public Dictionary<string, IRoom> Rooms { get; private set; } = new();
+    public IRoom CurrentRoom { get; private set; }
+    private ItemFactory itemFactory;
+
+    public RoomManager(ItemFactory itemFactory)
     {
-        public List<Room> Rooms = new List<Room>();
-        public int CurrentRoomIndex = 0;
-        public static RoomManager Instance { get; private set; }
-        private Texture2D dungeonTexture;
-        private float scale;
-        private MouseState previousMouseState;
-        private Dictionary<string, List<IItem>> roomItems = new Dictionary<string, List<IItem>>();
-        private List<IItem> currentRoomItems = new List<IItem>();
-        private ItemFactory itemFactory;
-        private Dictionary<int, string> roomIdMap = new Dictionary<int, string>();
-        public RoomManager(Texture2D dungeonTexture, float scale, ItemFactory itemFactory)
+        this.itemFactory = itemFactory;
+        GenerateRooms();
+        SwitchToRoom("1a");
+    }
+    private float scale = 1.0f; // Add this field to your class if not present
+
+    private Rectangle ScaleRect(Rectangle r)
+    {
+        return new Rectangle(
+            (int)(r.X * scale),
+            (int)(r.Y * scale),
+            (int)(r.Width * scale),
+            (int)(r.Height * scale)
+        );
+    }
+
+
+    private void GenerateRooms()
+    {
+        DungeonLayout layout = new DungeonLayout();
+
+        // Load the shared texture (make sure it's loaded in TextureManager)
+        Texture2D tileset = TextureManager.Instance.GetTexture("tileSheet");
+
+        foreach (RoomData data in layout.GetAllRooms())
         {
-            this.dungeonTexture = dungeonTexture;
-            this.scale = scale;
-            this.itemFactory = itemFactory;
-            if (Instance == null)
-                Instance = this;
-            else
-                throw new Exception("RoomManager instance already exists!");
-            LoadItemsFromCSV("Content/room-items.csv"); // Load items from CSV
-            GenerateAllRooms();
-            LoadItemsForRoom(roomIdMap[CurrentRoomIndex]);
-        }
+            var room = new SampleRoom(data.RoomID);
 
-        private void LoadItemsFromCSV(string filePath)
-        {
-            roomItems.Clear();  // Reset before loading
+            // ✅ Assign texture and visual source rectangles
+            room.TilesetTexture = tileset;
+            room.ExteriorSource = RoomData.ExteriorSource;
+            room.InteriorSource = RoomData.InteriorSource; // You can later make this per-room
 
-            string[] lines = System.IO.File.ReadAllLines(filePath);
-            bool firstLine = true;  // Flag to skip the header
-
-            foreach (string line in lines)
+            // ✅ Assign door connections
+            foreach (var door in data.Doors)
             {
-                if (firstLine)  // Skip header row
+                if (!string.IsNullOrEmpty(door.Value))
                 {
-                    firstLine = false;
-                    continue;
-                }
-
-                string[] parts = line.Split(',');
-
-                if (parts.Length < 4)
-                {
-                    continue; // Skip invalid lines
-                }
-
-                string roomID = parts[0].Trim();
-                string itemType = parts[1].Trim();
-
-                // ✅ Ensure X and Y values are correctly parsed
-                if (!float.TryParse(parts[2], out float posX) || !float.TryParse(parts[3], out float posY))
-                {
-                    continue;
-                }
-
-                if (!roomItems.ContainsKey(roomID))
-                    roomItems[roomID] = new List<IItem>();
-
-                IItem newItem = itemFactory.CreateItem(itemType, new Vector2(posX, posY));
-                roomItems[roomID].Add(newItem);
-            }
-        }
-
-
-
-
-        // Generates rooms in a fixed order
-        private void GenerateAllRooms()
-        {
-            List<Rectangle> interiors = GenerateInteriors(); // Fixed ordering
-
-            char[] doorSequence = new char[]
-            {
-                'A', 'B', 'C', 'D', 'A', 'B', 'C', 'D', 'A', 'B', 'C', 'D', 'A', 'B', 'C', 'D',
-                'A', 'B', 'C', 'D', 'A', 'B', 'C', 'D', 'A', 'B', 'C', 'D', 'A', 'B', 'C', 'D',
-                'A', 'B', 'C', 'D', 'A', 'B', 'C', 'D'
-            };
-
-            for (int i = 0; i < interiors.Count; i++)
-            {
-                string roomID = $"Room_{i / 3}_{i % 3}";  // Unique Room ID for CSV linking
-                Room r = new Room(interiors[i], doorSequence[i % doorSequence.Length], roomID);
-                Rooms.Add(r);
-                roomIdMap[i] = roomID;
-                LoadItemsForRoom(roomID);
-                Debug.WriteLine($"🆔 Created Room {roomID}");
-            }
-        }
-
-        // Generates 42 interiors in a fixed order
-        private List<Rectangle> GenerateInteriors()
-        {
-            var list = new List<Rectangle>();
-            int totalRows = 7;
-            int totalCols = 6;
-
-            int startX = 1, stepX = 196, width = 193;
-            int startY = 193, stepY = 115, height = 112;
-
-            for (int row = 0; row < totalRows; row++)
-            {
-                for (int col = 0; col < totalCols; col++)
-                {
-                    int x = startX + col * stepX;
-                    int y = startY + row * stepY;
-                    list.Add(new Rectangle(x, y, width, height));
+                    room.AdjacentRooms[door.Key] = door.Value;
                 }
             }
-            return list;
-        }
 
-        public void LoadItemsForRoom(string roomID)
-        {
-            if (roomItems.ContainsKey(roomID))
-            {
-                currentRoomItems = new List<IItem>(roomItems[roomID]);
-            }
-            else
-            {
-                currentRoomItems.Clear();
-            }
-        }
-
-        public List<IItem> GetCurrentRoomItems()
-        {
-            return currentRoomItems;
-        }
-
-        public Room GetCurrentRoom()
-        {
-            return Rooms[CurrentRoomIndex];
-        }
-
-        // Move to the next room
-        public void NextRoom()
-        {
-            if (CurrentRoomIndex < Rooms.Count - 1)
-                CurrentRoomIndex++;
-            LoadItemsForRoom(roomIdMap[CurrentRoomIndex]);
-        }
-
-        // Move to the previous room
-        public void PreviousRoom()
-        {
-            if (CurrentRoomIndex > 0)
-                CurrentRoomIndex--;
-            LoadItemsForRoom(roomIdMap[CurrentRoomIndex]);
-        }
-
-        // Handles mouse click to transition rooms
-        /*
-        public void HandleMouseClick(Vector2 linkPos, Vector2 linkSize)
-        {
-            MouseState mouseState = Mouse.GetState();
-            if (mouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released)
-            {
-                if (IsLinkAtDoor(linkPos, linkSize))
-                    PreviousRoom();
-            }
-            else if (mouseState.RightButton == ButtonState.Pressed && previousMouseState.RightButton == ButtonState.Released)
-            {
-                if (IsLinkAtDoor(linkPos, linkSize))
-                    NextRoom();
-            }
-            previousMouseState = mouseState;
-        }
-        */
-        public void HandleMouseClick(Vector2 linkPos, Vector2 linkSize)
-        {
-            MouseState mouseState = Mouse.GetState();
-
-            // Check if the left mouse button was just pressed (not held down)
-            bool leftClickPressed = mouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released;
-
-            // Ensure the player is touching the door AND has clicked the left mouse button
-            if (leftClickPressed && IsLinkAtDoor(linkPos, linkSize))
-            {
-                NextRoom(); // Move to the next room only on left-click
-            }
-
-            // Update previousMouseState at the end
-            previousMouseState = mouseState;
-        }
-
-        // Checks if Link is at the door
-        public bool IsLinkAtDoor(Vector2 linkPos, Vector2 linkSize)
-        {
-            Room room = GetCurrentRoom();
-            Rectangle doorDestLocal = Room.DoorDestinations[room.DoorLetter];
-            Rectangle doorDestScaled = ScaleRect(doorDestLocal);
-
-            Rectangle linkRect = new Rectangle(
-                (int)linkPos.X, (int)linkPos.Y,
-                (int)linkSize.X, (int)linkSize.Y
-            );
-            return linkRect.Intersects(doorDestScaled);
-        }
-
-        public void DrawRoom(SpriteBatch spriteBatch)
-        {
-            Room room = GetCurrentRoom();
-            spriteBatch.Draw(dungeonTexture, ScaleRect(Room.ExteriorDest), Room.ExteriorSource, Color.White);
-            spriteBatch.Draw(dungeonTexture, ScaleRect(Room.InteriorDest), room.InteriorSource, Color.White);
-
-            foreach (var kvp in Room.DoorDestinations)
-            {
-                char edge = kvp.Key;
-                Rectangle dest = ScaleRect(kvp.Value);
-                Rectangle source = (edge == room.DoorLetter) ? Room.DoorSource[edge] : Room.WallSource[edge];
-
-                spriteBatch.Draw(dungeonTexture, dest, source, Color.White);
-            }
-
-            foreach (var item in GetCurrentRoomItems())
-            {
-                item.Draw(spriteBatch);
-            }
-        }
-
-        private Rectangle ScaleRect(Rectangle r)
-        {
-            return new Rectangle((int)(r.X * scale), (int)(r.Y * scale), (int)(r.Width * scale), (int)(r.Height * scale));
+            room.Initialize();
+            Rooms[data.RoomID] = room;
         }
     }
-}
 
+
+
+    public void SwitchToRoom(string roomID)
+    {
+        if (Rooms.TryGetValue(roomID, out var newRoom))
+        {
+            CurrentRoom = newRoom;
+        }
+        else
+        {
+            Debug.WriteLine($"Room '{roomID}' not found.");
+        }
+    }
+
+    public void MoveToAdjacentRoom(string direction)
+    {
+        if (CurrentRoom != null && CurrentRoom.AdjacentRooms.TryGetValue(direction, out var nextRoomID))
+        {
+            SwitchToRoom(nextRoomID);
+        }
+    }
+
+    public void Update(GameTime gameTime)
+    {
+        CurrentRoom?.Update(gameTime);
+    }
+
+    public void Draw(SpriteBatch spriteBatch)
+    {
+        CurrentRoom?.Draw(spriteBatch);
+    }
+    public List<IItem> GetCurrentRoomItems()
+    {
+        return CurrentRoom?.Items ?? new List<IItem>();
+    }
+
+
+
+
+    private MouseState previousMouseState;
+
+
+
+    public void CheckDoorTransition(Vector2 linkPos, Vector2 linkSize)
+    {
+        IRoom room = CurrentRoom;
+        if (room == null) return;
+
+        Rectangle linkRect = new Rectangle((int)linkPos.X, (int)linkPos.Y, (int)linkSize.X, (int)linkSize.Y);
+
+        foreach (var kvp in room.DoorHitboxes)
+        {
+            string direction = kvp.Key;
+            Rectangle doorRect = kvp.Value;
+
+            if (linkRect.Intersects(doorRect))
+            {
+                MoveToAdjacentRoom(direction);
+                PositionPlayerAtEntry(direction); // ⬅️ See next point
+                break;
+            }
+        }
+    }
+    public void PositionPlayerAtEntry(string fromDirection)
+    {
+        string toDirection = fromDirection switch
+        {
+            "Up" => "Down",
+            "Down" => "Up",
+            "Left" => "Right",
+            "Right" => "Left",
+            _ => null
+        };
+
+        if (toDirection != null && CurrentRoom.DoorHitboxes.TryGetValue(toDirection, out var entryRect))
+        {
+            // Put Link slightly inside the room from that door
+            Vector2 newPos = new Vector2(entryRect.X + 8, entryRect.Y + 8); // adjust as needed
+            Link.Instance.SetPosition(newPos);
+        }
+    }
+
+
+
+
+
+}

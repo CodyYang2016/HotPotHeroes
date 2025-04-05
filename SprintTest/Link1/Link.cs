@@ -28,6 +28,8 @@ namespace sprint0Test.Link1
         private readonly int screenMaxX = 800;
         private readonly int screenMaxY = 480;
 
+        private bool isVisible = true; // This will track visibility
+
         // ? Singleton access property
         public static Link Instance
         {
@@ -43,6 +45,22 @@ namespace sprint0Test.Link1
 
         public Vector2 Position => position;
         public IReadOnlyList<Item> Inventory => inventory.AsReadOnly();
+
+        public bool IsVisible // Add IsVisible property
+        {
+            get => isVisible;
+            set
+            {
+                isVisible = value;
+                sprite.IsVisible = value; // If the sprite also needs to reflect visibility
+            }
+        }
+
+        // Method to set position (since Position is read-only)
+        public void SetPosition(Vector2 newPosition)
+        {
+            position = newPosition;
+        }
 
         // ? Private constructor to prevent direct instantiation
         private Link(LinkSprite linkSprite, Vector2 startPos)
@@ -167,6 +185,8 @@ namespace sprint0Test.Link1
         {
             return sprite.GetScaledDimensions(); // Forward call to LinkSprite
         }
+
+
 
     }
 }

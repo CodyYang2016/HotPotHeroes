@@ -4,41 +4,59 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/boomerang.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/heart.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/Link1.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/Link2.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkB1.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkB2.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkBS1.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkBS2.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkBS3.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkBS4.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/Linkh.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkL1.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkL2.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkLS1.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkLS2.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkLS3.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkLS4.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkR1.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkR2.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkRS1.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkRS2.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkRS3.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkRS4.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkS1.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkS2.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkS3.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/LinkS4.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/mario.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/mario2.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/TileSetDungeon.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/ZeldaBoss.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/zeldaenemy.png</File>
-    <File>C:/Users/cody.yang/source/repos/Cody2/Content/ZeldaOverWorld.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/apple.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/blue-potion.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/blue-rupee.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/boomerang.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/crystal.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/DungeonEnemy.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/green-potion.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/green-rupee.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/heart.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/Link1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/Link2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkB1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkB2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkBS1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkBS2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkBS3.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkBS4.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/Linkh.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkL1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkL2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkLS1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkLS2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkLS3.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkLS4.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkR1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkR2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkRS1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkRS2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkRS3.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkRS4.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkS1.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkS2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkS3.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/LinkS4.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/mario.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/mario2.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/red-potion.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/red-rupee.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/TileSetDungeon.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/ZeldaBoss.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/zeldaenemy.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint3/Main/SprintTest/Content/ZeldaOverWorld.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
