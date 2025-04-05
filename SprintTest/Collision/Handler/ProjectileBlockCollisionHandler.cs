@@ -25,22 +25,22 @@ namespace sprint0Test
 
         public void HandleCollision(IBlock block, IProjectile projectile)
         {
-            if (CollisionDetectProjBlock.isTouchingLeft(block, projectile))
+            if (CollisionDetectEntities.isTouchingLeft(block, projectile))
             {
                 projectile.Deactivate();
             }
 
-            if (CollisionDetectProjBlock.isTouchingRight(block, projectile))
+            if (CollisionDetectEntities.isTouchingRight(block, projectile))
             {
                 projectile.Deactivate();
             }
 
-            if (CollisionDetectProjBlock.isTouchingBottom(block, projectile))
+            if (CollisionDetectEntities.isTouchingBottom(block, projectile))
             {
                 projectile.Deactivate();
             }
 
-            if (CollisionDetectProjBlock.isTouchingTop(block, projectile))
+            if (CollisionDetectEntities.isTouchingTop(block, projectile))
             {
                 projectile.Deactivate();
             }

@@ -18,25 +18,25 @@ namespace sprint0Test
 
         public void HandleCollision(IBlock block)
         {
-            if (CollisionDetectBlock.isTouchingLeft(block))
+            if (CollisionDetectEntity.isTouchingLeft(block))
             {
                 Link.Instance.MoveLeft();
                 //Link.Instance.TakeDamage();
             }
 
-            if (CollisionDetectBlock.isTouchingRight(block))
+            if (CollisionDetectEntity.isTouchingRight(block))
             {
                 Link.Instance.MoveRight();
                 //Link.Instance.TakeDamage();
             }
 
-            if (CollisionDetectBlock.isTouchingBottom(block))
+            if (CollisionDetectEntity.isTouchingBottom(block))
             {
                 Link.Instance.MoveDown();
                 //Link.Instance.TakeDamage();
             }
 
-            if (CollisionDetectBlock.isTouchingTop(block))
+            if (CollisionDetectEntity.isTouchingTop(block))
             {
                 Link.Instance.MoveUp();
                 //Link.Instance.TakeDamage();

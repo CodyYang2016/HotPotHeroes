@@ -70,5 +70,15 @@ namespace sprint0Test.Projectiles
             lifetime = 1.0f;  // Reset lifetime
             isActive = true;  // Reactivate projectile
         }
+
+        public Vector2 GetPosition()
+        {
+            return Position;
+        }
+
+        public virtual Vector2 GetDimensions()
+        {
+            return new Vector2(8, 8);
+        }
     }
 }

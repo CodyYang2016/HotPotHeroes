@@ -10,80 +10,54 @@ using System.Diagnostics;
 namespace sprint0Test;
 public class CollisionDetectEntities
 {
-
-    private static Rectangle GetEnemyRectangle(IEnemy enemy)
+    // Check if the B is touching the left side of the A
+    public static bool isTouchingLeft(ICollidable blockA, ICollidable blockB)
     {
-        float enemyWidth = enemy.GetDimensions().X;
-        float enemyHeight = enemy.GetDimensions().Y;
-        float xPos = enemy.GetPosition().X;
-        float yPos = enemy.GetPosition().Y;
-        
-        return new Rectangle(
-            (int)(xPos - (enemyWidth / 2)),  // Adjusted for origin
-            (int)(yPos - (enemyHeight / 2)), // Adjusted for origin
-            (int)enemyWidth,
-            (int)enemyHeight
-        );
+        Rectangle RectB = DetectionMethods.GetCollidableRectangle(blockB);
+        Rectangle RectA = DetectionMethods.GetCollidableRectangle(blockA);
+
+        return RectB.Right > RectA.Left &&
+            RectB.Left < RectA.Left &&
+            RectB.Bottom > RectA.Top &&
+            RectB.Top < RectA.Bottom;
     }
 
-    private static Rectangle GetBlockRectangle(IBlock block)
+    // Check if the B is touching the right side of the A
+    public static bool isTouchingRight(ICollidable blockA, ICollidable blockB)
     {
-        int blockWidth = 16;
-        int blockHeight = 16;
-        float scale = 3f;
-
-        return new Rectangle(
-            (int)block.Position.X,
-            (int)block.Position.Y,
-            (int)(blockWidth * scale),
-            (int)(blockHeight * scale)
-        );
-    }
-
-    public static bool isTouchingLeft(IBlock block, IEnemy enemy)
-    {
-        Rectangle enemyRect = GetEnemyRectangle(enemy);
-        Rectangle blockRect = GetBlockRectangle(block);
-
-        return enemyRect.Right > blockRect.Left &&
-            enemyRect.Left < blockRect.Left &&
-            enemyRect.Bottom > blockRect.Top &&
-            enemyRect.Top < blockRect.Bottom;
-    }
-
-    public static bool isTouchingRight(IBlock block, IEnemy enemy)
-    {
-        Rectangle enemyRect = GetEnemyRectangle(enemy);
-        Rectangle blockRect = GetBlockRectangle(block);
+        Rectangle RectB = DetectionMethods.GetCollidableRectangle(blockB);
+        Rectangle RectA = DetectionMethods.GetCollidableRectangle(blockA);
 
         // Check for collision on the right side when the player is moving right
-        return enemyRect.Left < blockRect.Right &&
-            enemyRect.Right > blockRect.Right &&
-            enemyRect.Bottom > blockRect.Top &&
-            enemyRect.Top < blockRect.Bottom; 
+        return RectB.Left < RectA.Right &&
+            RectB.Right > RectA.Right &&
+            RectB.Bottom > RectA.Top &&
+            RectB.Top < RectA.Bottom; 
     }
 
-    public static bool isTouchingBottom(IBlock block, IEnemy enemy)
+    // Check if the B is touching the bottom side of the A
+    public static bool isTouchingBottom(ICollidable blockA, ICollidable blockB)
     {
-        Rectangle enemyRect = GetEnemyRectangle(enemy);
-        Rectangle blockRect = GetBlockRectangle(block);
+        Rectangle RectB = DetectionMethods.GetCollidableRectangle(blockB);
+        Rectangle RectA = DetectionMethods.GetCollidableRectangle(blockA);
 
         // Check for collision on the right side when the player is moving right
-        return enemyRect.Top < blockRect.Bottom &&
-            enemyRect.Bottom > blockRect.Bottom &&
-            enemyRect.Left < blockRect.Right &&
-            enemyRect.Right > blockRect.Left;
+        return RectB.Top < RectA.Bottom &&
+            RectB.Bottom > RectA.Bottom &&
+            RectB.Left < RectA.Right &&
+            RectB.Right > RectA.Left;
     }
 
-    public static bool isTouchingTop(IBlock block, IEnemy enemy)
+    // Check if the B is touching the top side of the A
+    public static bool isTouchingTop(ICollidable blockA, ICollidable blockB)
     {
-        Rectangle enemyRect = GetEnemyRectangle(enemy);
-        Rectangle blockRect = GetBlockRectangle(block);
+        Rectangle RectB = DetectionMethods.GetCollidableRectangle(blockB);
+        Rectangle RectA = DetectionMethods.GetCollidableRectangle(blockA);
 
-        return enemyRect.Bottom > blockRect.Top &&
-           enemyRect.Top < blockRect.Top && 
-           enemyRect.Left < blockRect.Right &&
-           enemyRect.Right > blockRect.Left;
+        return RectB.Bottom > RectA.Top &&
+           RectB.Top < RectA.Top && 
+           RectB.Left < RectA.Right &&
+           RectB.Right > RectA.Left;
             
     }
 }

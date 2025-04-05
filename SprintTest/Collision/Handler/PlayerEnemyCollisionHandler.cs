@@ -11,36 +11,40 @@ namespace sprint0Test
     {
         public void HandleCollisionList(List<IEnemy> _active)
         {
-            foreach (var block in _active)
+            foreach (var enemy in _active)
             {
-                HandleCollision(block);
+                HandleCollision(enemy);
             }
         }
 
         public void HandleCollision(IEnemy enemy)
         {
-            if (CollisionDetectEnemy.isTouchingLeft(enemy))
+            if (enemy != null)
             {
-                Link.Instance.MoveLeft();
-                Link.Instance.TakeDamage();
-            }
 
-            if (CollisionDetectEnemy.isTouchingRight(enemy))
-            {
-                Link.Instance.MoveRight();
-                Link.Instance.TakeDamage();
-            }
+                if (CollisionDetectEntity.isTouchingLeft(enemy))
+                {
+                    Link.Instance.MoveLeft();
+                    Link.Instance.TakeDamage();
+                }
 
-            if (CollisionDetectEnemy.isTouchingBottom(enemy))
-            {
-                Link.Instance.MoveDown();
-                Link.Instance.TakeDamage();
-            }
+                if (CollisionDetectEntity.isTouchingRight(enemy))
+                {
+                    Link.Instance.MoveRight();
+                    Link.Instance.TakeDamage();
+                }
 
-            if (CollisionDetectEnemy.isTouchingTop(enemy))
-            {
-                Link.Instance.MoveUp();
-                Link.Instance.TakeDamage();
+                if (CollisionDetectEntity.isTouchingBottom(enemy))
+                {
+                    Link.Instance.MoveDown();
+                    Link.Instance.TakeDamage();
+                }
+
+                if (CollisionDetectEntity.isTouchingTop(enemy))
+                {
+                    Link.Instance.MoveUp();
+                    Link.Instance.TakeDamage();
+                }
             }
         }
 

@@ -77,12 +77,8 @@ namespace sprint0Test.Enemy
         {
             health -= damage;
             if (health <= 0)
-            {
                 ChangeState(new DeadState(this));
-                Destroy(); // Do optional cleanup here
-            }
         }
-
 
         public void ChangeState(IEnemyState newState)
         {
@@ -106,7 +102,7 @@ namespace sprint0Test.Enemy
 
         public void Destroy()
         {
-            //Remove it from the list it's in
+            // EnemyManager.Instance.RemoveEnemy(this);
         }
 
         public bool IsInAttackRange()

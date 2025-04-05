@@ -10,7 +10,6 @@ namespace sprint0Test.Projectiles
         protected Vector2 direction;
         protected Texture2D texture;
         protected bool isActive;
-        protected bool isFriendly;
         protected float speed;
         protected float lifetime;
 
@@ -29,7 +28,6 @@ namespace sprint0Test.Projectiles
             this.speed = speed;
             this.lifetime = lifetime;
             this.isActive = true;
-            this.isFriendly = false;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -62,11 +60,6 @@ namespace sprint0Test.Projectiles
             return isActive;
         }
 
-        public bool IsFriendly()
-        {
-            return isFriendly;
-        }
-
         // ✅ Reset function for reusing the projectile from the pool
         public void Reset(Vector2 newPosition, Vector2 newDirection)
         {
@@ -74,6 +67,16 @@ namespace sprint0Test.Projectiles
             direction = newDirection;
             lifetime = 5.0f;  // Reset lifetime
             isActive = true;  // Reactivate projectile
+        }
+
+        public Vector2 GetPosition()
+        {
+            return Position;
+        }
+
+        public virtual Vector2 GetDimensions()
+        {
+            return new Vector2(8, 8);
         }
     }
 }

@@ -30,7 +30,6 @@ public class Game1 : Game
     List<IController> controllerList;
     public ISprite sprite;
     private SpriteFont _menuFont;
-    private BlockSprites blockSprites;
     private ItemFactory itemFactory;
     public List<IItem> itemList;
     public int currentItemIndex;
@@ -38,16 +37,14 @@ public class Game1 : Game
 
     public IItem currentItem;
 
+    // New Room Manager
     RoomManager roomManager;
     float roomScale;
 
-    private PlayerBlockCollisionHandler playerBlockCollisionHandler;
-    private PlayerEnemyCollisionHandler playerEnemyCollisionHandler;
-    private PlayerItemCollisionHandler playerItemCollisionHandler;
-    private EnemyBlockCollisionHandler enemyBlockCollisionHandler;
-    private PlayerProjectileCollisionHandler playerProjectileCollisionHandler;
-    private ProjectileBlockCollisionHandler projectileBlockCollisionHandler;
-    private ProjectileEnemyCollisionHandler projectileEnemyCollisionHandler;
+
+    // New Collision Handler
+    private MasterCollisionHandler masterCollisionHandler;
+
 
     // Pause-related fields
     private bool isPaused;
@@ -98,7 +95,6 @@ public class Game1 : Game
 
 
         var dungeonTexture = Content.Load<Texture2D>("TileSetDungeon");
-        blockSprites = new BlockSprites(dungeonTexture);
         TextureManager.Instance.LoadContent(this);
         EnemyManager.Instance.SpawnEnemy();
         itemFactory = new ItemFactory();
@@ -206,23 +202,23 @@ public class Game1 : Game
 
         LinkSprite linkSprite = new LinkSprite(linkMap);
 
-        playerBlockCollisionHandler = new PlayerBlockCollisionHandler();
-        playerEnemyCollisionHandler = new PlayerEnemyCollisionHandler();
-        playerItemCollisionHandler = new PlayerItemCollisionHandler();
-        enemyBlockCollisionHandler = new EnemyBlockCollisionHandler();
-        playerProjectileCollisionHandler = new PlayerProjectileCollisionHandler();
-        projectileBlockCollisionHandler = new ProjectileBlockCollisionHandler();
-        projectileEnemyCollisionHandler = new ProjectileEnemyCollisionHandler();
+        masterCollisionHandler.HandleCollisions(
+            roomManager.GetCurrentRoomItems(),
+            EnemyManager.Instance.GetActiveEnemy(),
+            ProjectileManager.Instance.GetActiveProjectiles(),
+            BlockManager.Instance.GetActiveBlocks());
+        //blockSprites._active);
 
         // Link = new Link(linkSprite, new Vector2(200, 200));
         Link.Initialize(linkSprite, new Vector2(200, 200));
 
-        controllerList.Add(new KeyboardController(this, Link, blockSprites));
+        controllerList.Add(new KeyboardController(this, Link));
 
 
     }
 
-    private void HandlePlayerCollision(IEnemy enemy)
+    // Working on outdated code
+/*    private void HandlePlayerCollision(IEnemy enemy)
     {
         if (!isRespawning && (CollisionDetectEnemy.isTouchingLeft(enemy) ||
                               CollisionDetectEnemy.isTouchingRight(enemy) ||
@@ -235,7 +231,7 @@ public class Game1 : Game
                 StartRespawnSequence();
             }
         }
-    }
+    }*/
 
     private void StartRespawnSequence()
     {
@@ -283,20 +279,18 @@ public class Game1 : Game
         }
 
 
-        blockSprites.UpdateActiveBlocks(); // Call to update active blocks
 
         EnemyManager.Instance.Update(gameTime);
         ProjectileManager.Instance.Update(gameTime);
         Link.Instance.Update();
 
-        playerBlockCollisionHandler.HandleCollisionList(blockSprites._active);
-        playerEnemyCollisionHandler.HandleCollision(EnemyManager.Instance.GetActiveEnemy());
-        playerItemCollisionHandler.HandleCollisionList(roomManager.GetCurrentRoomItems());
-        enemyBlockCollisionHandler.HandleCollisionList(blockSprites._active, EnemyManager.Instance.GetActiveEnemy());
-        playerProjectileCollisionHandler.HandleCollisionList(ProjectileManager.Instance.GetActiveProjectiles());
-        projectileBlockCollisionHandler.HandleCollisionList(blockSprites._active, ProjectileManager.Instance.GetActiveProjectiles());
-        projectileEnemyCollisionHandler.HandleCollisionList(EnemyManager.Instance.GetActiveEnemy(), ProjectileManager.Instance.GetActiveProjectiles());
 
+        masterCollisionHandler.HandleCollisions(
+            roomManager.GetCurrentRoomItems(),
+            EnemyManager.Instance.GetActiveEnemy(),
+            ProjectileManager.Instance.GetActiveProjectiles(),
+            BlockManager.Instance.GetActiveBlocks());
+        //blockSprites._active);
         base.Update(gameTime);
         Vector2 linkSize = Link.Instance.GetScaledDimensions();
         roomManager.Update(gameTime); // ✅ This is crucial    
@@ -387,7 +381,6 @@ public class Game1 : Game
                 Console.WriteLine("Error: Link.Instance is null in Draw()!");
             }
 
-            blockSprites.DrawActiveBlocks(_spriteBatch);
             EnemyManager.Instance.Draw(_spriteBatch);
         }
         else if (_currentGameState == GameState.Paused)

@@ -10,9 +10,9 @@ namespace sprint0Test
 {
     public interface ICollidable
     {
-        public Vector2 Position { get; }
 
-        public Rectangle SourceRectangle { get; }
+        Vector2 GetPosition();
+        Vector2 GetDimensions();
     
     }
 }

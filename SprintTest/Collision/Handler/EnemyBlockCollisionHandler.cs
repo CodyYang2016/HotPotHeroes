@@ -24,41 +24,45 @@ namespace sprint0Test
 
         public void HandleCollision(IBlock block, IEnemy enemy)
         {
-            if (CollisionDetectEntities.isTouchingLeft(block, enemy))
+            if (enemy != null)
             {
-                //Move Enemy Left
-                float x = enemy.GetPosition().X;
-                float y = enemy.GetPosition().Y;
-                x = x - 1*1.5f;
-                enemy.SetPosition(new Vector2(x, y));
-                
-            }
 
-            if (CollisionDetectEntities.isTouchingRight(block, enemy))
-            {
-                //Move Enemy Right
-                float x = enemy.GetPosition().X;
-                float y = enemy.GetPosition().Y;
-                x = x + 1*1.5f;
-                enemy.SetPosition(new Vector2(x, y));
-            }
+                if (CollisionDetectEntities.isTouchingLeft(block, enemy))
+                {
+                    //Move Enemy Left
+                    float x = enemy.GetPosition().X;
+                    float y = enemy.GetPosition().Y;
+                    x = x - 1*1.5f;
+                    enemy.SetPosition(new Vector2(x, y));
+                    
+                }
 
-            if (CollisionDetectEntities.isTouchingBottom(block, enemy))
-            {
-                //Move Enemy Down
-                float x = enemy.GetPosition().X;
-                float y = enemy.GetPosition().Y;
-                y = y + 1*1.5f;
-                enemy.SetPosition(new Vector2(x, y));
-            }
+                if (CollisionDetectEntities.isTouchingRight(block, enemy))
+                {
+                    //Move Enemy Right
+                    float x = enemy.GetPosition().X;
+                    float y = enemy.GetPosition().Y;
+                    x = x + 1*1.5f;
+                    enemy.SetPosition(new Vector2(x, y));
+                }
 
-            if (CollisionDetectEntities.isTouchingTop(block, enemy))
-            {
-                //Move Enemy Up
-                float x = enemy.GetPosition().X;
-                float y = enemy.GetPosition().Y;
-                y = y - 1*1.5f;
-                enemy.SetPosition(new Vector2(x, y));
+                if (CollisionDetectEntities.isTouchingBottom(block, enemy))
+                {
+                    //Move Enemy Down
+                    float x = enemy.GetPosition().X;
+                    float y = enemy.GetPosition().Y;
+                    y = y + 1*1.5f;
+                    enemy.SetPosition(new Vector2(x, y));
+                }
+
+                if (CollisionDetectEntities.isTouchingTop(block, enemy))
+                {
+                    //Move Enemy Up
+                    float x = enemy.GetPosition().X;
+                    float y = enemy.GetPosition().Y;
+                    y = y - 1*1.5f;
+                    enemy.SetPosition(new Vector2(x, y));
+                }
             }
         }
 
