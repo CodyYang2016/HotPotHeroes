@@ -11,15 +11,15 @@ namespace sprint0Test
 {
     public class EnemyBlockCollisionHandler
     {
-        public void HandleCollisionList(List<IBlock> blocks, IEnemy enemy)//List<IEnemy> enemies)
+        public void HandleCollisionList(List<IBlock> blocks, List<IEnemy> enemies)//List<IEnemy> enemies)
         {
-            // foreach (var enemy in enemies)
-            // {
+            foreach (var enemy in enemies)
+            {
                 foreach (var block in blocks)
                 {
                     HandleCollision(block, enemy);
                 }
-            // }
+            }
         }
 
         public void HandleCollision(IBlock block, IEnemy enemy)

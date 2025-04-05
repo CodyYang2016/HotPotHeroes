@@ -13,6 +13,7 @@ namespace sprint0Test
         private EnemyBlockCollisionHandler _enemyBlockCollisionHandler;
         private PlayerProjectileCollisionHandler _playerProjectileCollisionHandler;
         private ProjectileBlockCollisionHandler _projectileBlockCollisionHandler;
+        private ProjectileEnemyCollisionHandler _projectileEnemyCollisionHandler;
 
         public MasterCollisionHandler()
         {
@@ -23,17 +24,19 @@ namespace sprint0Test
             _enemyBlockCollisionHandler = new EnemyBlockCollisionHandler();
             _playerProjectileCollisionHandler = new PlayerProjectileCollisionHandler();
             _projectileBlockCollisionHandler = new ProjectileBlockCollisionHandler();
+            _projectileEnemyCollisionHandler = new ProjectileEnemyCollisionHandler();
         }
 
-        public void HandleCollisions(List<IItem> roomItems, IEnemy activeEnemies, List<IProjectile> activeProjectiles, List<IBlock> blocks)
+        public void HandleCollisions(List<IItem> items, List<IEnemy> enemies, List<IProjectile> projectiles, List<IBlock> blocks)
         {
             // Handle collisions for each of the handlers
             _playerBlockCollisionHandler.HandleCollisionList(blocks);
-            _playerEnemyCollisionHandler.HandleCollision(activeEnemies);
-            _playerItemCollisionHandler.HandleCollisionList(roomItems);
-            _enemyBlockCollisionHandler.HandleCollisionList(blocks, activeEnemies);
-            _playerProjectileCollisionHandler.HandleCollisionList(activeProjectiles);
-            _projectileBlockCollisionHandler.HandleCollisionList(blocks, activeProjectiles);
+            _playerEnemyCollisionHandler.HandleCollisionList(enemies);
+            _playerItemCollisionHandler.HandleCollisionList(items);
+            _enemyBlockCollisionHandler.HandleCollisionList(blocks, enemies);
+            _playerProjectileCollisionHandler.HandleCollisionList(projectiles);
+            _projectileBlockCollisionHandler.HandleCollisionList(blocks, projectiles);
+            _projectileEnemyCollisionHandler.HandleCollisionList(enemies, projectiles);
         }
     }
 }

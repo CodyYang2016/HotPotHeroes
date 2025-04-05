@@ -215,7 +215,7 @@ public class Game1 : Game
         masterCollisionHandler.HandleCollisions(
 
             roomManager.GetCurrentRoomItems(),
-            EnemyManager.Instance.GetActiveEnemy(),
+            roomManager.CurrentRoom.Enemies,
             ProjectileManager.Instance.GetActiveProjectiles(),
             BlockManager.Instance.GetActiveBlocks());
 
@@ -295,7 +295,7 @@ public class Game1 : Game
 
         masterCollisionHandler.HandleCollisions(
             roomManager.GetCurrentRoomItems(),
-            EnemyManager.Instance.GetActiveEnemy(),
+            roomManager.CurrentRoom.Enemies,
             ProjectileManager.Instance.GetActiveProjectiles(),
             BlockManager.Instance.GetActiveBlocks());
         base.Update(gameTime);
@@ -357,7 +357,7 @@ public class Game1 : Game
         }
 
         base.Update(gameTime);
-        roomManager.CheckDoorTransition(Link.Instance.Position, Link.Instance.GetScaledDimensions());
+        roomManager.CheckDoorTransition();
     }
 
     protected override void Draw(GameTime gameTime)

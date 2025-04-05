@@ -12,14 +12,12 @@ namespace sprint0Test.Dungeon
 {
     public class r5e : AbstractRoom
     {
-        public r5e(string id)
+        public r5e(RoomData data)
         {
-            RoomID = id;
-
-            RoomData = new RoomData(id);
-
+            RoomID = data.RoomID;
+            RoomData = data; // ✅ GOOD: keeps all door info
         }
-        
+
         public override void Initialize()
         {
 
@@ -30,8 +28,6 @@ namespace sprint0Test.Dungeon
             // else:
             // Add nothing 
             base.Initialize();
-
-            DoorHitboxes["Right"] = new Rectangle(750, 300, 32, 64);
 
             if (!RoomData.HasBeenCleared)
             {

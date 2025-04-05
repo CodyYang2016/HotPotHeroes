@@ -26,32 +26,34 @@ namespace sprint0Test
         {
             if (projectile != null)
             {
-                if (CollisionDetectEntity.isTouchingLeft(projectile))
-                {
-                    Link.Instance.MoveLeft();
-                    Link.Instance.TakeDamage();
-                    projectile.Deactivate();
-                }
+                if (!projectile.IsFriendly()) {
+                    if (CollisionDetectEntity.isTouchingLeft(projectile))
+                    {
+                        Link.Instance.MoveLeft();
+                        Link.Instance.TakeDamage();
+                        projectile.Deactivate();
+                    }
 
-                if (CollisionDetectEntity.isTouchingRight(projectile))
-                {
-                    Link.Instance.MoveRight();
-                    Link.Instance.TakeDamage();
-                    projectile.Deactivate();
-                }
+                    if (CollisionDetectEntity.isTouchingRight(projectile))
+                    {
+                        Link.Instance.MoveRight();
+                        Link.Instance.TakeDamage();
+                        projectile.Deactivate();
+                    }
 
-                if (CollisionDetectEntity.isTouchingBottom(projectile))
-                {
-                    Link.Instance.MoveDown();
-                    Link.Instance.TakeDamage();
-                    projectile.Deactivate();
-                }
+                    if (CollisionDetectEntity.isTouchingBottom(projectile))
+                    {
+                        Link.Instance.MoveDown();
+                        Link.Instance.TakeDamage();
+                        projectile.Deactivate();
+                    }
 
-                if (CollisionDetectEntity.isTouchingTop(projectile))
-                {
-                    Link.Instance.MoveUp();
-                    Link.Instance.TakeDamage();
-                    projectile.Deactivate();
+                    if (CollisionDetectEntity.isTouchingTop(projectile))
+                    {
+                        Link.Instance.MoveUp();
+                        Link.Instance.TakeDamage();
+                        projectile.Deactivate();
+                    }
                 }
             }
         }

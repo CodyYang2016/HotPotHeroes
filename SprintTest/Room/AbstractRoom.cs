@@ -4,8 +4,6 @@ using sprint0Test.Enemy;
 using sprint0Test;
 using System.Collections.Generic;
 using System;
-using sprint0Test.Managers;
-
 
 public abstract class AbstractRoom : IRoom
 {
@@ -26,8 +24,11 @@ public abstract class AbstractRoom : IRoom
 
     public bool IsCleared => Enemies.TrueForAll(e => e.IsDead);
 
-    public virtual void Initialize() { }
-
+    public virtual void Initialize()
+    {
+        // Automatically generate door hitboxes from RoomData
+        GenerateStandardDoorHitboxes();
+    }
 
     public virtual void Update(GameTime gameTime)
     {
@@ -38,15 +39,12 @@ public abstract class AbstractRoom : IRoom
         Enemies.RemoveAll(e => e.IsDead);
         Items.RemoveAll(i => i.IsCollected);
 
-        // ✅ Mark the room as cleared if all enemies are dead
         if (!RoomData.HasBeenCleared && Enemies.Count == 0)
         {
             RoomData.HasBeenCleared = true;
-            // Optional: open door, drop reward, play sound, etc.
         }
     }
 
-    // Compute the scale based on window size
     protected float GetRoomScale(GraphicsDevice graphics)
     {
         return Math.Min(
@@ -55,7 +53,6 @@ public abstract class AbstractRoom : IRoom
         );
     }
 
-    // Apply the scale to a rectangle
     protected Rectangle ScaleRectangle(Rectangle original, float scale)
     {
         return new Rectangle(
@@ -73,22 +70,19 @@ public abstract class AbstractRoom : IRoom
         Rectangle scaledExteriorDest = ScaleRectangle(RoomData.ExteriorDest, scale);
         Rectangle scaledInteriorDest = ScaleRectangle(RoomData.InteriorDest, scale);
 
-        // Draw exterior and interior
         spriteBatch.Draw(TilesetTexture, scaledExteriorDest, RoomData.ExteriorSource, Color.White);
         spriteBatch.Draw(TilesetTexture, scaledInteriorDest, RoomData.InteriorSource, Color.White);
 
-        // === Draw Doors ===
         DrawDoor(spriteBatch, "Up", RoomData.Door_Top, RoomData.Not_Door_Top, RoomData.Top_Dest, scale);
         DrawDoor(spriteBatch, "Down", RoomData.Door_Bottom, RoomData.Not_Door_Bottom, RoomData.Bottom_Dest, scale);
         DrawDoor(spriteBatch, "Left", RoomData.Door_Left, RoomData.Not_Door_Left, RoomData.Left_Dest, scale);
         DrawDoor(spriteBatch, "Right", RoomData.Door_Right, RoomData.Not_Door_Right, RoomData.Right_Dest, scale);
 
-
-        // Draw enemies, blocks, and items
         foreach (var block in Blocks) block.Draw(spriteBatch);
         foreach (var enemy in Enemies) enemy.Draw(spriteBatch);
         foreach (var item in Items) item.Draw(spriteBatch);
     }
+
     private void DrawDoor(SpriteBatch spriteBatch, string direction, Rectangle doorSource, Rectangle notDoorSource, Rectangle destination, float scale)
     {
         Rectangle scaledDest = ScaleRectangle(destination, scale);
@@ -97,4 +91,33 @@ public abstract class AbstractRoom : IRoom
         spriteBatch.Draw(TilesetTexture, scaledDest, source, Color.White);
     }
 
+    protected void GenerateStandardDoorHitboxes()
+    {
+        
+            if (RoomData.Doors["Up"] != null)
+            {
+                DoorHitboxes["Up"] = RoomData.Top_Dest;
+                Console.WriteLine("✅ Generated hitbox for UP door.");
+            }
+
+            if (RoomData.Doors["Down"] != null)
+            {
+                DoorHitboxes["Down"] = RoomData.Bottom_Dest;
+                Console.WriteLine("✅ Generated hitbox for DOWN door.");
+            }
+
+            if (RoomData.Doors["Left"] != null)
+            {
+                DoorHitboxes["Left"] = RoomData.Left_Dest;
+                Console.WriteLine("✅ Generated hitbox for LEFT door.");
+            }
+
+            if (RoomData.Doors["Right"] != null)
+            {
+                DoorHitboxes["Right"] = RoomData.Right_Dest;
+                Console.WriteLine("✅ Generated hitbox for RIGHT door.");
+            }
+        
+
+    }
 }

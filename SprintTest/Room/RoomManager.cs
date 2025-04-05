@@ -8,19 +8,19 @@ using Microsoft.Xna.Framework.Input;
 using sprint0Test.Managers;
 using sprint0Test.Link1;
 using sprint0Test.Dungeon;
-using SprintTest.Room;
 
 public class RoomManager
 {
     public Dictionary<string, IRoom> Rooms { get; private set; } = new();
     public IRoom CurrentRoom { get; private set; }
     private ItemFactory itemFactory;
+    private DungeonLayout layout = new DungeonLayout(); // At the top of RoomManager
+
 
     public RoomManager(ItemFactory itemFactory)
     {
         this.itemFactory = itemFactory;
-        GenerateRooms();
-        SwitchToRoom("r4a");
+        LoadRoom("r4a");
     }
     private float scale = 1.0f; // Add this field to your class if not present
 
@@ -35,56 +35,48 @@ public class RoomManager
     }
 
 
-    private void GenerateRooms()
+    public void LoadRoom(string roomID)
     {
-        DungeonLayout layout = new DungeonLayout();
-        Texture2D tileset = TextureManager.Instance.GetTexture("tileSheet");
+        RoomData roomData = layout.GetRoom(roomID);
 
-        foreach (RoomData data in layout.GetAllRooms())
+        if (roomData == null)
         {
-            AbstractRoom room;
-
-
-            room = new BasicRoom(data); // new generic room class
-
-            room.TilesetTexture = tileset;
-            room.ExteriorSource = RoomData.ExteriorSource;
-            room.InteriorSource = RoomData.InteriorSource;
-
-            // Adjacent rooms are already set in RoomData — just copy them
-            foreach (var door in data.Doors)
-            {
-                if (!string.IsNullOrEmpty(door.Value))
-                    room.AdjacentRooms[door.Key] = door.Value;
-            }
-
-            room.Initialize();
-            Rooms[data.RoomID] = room;
+            Debug.WriteLine($"❌ Room data not found for ID: {roomID}");
+            return;
         }
+
+        AbstractRoom room = roomID switch
+        {
+            "r1b" => new r1b(roomData),
+            "r1c" => new r1c(roomData),
+            "r1d" => new r1d(roomData),
+            "r2c" => new r2c(roomData),
+            "r3b" => new r3b(roomData),
+            "r3c" => new r3c(roomData),
+            "r3d" => new r3d(roomData),
+            "r4a" => new r4a(roomData),
+            "r4b" => new r4b(roomData),
+            "r4c" => new r4c(roomData),
+            "r4d" => new r4d(roomData),
+            "r4e" => new r4e(roomData),
+            "r5c" => new r5c(roomData),
+            "r5e" => new r5e(roomData),
+            "r6b" => new r6b(roomData),
+            "r6c" => new r6c(roomData),
+        };
+
+        room.TilesetTexture = TextureManager.Instance.GetTexture("tileSheet");
+        room.ExteriorSource = RoomData.ExteriorSource;
+        room.InteriorSource = RoomData.InteriorSource;
+
+        room.Initialize(); // Calls your override, spawns enemies/items/blocks
+        CurrentRoom = room;
+
+        Debug.WriteLine($"✅ Loaded room: {roomID}");
     }
 
 
 
-
-    public void SwitchToRoom(string roomID)
-    {
-        if (Rooms.TryGetValue(roomID, out var newRoom))
-        {
-            CurrentRoom = newRoom;
-        }
-        else
-        {
-            Debug.WriteLine($"Room '{roomID}' not found.");
-        }
-    }
-
-/*    public void MoveToAdjacentRoom(string direction)
-    {
-        if (CurrentRoom != null && CurrentRoom.AdjacentRooms.TryGetValue(direction, out var nextRoomID))
-        {
-            SwitchToRoom(nextRoomID);
-        }
-    }*/
 
     public void Update(GameTime gameTime)
     {
@@ -99,34 +91,44 @@ public class RoomManager
     {
         return CurrentRoom?.Items ?? new List<IItem>();
     }
-
-
-
-
-    private MouseState previousMouseState;
-
-
-
-    public void CheckDoorTransition(Vector2 linkPos, Vector2 linkSize)
+    public void CheckDoorTransition()
     {
-        IRoom room = CurrentRoom;
-        if (room == null) return;
+        if (CurrentRoom == null || CurrentRoom.RoomData == null)
+            return;
 
-        Rectangle linkRect = new Rectangle((int)linkPos.X, (int)linkPos.Y, (int)linkSize.X, (int)linkSize.Y);
+        Rectangle linkRect = new Rectangle(
+            (int)Link.Instance.Position.X,
+            (int)Link.Instance.Position.Y,
+            (int)Link.Instance.GetScaledDimensions().X,
+            (int)Link.Instance.GetScaledDimensions().Y
+        );
 
-        foreach (var kvp in room.DoorHitboxes)
+        foreach (var doorEntry in CurrentRoom.DoorHitboxes)
         {
-            string direction = kvp.Key;
-            Rectangle doorRect = kvp.Value;
+            string direction = doorEntry.Key;
+            Rectangle doorHitbox = doorEntry.Value;
 
-            if (linkRect.Intersects(doorRect))
+            if (linkRect.Intersects(doorHitbox))
             {
-                SwitchToRoom(direction);
-                PositionPlayerAtEntry(direction); // ⬅️ See next point
-                break;
+                if (CurrentRoom.RoomData.Doors.TryGetValue(direction, out string nextRoomID) && nextRoomID != null)
+                {
+                    Debug.WriteLine($"➡️ Transitioning {direction} from {CurrentRoom.RoomID} to {nextRoomID}");
+
+                    LoadRoom(nextRoomID);
+                    PositionPlayerAtEntry(direction);
+
+                    break; // Only one transition per frame
+                }
+                else
+                {
+                    Debug.WriteLine($"❌ No next room found from direction: {direction}");
+                }
             }
         }
     }
+
+
+
     public void PositionPlayerAtEntry(string fromDirection)
     {
         string toDirection = fromDirection switch

@@ -12,13 +12,15 @@ namespace sprint0Test.Dungeon
 {
     public class r4b : AbstractRoom
     {
-        public r4b(string id)
+        
+        public r4b(RoomData data)
         {
-            RoomID = id;
-
-            RoomData = new RoomData(id);
+            RoomID = data.RoomID;
+            RoomData = data; // ✅ GOOD: keeps all door info
         }
         
+
+
         public override void Initialize()
         {
 
@@ -29,13 +31,9 @@ namespace sprint0Test.Dungeon
             // else:
             // Add nothing 
             base.Initialize();
-
-            DoorHitboxes["Right"] = new Rectangle(750, 300, 32, 64);
-
             if (!RoomData.HasBeenCleared)
             {
-                Enemies.Add(EnemyManager.Instance.CreateOctorok(new Vector2(300, 300)));
-                Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(200, 200)));
+                Enemies.Add(EnemyManager.Instance.CreateMoblin(new Vector2(200, 200)));
             }
 
             // (Item and block spawning can stay or follow similar logic)

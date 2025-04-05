@@ -57,7 +57,7 @@ namespace sprint0Test.Managers
             {
                 { "Skeleton", TextureManager.Instance.GetTexture("Skeleton") }
             };
-            enemyPool.Add(new Octorok(new Vector2(200, 200), Octorok_textures));
+            // enemyPool.Add(new Octorok(new Vector2(200, 200), Octorok_textures));
             // ✅ Prevent out-of-range errors when selecting an active enemy
             if (enemyPool.Count > 0)
             {

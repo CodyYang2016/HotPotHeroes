@@ -8,18 +8,20 @@ using System;
 using sprint0Test.Enemy;
 using System.Collections.Generic;
 using sprint0Test;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace sprint0Test.Dungeon
 {
     public class r4a : AbstractRoom
     {
-        public r4a(string id)
+        
+        public r4a(RoomData data)
         {
-            RoomID = id;
-
-            RoomData = new RoomData(id);
-
+            RoomID = data.RoomID;
+            RoomData = data; // ✅ GOOD: keeps all door info
         }
+        
+
 
         public override void Initialize()
         {
@@ -30,7 +32,6 @@ namespace sprint0Test.Dungeon
             // Add nothing 
             base.Initialize();
 
-            DoorHitboxes["Right"] = new Rectangle(750, 300, 32, 64);
 
             if (!RoomData.HasBeenCleared)
             {
@@ -48,6 +49,8 @@ namespace sprint0Test.Dungeon
             // Items.Add(new Heart("Heart", heartTexture, new Vector2(320, 160)));
             BlockManager.Instance.CreateBlock(new Vector2(100, 200), BlockType.Brick);
             Perimeter perimeter = new Perimeter();
+            GenerateStandardDoorHitboxes();
+
         }
     }
 

@@ -12,19 +12,12 @@ namespace sprint0Test.Dungeon
 {
     public class r1d : AbstractRoom
     {
-        public r1d(string id)
+        public r1d(RoomData data)
         {
-            RoomID = id;
-
-            RoomData = new RoomData(id);
-            RoomData.Doors["Right"] = "4b"; // Only right is open; other doors will show as closed
-
-            TilesetTexture = TextureManager.Instance.GetTexture("Dungeon"); // Texture containing door sprites
-
-            // Optionally: define adjacent room IDs for navigation logic
-            AdjacentRooms["Right"] = "4b";
+            RoomID = data.RoomID;
+            RoomData = data; // ✅ GOOD: keeps all door info
         }
-        
+
         public override void Initialize()
         {
 
@@ -36,7 +29,6 @@ namespace sprint0Test.Dungeon
             // Add nothing 
             base.Initialize();
 
-            DoorHitboxes["Right"] = new Rectangle(750, 300, 32, 64);
 
             if (!RoomData.HasBeenCleared)
             {

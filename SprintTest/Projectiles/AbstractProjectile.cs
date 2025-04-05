@@ -10,6 +10,7 @@ namespace sprint0Test.Projectiles
         protected Vector2 direction;
         protected Texture2D texture;
         protected bool isActive;
+        protected bool isFriendly;
         protected float speed;
         protected float lifetime;
 
@@ -58,6 +59,11 @@ namespace sprint0Test.Projectiles
         public bool IsActive()
         {
             return isActive;
+        }
+
+        public bool IsFriendly()
+        {
+            return isFriendly;
         }
 
         // ✅ Reset function for reusing the projectile from the pool

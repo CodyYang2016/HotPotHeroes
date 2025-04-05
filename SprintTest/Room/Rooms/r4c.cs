@@ -12,14 +12,12 @@ namespace sprint0Test.Dungeon
 {
     public class r4c : AbstractRoom
     {
-        public r4c(string id)
+        public r4c(RoomData data)
         {
-            RoomID = id;
-
-            RoomData = new RoomData(id);
-
+            RoomID = data.RoomID;
+            RoomData = data; // ✅ GOOD: keeps all door info
         }
-        
+
         public override void Initialize()
         {
 
@@ -30,9 +28,6 @@ namespace sprint0Test.Dungeon
             // else:
             // Add nothing 
             base.Initialize();
-
-            DoorHitboxes["Right"] = new Rectangle(750, 300, 32, 64);
-
             if (!RoomData.HasBeenCleared)
             {
                 Enemies.Add(EnemyManager.Instance.CreateOctorok(new Vector2(300, 300)));
