@@ -15,6 +15,8 @@ public class RoomManager
     public IRoom CurrentRoom { get; private set; }
     private ItemFactory itemFactory;
     private DungeonLayout layout = new DungeonLayout(); // At the top of RoomManager
+    private double doorCooldown = 0; // in milliseconds
+
 
 
     public RoomManager(ItemFactory itemFactory)
@@ -80,8 +82,12 @@ public class RoomManager
 
     public void Update(GameTime gameTime)
     {
+        if (doorCooldown > 0)
+            doorCooldown -= gameTime.ElapsedGameTime.TotalMilliseconds;
+
         CurrentRoom?.Update(gameTime);
     }
+
 
     public void Draw(SpriteBatch spriteBatch)
     {
@@ -93,7 +99,7 @@ public class RoomManager
     }
     public void CheckDoorTransition()
     {
-        if (CurrentRoom == null || CurrentRoom.RoomData == null)
+        if (doorCooldown > 0 || CurrentRoom == null || CurrentRoom.RoomData == null)
             return;
 
         Rectangle linkRect = new Rectangle(
@@ -117,7 +123,8 @@ public class RoomManager
                     LoadRoom(nextRoomID);
                     PositionPlayerAtEntry(direction);
 
-                    break; // Only one transition per frame
+                    doorCooldown = 5000; // ✅ Set cooldown to 5 seconds
+                    break;
                 }
                 else
                 {
@@ -126,6 +133,7 @@ public class RoomManager
             }
         }
     }
+
 
 
 
@@ -142,11 +150,33 @@ public class RoomManager
 
         if (toDirection != null && CurrentRoom.DoorHitboxes.TryGetValue(toDirection, out var entryRect))
         {
-            // Put Link slightly inside the room from that door
-            Vector2 newPos = new Vector2(entryRect.X + 8, entryRect.Y + 8); // adjust as needed
+            Vector2 newPos = toDirection switch
+            {
+                "Up" => new Vector2(
+                    entryRect.X + entryRect.Width / 2 - 8,   // center horizontally
+                    entryRect.Y + 4                           // move slightly down into room
+                ),
+                "Down" => new Vector2(
+                    entryRect.X + entryRect.Width / 2 - 8,
+                    entryRect.Y - 16                          // move slightly up into room
+                ),
+                "Left" => new Vector2(
+                    entryRect.X + 4,                          // move slightly right into room
+                    entryRect.Y + entryRect.Height / 2 - 8
+                ),
+                "Right" => new Vector2(
+                    entryRect.X - 16,                         // move slightly left into room
+                    entryRect.Y + entryRect.Height / 2 - 8
+                ),
+                _ => new Vector2(entryRect.X, entryRect.Y)
+            };
+
+            Debug.WriteLine($"🚪 Spawning Link from {fromDirection} into {toDirection} at {newPos}");
             Link.Instance.SetPosition(newPos);
         }
     }
+
+
 
 
 

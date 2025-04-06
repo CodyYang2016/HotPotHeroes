@@ -39,15 +39,21 @@ public class RoomData
     public static readonly Rectangle InteriorDest = new Rectangle(32, 32, 192, 115);
     public static readonly Rectangle InteriorSource = new Rectangle(0, 195, 192, 112);
     public static readonly Rectangle Door_Top = new Rectangle(849, 11, 32, 32);
-    public static readonly Rectangle Door_Bottom = new Rectangle(849, 44, 32, 32);
-    public static readonly Rectangle Door_Left = new Rectangle(849, 110, 32, 32);
+    public static readonly Rectangle Door_Left = new Rectangle(849, 44, 32, 32);
+    public static readonly Rectangle Door_Bottom = new Rectangle(849, 110, 32, 32);
     public static readonly Rectangle Door_Right = new Rectangle(849, 77, 32, 32);
     public static readonly Rectangle Not_Door_Top = new Rectangle(817,11, 32, 32);
-    public static readonly Rectangle Not_Door_Bottom = new Rectangle(817, 44, 32, 32);
-    public static readonly Rectangle Not_Door_Left = new Rectangle(817, 110, 32, 32);
+    public static readonly Rectangle Not_Door_Left = new Rectangle(817, 44, 32, 32);
+    public static readonly Rectangle Not_Door_Bottom = new Rectangle(817, 110, 32, 32);
     public static readonly Rectangle Not_Door_Right = new Rectangle(817, 77, 32, 32);
-    public static readonly Rectangle Top_Dest = new Rectangle(113, 0, 32, 32);
-    public static readonly Rectangle Bottom_Dest = new Rectangle(0, 73, 32, 32);
-    public static readonly Rectangle Left_Dest = new Rectangle(113, 145, 32, 32);
-    public static readonly Rectangle Right_Dest = new Rectangle(225, 73, 32, 32);
+    /*    public static readonly Rectangle Top_Dest = new Rectangle(113, 0, 32, 32);
+        public static readonly Rectangle Bottom_Dest = new Rectangle(0, 73, 32, 32);
+        public static readonly Rectangle Left_Dest = new Rectangle(113, 145, 32, 32);
+        public static readonly Rectangle Right_Dest = new Rectangle(225, 73, 32, 32);*/
+    public static readonly Rectangle Top_Dest = new Rectangle(112, 0, 32, 32);  // centered horizontally
+    public static readonly Rectangle Bottom_Dest = new Rectangle(112, 144, 32, 32);  // same X as Top
+
+    public static readonly Rectangle Left_Dest = new Rectangle(0, 72, 32, 32);   // centered vertically
+    public static readonly Rectangle Right_Dest = new Rectangle(224, 72, 32, 32);   // same Y as Left
+
 }

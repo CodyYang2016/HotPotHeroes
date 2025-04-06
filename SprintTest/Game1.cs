@@ -13,6 +13,7 @@ using sprint0Test;
 using sprint0Test.Managers;
 using System.Diagnostics;
 using sprint0Test.Enemy;
+using sprint0Test.Room;
 namespace sprint0Test;
 
 public class Game1 : Game
@@ -78,6 +79,7 @@ public class Game1 : Game
         //controllerList.Add(new KeyboardController(this, Link, blockSprites));
         controllerList.Add(new MouseController(this));
 
+        GraphicsDeviceHelper.Device = GraphicsDevice;
         base.Initialize();
     }
 

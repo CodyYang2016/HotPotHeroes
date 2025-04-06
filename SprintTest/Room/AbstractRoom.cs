@@ -4,6 +4,7 @@ using sprint0Test.Enemy;
 using sprint0Test;
 using System.Collections.Generic;
 using System;
+using sprint0Test.Room;
 
 public abstract class AbstractRoom : IRoom
 {
@@ -93,31 +94,27 @@ public abstract class AbstractRoom : IRoom
 
     protected void GenerateStandardDoorHitboxes()
     {
-        
-            if (RoomData.Doors["Up"] != null)
-            {
-                DoorHitboxes["Up"] = RoomData.Top_Dest;
-                Console.WriteLine("✅ Generated hitbox for UP door.");
-            }
+        float scale = GetRoomScale(GraphicsDeviceHelper.Device);
 
-            if (RoomData.Doors["Down"] != null)
-            {
-                DoorHitboxes["Down"] = RoomData.Bottom_Dest;
-                Console.WriteLine("✅ Generated hitbox for DOWN door.");
-            }
+        if (RoomData.Doors["Up"] != null)
+        {
+            DoorHitboxes["Up"] = ScaleRectangle(RoomData.Top_Dest, scale);
+        }
 
-            if (RoomData.Doors["Left"] != null)
-            {
-                DoorHitboxes["Left"] = RoomData.Left_Dest;
-                Console.WriteLine("✅ Generated hitbox for LEFT door.");
-            }
+        if (RoomData.Doors["Down"] != null)
+        {
+            DoorHitboxes["Down"] = ScaleRectangle(RoomData.Bottom_Dest, scale);
+        }
 
-            if (RoomData.Doors["Right"] != null)
-            {
-                DoorHitboxes["Right"] = RoomData.Right_Dest;
-                Console.WriteLine("✅ Generated hitbox for RIGHT door.");
-            }
-        
+        if (RoomData.Doors["Left"] != null)
+        {
+            DoorHitboxes["Left"] = ScaleRectangle(RoomData.Left_Dest, scale);
+        }
 
+        if (RoomData.Doors["Right"] != null)
+        {
+            DoorHitboxes["Right"] = ScaleRectangle(RoomData.Right_Dest, scale);
+        }
     }
+
 }
