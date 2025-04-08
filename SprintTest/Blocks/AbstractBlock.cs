@@ -10,14 +10,16 @@ namespace sprint0Test
         protected Texture2D _texture;
         protected float scale;
         public bool IsVisible { get; set; }
+        protected bool isSolid;
 
-        public AbstractBlock(Texture2D texture, Vector2 position, Rectangle sourceRectangle, float scale = 1.0f, bool isVisible = true)
+        public AbstractBlock(Texture2D texture, Vector2 position, Rectangle sourceRectangle, float scale = 1.0f, bool isVisible = true, bool isSolid = true)
         {
             _texture = texture;
             Position = position;
             SourceRectangle = sourceRectangle;
             this.scale = scale;
             IsVisible = isVisible;
+            this.isSolid = isSolid;
         }
 
         public virtual void Update()
@@ -27,8 +29,8 @@ namespace sprint0Test
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            // if (IsVisible)
-            // {
+            if (IsVisible)
+            {
                 Rectangle destination = new Rectangle(
                     (int)Position.X,
                     (int)Position.Y,
@@ -37,7 +39,7 @@ namespace sprint0Test
                 );
 
                 spriteBatch.Draw(_texture, destination, SourceRectangle, Color.White);
-            // }
+             }
         }
 
         public Vector2 GetPosition()
@@ -48,6 +50,10 @@ namespace sprint0Test
         public virtual Vector2 GetDimensions()
         {
             return new Vector2(SourceRectangle.Width * scale, SourceRectangle.Height * scale);
+        }
+        public bool IsSolid()
+        {
+            return isSolid;
         }
     }
 }

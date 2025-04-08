@@ -18,6 +18,9 @@ namespace sprint0Test;
 
 public class Game1 : Game
 {
+    // Game1 Instance
+    public static Game1 Instance { get; private set; }
+
     public enum GameState
     {
         Playing,
@@ -53,17 +56,18 @@ public class Game1 : Game
 
     private KeyboardState previousKeyboardState;
 
-    private int playerCollisionCount = 0;
-    private float respawnTimer = 8f;
-    private bool isRespawning = false;
-    private bool isFlashing = false;
-    private float flashTimer = 0.6f;
-    private float flashDuration = 0.6f;
-    private int flashCount = 0;
-    private Vector2 respawnPosition;
-
+    // Code for the new Link Health
+    private Texture2D heartTexture;
+    private List<Vector2> heartPositions;
+    private int collisionCount;
+    private int maxHearts = 3;
+    private int currentHearts;
+    private bool isPlayerDead;
+    private float respawnTimer;
+    private Vector2 playerRespawnPosition;
     public Game1()
     {
+        Instance = this; // Set the static instance
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
@@ -94,6 +98,8 @@ public class Game1 : Game
         _pauseMenu.OnOptionSelected = HandleMenuSelection;
         pauseFont = Content.Load<SpriteFont>("PauseFont"); // Load the font
 
+
+
         masterCollisionHandler = new MasterCollisionHandler(); // Initialize the collision handler
 
 
@@ -106,6 +112,9 @@ public class Game1 : Game
         BlockManager.LoadTexture(dungeonTexture);
 
         //Register Textures
+        // Heart working 
+        heartTexture = Content.Load<Texture2D>("heart");
+
         itemFactory.RegisterTexture("Heart", Content.Load<Texture2D>("heart"));
         itemFactory.RegisterTexture("RedPotion", Content.Load<Texture2D>("red-potion"));
         itemFactory.RegisterTexture("BluePotion", Content.Load<Texture2D>("blue-potion"));
@@ -212,7 +221,14 @@ public class Game1 : Game
         Console.WriteLine("projectiles: " + (ProjectileManager.Instance.GetActiveProjectiles() != null));
         Console.WriteLine("blocks: " + (BlockManager.Instance.GetActiveBlocks() != null));
         Link.Initialize(linkSprite, new Vector2(200, 200));
-
+        heartPositions = new List<Vector2> {
+        new Vector2(10, 10),
+        new Vector2(50, 10),
+        new Vector2(90, 10)
+    };
+        currentHearts = maxHearts;
+        collisionCount = 0;
+        isPlayerDead = false;
 
         masterCollisionHandler.HandleCollisions(
 
@@ -227,28 +243,43 @@ public class Game1 : Game
 
     }
 
-    // Working on outdated code
-/*    private void HandlePlayerCollision(IEnemy enemy)
-    {
-        if (!isRespawning && (CollisionDetectEnemy.isTouchingLeft(enemy) ||
-                              CollisionDetectEnemy.isTouchingRight(enemy) ||
-                              CollisionDetectEnemy.isTouchingTop(enemy) ||
-                              CollisionDetectEnemy.isTouchingBottom(enemy)))
-        {
-            playerCollisionCount++;
-            if (playerCollisionCount >= 6)
-            {
-                StartRespawnSequence();
-            }
-        }
-    }*/
 
-    private void StartRespawnSequence()
+    public void HandlePlayerDamage()
     {
-        isFlashing = true;
-        flashCount = 0;
-        flashTimer = 0f;
-        respawnPosition = Link.Instance.Position;
+        collisionCount++; // Track hits
+        Console.WriteLine($"Collision Count: {collisionCount}");
+
+        if (collisionCount % 2 == 0 && currentHearts > 0)
+        {
+            currentHearts--;
+            InitializeHeartPositions(); // Update heart UI
+            Console.WriteLine($"Heart lost! Current Hearts: {currentHearts}");
+        }
+
+        if (collisionCount >= 6)
+        {
+            isPlayerDead = true;
+            playerRespawnPosition = Link.Instance.Position; // Save respawn point
+            respawnTimer = 3f;
+            collisionCount = 0;
+            currentHearts = maxHearts; // Restore full hearts
+            InitializeHeartPositions(); // Update heart UI
+            Console.WriteLine("Player is dead! Respawning in 3 seconds.");
+        }
+    }
+
+    // Heart Helper Methods
+    private void InitializeHeartPositions()
+    {
+        heartPositions.Clear();  // Reset positions
+        float heartSpacing = 30f;
+        Vector2 heartPosition = new Vector2(10, 10);
+
+        for (int i = 0; i < currentHearts; i++)  // Draw only current hearts
+        {
+            heartPositions.Add(heartPosition);
+            heartPosition.X += heartSpacing;
+        }
     }
 
     private void HandleMenuSelection(int selectedIndex)
@@ -283,16 +314,7 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        foreach (IController controller in controllerList)
-        {
-            controller.Update();
-        }
 
-
-
-        EnemyManager.Instance.Update(gameTime);
-        ProjectileManager.Instance.Update(gameTime);
-        Link.Instance.Update();
 
 
         masterCollisionHandler.HandleCollisions(
@@ -326,37 +348,25 @@ public class Game1 : Game
         {
             item.Update(gameTime);
         }
+        EnemyManager.Instance.Update(gameTime);
+        ProjectileManager.Instance.Update(gameTime);
+        Link.Instance.Update();
 
-        float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-        if (isFlashing)
+        // Player Dead Animation
+        if (isPlayerDead)
         {
-            flashTimer += elapsed;
-            if (flashTimer >= flashDuration)
-            {
-                flashTimer = 0f;
-                flashCount++;
-                Link.Instance.IsVisible = !Link.Instance.IsVisible;  // Toggling visibility
-                if (flashCount >= 8) 
-                {
-                    isFlashing = false;
-                    isRespawning = true;
-                    respawnTimer = 8f;
-                    Link.Instance.IsVisible = false; // Set Link as invisible during respawn
-                }
-            }
-        }
-        else if (isRespawning)
-        {
-            respawnTimer -= elapsed;
+            respawnTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (respawnTimer <= 0)
             {
-                isRespawning = false;
-                Link.Instance.SetPosition(respawnPosition); // Set position via method
-                Link.Instance.IsVisible = true;
-                playerCollisionCount = 0; // Reset collision count after respawn
+                isPlayerDead = false;
+                collisionCount = 0;
+                currentHearts = maxHearts; // Reset to 3 hearts
+                Link.Instance.SetPosition(playerRespawnPosition);
+                InitializeHeartPositions(); // Refresh heart display
             }
+            return;
         }
+
 
         base.Update(gameTime);
         roomManager.CheckDoorTransition();
@@ -397,6 +407,18 @@ public class Game1 : Game
         else if (_currentGameState == GameState.Paused)
         {
             _pauseMenu.Draw(_spriteBatch, GraphicsDevice);
+        }
+
+        if (!isPlayerDead)
+        {
+            // Draw hearts based on currentHearts
+            for (int i = 0; i < currentHearts; i++)
+            {
+                _spriteBatch.Draw(heartTexture, heartPositions[i], Color.White);
+                Console.WriteLine($"Drawing heart at position {heartPositions[i]}"); // Debugging heart drawing
+            }
+
+            Link.Instance.Draw(_spriteBatch); // Draw Link
         }
 
         if (isPaused)

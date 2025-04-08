@@ -166,6 +166,9 @@ namespace sprint0Test.Link1
                 sprite.SetState(LinkAction.Damaged, sprite.CurrentDirection);
             }
             // currentHealth -= damage;
+            // Larry's code
+            Game1.Instance.HandlePlayerDamage();
+
         }
 
         public void SwitchItem(int direction)

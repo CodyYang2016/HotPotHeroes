@@ -12,7 +12,8 @@ namespace sprint0Test
         {
             foreach (var block in _active)
             {
-                HandleCollision(block);
+                if (block.IsSolid())
+                    HandleCollision(block);
             }
         }
 
@@ -21,11 +22,13 @@ namespace sprint0Test
             if (CollisionDetectEntity.isTouchingLeft(block))
             {
                 Link.Instance.MoveLeft();
+                Link.Instance.MoveLeft();
                 //Link.Instance.TakeDamage();
             }
 
             if (CollisionDetectEntity.isTouchingRight(block))
             {
+                Link.Instance.MoveRight();
                 Link.Instance.MoveRight();
                 //Link.Instance.TakeDamage();
             }
@@ -33,11 +36,13 @@ namespace sprint0Test
             if (CollisionDetectEntity.isTouchingBottom(block))
             {
                 Link.Instance.MoveDown();
+                Link.Instance.MoveDown();
                 //Link.Instance.TakeDamage();
             }
 
             if (CollisionDetectEntity.isTouchingTop(block))
             {
+                Link.Instance.MoveUp();
                 Link.Instance.MoveUp();
                 //Link.Instance.TakeDamage();
             }

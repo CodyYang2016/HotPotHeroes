@@ -6,8 +6,8 @@ namespace sprint0Test
     public class Block : AbstractBlock
     {
 
-        public Block(Texture2D texture, Rectangle sourceRectangle, Vector2 position, float scale = 1.0f, bool isVisible = true)
-            : base(texture, position, sourceRectangle, scale, isVisible)
+        public Block(Texture2D texture, Rectangle sourceRectangle, Vector2 position, float scale = 1.0f, bool isVisible = true, bool isSolid = true)
+            : base(texture, position, sourceRectangle, scale, isVisible, isSolid)
         {
         }
 

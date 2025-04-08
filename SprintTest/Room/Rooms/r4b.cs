@@ -33,18 +33,25 @@ namespace sprint0Test.Dungeon
             base.Initialize();
             if (!RoomData.HasBeenCleared)
             {
-                Enemies.Add(EnemyManager.Instance.CreateMoblin(new Vector2(200, 200)));
+                Enemies.Add(EnemyManager.Instance.CreateMoblin(new Vector2(200, 300)));
+                Enemies.Add(EnemyManager.Instance.CreateDarknut(new Vector2(200, 200)));
+                Enemies.Add(EnemyManager.Instance.CreateMoblin(new Vector2(400, 200)));
+                Enemies.Add(EnemyManager.Instance.CreateDarknut(new Vector2(400, 250)));
+                Enemies.Add(EnemyManager.Instance.CreateMoblin(new Vector2(100, 200)));
+                Enemies.Add(EnemyManager.Instance.CreateDarknut(new Vector2(100, 350)));
             }
 
             // (Item and block spawning can stay or follow similar logic)
-        
+            
+            BlockManager.Instance.CreateBlock(new Vector2(225,220), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(225,270), BlockType.Block);
 
-            Texture2D appleTexture = TextureManager.Instance.GetTexture("Apple");
-            Texture2D heartTexture = TextureManager.Instance.GetTexture("Heart");
+            BlockManager.Instance.CreateBlock(new Vector2(275,220), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(275,270), BlockType.Block);
 
-            // Items.Add(new Apple("Apple", appleTexture, new Vector2(300, 120)));
-            // Items.Add(new Heart("Heart", heartTexture, new Vector2(320, 160)));
-            BlockManager.Instance.CreateBlock(new Vector2(100, 200), BlockType.Brick);
+            BlockManager.Instance.CreateBlock(new Vector2(325,220), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(325,270), BlockType.Block);
+            
         }
     }
 

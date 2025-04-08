@@ -28,6 +28,7 @@ public abstract class AbstractRoom : IRoom
     public virtual void Initialize()
     {
         // Automatically generate door hitboxes from RoomData
+        Perimeter perimeter = new Perimeter(this);
         GenerateStandardDoorHitboxes();
     }
 
@@ -115,6 +116,12 @@ public abstract class AbstractRoom : IRoom
         {
             DoorHitboxes["Right"] = ScaleRectangle(RoomData.Right_Dest, scale);
         }
+    }
+    public bool HasDoor(string direction)
+    {
+        bool hasDoor = RoomData.Doors.ContainsKey(direction) && RoomData.Doors[direction] != null;
+        return hasDoor;
+
     }
 
 }

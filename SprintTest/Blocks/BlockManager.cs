@@ -49,10 +49,10 @@ namespace sprint0Test
         }
 
         // Method to create and add a block to the room
-        public void CreateBlock(Vector2 position, BlockType blockType, float scale = 3.0f, bool isVisible = true)
+        public void CreateBlock(Vector2 position, BlockType blockType, float scale = 3.0f, bool isVisible = true, bool isSolid = true)
         {
             Rectangle blockRectangle = blockTypeToRectangle[blockType];
-            Block newBlock = new Block(blockTexture, blockRectangle, position, scale, isVisible);
+            Block newBlock = new Block(blockTexture, blockRectangle, position, scale, isVisible, isSolid);
 
             // Add it to the list of blocks in the room
             blocks.Add(newBlock);
@@ -125,6 +125,11 @@ namespace sprint0Test
         public List<IBlock> GetActiveBlocks()
         {
             return blocks;
+        }
+
+        public void ClearActiveBlocks()
+        {
+            blocks.Clear();
         }
 
         // Optional method to remove a block (based on position or reference)

@@ -22,8 +22,8 @@ namespace sprint0Test.Enemy
                 Octorok_textures["Octopus_Idle2"]
             })
         {
-            detectionRadius = 150f; // Detects player from medium distance
-            attackRange = 100f; // Attacks from range
+            detectionRadius = 300f; // Detects player from medium distance
+            attackRange = 300f; // Attacks from range
             random = new Random();
             SetRandomDirection();
         }

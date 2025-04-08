@@ -10,7 +10,7 @@ public class Perimeter
 {
     public List<IBlock> perimeter = new List<IBlock>();
 
-    public Perimeter()
+    public Perimeter(AbstractRoom room)
     {
         int roomWidth = 14;  // Number of tiles in width
         int roomHeight = 9; // Number of tiles in height
@@ -29,12 +29,19 @@ public class Perimeter
             Vector2 topPos = new Vector2(roomStart.X + x * tileSize, roomStart.Y);
             Vector2 bottomPos = new Vector2(roomStart.X + x * tileSize, roomStart.Y + (roomHeight - 1) * tileSize);
 
-            if ((topPos != topDoor) && (topPos.X != topDoor.X - tileSize))  // Don't place brick at the top door
+            if ((topPos != topDoor) && (topPos.X != topDoor.X - tileSize) || !room.HasDoor("Up"))  // Don't place brick at the top door
+            {
                 BlockManager.Instance.CreateBlock(topPos, BlockType.Tile, 3f, false);
-                //perimeter.Add(BlockManager.Instance.CreateBlock(topPos, BlockType.Tile, 3f, false));
+            } else {
+                BlockManager.Instance.CreateBlock(topPos, BlockType.Blue, 3f, false, false);
+            }
 
-            if (bottomPos != bottomDoor && (bottomPos.X != bottomDoor.X - tileSize)) // Don't place brick at the bottom door
+            if ((bottomPos != bottomDoor) && (bottomPos.X != bottomDoor.X - tileSize) || !room.HasDoor("Down")) // Don't place brick at the bottom door
+            {
                 BlockManager.Instance.CreateBlock(bottomPos, BlockType.Tile, 3f, false);
+            } else {
+                BlockManager.Instance.CreateBlock(bottomPos, BlockType.Blue, 3f, false, false);
+            }
         };
 
         for (int y = 0; y < roomHeight; y++)
@@ -42,11 +49,19 @@ public class Perimeter
             Vector2 leftPos = new Vector2(roomStart.X, roomStart.Y + y * tileSize);
             Vector2 rightPos = new Vector2(roomStart.X + (roomWidth - 1) * tileSize, roomStart.Y + y * tileSize);
 
-            if (leftPos != leftDoor && (leftPos.Y != leftDoor.Y - tileSize) && (leftPos.Y != leftDoor.Y + tileSize)) // Don't place brick at the left door
+            if (leftPos != leftDoor && (leftPos.Y != leftDoor.Y - tileSize) && (leftPos.Y != leftDoor.Y + tileSize) || !room.HasDoor("Left")) // Don't place brick at the left door
+            {
                 BlockManager.Instance.CreateBlock(leftPos, BlockType.Tile, 3f, false);
+            } else {
+                BlockManager.Instance.CreateBlock(leftPos, BlockType.Blue, 3f, false, false);
+            }
 
-            if (rightPos != rightDoor && (leftPos.Y != leftDoor.Y - tileSize) && (leftPos.Y != leftDoor.Y + tileSize))  // Don't place brick at the right door
+            if (rightPos != rightDoor && (rightPos.Y != rightDoor.Y - tileSize) && (rightPos.Y != rightDoor.Y + tileSize) || !room.HasDoor("Right"))  // Don't place brick at the right door
+            {
                 BlockManager.Instance.CreateBlock(rightPos, BlockType.Tile, 3f, false);
+            } else {
+                BlockManager.Instance.CreateBlock(rightPos, BlockType.Blue, 3f, false, false);
+            }
                 
         };
     }

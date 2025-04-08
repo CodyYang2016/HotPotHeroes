@@ -46,10 +46,6 @@ public class RoomData
     public static readonly Rectangle Not_Door_Left = new Rectangle(817, 44, 32, 32);
     public static readonly Rectangle Not_Door_Bottom = new Rectangle(817, 110, 32, 32);
     public static readonly Rectangle Not_Door_Right = new Rectangle(817, 77, 32, 32);
-    /*    public static readonly Rectangle Top_Dest = new Rectangle(113, 0, 32, 32);
-        public static readonly Rectangle Bottom_Dest = new Rectangle(0, 73, 32, 32);
-        public static readonly Rectangle Left_Dest = new Rectangle(113, 145, 32, 32);
-        public static readonly Rectangle Right_Dest = new Rectangle(225, 73, 32, 32);*/
     public static readonly Rectangle Top_Dest = new Rectangle(112, 0, 32, 32);  // centered horizontally
     public static readonly Rectangle Bottom_Dest = new Rectangle(112, 144, 32, 32);  // same X as Top
 

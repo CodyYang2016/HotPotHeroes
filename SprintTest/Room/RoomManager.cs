@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using sprint0Test.Managers;
 using sprint0Test.Link1;
 using sprint0Test.Dungeon;
+using sprint0Test;
 
 public class RoomManager
 {
@@ -22,7 +23,7 @@ public class RoomManager
     public RoomManager(ItemFactory itemFactory)
     {
         this.itemFactory = itemFactory;
-        LoadRoom("r4a");
+        LoadRoom("r3c");
     }
     private float scale = 1.0f; // Add this field to your class if not present
 
@@ -40,7 +41,7 @@ public class RoomManager
     public void LoadRoom(string roomID)
     {
         RoomData roomData = layout.GetRoom(roomID);
-
+        BlockManager.Instance.ClearActiveBlocks();
         if (roomData == null)
         {
             Debug.WriteLine($"❌ Room data not found for ID: {roomID}");
@@ -63,6 +64,7 @@ public class RoomManager
             "r4e" => new r4e(roomData),
             "r5c" => new r5c(roomData),
             "r5e" => new r5e(roomData),
+            "r5f" => new r5f(roomData),
             "r6b" => new r6b(roomData),
             "r6c" => new r6c(roomData),
         };
@@ -123,7 +125,7 @@ public class RoomManager
                     LoadRoom(nextRoomID);
                     PositionPlayerAtEntry(direction);
 
-                    doorCooldown = 5000; // ✅ Set cooldown to 5 seconds
+                    doorCooldown = 2000; // ✅ Set cooldown to 5 seconds
                     break;
                 }
                 else

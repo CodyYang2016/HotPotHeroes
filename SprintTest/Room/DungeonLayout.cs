@@ -43,6 +43,7 @@ public class DungeonLayout
 
         var r3d = new RoomData("r3d");
         r3d.Doors["Left"] = "r3c";
+        r3d.Doors["Right"] = "r4d";
         rooms["r3d"] = r3d;
 
         var r4a = new RoomData("r4a");
@@ -80,7 +81,12 @@ public class DungeonLayout
 
         var r5e = new RoomData("r5e");
         r5e.Doors["Down"] = "r4e";
+        r5e.Doors["Right"] = "r5f";
         rooms["r5e"] = r5e;
+
+        var r5f = new RoomData("r5f");
+        r5f.Doors["Left"] = "r5e";
+        rooms["r5f"] = r5f;
 
         var r6c = new RoomData("r6c");
         r6c.Doors["Down"] = "r5c";

@@ -32,7 +32,8 @@ namespace sprint0Test.Dungeon
             if (!RoomData.HasBeenCleared)
             {
                 Enemies.Add(EnemyManager.Instance.CreateOctorok(new Vector2(300, 300)));
-                Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(200, 200)));
+                Enemies.Add(EnemyManager.Instance.CreateOctorok(new Vector2(400, 400)));
+                Enemies.Add(EnemyManager.Instance.CreateMoblin(new Vector2(200, 200)));
             }
 
             // (Item and block spawning can stay or follow similar logic)
@@ -43,7 +44,8 @@ namespace sprint0Test.Dungeon
 
             // Items.Add(new Apple("Apple", appleTexture, new Vector2(300, 120)));
             // Items.Add(new Heart("Heart", heartTexture, new Vector2(320, 160)));
-            BlockManager.Instance.CreateBlock(new Vector2(100, 200), BlockType.Brick);
+            BlockManager.Instance.CreateBlock(new Vector2(170, 210), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(220, 210), BlockType.Block);
         }
     }
 

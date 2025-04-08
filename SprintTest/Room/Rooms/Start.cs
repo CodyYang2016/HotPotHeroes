@@ -7,24 +7,21 @@ using sprint0Test.Sprites;
 using System;
 using sprint0Test.Enemy;
 using System.Collections.Generic;
-using sprint0Test;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace sprint0Test.Dungeon
 {
-    public class r4a : AbstractRoom
+    public class r1c : AbstractRoom
     {
-        
-        public r4a(RoomData data)
+        public r1c(RoomData data)
         {
             RoomID = data.RoomID;
             RoomData = data; // ✅ GOOD: keeps all door info
         }
-        
-
 
         public override void Initialize()
         {
+
+
             // Clear the enemies list 
             // if isCleared == FALSE:
             // Enemies.ADD
@@ -35,23 +32,30 @@ namespace sprint0Test.Dungeon
 
             if (!RoomData.HasBeenCleared)
             {
-                Enemies.Add(EnemyManager.Instance.CreateOctorok(new Vector2(300, 300)));
-                Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(200, 200)));
+
             }
 
             // (Item and block spawning can stay or follow similar logic)
-
+        
 
             Texture2D appleTexture = TextureManager.Instance.GetTexture("Apple");
             Texture2D heartTexture = TextureManager.Instance.GetTexture("Heart");
 
             // Items.Add(new Apple("Apple", appleTexture, new Vector2(300, 120)));
             // Items.Add(new Heart("Heart", heartTexture, new Vector2(320, 160)));
-            BlockManager.Instance.CreateBlock(new Vector2(100, 200), BlockType.Brick);
-            Perimeter perimeter = new Perimeter();
-            GenerateStandardDoorHitboxes();
-
+            BlockManager.Instance.CreateBlock(new Vector2(130, 170), BlockType.Fish);
+            BlockManager.Instance.CreateBlock(new Vector2(350, 170), BlockType.Fish);
+            BlockManager.Instance.CreateBlock(new Vector2(480, 170), BlockType.Fish);
+            BlockManager.Instance.CreateBlock(new Vector2(130, 260), BlockType.Fish);
+            BlockManager.Instance.CreateBlock(new Vector2(350, 260), BlockType.Fish);
+            BlockManager.Instance.CreateBlock(new Vector2(480, 260), BlockType.Fish);
+            BlockManager.Instance.CreateBlock(new Vector2(130, 350), BlockType.Fish);
+            BlockManager.Instance.CreateBlock(new Vector2(350, 350), BlockType.Fish);
+            BlockManager.Instance.CreateBlock(new Vector2(480, 350), BlockType.Fish);
         }
+
     }
 
 }
+
+
