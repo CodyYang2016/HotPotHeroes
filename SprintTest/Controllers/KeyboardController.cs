@@ -43,10 +43,15 @@ namespace sprint0Test
             continuousCommands.Add(Keys.D, new MoveRightCommand(myGame));
 
             // Commands that should execute once when key is pressed
-            singlePressCommands.Add(Keys.O, new PreviousEnemyCommand());
-            singlePressCommands.Add(Keys.P, new NextEnemyCommand());
-            singlePressCommands.Add(Keys.L, new EnemyAttackCommand());
+            singlePressCommands.Add(Keys.F1, new PreviousEnemyCommand());
+            singlePressCommands.Add(Keys.F2, new NextEnemyCommand());
+            singlePressCommands.Add(Keys.F3, new EnemyAttackCommand());
+
+
             singlePressCommands.Add(Keys.Q, new QuitCommand(myGame));
+            singlePressCommands.Add(Keys.P, new PauseCommand(myGame));
+
+
             singlePressCommands.Add(Keys.Z, new LinkAttackCommand(myGame));
             singlePressCommands.Add(Keys.E, new TakeDamageCommand(myGame));
             singlePressCommands.Add(Keys.U, new CycleItemCommand(myGame, -1));
