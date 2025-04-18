@@ -392,6 +392,17 @@ public class Game1 : Game
             _spriteBatch.Draw(rupeeIcon, rupeePosition, Color.White);
             _spriteBatch.DrawString(_menuFont, "x "+ rupeeCount.ToString(), rupeePosition + new Vector2(rupeeIcon.Width + 5, 0), Color.White);
             var items = roomManager.GetCurrentRoomItems();
+            if (!isPlayerDead)
+            {
+                // Draw hearts based on currentHearts
+                for (int i = 0; i < currentHearts; i++)
+                {
+                    _spriteBatch.Draw(heartTexture, heartPositions[i], Color.White);
+                    Console.WriteLine($"Drawing heart at position {heartPositions[i]}"); // Debugging heart drawing
+                }
+
+                Link.Instance.Draw(_spriteBatch); // Draw Link
+            }
             if (items != null)
             {
                 foreach (var item in items)
@@ -412,22 +423,13 @@ public class Game1 : Game
             EnemyManager.Instance.Draw(_spriteBatch);
             break;
 
+
         case GameState.Options:
             _spriteBatch.DrawString(_menuFont, "Options Coming Soon", new Vector2(100, 100), Color.White);
             break;
         }
 
-        if (!isPlayerDead)
-        {
-            // Draw hearts based on currentHearts
-            for (int i = 0; i < currentHearts; i++)
-            {
-                _spriteBatch.Draw(heartTexture, heartPositions[i], Color.White);
-                Console.WriteLine($"Drawing heart at position {heartPositions[i]}"); // Debugging heart drawing
-            }
 
-            Link.Instance.Draw(_spriteBatch); // Draw Link
-        }
 
         if (isPaused)
         {
