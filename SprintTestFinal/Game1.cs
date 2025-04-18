@@ -256,13 +256,23 @@ public class Game1 : Game
         totalHits++;
         Console.WriteLine($"Collision Count: {collisionCount}, Total Hits: {totalHits}");
 
+        TryRemoveHeart();
+        CheckDeath();
+        CheckGameOver();
+    }
+
+    private void TryRemoveHeart()
+    {
         if (collisionCount % 2 == 0 && currentHearts > 0)
         {
             currentHearts--;
-            InitializeHeartPositions(); // Update UI
+            InitializeHeartPositions(); // Update heart UI
             Console.WriteLine($"Heart lost! Current Hearts: {currentHearts}");
         }
+    }
 
+    private void CheckDeath()
+    {
         if (collisionCount >= 6 && !isPlayerDead)
         {
             isPlayerDead = true;
@@ -270,18 +280,23 @@ public class Game1 : Game
             respawnTimer = 2f;
             currentHearts = maxHearts;
             InitializeHeartPositions();
+
             Console.WriteLine("Player is dead! Respawning in 2 seconds.");
 
-            collisionCount = 0; // Reset only the current round’s hits
-            deathCount++;       // Count how many deaths have occurred
+            collisionCount = 0;
+            deathCount++;
         }
+    }
 
+    private void CheckGameOver()
+    {
         if (deathCount >= 2 && !isGameOver)
         {
             isGameOver = true;
             Console.WriteLine("Game Over: You Lose!");
         }
     }
+
 
     // Heart Helper Methods
     private void InitializeHeartPositions()
