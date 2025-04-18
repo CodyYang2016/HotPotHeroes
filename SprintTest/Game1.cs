@@ -5,14 +5,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using sprint0Test.Interfaces;
 using sprint0Test.Items;
-using sprint0Test.Sprites;
 using sprint0Test.Link1;
 using System;
-using sprint0Test.Dungeon;
-using sprint0Test;
-using sprint0Test.Managers;
-using System.Diagnostics;
-using sprint0Test.Enemy;
 using sprint0Test.Room;
 namespace sprint0Test;
 
@@ -22,49 +16,42 @@ public class Game1 : Game
     public static Game1 Instance { get; private set; }
 
     public enum GameState
-    {
-        Playing,
-        Paused
-    }
-    private PauseMenu _pauseMenu;
-    public GameState _currentGameState = GameState.Playing;
+    {StartMenu, Playing, Options, Paused, Exiting}
+    public GameState _currentGameState = GameState.StartMenu;
+
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    public Texture2D spriteTexture;
-    List<IController> controllerList;
-    public ISprite sprite;
     private SpriteFont _menuFont;
+
+    private PauseMenu _pauseMenu;
+    private MenuManager menuManager;
+    private Texture2D backgroundTexture;
+    public Texture2D spriteTexture;
+
+    List<IController> controllerList = new();
     private ItemFactory itemFactory;
-    public List<IItem> itemList;
-    public int currentItemIndex;
-    private Link Link;
-
-    public IItem currentItem;
-
-    // New Room Manager
-    RoomManager roomManager;
-    float roomScale;
-
-
-    // New Collision Handler
+    private RoomManager roomManager;
     private MasterCollisionHandler masterCollisionHandler;
-
-
-    // Pause-related fields
-    private bool isPaused;
-    private SpriteFont pauseFont;
-
-    private KeyboardState previousKeyboardState;
-
-    // Code for the new Link Health
     private Texture2D heartTexture;
-    private List<Vector2> heartPositions;
-    private int collisionCount;
-    private int maxHearts = 3;
-    private int currentHearts;
+    private Texture2D rupeeIcon;
+    private List<Vector2> heartPositions = new();
+    private int maxHearts = 3, currentHearts = 3, collisionCount = 0;
+    int rupeeCount = 0;
+    Vector2 rupeePosition = new Vector2(650, 10);
     private bool isPlayerDead;
     private float respawnTimer;
     private Vector2 playerRespawnPosition;
+
+    private bool isPaused;
+    private KeyboardState previousKeyboardState;
+
+    public ISprite sprite;
+    public List<IItem> itemList;
+    public int currentItemIndex;
+    private Link Link;
+    public IItem currentItem;
+    float roomScale;
+
     public Game1()
     {
         Instance = this; // Set the static instance
@@ -80,9 +67,7 @@ public class Game1 : Game
     protected override void Initialize()
     {
         controllerList = new List<IController>();
-        //controllerList.Add(new KeyboardController(this, Link, blockSprites));
-        controllerList.Add(new MouseController(this));
-
+        //controllerList.Add(new MouseController(this));
         GraphicsDeviceHelper.Device = GraphicsDevice;
         base.Initialize();
     }
@@ -90,55 +75,29 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        //spriteTexture = Content.Load<Texture2D>("mario2");
-        //sprite = new StandingInPlacePlayerSprite(spriteTexture);
-
         _menuFont = Content.Load<SpriteFont>("MenuFont");
         _pauseMenu = new PauseMenu(Content.Load<SpriteFont>("MenuFont"));
         _pauseMenu.OnOptionSelected = HandleMenuSelection;
-        pauseFont = Content.Load<SpriteFont>("PauseFont"); // Load the font
-
-
+        backgroundTexture = Content.Load<Texture2D>("StartScreen");
+        menuManager = new MenuManager(_menuFont, backgroundTexture);
 
         masterCollisionHandler = new MasterCollisionHandler(); // Initialize the collision handler
+        TextureManager.Instance.LoadContent(this);
+        heartTexture = Content.Load<Texture2D>("heart");
+        rupeeIcon = Content.Load<Texture2D>("green-rupee");
 
+        itemFactory = new ItemFactory();
+        LoadItemTextures();
+        RegisterItems();
+
+        EnemyManager.Instance.SpawnEnemy();
 
         var dungeonTexture = Content.Load<Texture2D>("TileSetDungeon");
-        TextureManager.Instance.LoadContent(this);
-        EnemyManager.Instance.SpawnEnemy();
-        itemFactory = new ItemFactory();
 
-        // Load BlockManager
         BlockManager.LoadTexture(dungeonTexture);
 
-        //Register Textures
-        // Heart working 
-        heartTexture = Content.Load<Texture2D>("heart");
-
-        itemFactory.RegisterTexture("Heart", Content.Load<Texture2D>("heart"));
-        itemFactory.RegisterTexture("RedPotion", Content.Load<Texture2D>("red-potion"));
-        itemFactory.RegisterTexture("BluePotion", Content.Load<Texture2D>("blue-potion"));
-        itemFactory.RegisterTexture("GreenPotion", Content.Load<Texture2D>("green-potion"));
-        itemFactory.RegisterTexture("RedRupee", Content.Load<Texture2D>("red-rupee"));
-        itemFactory.RegisterTexture("BlueRupee", Content.Load<Texture2D>("blue-rupee"));
-        itemFactory.RegisterTexture("GreenRupee", Content.Load<Texture2D>("green-rupee"));
-        itemFactory.RegisterTexture("Apple", Content.Load<Texture2D>("apple"));
-        itemFactory.RegisterTexture("Crystal", Content.Load<Texture2D>("crystal"));
-        //itemFactory.RegisterTexture("Boomerang", Content.Load<Texture2D>("boomerang"));
-
-        //Register Item Creation Logic
-        itemFactory.RegisterItem("Heart", position => new Heart("Heart", itemFactory.GetTexture("Heart"), position));
-        itemFactory.RegisterItem("RedPotion", position => new Potion("RedPotion", itemFactory.GetTexture("RedPotion"), position));
-        itemFactory.RegisterItem("BluePotion", position => new Potion("BluePotion", itemFactory.GetTexture("BluePotion"), position));
-        itemFactory.RegisterItem("GreenPotion", position => new Potion("GreenPotion", itemFactory.GetTexture("GreenPotion"), position));
-        itemFactory.RegisterItem("RedRupee", position => new Rupee("RedRupee", itemFactory.GetTexture("RedRupee"), position));
-        itemFactory.RegisterItem("BlueRupee", position => new Rupee("BlueRupee", itemFactory.GetTexture("BlueRupee"), position));
-        itemFactory.RegisterItem("GreenRupee", position => new Rupee("GreenRupee", itemFactory.GetTexture("GreenRupee"), position));
-        itemFactory.RegisterItem("Apple", position => new Apple("Apple", itemFactory.GetTexture("Apple"), position));
-        itemFactory.RegisterItem("Crystal", position => new Crystal("Crystal", itemFactory.GetTexture("Crystal"), position));
 
         //itemFactory.RegisterItem("Boomerang", position => new Boomerang(itemFactory.GetTexture("Boomerang"), position, 1, 8));
-
 
         // 6) 初始化房间管理器
         //   原房间尺寸256×176，窗口800×480，计算缩放
@@ -177,7 +136,7 @@ public class Game1 : Game
 
         var linkH = Content.Load<Texture2D>("Linkh");
         Dictionary<(LinkAction, LinkDirection), List<Texture2D>> linkMap =
-    new Dictionary<(LinkAction, LinkDirection), List<Texture2D>>();
+        new Dictionary<(LinkAction, LinkDirection), List<Texture2D>>();
 
         // Idle
         linkMap.Add((LinkAction.Idle, LinkDirection.Down), new List<Texture2D> { link1 });
@@ -224,8 +183,9 @@ public class Game1 : Game
         heartPositions = new List<Vector2> {
         new Vector2(10, 10),
         new Vector2(50, 10),
-        new Vector2(90, 10)
-    };
+        new Vector2(90, 10)};
+    
+
         currentHearts = maxHearts;
         collisionCount = 0;
         isPlayerDead = false;
@@ -237,12 +197,33 @@ public class Game1 : Game
             ProjectileManager.Instance.GetActiveProjectiles(),
             BlockManager.Instance.GetActiveBlocks());
 
-
         controllerList.Add(new KeyboardController(this, Link));
-
-
     }
-
+    private void LoadItemTextures()
+    {
+        itemFactory.RegisterTexture("Heart", heartTexture);
+        itemFactory.RegisterTexture("RedPotion", Content.Load<Texture2D>("red-potion"));
+        itemFactory.RegisterTexture("BluePotion", Content.Load<Texture2D>("blue-potion"));
+        itemFactory.RegisterTexture("GreenPotion", Content.Load<Texture2D>("green-potion"));
+        itemFactory.RegisterTexture("RedRupee", Content.Load<Texture2D>("red-rupee"));
+        itemFactory.RegisterTexture("BlueRupee", Content.Load<Texture2D>("blue-rupee"));
+        itemFactory.RegisterTexture("GreenRupee", Content.Load<Texture2D>("green-rupee"));
+        itemFactory.RegisterTexture("Apple", Content.Load<Texture2D>("apple"));
+        itemFactory.RegisterTexture("Crystal", Content.Load<Texture2D>("crystal"));
+    }
+        private void RegisterItems()
+    {
+        //Register Item Creation Logic
+        itemFactory.RegisterItem("Heart", position => new Heart("Heart", itemFactory.GetTexture("Heart"), position));
+        itemFactory.RegisterItem("RedPotion", position => new Potion("RedPotion", itemFactory.GetTexture("RedPotion"), position));
+        itemFactory.RegisterItem("BluePotion", position => new Potion("BluePotion", itemFactory.GetTexture("BluePotion"), position));
+        itemFactory.RegisterItem("GreenPotion", position => new Potion("GreenPotion", itemFactory.GetTexture("GreenPotion"), position));
+        itemFactory.RegisterItem("RedRupee", position => new Rupee("RedRupee", itemFactory.GetTexture("RedRupee"), position));
+        itemFactory.RegisterItem("BlueRupee", position => new Rupee("BlueRupee", itemFactory.GetTexture("BlueRupee"), position));
+        itemFactory.RegisterItem("GreenRupee", position => new Rupee("GreenRupee", itemFactory.GetTexture("GreenRupee"), position));
+        itemFactory.RegisterItem("Apple", position => new Apple("Apple", itemFactory.GetTexture("Apple"), position));
+        itemFactory.RegisterItem("Crystal", position => new Crystal("Crystal", itemFactory.GetTexture("Crystal"), position));
+    }
 
     public void HandlePlayerDamage()
     {
@@ -282,6 +263,13 @@ public class Game1 : Game
         }
     }
 
+    public void ChangeGameState(GameState newState)
+    {
+    _currentGameState = newState;
+    if (newState == GameState.Exiting)
+        Exit();
+    }
+
     private void HandleMenuSelection(int selectedIndex)
     {
         switch (selectedIndex)
@@ -297,6 +285,7 @@ public class Game1 : Game
                 break;
         }
     }
+
     private void RestartGame()
     {
         Initialize();
@@ -305,27 +294,24 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
-        if (_currentGameState == GameState.Paused)
+
+        switch (_currentGameState)
         {
-            _pauseMenu.Update();
-            return;
-
-        }
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
-
-
+        case GameState.StartMenu:
+            menuManager.Update(this);
+            break;
+        case GameState.Playing:
+            
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))Exit();
 
         masterCollisionHandler.HandleCollisions(
-            roomManager.GetCurrentRoomItems(),
-            roomManager.CurrentRoom.Enemies,
-            ProjectileManager.Instance.GetActiveProjectiles(),
-            BlockManager.Instance.GetActiveBlocks());
+        roomManager.GetCurrentRoomItems(),
+        roomManager.CurrentRoom.Enemies,
+        ProjectileManager.Instance.GetActiveProjectiles(),
+        BlockManager.Instance.GetActiveBlocks());
         base.Update(gameTime);
         Vector2 linkSize = Link.Instance.GetScaledDimensions();
-        roomManager.Update(gameTime); // ✅ This is crucial    
-
+        roomManager.Update(gameTime); // This is crucial    
 
         // Toggle pause only when Tab is pressed once
         var keyboardState = Keyboard.GetState();
@@ -362,10 +348,21 @@ public class Game1 : Game
                 collisionCount = 0;
                 currentHearts = maxHearts; // Reset to 3 hearts
                 Link.Instance.SetPosition(playerRespawnPosition);
-                InitializeHeartPositions(); // Refresh heart display
+                 InitializeHeartPositions(); // Refresh heart display
             }
             return;
         }
+
+
+            break;
+        case GameState.Options:
+            // maybe a placeholder screen
+            break;
+        case GameState.Paused:
+            _pauseMenu.Update();
+            break;
+        }
+        
 
 
         base.Update(gameTime);
@@ -374,16 +371,26 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.Black);
         _spriteBatch.Begin();
 
-        if (_currentGameState == GameState.Playing)
+        switch (_currentGameState)
         {
+        case GameState.StartMenu:
+            menuManager.Draw(_spriteBatch, GraphicsDevice);
+            break;
+        case GameState.Paused:
+            _pauseMenu.Draw(_spriteBatch, GraphicsDevice);
+            break;
+
+        case GameState.Playing:
+            
             roomManager.Draw(_spriteBatch);
             ProjectileManager.Instance.Draw(_spriteBatch);
             BlockManager.Instance.Draw(_spriteBatch);
 
-
+            _spriteBatch.Draw(rupeeIcon, rupeePosition, Color.White);
+            _spriteBatch.DrawString(_menuFont, "x "+ rupeeCount.ToString(), rupeePosition + new Vector2(rupeeIcon.Width + 5, 0), Color.White);
             var items = roomManager.GetCurrentRoomItems();
             if (items != null)
             {
@@ -403,10 +410,11 @@ public class Game1 : Game
             }
 
             EnemyManager.Instance.Draw(_spriteBatch);
-        }
-        else if (_currentGameState == GameState.Paused)
-        {
-            _pauseMenu.Draw(_spriteBatch, GraphicsDevice);
+            break;
+
+        case GameState.Options:
+            _spriteBatch.DrawString(_menuFont, "Options Coming Soon", new Vector2(100, 100), Color.White);
+            break;
         }
 
         if (!isPlayerDead)
@@ -424,11 +432,11 @@ public class Game1 : Game
         if (isPaused)
         {
             string pauseText = "Game Paused\nPress 'Tab' to Resume";
-            Vector2 textSize = pauseFont.MeasureString(pauseText);
+            Vector2 textSize = _menuFont.MeasureString(pauseText);
             Vector2 position = new Vector2(
                 (_graphics.PreferredBackBufferWidth - textSize.X) / 2,
                 (_graphics.PreferredBackBufferHeight - textSize.Y) / 2);
-            _spriteBatch.DrawString(pauseFont, pauseText, position, Color.White);
+            _spriteBatch.DrawString(_menuFont, pauseText, position, Color.White);
         }
         _spriteBatch.End();
 
