@@ -14,6 +14,7 @@ using sprint0Test.Managers;
 using System.Diagnostics;
 using sprint0Test.Enemy;
 using sprint0Test.Room;
+using System.Linq;
 namespace sprint0Test;
 
 public class Game1 : Game
@@ -70,6 +71,8 @@ public class Game1 : Game
     private int totalHits = 0;
     private int deathCount = 0;
     private bool isGameOver = false;
+
+    private bool isGameWon = false;
 
     public Game1()
     {
@@ -369,21 +372,33 @@ public class Game1 : Game
         base.Update(gameTime);
         Vector2 linkSize = Link.Instance.GetScaledDimensions();
         //roomManager.Update(gameTime); // ✅ This is crucial    
-        
 
         // Toggle pause only when Tab is pressed once
         var keyboardState = Keyboard.GetState();
-        if (keyboardState.IsKeyDown(Keys.Tab) && previousKeyboardState.IsKeyUp(Keys.Tab) && !isGameOver)
+        if (keyboardState.IsKeyDown(Keys.Tab) && previousKeyboardState.IsKeyUp(Keys.Tab) && !isGameOver && !isGameWon)
         {
             isPaused = !isPaused;
         }
         previousKeyboardState = keyboardState; // Store state for next frame
 
         // If paused, do not update game logic
-        if (isPaused || isGameOver)
+        if (isPaused || isGameOver || isGameWon)
             return;
 
-        roomManager.Update(gameTime); // ✅ This is crucial   
+        roomManager.Update(gameTime); // ✅ This is crucial
+
+        if (!isGameWon && roomManager.CurrentRoom != null && roomManager.CurrentRoom.RoomID == "r5e")
+        {
+            // Check if Aquamentus has been defeated
+            var aquamentusStillExists = roomManager.CurrentRoom.Enemies
+                .OfType<Aquamentus>()
+                .Any();
+
+            if (!aquamentusStillExists)
+            {
+                isGameWon = true;
+            }
+        }
 
         foreach (IController controller in controllerList)
         {
@@ -486,6 +501,16 @@ public class Game1 : Game
             Vector2 position = center - (size / 2);
 
             _spriteBatch.DrawString(pauseFont, loseMessage, position, Color.White);
+        }
+
+        if (isGameWon)
+        {
+            string winMessage = "You win!\nPress 'Esc' to quit";
+            Vector2 size = pauseFont.MeasureString(winMessage);
+            Vector2 center = new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2);
+            Vector2 position = center - (size / 2);
+
+            _spriteBatch.DrawString(pauseFont, winMessage, position, Color.White);
         }
 
         _spriteBatch.End();
