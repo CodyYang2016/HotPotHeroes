@@ -23,24 +23,16 @@ namespace sprint0Test;
     {
         if (item != null)
         {
-            if (CollisionDetectItem.isTouchingLeft(item))
+            if (CollisionDetectItem.isTouching(item))
             {
-                // Link.Instance.TakeDamage();
-            }
-
-            if (CollisionDetectItem.isTouchingRight(item))
-            {
-                // Link.Instance.TakeDamage();
-            }
-
-            if (CollisionDetectItem.isTouchingBottom(item))
-            {
-                // Link.Instance.TakeDamage();
-            }
-
-            if (CollisionDetectItem.isTouchingTop(item))
-            {
-                // Link.Instance.TakeDamage();
+                item.Collect();
+                if (item.BehaviorType == ItemBehaviorType.Collectible)
+                {
+                    Link.Instance.AddItem(item);
+                }
+                else { 
+                    Link.Instance.Consume(item);
+                }
             }
         }
     }

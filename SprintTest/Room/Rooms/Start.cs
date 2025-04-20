@@ -32,7 +32,6 @@ namespace sprint0Test.Dungeon
 
             if (!RoomData.HasBeenCleared)
             {
-
             }
 
             // (Item and block spawning can stay or follow similar logic)
@@ -53,9 +52,6 @@ namespace sprint0Test.Dungeon
             BlockManager.Instance.CreateBlock(new Vector2(350, 350), BlockType.Fish);
             BlockManager.Instance.CreateBlock(new Vector2(480, 350), BlockType.Fish);
         }
-
     }
 
 }
-
-

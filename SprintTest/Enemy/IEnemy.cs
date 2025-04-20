@@ -12,7 +12,7 @@ namespace sprint0Test.Enemy
         void TakeDamage(int damage);
         void ChangeState(IEnemyState newState);
         void SetPosition(Vector2 newPosition);
-        // Vector2 GetPosition();
+         //Vector2 GetPosition();
         // Vector2 GetDimensions();
         void PerformAttack();
         bool IsDead { get; }

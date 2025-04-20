@@ -5,6 +5,9 @@ using sprint0Test;
 using System.Collections.Generic;
 using System;
 using sprint0Test.Room;
+using System.Diagnostics;
+using sprint0Test.Items;
+using sprint0Test.Managers;
 
 public abstract class AbstractRoom : IRoom
 {
@@ -14,7 +17,7 @@ public abstract class AbstractRoom : IRoom
 
     public List<IEnemy> Enemies { get; protected set; } = new List<IEnemy>();
     public List<IBlock> Blocks { get; protected set; } = new List<IBlock>();
-    public List<IItem> Items { get; protected set; } = new List<IItem>();
+    public List<IItem> Items { get; set; } = new List<IItem>();
 
     public Texture2D TilesetTexture { get; set; }
     public Rectangle ExteriorSource { get; set; }
@@ -27,8 +30,8 @@ public abstract class AbstractRoom : IRoom
 
     public virtual void Initialize()
     {
-        // Automatically generate door hitboxes from RoomData
         Perimeter perimeter = new Perimeter(this);
+        // Automatically generate door hitboxes from RoomData
         GenerateStandardDoorHitboxes();
     }
 
@@ -36,7 +39,25 @@ public abstract class AbstractRoom : IRoom
     {
         foreach (var enemy in Enemies) enemy.Update(gameTime);
         foreach (var block in Blocks) block.Update();
-        foreach (var item in Items) item.Update(gameTime);
+        foreach (var item in Items)
+        {
+            item.Update(gameTime);
+
+            if (item is Bomb bomb && bomb.HasJustExploded)
+            {
+                float visualExplosionRadius = (TextureManager.Instance.GetTexture("Explosion").Width * 0.15f) / 2f;
+
+                foreach (var enemy in Enemies)
+                {
+                    float distance = Vector2.Distance(bomb.Position, enemy.GetPosition());
+                    if (distance <= visualExplosionRadius)
+                    {
+                        enemy.TakeDamage(3);
+                    }
+                }
+                bomb.MarkExplosionHandled();
+            }
+        }
 
         Enemies.RemoveAll(e => e.IsDead);
         Items.RemoveAll(i => i.IsCollected);
@@ -117,6 +138,7 @@ public abstract class AbstractRoom : IRoom
             DoorHitboxes["Right"] = ScaleRectangle(RoomData.Right_Dest, scale);
         }
     }
+
     public bool HasDoor(string direction)
     {
         bool hasDoor = RoomData.Doors.ContainsKey(direction) && RoomData.Doors[direction] != null;

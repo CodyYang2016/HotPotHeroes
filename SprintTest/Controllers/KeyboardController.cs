@@ -49,8 +49,9 @@ namespace sprint0Test
             singlePressCommands.Add(Keys.Q, new QuitCommand(myGame));
             singlePressCommands.Add(Keys.Z, new LinkAttackCommand(myGame));
             singlePressCommands.Add(Keys.E, new TakeDamageCommand(myGame));
-            singlePressCommands.Add(Keys.U, new CycleItemCommand(myGame, -1));
-            singlePressCommands.Add(Keys.I, new CycleItemCommand(myGame, 1));
+            singlePressCommands.Add(Keys.J, new UseItemCommand(myGame));
+            singlePressCommands.Add(Keys.U, new MoveToTestingRoomCommand(myGame));
+            singlePressCommands.Add(Keys.I, new MoveToStartRoomCommand(myGame));
         }
 
         public void Update()

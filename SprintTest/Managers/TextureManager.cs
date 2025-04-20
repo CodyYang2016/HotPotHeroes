@@ -28,8 +28,7 @@ namespace sprint0Test.Managers
             Texture2D bossSpriteSheet = game.Content.Load<Texture2D>("ZeldaBoss");
             Texture2D worldSpriteSheet = game.Content.Load<Texture2D>("ZeldaOverWorld");
             Texture2D tileSheet = game.Content.Load<Texture2D>("TileSetDungeon");
-            Texture2D apple = game.Content.Load<Texture2D>("Apple");
-            Texture2D heart = game.Content.Load<Texture2D>("Heart");
+            Texture2D explosion = game.Content.Load<Texture2D>("Explosion");
 
             //Room Exteriors if neccesary
             textures["Room_Exterior"] = CutTexture(tileSheet, new Rectangle(521, 11, 256, 176));
@@ -40,6 +39,7 @@ namespace sprint0Test.Managers
             textures["Door_C"] = CutTexture(tileSheet, new Rectangle(849, 110, 32, 32));
             textures["Door_D"] = CutTexture(tileSheet, new Rectangle(849, 77, 32, 32));
             textures["tileSheet"] = tileSheet;
+            textures["Explosion"] = explosion;
 
 
             /*            //Items

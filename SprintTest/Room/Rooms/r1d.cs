@@ -37,7 +37,6 @@ namespace sprint0Test.Dungeon
                 Enemies.Add(EnemyManager.Instance.CreateStalfos(new Vector2(400, 100)));
                 Enemies.Add(EnemyManager.Instance.CreateStalfos(new Vector2(200, 500)));
                 Enemies.Add(EnemyManager.Instance.CreateStalfos(new Vector2(550, 250)));
-
             }
 
             // (Item and block spawning can stay or follow similar logic)
@@ -56,8 +55,6 @@ namespace sprint0Test.Dungeon
             BlockManager.Instance.CreateBlock(new Vector2(480, 210), BlockType.Block);
             BlockManager.Instance.CreateBlock(new Vector2(430, 260), BlockType.Block);
             BlockManager.Instance.CreateBlock(new Vector2(480, 260), BlockType.Block);
-
-
         }
     }
 

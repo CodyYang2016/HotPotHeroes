@@ -42,16 +42,15 @@ namespace sprint0Test.Dungeon
             }
 
             // (Item and block spawning can stay or follow similar logic)
-            
-            BlockManager.Instance.CreateBlock(new Vector2(225,220), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(225,270), BlockType.Block);
 
-            BlockManager.Instance.CreateBlock(new Vector2(275,220), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(275,270), BlockType.Block);
-
-            BlockManager.Instance.CreateBlock(new Vector2(325,220), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(325,270), BlockType.Block);
-            
+            // Items.Add(new Apple("Apple", appleTexture, new Vector2(300, 120)));
+            // Items.Add(new Heart("Heart", heartTexture, new Vector2(320, 160)));
+            BlockManager.Instance.CreateBlock(new Vector2(225, 220), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(225, 270), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(275, 220), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(275, 270), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(325, 220), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(325, 270), BlockType.Block);
         }
     }
 

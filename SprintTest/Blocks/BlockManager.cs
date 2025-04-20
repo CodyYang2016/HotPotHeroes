@@ -53,7 +53,6 @@ namespace sprint0Test
         {
             Rectangle blockRectangle = blockTypeToRectangle[blockType];
             Block newBlock = new Block(blockTexture, blockRectangle, position, scale, isVisible, isSolid);
-
             // Add it to the list of blocks in the room
             blocks.Add(newBlock);
         }

@@ -35,7 +35,7 @@ namespace sprint0Test.Dungeon
 
             if (!RoomData.HasBeenCleared)
             {
-
+           
             }
 
             // (Item and block spawning can stay or follow similar logic)

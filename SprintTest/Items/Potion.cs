@@ -17,6 +17,7 @@ namespace sprint0Test.Items
 
         private bool isCollected;
         public bool IsCollected => isCollected;
+        public ItemBehaviorType BehaviorType => ItemBehaviorType.Collectible;
         public Potion(string name, Texture2D texture, Vector2 position)
         {
             this.name = name;
@@ -38,10 +39,11 @@ namespace sprint0Test.Items
             }
         }
 
-        public void Use()
+        public void Collect()
         {
-            // Simulates collecting the heart
             isCollected = true;
         }
+
+        public void Use() { }
     }
 }

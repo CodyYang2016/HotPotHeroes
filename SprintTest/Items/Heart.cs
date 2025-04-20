@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using sprint0Test.Link1;
 using sprint0Test.Sprites;
 
 namespace sprint0Test.Items
@@ -18,6 +19,7 @@ namespace sprint0Test.Items
 
         private bool isCollected;
         public bool IsCollected => isCollected;
+        public ItemBehaviorType BehaviorType => ItemBehaviorType.Consumable;
         public Heart(string name, Texture2D texture, Vector2 position)
         {
             this.name = name;
@@ -39,10 +41,11 @@ namespace sprint0Test.Items
             }
         }
 
-        public void Use()
+        public void Collect()
         {
-            // Simulates collecting the heart
             isCollected = true;
         }
+
+        public void Use() { }
     }
 }

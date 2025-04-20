@@ -80,7 +80,7 @@ namespace sprint0Test.Managers
 
         public void Update(GameTime gameTime)
         {
-            Debug.WriteLine($"Updating projectiles. Active count: {activeProjectiles.Count}");
+            //Debug.WriteLine($"Updating projectiles. Active count: {activeProjectiles.Count}");
 
             for (int i = activeProjectiles.Count - 1; i >= 0; i--)
             {
@@ -99,11 +99,11 @@ namespace sprint0Test.Managers
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Debug.WriteLine($"Drawing {activeProjectiles.Count} projectiles.");
+            //Debug.WriteLine($"Drawing {activeProjectiles.Count} projectiles.");
 
             foreach (var projectile in activeProjectiles)
             {
-                Debug.WriteLine($"Drawing projectile at {projectile.Position}");
+                //Debug.WriteLine($"Drawing projectile at {projectile.Position}");
                 projectile.Draw(spriteBatch);
             }
         }

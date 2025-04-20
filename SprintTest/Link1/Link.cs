@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using sprint0Test.Items;
 using sprint0Test.Sprites;
 using sprint0Test.Managers;
+using System.Diagnostics;
+using static sprint0Test.Items.Bomb;
 
 namespace sprint0Test.Link1
 {
@@ -22,13 +24,13 @@ namespace sprint0Test.Link1
         private int itemFrameCounter = 0;
         private int currentItemIndex = 0;
         private int currentHealth = 6;
-        private List<Item> inventory = new List<Item>();
-
+        private int currentCrystal = 0;
+        private List<IItem> inventory = new List<IItem>();
+        private RoomManager roomManager;
         private readonly int screenMinX = 0;
         private readonly int screenMinY = 0;
         private readonly int screenMaxX = 800;
         private readonly int screenMaxY = 480;
-
         private bool isVisible = true; // This will track visibility
 
         // ? Singleton access property
@@ -45,7 +47,7 @@ namespace sprint0Test.Link1
         }
 
         public Vector2 Position => position;
-        public IReadOnlyList<Item> Inventory => inventory.AsReadOnly();
+        public IReadOnlyList<IItem> Inventory => inventory.AsReadOnly();
 
         public bool IsVisible // Add IsVisible property
         {
@@ -64,20 +66,21 @@ namespace sprint0Test.Link1
         }
 
         // ? Private constructor to prevent direct instantiation
-        private Link(LinkSprite linkSprite, Vector2 startPos)
+        private Link(LinkSprite linkSprite, Vector2 startPos, RoomManager roomManager)
         {
             sprite = linkSprite;
             position = startPos;
+            this.roomManager = roomManager;
             sprite.Scale = 2f;
             sprite.SetState(LinkAction.Idle, LinkDirection.Down);
         }
 
         // ? Public method to initialize the singleton
-        public static void Initialize(LinkSprite sprite, Vector2 startPos)
+        public static void Initialize(LinkSprite sprite, Vector2 startPos, RoomManager roomManager)
         {
             if (instance == null)
             {
-                instance = new Link(sprite, startPos);
+                instance = new Link(sprite, startPos, roomManager);
             }
             else
             {
@@ -155,6 +158,10 @@ namespace sprint0Test.Link1
                 itemFrameCounter = 0;
                 sprite.SetState(LinkAction.UsingItem, sprite.CurrentDirection);
                 inventory[currentItemIndex].Use();
+                if (inventory[currentItemIndex] is Bomb bomb && bomb.State == BombState.Planted)
+                {
+                    roomManager.CurrentRoom.Items.Add(bomb);
+                }
             }
         }
 
@@ -171,6 +178,16 @@ namespace sprint0Test.Link1
 
         }
 
+        public void Consume(IItem item) {
+            if (item.name == "Heart")
+            {
+                //Game1.Instance.HandlePlayerHealed();
+            }
+            else if (item.name == "Crystal") { 
+                currentCrystal += 1;
+            }
+        }
+
         public void SwitchItem(int direction)
         {
             if (inventory.Count > 0)
@@ -179,7 +196,7 @@ namespace sprint0Test.Link1
             }
         }
 
-        public void AddItem(Item item)
+        public void AddItem(IItem item)
         {
             inventory.Add(item);
         }

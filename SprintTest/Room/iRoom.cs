@@ -9,7 +9,7 @@ public interface IRoom
     string RoomID { get; }
     List<IEnemy> Enemies { get; }
     List<IBlock> Blocks { get; }
-    List<IItem> Items { get; }
+    List<IItem> Items { get; set; }
 
     Dictionary<string, string> AdjacentRooms { get; } // e.g. { "Up": "2a", "Right": "1b" }
 

@@ -38,11 +38,10 @@ public class Game1 : Game
     public List<IItem> itemList;
     public int currentItemIndex;
     private Link Link;
-
     public IItem currentItem;
 
     // New Room Manager
-    RoomManager roomManager;
+    public RoomManager roomManager;
     float roomScale;
 
 
@@ -65,9 +64,10 @@ public class Game1 : Game
     private bool isPlayerDead;
     private float respawnTimer;
     private Vector2 playerRespawnPosition;
+
     public Game1()
     {
-        Instance = this; // Set the static instance
+        Instance = this;
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
@@ -93,12 +93,10 @@ public class Game1 : Game
         //spriteTexture = Content.Load<Texture2D>("mario2");
         //sprite = new StandingInPlacePlayerSprite(spriteTexture);
 
-        _menuFont = Content.Load<SpriteFont>("MenuFont");
-        _pauseMenu = new PauseMenu(Content.Load<SpriteFont>("MenuFont"));
-        _pauseMenu.OnOptionSelected = HandleMenuSelection;
-        pauseFont = Content.Load<SpriteFont>("PauseFont"); // Load the font
-
-
+        //_menuFont = Content.Load<SpriteFont>("MenuFont");
+        //_pauseMenu = new PauseMenu(Content.Load<SpriteFont>("MenuFont"));
+        //_pauseMenu.OnOptionSelected = HandleMenuSelection;
+        //pauseFont = Content.Load<SpriteFont>("PauseFont"); // Load the font
 
         masterCollisionHandler = new MasterCollisionHandler(); // Initialize the collision handler
 
@@ -114,7 +112,6 @@ public class Game1 : Game
         //Register Textures
         // Heart working 
         heartTexture = Content.Load<Texture2D>("heart");
-
         itemFactory.RegisterTexture("Heart", Content.Load<Texture2D>("heart"));
         itemFactory.RegisterTexture("RedPotion", Content.Load<Texture2D>("red-potion"));
         itemFactory.RegisterTexture("BluePotion", Content.Load<Texture2D>("blue-potion"));
@@ -124,6 +121,8 @@ public class Game1 : Game
         itemFactory.RegisterTexture("GreenRupee", Content.Load<Texture2D>("green-rupee"));
         itemFactory.RegisterTexture("Apple", Content.Load<Texture2D>("apple"));
         itemFactory.RegisterTexture("Crystal", Content.Load<Texture2D>("crystal"));
+        itemFactory.RegisterTexture("Bomb", Content.Load<Texture2D>("bomb"));
+
         //itemFactory.RegisterTexture("Boomerang", Content.Load<Texture2D>("boomerang"));
 
         //Register Item Creation Logic
@@ -136,14 +135,16 @@ public class Game1 : Game
         itemFactory.RegisterItem("GreenRupee", position => new Rupee("GreenRupee", itemFactory.GetTexture("GreenRupee"), position));
         itemFactory.RegisterItem("Apple", position => new Apple("Apple", itemFactory.GetTexture("Apple"), position));
         itemFactory.RegisterItem("Crystal", position => new Crystal("Crystal", itemFactory.GetTexture("Crystal"), position));
+        itemFactory.RegisterItem("Bomb", position => new Bomb("Bomb", itemFactory.GetTexture("Bomb"), position));
 
         //itemFactory.RegisterItem("Boomerang", position => new Boomerang(itemFactory.GetTexture("Boomerang"), position, 1, 8));
-
+        ItemManager.Initialize(itemFactory);
+        ItemManager.Instance.LoadFromCSV("Content/room_items.csv");
 
         // 6) 初始化房间管理器
         //   原房间尺寸256×176，窗口800×480，计算缩放
         roomScale = Math.Min(800f / 256f, 480f / 176f);
-        roomManager = new RoomManager(itemFactory);
+        roomManager = new RoomManager();
 
         // Link update code
         var link1 = Content.Load<Texture2D>("Link1");
@@ -214,13 +215,18 @@ public class Game1 : Game
             new List<Texture2D> { linkH });
         linkMap.Add((LinkAction.Damaged, LinkDirection.Right),
             new List<Texture2D> { linkH });
+        linkMap.Add((LinkAction.UsingItem, LinkDirection.Down), new List<Texture2D> { link1 });
+        linkMap.Add((LinkAction.UsingItem, LinkDirection.Up), new List<Texture2D> { linkB1 });
+        linkMap.Add((LinkAction.UsingItem, LinkDirection.Left), new List<Texture2D> { linkL1 });
+        linkMap.Add((LinkAction.UsingItem, LinkDirection.Right), new List<Texture2D> { linkR1 });
 
         LinkSprite linkSprite = new LinkSprite(linkMap);
         Console.WriteLine("roomItems: " + (roomManager.GetCurrentRoomItems() != null));
         Console.WriteLine("enemies: " + (EnemyManager.Instance.GetActiveEnemy() != null));
         Console.WriteLine("projectiles: " + (ProjectileManager.Instance.GetActiveProjectiles() != null));
         Console.WriteLine("blocks: " + (BlockManager.Instance.GetActiveBlocks() != null));
-        Link.Initialize(linkSprite, new Vector2(200, 200));
+        Link.Initialize(linkSprite, new Vector2(200, 200), roomManager);
+
         heartPositions = new List<Vector2> {
         new Vector2(10, 10),
         new Vector2(50, 10),
@@ -243,32 +249,36 @@ public class Game1 : Game
 
     }
 
-
     public void HandlePlayerDamage()
     {
         collisionCount++; // Track hits
         Console.WriteLine($"Collision Count: {collisionCount}");
 
-        if (collisionCount % 2 == 0 && currentHearts > 0)
-        {
-            currentHearts--;
-            InitializeHeartPositions(); // Update heart UI
-            Console.WriteLine($"Heart lost! Current Hearts: {currentHearts}");
-        }
+       if (collisionCount % 2 == 0 && currentHearts > 0)
+       {
+        currentHearts--;
+        InitializeHeartPositions(); // Update heart UI
+        Console.WriteLine($"Heart lost! Current Hearts: {currentHearts}");
+       }
+            if (collisionCount >= 6)
+            {
+                isPlayerDead = true;
+                playerRespawnPosition = Link.Instance.Position; // Save respawn point
+                respawnTimer = 3f;
+                collisionCount = 0;
+                currentHearts = maxHearts; // Restore full hearts
+                InitializeHeartPositions(); // Update heart UI
+                Console.WriteLine("Player is dead! Respawning in 3 seconds.");
+            }
+    }
 
-        if (collisionCount >= 6)
+    public void HandlePlayerHealed() {
+        if (currentHearts < maxHearts)
         {
-            isPlayerDead = true;
-            playerRespawnPosition = Link.Instance.Position; // Save respawn point
-            respawnTimer = 3f;
-            collisionCount = 0;
-            currentHearts = maxHearts; // Restore full hearts
-            InitializeHeartPositions(); // Update heart UI
-            Console.WriteLine("Player is dead! Respawning in 3 seconds.");
+            currentHearts++;
         }
     }
 
-    // Heart Helper Methods
     private void InitializeHeartPositions()
     {
         heartPositions.Clear();  // Reset positions
@@ -282,21 +292,6 @@ public class Game1 : Game
         }
     }
 
-    private void HandleMenuSelection(int selectedIndex)
-    {
-        switch (selectedIndex)
-        {
-            case 0: // Resume
-                _currentGameState = GameState.Playing;
-                break;
-            case 1: // Restart
-                RestartGame();
-                break;
-            case 2: // Quit
-                Exit();
-                break;
-        }
-    }
     private void RestartGame()
     {
         Initialize();
@@ -313,9 +308,6 @@ public class Game1 : Game
         }
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-
-
-
 
         masterCollisionHandler.HandleCollisions(
             roomManager.GetCurrentRoomItems(),
@@ -348,11 +340,11 @@ public class Game1 : Game
         {
             item.Update(gameTime);
         }
+
         EnemyManager.Instance.Update(gameTime);
         ProjectileManager.Instance.Update(gameTime);
         Link.Instance.Update();
 
-        // Player Dead Animation
         if (isPlayerDead)
         {
             respawnTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -366,7 +358,6 @@ public class Game1 : Game
             }
             return;
         }
-
 
         base.Update(gameTime);
         roomManager.CheckDoorTransition();

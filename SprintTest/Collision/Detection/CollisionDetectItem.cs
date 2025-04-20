@@ -39,7 +39,7 @@ namespace sprint0Test
         }
 
         // Check if the player is touching the left side of the item
-        public static bool isTouchingLeft(IItem item)
+        private static bool isTouchingLeft(IItem item)
         {
             Rectangle playerRect = GetPlayerRectangle();
             Rectangle blockRect = GetItemRectangle(item);
@@ -51,7 +51,7 @@ namespace sprint0Test
         }
 
         // Check if the player is touching the right side of the item
-        public static bool isTouchingRight(IItem item)
+        private static bool isTouchingRight(IItem item)
         {
             Rectangle playerRect = GetPlayerRectangle();
             Rectangle blockRect = GetItemRectangle(item);
@@ -63,7 +63,7 @@ namespace sprint0Test
         }
 
         // Check if the player is touching the bottom side of the item
-        public static bool isTouchingBottom(IItem item)
+        private static bool isTouchingBottom(IItem item)
         {
             Rectangle playerRect = GetPlayerRectangle();
             Rectangle blockRect = GetItemRectangle(item);
@@ -75,7 +75,7 @@ namespace sprint0Test
         }
 
         // Check if the player is touching the top side of the item
-        public static bool isTouchingTop(IItem item)
+        private static bool isTouchingTop(IItem item)
         {
             Rectangle playerRect = GetPlayerRectangle();
             Rectangle blockRect = GetItemRectangle(item);
@@ -84,6 +84,10 @@ namespace sprint0Test
                 playerRect.Top < blockRect.Top &&
                 playerRect.Left < blockRect.Right &&
                 playerRect.Right > blockRect.Left;
+        }
+
+        public static bool isTouching(IItem item) {
+            return (isTouchingBottom(item) || isTouchingTop(item) || isTouchingLeft(item) || isTouchingRight(item));
         }
     }
 }

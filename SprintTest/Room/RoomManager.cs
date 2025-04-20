@@ -8,8 +8,8 @@ using Microsoft.Xna.Framework.Input;
 using sprint0Test.Managers;
 using sprint0Test.Link1;
 using sprint0Test.Dungeon;
-using sprint0Test;
 
+using sprint0Test;
 public class RoomManager
 {
     public Dictionary<string, IRoom> Rooms { get; private set; } = new();
@@ -20,9 +20,8 @@ public class RoomManager
 
 
 
-    public RoomManager(ItemFactory itemFactory)
+    public RoomManager()
     {
-        this.itemFactory = itemFactory;
         LoadRoom("r3c");
     }
     private float scale = 1.0f; // Add this field to your class if not present
@@ -41,6 +40,7 @@ public class RoomManager
     public void LoadRoom(string roomID)
     {
         RoomData roomData = layout.GetRoom(roomID);
+
         BlockManager.Instance.ClearActiveBlocks();
         if (roomData == null)
         {
@@ -67,12 +67,13 @@ public class RoomManager
             "r5f" => new r5f(roomData),
             "r6b" => new r6b(roomData),
             "r6c" => new r6c(roomData),
+            "ItemTestingRoom" => new ItemTestingRoom(roomData)
         };
 
         room.TilesetTexture = TextureManager.Instance.GetTexture("tileSheet");
         room.ExteriorSource = RoomData.ExteriorSource;
         room.InteriorSource = RoomData.InteriorSource;
-
+        room.Items = ItemManager.Instance.GetItemsForRoom(roomID);
         room.Initialize(); // Calls your override, spawns enemies/items/blocks
         CurrentRoom = room;
 
@@ -88,6 +89,7 @@ public class RoomManager
             doorCooldown -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
         CurrentRoom?.Update(gameTime);
+
     }
 
 
@@ -125,7 +127,7 @@ public class RoomManager
                     LoadRoom(nextRoomID);
                     PositionPlayerAtEntry(direction);
 
-                    doorCooldown = 2000; // ✅ Set cooldown to 5 seconds
+                    doorCooldown = 2000; // ✅ Set cooldown to 2 seconds
                     break;
                 }
                 else

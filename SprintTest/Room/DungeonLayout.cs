@@ -11,6 +11,8 @@ public class DungeonLayout
 
     private void InitializeRooms()
     {
+
+
         var r1b = new RoomData("r1b");
         r1b.Doors["Right"] = "r1c";
         rooms["r1b"] = r1b;
@@ -97,6 +99,8 @@ public class DungeonLayout
         r6b.Doors["Right"] = "r5a";
         rooms["r6b"] = r6b;
 
+        var ItemTestingRoom = new RoomData("ItemTestingRoom");
+        rooms["ItemTestingRoom"] = ItemTestingRoom;
         // Add more as needed
     }
 

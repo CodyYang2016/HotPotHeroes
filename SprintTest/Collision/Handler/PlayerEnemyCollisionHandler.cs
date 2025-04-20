@@ -26,11 +26,10 @@ namespace sprint0Test
                 {
                     Link.Instance.MoveLeft();
                     Link.Instance.TakeDamage();
-
                     //Move Enemy Right
                     float x = enemy.GetPosition().X;
                     float y = enemy.GetPosition().Y;
-                    x = x + 1*1.5f;
+                    x = x + 1 * 1.5f;
                     enemy.SetPosition(new Vector2(x, y));
                 }
 
@@ -38,11 +37,10 @@ namespace sprint0Test
                 {
                     Link.Instance.MoveRight();
                     Link.Instance.TakeDamage();
-
                     //Move Enemy Left
                     float x = enemy.GetPosition().X;
                     float y = enemy.GetPosition().Y;
-                    x = x - 1*1.5f;
+                    x = x - 1 * 1.5f;
                     enemy.SetPosition(new Vector2(x, y));
                 }
 
@@ -50,11 +48,10 @@ namespace sprint0Test
                 {
                     Link.Instance.MoveDown();
                     Link.Instance.TakeDamage();
-
                     //Move Enemy Down
                     float x = enemy.GetPosition().X;
                     float y = enemy.GetPosition().Y;
-                    y = y - 1*1.5f;
+                    y = y - 1 * 1.5f;
                     enemy.SetPosition(new Vector2(x, y));
                 }
 
@@ -62,11 +59,10 @@ namespace sprint0Test
                 {
                     Link.Instance.MoveUp();
                     Link.Instance.TakeDamage();
-
                     //Move Enemy Down
                     float x = enemy.GetPosition().X;
                     float y = enemy.GetPosition().Y;
-                    y = y + 1*1.5f;
+                    y = y + 1 * 1.5f;
                     enemy.SetPosition(new Vector2(x, y));
                 }
             }

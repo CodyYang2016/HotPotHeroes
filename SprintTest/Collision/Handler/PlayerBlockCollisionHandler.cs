@@ -23,28 +23,24 @@ namespace sprint0Test
             {
                 Link.Instance.MoveLeft();
                 Link.Instance.MoveLeft();
-                //Link.Instance.TakeDamage();
             }
 
             if (CollisionDetectEntity.isTouchingRight(block))
             {
                 Link.Instance.MoveRight();
                 Link.Instance.MoveRight();
-                //Link.Instance.TakeDamage();
             }
 
             if (CollisionDetectEntity.isTouchingBottom(block))
             {
                 Link.Instance.MoveDown();
                 Link.Instance.MoveDown();
-                //Link.Instance.TakeDamage();
             }
 
             if (CollisionDetectEntity.isTouchingTop(block))
             {
                 Link.Instance.MoveUp();
                 Link.Instance.MoveUp();
-                //Link.Instance.TakeDamage();
             }
         }
 

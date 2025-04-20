@@ -17,7 +17,7 @@ namespace sprint0Test.Items
 
         private bool isCollected;
         public bool IsCollected => isCollected;
-
+        public ItemBehaviorType BehaviorType => ItemBehaviorType.Consumable;
         public Crystal(string name, Texture2D texture, Vector2 position)
         {
             this.name = name;
@@ -39,9 +39,11 @@ namespace sprint0Test.Items
             }
         }
 
-        public void Use()
+        public void Collect()
         {
             isCollected = true;
         }
+
+        public void Use() { }
     }
 }

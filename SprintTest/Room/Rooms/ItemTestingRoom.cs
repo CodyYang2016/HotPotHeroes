@@ -10,9 +10,9 @@ using System.Collections.Generic;
 
 namespace sprint0Test.Dungeon
 {
-    public class r1b : AbstractRoom
+    public class ItemTestingRoom : AbstractRoom
     {
-        public r1b(RoomData data)
+        public ItemTestingRoom(RoomData data)
         {
             RoomID = data.RoomID;
             RoomData = data; // ✅ GOOD: keeps all door info
@@ -30,21 +30,21 @@ namespace sprint0Test.Dungeon
             base.Initialize();
 
 
-            if (!RoomData.HasBeenCleared)
-            {
-                Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(300, 300)));
-                Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(200, 200)));
-                Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(500, 200)));
-            }
+            //if (!RoomData.HasBeenCleared)
+            //{
+            //    Enemies.Add(EnemyManager.Instance.CreateOctorok(new Vector2(300, 300)));
+            //    Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(200, 200)));
+            //}
 
-            // (Item and block spawning can stay or follow similar logic)
+            //// (Item and block spawning can stay or follow similar logic)
 
 
-            Texture2D appleTexture = TextureManager.Instance.GetTexture("Apple");
-            Texture2D heartTexture = TextureManager.Instance.GetTexture("Heart");
+            //Texture2D appleTexture = TextureManager.Instance.GetTexture("Apple");
+            //Texture2D heartTexture = TextureManager.Instance.GetTexture("Heart");
 
             // Items.Add(new Apple("Apple", appleTexture, new Vector2(300, 120)));
             // Items.Add(new Heart("Heart", heartTexture, new Vector2(320, 160)));
+            BlockManager.Instance.CreateBlock(new Vector2(100, 200), BlockType.Brick);
         }
     }
 

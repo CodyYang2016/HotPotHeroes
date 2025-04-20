@@ -35,14 +35,10 @@ namespace sprint0Test.Dungeon
                 Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(100, 200)));
                 Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(200, 200)));
                 Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(500, 200)));
-
-
-
-
             }
 
             // (Item and block spawning can stay or follow similar logic)
-
+        
 
             Texture2D appleTexture = TextureManager.Instance.GetTexture("Apple");
             Texture2D heartTexture = TextureManager.Instance.GetTexture("Heart");
