@@ -24,7 +24,7 @@ public class Game1 : Game
     public static Game1 Instance { get; private set; }
 
     public enum GameState
-    {StartMenu, Playing, Options, Paused, Exiting}
+    { StartMenu, Playing, Options, Paused, Exiting }
     public GameState _currentGameState = GameState.StartMenu;
 
     private GraphicsDeviceManager _graphics;
@@ -60,7 +60,7 @@ public class Game1 : Game
     private bool isPaused;
 
     private KeyboardState previousKeyboardState;
-    
+
     //shaders
     Effect Darkness;
     private RenderTarget2D sceneRenderTarget;
@@ -75,7 +75,7 @@ public class Game1 : Game
     private int maxHearts = 3;
     private int currentHearts;
 
- // —— God Mode 状态 —— 
+    // —— God Mode 状态 —— 
     private bool isGodMode = false;
     private double godModeTimer = 0;    // 用于屏幕提示计时
     private double refillTimer = 0;
@@ -174,7 +174,7 @@ public class Game1 : Game
         itemFactory.RegisterTexture("Apple", Content.Load<Texture2D>("apple"));
         itemFactory.RegisterTexture("Crystal", Content.Load<Texture2D>("crystal"));
     }
-        private void RegisterItems()
+    private void RegisterItems()
     {
         //Register Item Creation Logic
         itemFactory.RegisterItem("Heart", position => new Heart("Heart", itemFactory.GetTexture("Heart"), position));
@@ -187,7 +187,7 @@ public class Game1 : Game
         itemFactory.RegisterItem("Apple", position => new Apple("Apple", itemFactory.GetTexture("Apple"), position));
         itemFactory.RegisterItem("Crystal", position => new Crystal("Crystal", itemFactory.GetTexture("Crystal"), position));
     }
-        private void ResetGameState()
+    private void ResetGameState()
     {
         // Clear managers if necessary
         EnemyManager.Instance.Clear();
@@ -211,7 +211,7 @@ public class Game1 : Game
             Link.Reset(linkSprite, new Vector2(200, 200));
         }
 
-                //Minimap STuff
+        //Minimap STuff
         var dot = Content.Load<Texture2D>("dot");
         var Map = Content.Load<Texture2D>("Map");
         //Minimap STuff
@@ -363,9 +363,9 @@ public class Game1 : Game
 
     public void ChangeGameState(GameState newState)
     {
-    _currentGameState = newState;
-    if (newState == GameState.Exiting)
-        Exit();
+        _currentGameState = newState;
+        if (newState == GameState.Exiting)
+            Exit();
     }
 
     private void HandleMenuSelection(int selectedIndex)
@@ -400,84 +400,86 @@ public class Game1 : Game
 
         switch (_currentGameState)
         {
-        case GameState.StartMenu:
-            menuManager.Update(this);
-            break;
-        case GameState.Playing:
-                
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))Exit();
-
-            masterCollisionHandler.HandleCollisions(
-            roomManager.GetCurrentRoomItems(),
-            roomManager.CurrentRoom.Enemies,
-            ProjectileManager.Instance.GetActiveProjectiles(),
-            BlockManager.Instance.GetActiveBlocks());
-            base.Update(gameTime);
-            Vector2 linkSize = Link.Instance.GetScaledDimensions();
-            roomManager.Update(gameTime); // This is crucial    
-
-            // Toggle pause only when Tab is pressed once
-            var keyboardState = Keyboard.GetState();
-            if (keyboardState.IsKeyDown(Keys.Tab) && previousKeyboardState.IsKeyUp(Keys.Tab))
-            {
-                isPaused = !isPaused;
-            }
-            previousKeyboardState = keyboardState; // Store state for next frame
-
-            // If paused, do not update game logic
-            if (isPaused)
-                return;
-
-            if (!isGameWon && roomManager.CurrentRoom != null && roomManager.CurrentRoom.RoomID == "r5e")
-            {
-                // Check if Aquamentus has been defeated
-                var aquamentusStillExists = roomManager.CurrentRoom.Enemies
-                    .OfType<Aquamentus>()
-                    .Any();
-
-                if (!aquamentusStillExists)
-                {
-                    isGameWon = true;
-                }
-            }
-
-            foreach (IController controller in controllerList)
-            {
-                controller.Update();
-            }
-            // sprite.Update();
-            foreach (var item in roomManager.GetCurrentRoomItems())
-            {
-                item.Update(gameTime);
-            }
-            EnemyManager.Instance.Update(gameTime);
-            ProjectileManager.Instance.Update(gameTime);
-            Link.Instance.Update(gameTime);
-
-            // Player Dead Animation
-            if (isPlayerDead)
-            {
-                respawnTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (respawnTimer <= 0)
-                {
-                    isPlayerDead = false;
-                    collisionCount = 0;
-                    currentHearts = maxHearts; // Reset to 3 hearts
-                    Link.Instance.SetPosition(playerRespawnPosition);
-                    InitializeHeartPositions(); // Refresh heart display
-                }
-                return;
-            }
+            case GameState.StartMenu:
+                menuManager.Update(this);
                 break;
-        case GameState.Options:
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
-                _currentGameState = Game1.GameState.StartMenu;
-            }
-            break;
-        case GameState.Paused:
-            _pauseMenu.Update();
-            break;
+            case GameState.Playing:
+
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
+
+                masterCollisionHandler.HandleCollisions(
+                roomManager.GetCurrentRoomItems(),
+                roomManager.CurrentRoom.Enemies,
+                ProjectileManager.Instance.GetActiveProjectiles(),
+                BlockManager.Instance.GetActiveBlocks());
+                base.Update(gameTime);
+                Vector2 linkSize = Link.Instance.GetScaledDimensions();
+                //roomManager.Update(gameTime); // This is crucial    
+
+                // Toggle pause only when Tab is pressed once
+                var keyboardState = Keyboard.GetState();
+                if (keyboardState.IsKeyDown(Keys.Tab) && previousKeyboardState.IsKeyUp(Keys.Tab) && !isGameOver && !isGameWon)
+                {
+                    isPaused = !isPaused;
+                }
+                previousKeyboardState = keyboardState; // Store state for next frame
+
+                // If paused, do not update game logic
+                if (isPaused || isGameOver || isGameWon)
+                    return;
+
+                roomManager.Update(gameTime); // ✅ This is crucial
+
+                if (!isGameWon && roomManager.CurrentRoom != null && roomManager.CurrentRoom.RoomID == "r5e")
+                {
+                    // Check if Aquamentus has been defeated
+                    var aquamentusStillExists = roomManager.CurrentRoom.Enemies
+                        .OfType<Aquamentus>()
+                        .Any();
+
+                    if (!aquamentusStillExists)
+                    {
+                        isGameWon = true;
+                    }
+                }
+
+                foreach (IController controller in controllerList)
+                {
+                    controller.Update();
+                }
+                // sprite.Update();
+                foreach (var item in roomManager.GetCurrentRoomItems())
+                {
+                    item.Update(gameTime);
+                }
+                EnemyManager.Instance.Update(gameTime);
+                ProjectileManager.Instance.Update(gameTime);
+                Link.Instance.Update(gameTime);
+
+                // Player Dead Animation
+                if (isPlayerDead)
+                {
+                    respawnTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (respawnTimer <= 0)
+                    {
+                        isPlayerDead = false;
+                        collisionCount = 0;
+                        currentHearts = maxHearts; // Reset to 3 hearts
+                        Link.Instance.SetPosition(playerRespawnPosition);
+                        InitializeHeartPositions(); // Refresh heart display
+                    }
+                    return;
+                }
+                break;
+            case GameState.Options:
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                {
+                    _currentGameState = Game1.GameState.StartMenu;
+                }
+                break;
+            case GameState.Paused:
+                _pauseMenu.Update();
+                break;
         }
 
         HandleMouseTeleportation();
@@ -487,111 +489,111 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        if(_currentGameState == GameState.Playing){ GraphicsDevice.SetRenderTarget(sceneRenderTarget); }
+        if (_currentGameState == GameState.Playing) { GraphicsDevice.SetRenderTarget(sceneRenderTarget); }
 
         GraphicsDevice.Clear(Color.Black);
         _spriteBatch.Begin();
 
         switch (_currentGameState)
         {
-        case GameState.StartMenu:
-            menuManager.Draw(_spriteBatch, GraphicsDevice);
-            break;
-        case GameState.Paused:
-            _pauseMenu.Draw(_spriteBatch, GraphicsDevice);
-            break;
-        case GameState.Playing:
-            
-            roomManager.Draw(_spriteBatch);
-            ProjectileManager.Instance.Draw(_spriteBatch);
-            BlockManager.Instance.Draw(_spriteBatch);
+            case GameState.StartMenu:
+                menuManager.Draw(_spriteBatch, GraphicsDevice);
+                break;
+            case GameState.Paused:
+                _pauseMenu.Draw(_spriteBatch, GraphicsDevice);
+                break;
+            case GameState.Playing:
 
-            _spriteBatch.Draw(rupeeIcon, rupeePosition, Color.White);
-            _spriteBatch.DrawString(_menuFont, "x "+ rupeeCount.ToString(), rupeePosition + new Vector2(rupeeIcon.Width + 5, 0), Color.White);
-            var items = roomManager.GetCurrentRoomItems();
-            if (items != null)
-            {
-                foreach (var item in items)
+                roomManager.Draw(_spriteBatch);
+                ProjectileManager.Instance.Draw(_spriteBatch);
+                BlockManager.Instance.Draw(_spriteBatch);
+
+                _spriteBatch.Draw(rupeeIcon, rupeePosition, Color.White);
+                _spriteBatch.DrawString(_menuFont, "x " + rupeeCount.ToString(), rupeePosition + new Vector2(rupeeIcon.Width + 5, 0), Color.White);
+                var items = roomManager.GetCurrentRoomItems();
+                if (items != null)
                 {
-                    item.Draw(_spriteBatch);
+                    foreach (var item in items)
+                    {
+                        item.Draw(_spriteBatch);
+                    }
                 }
-            }
-            if (!isPlayerDead)
-            {
-                // Draw hearts based on currentHearts
-                for (int i = 0; i < currentHearts; i++)
+                if (!isPlayerDead)
                 {
-                    _spriteBatch.Draw(heartTexture, heartPositions[i], Color.White);
-                    Console.WriteLine($"Drawing heart at position {heartPositions[i]}"); // Debugging heart drawing
-                }
+                    // Draw hearts based on currentHearts
+                    for (int i = 0; i < currentHearts; i++)
+                    {
+                        _spriteBatch.Draw(heartTexture, heartPositions[i], Color.White);
+                        Console.WriteLine($"Drawing heart at position {heartPositions[i]}"); // Debugging heart drawing
+                    }
 
-                Link.Instance.Draw(_spriteBatch); // Draw Link
-            }
-            if (godModeTimer > 0)
-            {
-                string msg = isGodMode
-                    ? "GOD MODE ACTIVATED!"
-                    : "GOD MODE Closed!";
-                Vector2 size = _menuFont.MeasureString(msg);
-                Vector2 pos = new Vector2(
-                    (_graphics.PreferredBackBufferWidth - size.X) / 2,
-                    20);
-                _spriteBatch.DrawString(_menuFont, msg, pos, Color.Yellow);
-            }
-            if (items != null)
-            {
-                foreach (var item in items)
+                    Link.Instance.Draw(_spriteBatch); // Draw Link
+                }
+                if (godModeTimer > 0)
                 {
-                    item.Draw(_spriteBatch);
+                    string msg = isGodMode
+                        ? "GOD MODE ACTIVATED!"
+                        : "GOD MODE Closed!";
+                    Vector2 size = _menuFont.MeasureString(msg);
+                    Vector2 pos = new Vector2(
+                        (_graphics.PreferredBackBufferWidth - size.X) / 2,
+                        20);
+                    _spriteBatch.DrawString(_menuFont, msg, pos, Color.Yellow);
                 }
-            }
-
-            if (Link.Instance != null)
-            {
-                Link.Instance.Draw(_spriteBatch);
-            }
-            else
-            {
-                Console.WriteLine("Error: Link.Instance is null in Draw()!");
-            }
-            if (godModeTimer > 0)
-            {
-                string msg = isGodMode
-                    ? "GOD MODE ACTIVATED!"
-                    : "GOD MODE Closed!";
-                Vector2 size = _menuFont.MeasureString(msg);
-                Vector2 pos = new Vector2(
-                    (_graphics.PreferredBackBufferWidth - size.X) / 2,
-                    20);
-                _spriteBatch.DrawString(_menuFont, msg, pos, Color.Yellow);
-            }
-
-            EnemyManager.Instance.Draw(_spriteBatch);
-
-            if (showFullMap)
-            {
-                _spriteBatch.Draw(mapTexture, new Rectangle(0, 0, 800, 600), Color.White);
-
-                if (roomMapPositions.TryGetValue(roomManager.CurrentRoom.RoomID, out Point mapPos))
+                if (items != null)
                 {
+                    foreach (var item in items)
+                    {
+                        item.Draw(_spriteBatch);
+                    }
                 }
-            }
-            else if (roomManager.CurrentRoom.RoomID != "r8c")
-            {
-                _spriteBatch.Draw(mapTexture, new Rectangle(650, 380, 100, 100), Color.White);
 
-                if (roomMapPositions.TryGetValue(roomManager.CurrentRoom.RoomID, out Point mapPos))
+                if (Link.Instance != null)
                 {
-                    int scaledX = (int)(mapPos.X * 100f / 300f);
-                    int scaledY = (int)(mapPos.Y * 100f / 300f);
-                    _spriteBatch.Draw(dotTexture, new Rectangle(650 + scaledX, 380 + scaledY, 3, 3), Color.Red);
+                    Link.Instance.Draw(_spriteBatch);
                 }
-            }
+                else
+                {
+                    Console.WriteLine("Error: Link.Instance is null in Draw()!");
+                }
+                if (godModeTimer > 0)
+                {
+                    string msg = isGodMode
+                        ? "GOD MODE ACTIVATED!"
+                        : "GOD MODE Closed!";
+                    Vector2 size = _menuFont.MeasureString(msg);
+                    Vector2 pos = new Vector2(
+                        (_graphics.PreferredBackBufferWidth - size.X) / 2,
+                        20);
+                    _spriteBatch.DrawString(_menuFont, msg, pos, Color.Yellow);
+                }
 
-        break;
-        case GameState.Options:
-            _spriteBatch.DrawString(_menuFont, OptionsText, new Vector2(250, 150), Color.White);
-            break;
+                EnemyManager.Instance.Draw(_spriteBatch);
+
+                if (showFullMap)
+                {
+                    _spriteBatch.Draw(mapTexture, new Rectangle(0, 0, 800, 600), Color.White);
+
+                    if (roomMapPositions.TryGetValue(roomManager.CurrentRoom.RoomID, out Point mapPos))
+                    {
+                    }
+                }
+                else if (roomManager.CurrentRoom.RoomID != "r8c")
+                {
+                    _spriteBatch.Draw(mapTexture, new Rectangle(650, 380, 100, 100), Color.White);
+
+                    if (roomMapPositions.TryGetValue(roomManager.CurrentRoom.RoomID, out Point mapPos))
+                    {
+                        int scaledX = (int)(mapPos.X * 100f / 300f);
+                        int scaledY = (int)(mapPos.Y * 100f / 300f);
+                        _spriteBatch.Draw(dotTexture, new Rectangle(650 + scaledX, 380 + scaledY, 3, 3), Color.Red);
+                    }
+                }
+
+                break;
+            case GameState.Options:
+                _spriteBatch.DrawString(_menuFont, OptionsText, new Vector2(250, 150), Color.White);
+                break;
         }
 
         if (isPaused)
@@ -627,17 +629,18 @@ public class Game1 : Game
         _spriteBatch.End();
 
         //shaders
-        if (_currentGameState == GameState.Playing){
-             GraphicsDevice.SetRenderTarget(null);
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        if (_currentGameState == GameState.Playing)
+        {
+            GraphicsDevice.SetRenderTarget(null);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        ShaderManager.ApplyShading(
-            _spriteBatch,
-            sceneRenderTarget,
-            GraphicsDevice
-        );
+            ShaderManager.ApplyShading(
+                _spriteBatch,
+                sceneRenderTarget,
+                GraphicsDevice
+            );
         }
-    
+
         base.Draw(gameTime);
     }
 
