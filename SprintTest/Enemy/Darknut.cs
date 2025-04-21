@@ -40,8 +40,9 @@ public class Darknut : AbstractEnemy
             moveTimer = 0;
             direction *= -1; // Change direction
         }
-
-        position.X += direction * 1.5f;
+        
+        // Sprint5 Movement Speed
+        position.X += direction * 0.8f;
 
         // Block attacks if facing the player
         if (Vector2.Distance(position, Link.Instance.Position) < attackRange)

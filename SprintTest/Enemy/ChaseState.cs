@@ -10,7 +10,8 @@ namespace sprint0Test.Enemy
 {
     public class ChaseState : AbstractEnemyState
     {
-        private float speed = 1.2f;
+        //Sprint5 Movement Speed Adjustment
+        private float speed = 0.6f;
 
         public ChaseState(AbstractEnemy enemy) : base(enemy) { }
 

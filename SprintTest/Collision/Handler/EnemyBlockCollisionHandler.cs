@@ -26,13 +26,14 @@ namespace sprint0Test
         {
             if (enemy != null)
             {
-
+                //Sprint5 Adjustment to collision detection for enemies
                 if (CollisionDetectEntities.isTouchingLeft(block, enemy))
                 {
                     //Move Enemy Left
                     float x = enemy.GetPosition().X;
                     float y = enemy.GetPosition().Y;
                     x = x - 1*1.5f;
+                    x = x - 1 * 1.5f;
                     enemy.SetPosition(new Vector2(x, y));
                     
                 }
@@ -43,6 +44,7 @@ namespace sprint0Test
                     float x = enemy.GetPosition().X;
                     float y = enemy.GetPosition().Y;
                     x = x + 1*1.5f;
+                    x = x + 1 * 1.5f;
                     enemy.SetPosition(new Vector2(x, y));
                 }
 
@@ -52,6 +54,8 @@ namespace sprint0Test
                     float x = enemy.GetPosition().X;
                     float y = enemy.GetPosition().Y;
                     y = y + 1*1.5f;
+                    y = y + 1 * 1.5f;
+
                     enemy.SetPosition(new Vector2(x, y));
                 }
 
@@ -61,6 +65,8 @@ namespace sprint0Test
                     float x = enemy.GetPosition().X;
                     float y = enemy.GetPosition().Y;
                     y = y - 1*1.5f;
+                    y = y - 1 * 1.5f;
+
                     enemy.SetPosition(new Vector2(x, y));
                 }
             }

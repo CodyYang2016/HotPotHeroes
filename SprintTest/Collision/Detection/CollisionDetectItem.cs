@@ -86,7 +86,8 @@ namespace sprint0Test
                 playerRect.Right > blockRect.Left;
         }
 
-        public static bool isTouching(IItem item) {
+        public static bool isTouching(IItem item)
+        {
             return (isTouchingBottom(item) || isTouchingTop(item) || isTouchingLeft(item) || isTouchingRight(item));
         }
     }

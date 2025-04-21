@@ -65,7 +65,7 @@ namespace sprint0Test
             // Add it to the list of blocks in the room
             blocks.Add(newBlock);
         }
-        
+
         public void CreateBlockStair(Vector2 position, BlockType blockType, float scale = 3.0f, bool isVisible = true)
         {
             Rectangle blockRectangle = blockTypeToRectangle[blockType];

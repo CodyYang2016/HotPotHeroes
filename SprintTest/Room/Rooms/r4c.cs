@@ -39,11 +39,13 @@ namespace sprint0Test.Dungeon
 
             // (Item and block spawning can stay or follow similar logic)
 
+            BlockManager.Instance.CreateBlock(new Vector2(225,170), BlockType.Block);
+            
+            BlockManager.Instance.CreateBlock(new Vector2(225,300), BlockType.Block);
 
-            BlockManager.Instance.CreateBlock(new Vector2(225, 170), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(225, 300), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(400, 170), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(400, 300), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(400,170), BlockType.Block);
+            
+            BlockManager.Instance.CreateBlock(new Vector2(400,300), BlockType.Block);
         }
     }
 

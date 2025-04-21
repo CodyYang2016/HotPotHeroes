@@ -7,9 +7,14 @@
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/apple.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/blue-potion.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/blue-rupee.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/bomb.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/boomerang.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/crystal.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/Darkness.fx</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/Dot.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/DungeonEnemy.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/Explosion.jpg</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/ganons_message.mp3</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/green-potion.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/green-rupee.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/heart.png</File>
@@ -38,18 +43,27 @@
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/LinkS2.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/LinkS3.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/LinkS4.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/Map.jpg</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/mario.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/mario2.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/MenuFont.spritefont</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/PauseFont.spritefont</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/red-potion.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/red-rupee.png</File>
+    <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/sanctuary_dungeon.mp3</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/TileSetDungeon.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/ZeldaBoss.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/zeldaenemy.png</File>
     <File>C:/Users/cody.yang/source/repos/Sprint4Final/Content/ZeldaOverWorld.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

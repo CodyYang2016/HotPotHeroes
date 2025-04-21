@@ -11,8 +11,6 @@ public class DungeonLayout
 
     private void InitializeRooms()
     {
-
-
         var r1b = new RoomData("r1b");
         r1b.Doors["Right"] = "r1c";
         rooms["r1b"] = r1b;
@@ -99,8 +97,17 @@ public class DungeonLayout
         r6b.Doors["Right"] = "r5a";
         rooms["r6b"] = r6b;
 
-        var ItemTestingRoom = new RoomData("ItemTestingRoom");
-        rooms["ItemTestingRoom"] = ItemTestingRoom;
+        var r8c = new RoomData("r8c");
+
+        // ✅ Explicitly define door visibility (draw only Right and Down)
+        r8c.Doors["Up"] = null;
+        r8c.Doors["Left"] = null;
+        r8c.Doors["Right"] = "none";
+        r8c.Doors["Down"] = "none";
+
+        rooms["r8c"] = r8c;
+
+
         // Add more as needed
     }
 

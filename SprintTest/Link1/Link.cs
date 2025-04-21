@@ -1,4 +1,3 @@
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,6 +7,7 @@ using sprint0Test.Sprites;
 using sprint0Test.Managers;
 using System.Diagnostics;
 using static sprint0Test.Items.Bomb;
+using sprint0Test.Dungeon;
 
 namespace sprint0Test.Link1
 {
@@ -32,6 +32,20 @@ namespace sprint0Test.Link1
         private readonly int screenMaxX = 800;
         private readonly int screenMaxY = 480;
         private bool isVisible = true; // This will track visibility
+        //sprint5 Link update
+        private double damageCooldownTimer = 0;
+        private const double DamageCooldownDuration = 0.5; // in seconds
+
+        private bool isMovingThisFrame = false;
+
+
+        private bool isInvulnerable = false;
+        public bool IsInvulnerable
+        {
+            get => isInvulnerable;
+            set => isInvulnerable = value;
+        }
+
 
         // ? Singleton access property
         public static Link Instance
@@ -168,22 +182,29 @@ namespace sprint0Test.Link1
         // int damage
         public void TakeDamage()
         {
+            if (isInvulnerable) return;        // God Mode ??????
+            if (damageCooldownTimer > 0) return; // ? Still on cooldown
+
+
             if (!isAttacking && !isUsingItem)
             {
                 sprite.SetState(LinkAction.Damaged, sprite.CurrentDirection);
             }
-            // currentHealth -= damage;
-            // Larry's code
+
             Game1.Instance.HandlePlayerDamage();
 
+            damageCooldownTimer = DamageCooldownDuration; // ? Start cooldown
         }
 
-        public void Consume(IItem item) {
+
+        public void Consume(IItem item)
+        {
             if (item.name == "Heart")
             {
                 //Game1.Instance.HandlePlayerHealed();
             }
-            else if (item.name == "Crystal") { 
+            else if (item.name == "Crystal")
+            {
                 currentCrystal += 1;
             }
         }
@@ -201,7 +222,7 @@ namespace sprint0Test.Link1
             inventory.Add(item);
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             sprite.Update();
 
@@ -217,9 +238,24 @@ namespace sprint0Test.Link1
                 sprite.SetState(LinkAction.Idle, sprite.CurrentDirection);
             }
 
+            if (damageCooldownTimer > 0)
+            {
+                damageCooldownTimer -= gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+
+
             Vector2 scaledSize = sprite.GetScaledDimensions();
             position.X = MathHelper.Clamp(position.X, screenMinX, screenMaxX - scaledSize.X);
             position.Y = MathHelper.Clamp(position.Y, screenMinY, screenMaxY - scaledSize.Y);
+
+            if (!isMovingThisFrame && !isAttacking && !isUsingItem)
+            {
+                sprite.SetState(LinkAction.Idle, sprite.CurrentDirection);
+            }
+
+            // ???????
+            isMovingThisFrame = false;
         }
 
         public void Draw(SpriteBatch spriteBatch)

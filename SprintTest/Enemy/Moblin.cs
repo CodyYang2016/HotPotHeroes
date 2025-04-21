@@ -11,7 +11,7 @@ namespace sprint0Test.Enemy
     {
         private Random random;
         private Vector2 movementDirection;
-        private float movementSpeed = 1.5f;
+        private float movementSpeed = 1.0f;
         private float changeDirectionCooldown = 2.0f;
         private float currentCooldown = 0f;
         private int health = 3;

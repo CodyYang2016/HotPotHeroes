@@ -38,21 +38,24 @@ namespace sprint0Test.Dungeon
 
                 Enemies.Add(EnemyManager.Instance.CreateDarknut(new Vector2(300, 250)));
             }
-            //BlockManager.Instance.CreateBlock(new Vector2(250,250), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(240, 300), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(230, 350), BlockType.Block);
 
+            // (Item and block spawning can stay or follow similar logic)
+        
+            //BlockManager.Instance.CreateBlock(new Vector2(250,250), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(240,300), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(230,350), BlockType.Block);
+            
             //BlockManager.Instance.CreateBlock(new Vector2(400,250), BlockType.Block);
             //BlockManager.Instance.CreateBlock(new Vector2(400,300), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(400, 350), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(400,350), BlockType.Block);
 
             //BlockManager.Instance.CreateBlock(new Vector2(250,250), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(240, 90), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(240,90), BlockType.Block);
             //BlockManager.Instance.CreateBlock(new Vector2(230,140), BlockType.Block);
-
+            
             //BlockManager.Instance.CreateBlock(new Vector2(400,250), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(400, 90), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(400, 140), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(400,90), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(400,140), BlockType.Block);
         }
     }
 

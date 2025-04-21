@@ -32,10 +32,11 @@ namespace sprint0Test.Dungeon
 
             if (!RoomData.HasBeenCleared)
             {
+
             }
 
             // (Item and block spawning can stay or follow similar logic)
-        
+
 
             Texture2D appleTexture = TextureManager.Instance.GetTexture("Apple");
             Texture2D heartTexture = TextureManager.Instance.GetTexture("Heart");
@@ -52,6 +53,9 @@ namespace sprint0Test.Dungeon
             BlockManager.Instance.CreateBlock(new Vector2(350, 350), BlockType.Fish);
             BlockManager.Instance.CreateBlock(new Vector2(480, 350), BlockType.Fish);
         }
+
     }
 
 }
+
+

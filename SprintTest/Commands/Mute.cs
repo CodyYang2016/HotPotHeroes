@@ -1,23 +1,29 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using sprint0Test.Audio;
 using sprint0Test.Interfaces;
+using sprint0Test.Link1;
+using sprint0Test.Managers;
+using sprint0Test.Sprites;
 
-namespace sprint0Test
+
+namespace sprint0Test.Commands
 {
-    class MoveToTestingRoomCommand : ICommand
+    class Mute : ICommand
     {
+
         private Game1 myGame;
 
-        public MoveToTestingRoomCommand(Game1 game)
+        public Mute(Game1 game)
         {
             myGame = game;
         }
 
         public void Execute()
         {
-            myGame.roomManager.LoadRoom("ItemTestingRoom");
+            AudioManager.Mute();
         }
     }
 }

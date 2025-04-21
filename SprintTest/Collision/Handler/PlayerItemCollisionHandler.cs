@@ -6,8 +6,8 @@ using sprint0Test;
 
 namespace sprint0Test;
 
-    public class PlayerItemCollisionHandler
-    {
+public class PlayerItemCollisionHandler
+{
     public void HandleCollisionList(List<IItem> _active)
     {
         if (_active == null) return;
@@ -30,7 +30,8 @@ namespace sprint0Test;
                 {
                     Link.Instance.AddItem(item);
                 }
-                else { 
+                else
+                {
                     Link.Instance.Consume(item);
                 }
             }
@@ -38,6 +39,3 @@ namespace sprint0Test;
     }
 
 }
-
-    
-

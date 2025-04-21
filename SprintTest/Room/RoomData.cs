@@ -20,6 +20,7 @@ public class RoomData
 
     public bool[,] CollisionMap { get; set; }
 
+
     public RoomData(string roomID)
     {
         RoomID = roomID;

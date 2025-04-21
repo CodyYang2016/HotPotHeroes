@@ -36,8 +36,8 @@ public class Stalfos : AbstractEnemy
             moveTimer = 0;
             moveDirection = new Vector2(random.Next(-1, 2), random.Next(-1, 2));
         }
-
-        position += moveDirection * 1.5f;
+        // Sprint5 Speed Adjustment
+        position += moveDirection * 0.8f;
 
         // Attack if player is close and cooldown is over
         if (Vector2.Distance(position, Link.Instance.Position) < attackRange && attackTimer >= attackCooldown)

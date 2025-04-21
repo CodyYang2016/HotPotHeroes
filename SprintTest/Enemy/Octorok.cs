@@ -10,7 +10,7 @@ namespace sprint0Test.Enemy
     {
         private Random random;
         private Vector2 movementDirection;
-        private float movementSpeed = 1.5f;
+        private float movementSpeed = 0.7f; //Sprint5 Movement Speed
         private float changeDirectionCooldown = 2.0f;
         private float currentCooldown = 0f;
         private int health = 2;

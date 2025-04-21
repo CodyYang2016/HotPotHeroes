@@ -244,11 +244,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cody.yang\\source\\repos\\Sprint4Final\\sprint3 extra.csproj",
+      "projectUniqueName": "C:\\Users\\cody.yang\\source\\repos\\Sprint5Final\\sprint3 extra.csproj",
       "projectName": "sprint3 extra",
-      "projectPath": "C:\\Users\\cody.yang\\source\\repos\\Sprint4Final\\sprint3 extra.csproj",
+      "projectPath": "C:\\Users\\cody.yang\\source\\repos\\Sprint5Final\\sprint3 extra.csproj",
       "packagesPath": "C:\\Users\\cody.yang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cody.yang\\source\\repos\\Sprint4Final\\obj\\",
+      "outputPath": "C:\\Users\\cody.yang\\source\\repos\\Sprint5Final\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

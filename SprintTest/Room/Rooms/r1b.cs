@@ -35,6 +35,8 @@ namespace sprint0Test.Dungeon
                 Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(300, 300)));
                 Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(200, 200)));
                 Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(500, 200)));
+
+
             }
 
             // (Item and block spawning can stay or follow similar logic)

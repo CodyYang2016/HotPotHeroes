@@ -33,10 +33,11 @@ namespace sprint0Test.Dungeon
                 Enemies.Add(EnemyManager.Instance.CreateStalfos(new Vector2(500, 200)));
                 Enemies.Add(EnemyManager.Instance.CreateStalfos(new Vector2(100, 100)));
                 Enemies.Add(EnemyManager.Instance.CreateStalfos(new Vector2(100, 400)));
+
             }
 
             // (Item and block spawning can stay or follow similar logic)
-        
+
 
             Texture2D appleTexture = TextureManager.Instance.GetTexture("Apple");
             Texture2D heartTexture = TextureManager.Instance.GetTexture("Heart");
@@ -49,6 +50,7 @@ namespace sprint0Test.Dungeon
             BlockManager.Instance.CreateBlock(new Vector2(220, 260), BlockType.Block);
             BlockManager.Instance.CreateBlock(new Vector2(170, 310), BlockType.Block);
             BlockManager.Instance.CreateBlock(new Vector2(220, 310), BlockType.Block);
+
         }
     }
 

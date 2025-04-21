@@ -35,11 +35,14 @@ namespace sprint0Test.Dungeon
                 Enemies.Add(EnemyManager.Instance.CreateOctorok(new Vector2(550, 250)));
                 Enemies.Add(EnemyManager.Instance.CreateOctorok(new Vector2(550, 100)));
                 Enemies.Add(EnemyManager.Instance.CreateOctorok(new Vector2(550, 150)));
+
                 Enemies.Add(EnemyManager.Instance.CreateOctorok(new Vector2(100, 250)));
                 Enemies.Add(EnemyManager.Instance.CreateOctorok(new Vector2(100, 100)));
                 Enemies.Add(EnemyManager.Instance.CreateOctorok(new Vector2(100, 150)));
+
                 Enemies.Add(EnemyManager.Instance.CreateOctorok(new Vector2(300, 100)));
             }
+
             BlockManager.Instance.CreateBlock(new Vector2(350, 200), BlockType.Sand, 3f, true, false);
             BlockManager.Instance.CreateBlock(new Vector2(350, 250), BlockType.Sand, 3f, true, false);
             BlockManager.Instance.CreateBlock(new Vector2(350, 300), BlockType.Sand, 3f, true, false);
@@ -48,7 +51,6 @@ namespace sprint0Test.Dungeon
             BlockManager.Instance.CreateBlock(new Vector2(300, 250), BlockType.Sand, 3f, true, false);
             BlockManager.Instance.CreateBlock(new Vector2(300, 300), BlockType.Sand, 3f, true, false);
             BlockManager.Instance.CreateBlock(new Vector2(300, 350), BlockType.Sand, 3f, true, false);
-
         }
     }
 

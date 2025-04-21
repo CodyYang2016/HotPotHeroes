@@ -35,40 +35,40 @@ namespace sprint0Test.Managers
 
             IProjectile projectile = null;
 
-/*            if (projectilePool.Count > 0)
+            /*            if (projectilePool.Count > 0)
+                        {
+                            projectile = projectilePool.Dequeue();
+                            Debug.WriteLine($"Reusing projectile from pool: {projectileType}");
+                        }
+                        else
+                        {*/
+            Texture2D fireball = TextureManager.Instance.GetTexture("Fireball");
+            Texture2D rockTexture = TextureManager.Instance.GetTexture("Rock");
+
+            if (fireball == null)
             {
-                projectile = projectilePool.Dequeue();
-                Debug.WriteLine($"Reusing projectile from pool: {projectileType}");
+                Debug.WriteLine("Fireball texture is NULL!");
+                return;
             }
-            else
-            {*/
-                Texture2D fireball = TextureManager.Instance.GetTexture("Fireball");
-                Texture2D rockTexture = TextureManager.Instance.GetTexture("Rock");
 
-                if (fireball == null)
-                {
-                    Debug.WriteLine("Fireball texture is NULL!");
+            switch (projectileType)
+            {
+                case "Fireball":
+                    projectile = new Fireball(position, direction, fireball);
+                    Debug.WriteLine($"Created new Fireball at {position}");
+                    break;
+                case "Rock":
+                    projectile = new Rock(position, direction, rockTexture);
+                    Debug.WriteLine($"Created new Rock at {position}");
+                    break;
+                case "Sword":
+                    projectile = new Sword(position, fireball);
+                    Debug.WriteLine($"Created new Sword at {position}");
+                    break;
+                default:
+                    Debug.WriteLine($"Unknown projectile type: {projectileType}");
                     return;
-                }
-
-                switch (projectileType)
-                {
-                    case "Fireball":
-                        projectile = new Fireball(position, direction, fireball);
-                        Debug.WriteLine($"Created new Fireball at {position}");
-                        break;
-                    case "Rock":
-                        projectile = new Rock(position, direction, rockTexture);
-                        Debug.WriteLine($"Created new Rock at {position}");
-                        break;
-                    case "Sword":
-                        projectile = new Sword(position, fireball);
-                        Debug.WriteLine($"Created new Sword at {position}");
-                        break;
-                    default:
-                        Debug.WriteLine($"Unknown projectile type: {projectileType}");
-                        return;
-                }
+            }
             // }
 
             (projectile as AbstractProjectile)?.Reset(position, direction);

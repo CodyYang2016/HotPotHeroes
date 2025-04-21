@@ -35,7 +35,7 @@ namespace sprint0Test.Dungeon
 
             if (!RoomData.HasBeenCleared)
             {
-           
+
             }
 
             // (Item and block spawning can stay or follow similar logic)
@@ -46,7 +46,6 @@ namespace sprint0Test.Dungeon
 
             // Items.Add(new Apple("Apple", appleTexture, new Vector2(300, 120)));
             // Items.Add(new Heart("Heart", heartTexture, new Vector2(320, 160)));
-            BlockManager.Instance.CreateBlock(new Vector2(100, 200), BlockType.Brick);
             GenerateStandardDoorHitboxes();
 
         }
