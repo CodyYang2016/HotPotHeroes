@@ -450,7 +450,6 @@ public class Game1 : Game
             BlockManager.Instance.GetActiveBlocks());
         base.Update(gameTime);
         Vector2 linkSize = Link.Instance.GetScaledDimensions();
-        roomManager.Update(gameTime); // ✅ This is crucial    
 
         // If paused, do not update game logic
         if (isPaused)
