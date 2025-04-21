@@ -2,187 +2,140 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using sprint0Test.Link1;
+using sprint0Test;
+using System.Linq;
 
 namespace sprint0Test.Link1
 {
-    public enum LinkDirection { Up, Down, Left, Right }
-    public enum LinkAction { Idle, Walking, Attacking, Damaged, UsingItem }
+    public enum LinkDirection
+    {
+        Up, Down, Left, Right
+    }
 
+    public enum LinkAction
+    {
+        Idle, Walking, Attacking, Damaged, UsingItem
+    }
     public class LinkSprite
     {
-        private const int FramesPerImage = 8;
-        private const float BaseScale = 1f;
-        private const string MissingKeyError = "Key ({0}, {1}) not found in spriteMap!";
+        private Dictionary<(LinkAction, LinkDirection), List<Texture2D>> spriteMap;
+        private List<Texture2D> currentFrames = new List<Texture2D>();
+        private int currentFrameIndex;
+        private int frameCounter;
 
-        private readonly AnimationManager _animationManager;
-        private readonly SpriteDimensions _spriteDimensions;
-        private readonly Dictionary<LinkDirection, Vector2> _baselineSizes;
+        private int framesPerImage = 8;
+        // Original dimensions (unscaled) for Idle frames in each direction
+        private readonly Dictionary<LinkDirection, Vector2> baselineSize;
 
-        public float Scale { get; set; } = BaseScale;
-        public LinkAction CurrentAction => _animationManager.CurrentAction;
-        public LinkDirection CurrentDirection => _animationManager.CurrentDirection;
-        public bool IsVisible { get; set; } = true;
+        private bool isVisible = true; // Track visibility
 
-        public LinkSprite(Dictionary<(LinkAction, LinkDirection), List<Texture2D>> spriteMap)
+        public float Scale { get; set; } = 1f;
+        public LinkAction CurrentAction { get; private set; }
+        public LinkDirection CurrentDirection { get; private set; }
+
+        // IsVisible property
+        public bool IsVisible
         {
-            ValidateSpriteMap(spriteMap);
-
-            _animationManager = new AnimationManager(spriteMap);
-            _baselineSizes = CalculateBaselineSizes(spriteMap);
-            _spriteDimensions = new SpriteDimensions(this);
+            get => isVisible;
+            set => isVisible = value;
         }
 
-        public void SetState(LinkAction action, LinkDirection direction)
-            => _animationManager.SetState(action, direction);
-
-        public void Update() => _animationManager.Update();
-
-        public void Draw(SpriteBatch spriteBatch, Vector2 position)
+        public LinkSprite(Dictionary<(LinkAction, LinkDirection), List<Texture2D>> map)
         {
-            if (!IsVisible) return;
-
-            var (currentTexture, drawPosition) = CalculateDrawParameters(position);
-            spriteBatch.Draw(currentTexture, drawPosition, Color.White, Scale);
-        }
-
-        public Vector2 GetScaledDimensions() => _spriteDimensions.GetCurrentDimensions();
-
-        private static void ValidateSpriteMap(Dictionary<(LinkAction, LinkDirection), List<Texture2D>> spriteMap)
-        {
-            if (spriteMap == null || spriteMap.Count == 0)
-                throw new ArgumentException("Invalid sprite map");
-        }
-
-        private Dictionary<LinkDirection, Vector2> CalculateBaselineSizes(
-            Dictionary<(LinkAction, LinkDirection), List<Texture2D>> spriteMap)
-        {
-            var sizes = new Dictionary<LinkDirection, Vector2>();
-            foreach (LinkDirection direction in Enum.GetValues(typeof(LinkDirection)))
+            spriteMap = map;
+            // Calculate Idle dimensions for each direction
+            baselineSize = new Dictionary<LinkDirection, Vector2>();
+            foreach (LinkDirection dir in Enum.GetValues(typeof(LinkDirection)))
             {
-                var key = (LinkAction.Idle, direction);
-                if (spriteMap.TryGetValue(key, out var frames) && frames.Count > 0)
+                if (spriteMap.TryGetValue((LinkAction.Idle, dir), out var frames) && frames.Count > 0)
                 {
-                    sizes[direction] = new Vector2(frames[0].Width, frames[0].Height);
+                    var tex = frames[0];
+                    baselineSize[dir] = new Vector2(tex.Width, tex.Height);
                 }
                 else
                 {
-                    throw new InvalidOperationException($"Missing idle frames for {direction}");
+                    baselineSize[dir] = Vector2.Zero;
                 }
             }
-            return sizes;
+
+            SetState(LinkAction.Idle, LinkDirection.Down); // Initialize to Idle state
         }
 
-        private (Texture2D texture, Vector2 position) CalculateDrawParameters(Vector2 basePosition)
+        public void SetState(LinkAction action, LinkDirection dir)
         {
-            var currentTexture = _animationManager.CurrentFrame;
-            var baseSize = _baselineSizes[CurrentDirection] * Scale;
-            var currentSize = new Vector2(currentTexture.Width, currentTexture.Height) * Scale;
+            CurrentAction = action;
+            CurrentDirection = dir;
 
-            AdjustSizeForSpecialCases(ref baseSize, currentTexture);
-
-            var offset = new Vector2(
-                (baseSize.X - currentSize.X) / 2f,
-                baseSize.Y - currentSize.Y
-            );
-
-            return (currentTexture, basePosition + offset);
+            if (!spriteMap.TryGetValue((CurrentAction, CurrentDirection), out currentFrames) || currentFrames.Count == 0)
+            {
+                Console.WriteLine($"ERROR: Key ({CurrentAction}, {CurrentDirection}) not found in spriteMap!");
+                currentFrames = new List<Texture2D>(); // Assign an empty list to prevent crashes
+            }
+            currentFrameIndex = 0;
+            frameCounter = 0;
         }
 
-        private void AdjustSizeForSpecialCases(ref Vector2 baseSize, Texture2D currentTexture)
+        public void Update()
         {
+            // Idle state doesn't animate
+            if (CurrentAction == LinkAction.Idle)
+                return;
+
+            if (currentFrames.Count == 0)
+                return;
+
+            frameCounter++;
+            if (frameCounter >= framesPerImage)
+            {
+                frameCounter = 0;
+                currentFrameIndex = (currentFrameIndex + 1) % currentFrames.Count;
+            }
+        }
+
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 position)
+        {
+            if (!isVisible) return;
+
+            // Current frame texture
+            Texture2D currentTex = currentFrames[currentFrameIndex];
+            // Scaled dimensions
+            Vector2 currSize = new Vector2(currentTex.Width, currentTex.Height) * Scale;
+            // Baseline Idle dimensions for current direction (scaled)
+            Vector2 baseSize = baselineSize[CurrentDirection] * Scale;
+            // Adjustment: Down attack sprite has extra height, manually set baselineSize to align with feet
             if (CurrentAction == LinkAction.Attacking && CurrentDirection == LinkDirection.Down)
             {
-                baseSize.Y = currentTexture.Height * Scale;
-            }
-        }
-
-        private class AnimationManager
-        {
-            private readonly Dictionary<(LinkAction, LinkDirection), List<Texture2D>> _spriteMap;
-            private List<Texture2D> _currentFrames = new List<Texture2D>();
-            private int _currentFrameIndex;
-            private int _frameCounter;
-
-            public LinkAction CurrentAction { get; private set; }
-            public LinkDirection CurrentDirection { get; private set; }
-            public Texture2D CurrentFrame => _currentFrames.Count > 0
-                ? _currentFrames[_currentFrameIndex]
-                : throw new InvalidOperationException("No frames available");
-
-            public AnimationManager(Dictionary<(LinkAction, LinkDirection), List<Texture2D>> spriteMap)
-            {
-                _spriteMap = spriteMap ?? throw new ArgumentNullException(nameof(spriteMap));
-                SetState(LinkAction.Idle, LinkDirection.Down);
+                baseSize.Y = currentTex.Height * Scale; // Make sprite touch the ground
             }
 
-            public void SetState(LinkAction action, LinkDirection direction)
-            {
-                CurrentAction = action;
-                CurrentDirection = direction;
-                UpdateCurrentFrames();
-                ResetAnimation();
-            }
+            // Calculate offset: center horizontally, align bottom vertically
+            float offsetX = (baseSize.X - currSize.X) / 2f;
+            float offsetY = baseSize.Y - currSize.Y;
 
-            public void Update()
-            {
-                if (CurrentAction == LinkAction.Idle) return;
-                if (_currentFrames.Count == 0) return;
+            Vector2 drawPos = position + new Vector2(offsetX, offsetY);
 
-                if (++_frameCounter >= FramesPerImage)
-                {
-                    _frameCounter = 0;
-                    _currentFrameIndex = (_currentFrameIndex + 1) % _currentFrames.Count;
-                }
-            }
-
-            private void UpdateCurrentFrames()
-            {
-                if (!_spriteMap.TryGetValue((CurrentAction, CurrentDirection), out _currentFrames))
-                {
-                    throw new KeyNotFoundException(string.Format(
-                        MissingKeyError, CurrentAction, CurrentDirection));
-                }
-            }
-
-            private void ResetAnimation()
-            {
-                _currentFrameIndex = 0;
-                _frameCounter = 0;
-            }
-        }
-
-        private class SpriteDimensions
-        {
-            private readonly LinkSprite _linkSprite;
-
-            public SpriteDimensions(LinkSprite linkSprite)
-            {
-                _linkSprite = linkSprite ?? throw new ArgumentNullException(nameof(linkSprite));
-            }
-
-            public Vector2 GetCurrentDimensions()
-            {
-                var texture = _linkSprite._animationManager.CurrentFrame;
-                return new Vector2(texture.Width, texture.Height) * _linkSprite.Scale;
-            }
-        }
-    }
-
-    public static class SpriteBatchExtensions
-    {
-        public static void Draw(this SpriteBatch spriteBatch, Texture2D texture, Vector2 position,
-            Color color, float scale, float depth = 0f)
-        {
             spriteBatch.Draw(
-                texture,
-                position,
+                currentTex,
+                drawPos,
                 null,
-                color,
+                Color.White,
                 0f,
                 Vector2.Zero,
-                scale,
+                Scale,
                 SpriteEffects.None,
-                depth);
+                0f
+            );
+        }
+
+        public Vector2 GetScaledDimensions()
+        {
+            Texture2D currentTex = currentFrames[currentFrameIndex];
+            float width = currentTex.Width * Scale;
+            float height = currentTex.Height * Scale;
+            return new Vector2(width, height);
         }
     }
 }
+
