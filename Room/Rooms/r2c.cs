@@ -20,6 +20,7 @@ namespace sprint0Test.Dungeon
 
         public override void Initialize()
         {
+            ShaderManager.DisableDarkness();
 
 
             // Clear the enemies list 

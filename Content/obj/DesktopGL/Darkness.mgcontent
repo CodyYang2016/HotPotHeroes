@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>c:/Users/elija/OneDrive/Desktop/Cody/Content/Darkness.fx</SourceFile>
+  <SourceTime>2025-04-21T17:37:24.3360575-04:00</SourceTime>
+  <DestFile>c:/Users/elija/OneDrive/Desktop/Cody/Content/bin/DesktopGL/Darkness.xnb</DestFile>
+  <DestTime>2025-04-21T19:12:37.4740583-04:00</DestTime>
+  <Importer>EffectImporter</Importer>
+  <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
+  <Processor>EffectProcessor</Processor>
+  <ProcessorTime>2024-08-16T13:05:56-04:00</ProcessorTime>
+  <Parameters>
+    <Key>DebugMode</Key>
+    <Value>Auto</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

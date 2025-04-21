@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>c:/Users/elija/OneDrive/Desktop/Cody/Content/MC_Zelda_Hey.wav</SourceFile>
+  <SourceTime>2025-04-18T13:36:20.4730926-04:00</SourceTime>
+  <DestFile>c:/Users/elija/OneDrive/Desktop/Cody/Content/bin/DesktopGL/MC_Zelda_Hey.xnb</DestFile>
+  <DestTime>2025-04-21T19:12:39.7614462-04:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2024-08-16T13:05:56-04:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

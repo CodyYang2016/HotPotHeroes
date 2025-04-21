@@ -113,7 +113,6 @@ public class Game1 : Game
     protected override void Initialize()
     {
         controllerList = new List<IController>();
-        //controllerList.Add(new KeyboardController(this, Link, blockSprites));
         GraphicsDeviceHelper.Device = GraphicsDevice;
         base.Initialize();
     }
@@ -130,9 +129,8 @@ public class Game1 : Game
 
         //SHaders
         AudioManager.Instance.LoadContent(Content);
-        AudioManager.Instance.SetSong(SongList.Dungeon);
+        AudioManager.Instance.SetSong(SongList.Title);
         ShaderManager.Instance.LoadContent(Content);
-        //Darkness = Content.Load<Effect>("Darkness");
 
         sceneRenderTarget = new RenderTarget2D(
             GraphicsDevice,
@@ -639,6 +637,8 @@ public class Game1 : Game
                 sceneRenderTarget,
                 GraphicsDevice
             );
+
+
         }
 
         base.Draw(gameTime);
