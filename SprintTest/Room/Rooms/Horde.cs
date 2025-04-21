@@ -37,6 +37,8 @@ namespace sprint0Test.Dungeon
             isBossActive = false;
 
             Debug.WriteLine("🟢 Horde room initialized.");
+            Perimeter perimeter = new Perimeter(this);
+            GenerateStandardDoorHitboxes();
         }
 
         public override void Update(GameTime gameTime)

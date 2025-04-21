@@ -109,7 +109,6 @@ public class Game1 : Game
     {
         controllerList = new List<IController>();
         //controllerList.Add(new KeyboardController(this, Link, blockSprites));
-        controllerList.Add(new MouseController(this));
 
         GraphicsDeviceHelper.Device = GraphicsDevice;
         base.Initialize();
