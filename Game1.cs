@@ -48,7 +48,7 @@ public class Game1 : Game
 
     // New Room Manager
     public RoomManager roomManager;
-    float roomScale;
+    //float roomScale;
     public RoomManager RoomManager => roomManager;
 
     // New Collision Handler
@@ -58,7 +58,6 @@ public class Game1 : Game
     // Pause-related fields
     private PauseMenu _pauseMenu;
     private bool isPaused;
-    private SpriteFont pauseFont;
 
     private KeyboardState previousKeyboardState;
     
@@ -293,23 +292,9 @@ public class Game1 : Game
         totalHits++;
         Console.WriteLine($"Collision Count: {collisionCount}");
 
-        if (collisionCount % 2 == 0 && currentHearts > 0)
-        {
-            currentHearts--;
-            InitializeHeartPositions(); // Update heart UI
-            Console.WriteLine($"Heart lost! Current Hearts: {currentHearts}, Total Hits: {totalHits}");
-        }
-
-        if (collisionCount >= 6)
-        {
-            isPlayerDead = true;
-            playerRespawnPosition = Link.Instance.Position; // Save respawn point
-            respawnTimer = 3f;
-            collisionCount = 0;
-            currentHearts = maxHearts; // Restore full hearts
-            InitializeHeartPositions(); // Update heart UI
-            Console.WriteLine("Player is dead! Respawning in 3 seconds.");
-        }
+        TryRemoveHeart();
+        CheckDeath();
+        CheckGameOver();
     }
 
     private void TryRemoveHeart()
@@ -583,7 +568,6 @@ public class Game1 : Game
 
             EnemyManager.Instance.Draw(_spriteBatch);
 
-            // ✅ ✅ ✅ Move minimap/fullmap drawing *before* End()
             if (showFullMap)
             {
                 _spriteBatch.Draw(mapTexture, new Rectangle(0, 0, 800, 600), Color.White);
@@ -603,6 +587,7 @@ public class Game1 : Game
                     _spriteBatch.Draw(dotTexture, new Rectangle(650 + scaledX, 380 + scaledY, 3, 3), Color.Red);
                 }
             }
+
         break;
         case GameState.Options:
             _spriteBatch.DrawString(_menuFont, OptionsText, new Vector2(250, 150), Color.White);
@@ -619,26 +604,26 @@ public class Game1 : Game
             _spriteBatch.DrawString(_menuFont, pauseText, position, Color.White);
         }
 
-
         if (isGameOver)
         {
             string loseMessage = "You lose!\nPress 'Esc' to quit";
-            Vector2 size = pauseFont.MeasureString(loseMessage);
+            Vector2 size = _menuFont.MeasureString(loseMessage);
             Vector2 center = new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2);
             Vector2 position = center - (size / 2);
 
-            _spriteBatch.DrawString(pauseFont, loseMessage, position, Color.White);
+            _spriteBatch.DrawString(_menuFont, loseMessage, position, Color.White);
         }
 
         if (isGameWon)
         {
             string winMessage = "You win!\nPress 'Esc' to quit";
-            Vector2 size = pauseFont.MeasureString(winMessage);
+            Vector2 size = _menuFont.MeasureString(winMessage);
             Vector2 center = new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2);
             Vector2 position = center - (size / 2);
 
-            _spriteBatch.DrawString(pauseFont, winMessage, position, Color.White);
+            _spriteBatch.DrawString(_menuFont, winMessage, position, Color.White);
         }
+
         _spriteBatch.End();
 
         //shaders
@@ -653,7 +638,6 @@ public class Game1 : Game
         );
         }
     
-
         base.Draw(gameTime);
     }
 
