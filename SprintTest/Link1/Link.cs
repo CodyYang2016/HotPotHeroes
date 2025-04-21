@@ -28,6 +28,15 @@ namespace sprint0Test.Link1
         private readonly int screenMaxX = 800;
         private readonly int screenMaxY = 480;
 
+        //Link Dash implamentation
+        private bool isDashing = false;
+        private float dashSpeed = 8f;
+        private int dashDuration = 10; // frames
+        private int dashCooldown = 30; // frames
+        private int dashCounter = 0;
+        private int dashCooldownCounter = 0;
+        private LinkDirection dashDirection;
+
         private bool isVisible = true; // This will track visibility
 
         // ? Singleton access property
@@ -100,6 +109,17 @@ namespace sprint0Test.Link1
                 case LinkDirection.Down: position.Y += speed; break;
                 case LinkDirection.Left: position.X -= speed; break;
                 case LinkDirection.Right: position.X += speed; break;
+            }
+        }
+
+        public void Dash()
+        {
+            if (!isDashing && dashCooldownCounter <= 0)
+            {
+                isDashing = true;
+                dashCounter = dashDuration;
+                dashDirection = sprite.CurrentDirection;
+                dashCooldownCounter = dashCooldown + dashDuration;
             }
         }
 
@@ -198,10 +218,56 @@ namespace sprint0Test.Link1
                 isUsingItem = false;
                 sprite.SetState(LinkAction.Idle, sprite.CurrentDirection);
             }
+            if (isDashing)
+            {
+                // Move faster in dashDirection
+                switch (dashDirection)
+                {
+                    case LinkDirection.Up: position.Y -= dashSpeed; break;
+                    case LinkDirection.Down: position.Y += dashSpeed; break;
+                    case LinkDirection.Left: position.X -= dashSpeed; break;
+                    case LinkDirection.Right: position.X += dashSpeed; break;
+                }
+
+                dashCounter--;
+                if (dashCounter <= 0)
+                {
+                    isDashing = false;
+                    sprite.SetState(LinkAction.Idle, dashDirection);
+                }
+            }
+            else
+            {
+                if (dashCooldownCounter > 0)
+                    dashCooldownCounter--;
+            }
 
             Vector2 scaledSize = sprite.GetScaledDimensions();
             position.X = MathHelper.Clamp(position.X, screenMinX, screenMaxX - scaledSize.X);
             position.Y = MathHelper.Clamp(position.Y, screenMinY, screenMaxY - scaledSize.Y);
+        }
+
+        public static void Reset(LinkSprite newSprite, Vector2 newPosition)
+        {
+            if (instance == null)
+                throw new InvalidOperationException("Link has not been initialized yet!");
+
+            instance.sprite = newSprite;
+            instance.position = newPosition;
+            instance.ResetState();
+        }
+
+        public void ResetState()
+        {
+            // Reset directional state, animation, and counters
+            sprite.Scale = 2f;
+            sprite.SetState(LinkAction.Idle, LinkDirection.Down);
+            isAttacking = false;
+            isUsingItem = false;
+            attackFrameCounter = 0;
+            itemFrameCounter = 0;
+            currentItemIndex = 0;
+            inventory.Clear(); // optionally clear inventory
         }
 
         public void Draw(SpriteBatch spriteBatch)

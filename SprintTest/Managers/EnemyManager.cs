@@ -174,5 +174,10 @@ namespace sprint0Test.Managers
             return new Stalfos(position, textures);
         }
 
+        public void Clear()
+        {
+            enemyPool.Clear();
+        }
+
     }
 }

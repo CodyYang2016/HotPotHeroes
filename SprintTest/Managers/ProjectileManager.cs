@@ -78,6 +78,12 @@ namespace sprint0Test.Managers
             Debug.WriteLine($"Spawned {projectileType} at {position}, moving {direction}. Active projectiles: {activeProjectiles.Count}");
         }
 
+        public void Clear()
+        {
+            activeProjectiles.Clear();
+            projectilePool.Clear();
+        }
+
         public void Update(GameTime gameTime)
         {
             Debug.WriteLine($"Updating projectiles. Active count: {activeProjectiles.Count}");
@@ -95,6 +101,7 @@ namespace sprint0Test.Managers
                 }
             }
         }
+
 
 
         public void Draw(SpriteBatch spriteBatch)

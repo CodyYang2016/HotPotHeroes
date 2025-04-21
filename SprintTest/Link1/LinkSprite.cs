@@ -103,7 +103,7 @@ namespace sprint0Test.Link1
             get => isVisible;
             set => isVisible = value;
         }
-
+        
         public LinkSprite(Dictionary<(LinkAction, LinkDirection), List<Texture2D>> map)
         {
             spriteMap = map;

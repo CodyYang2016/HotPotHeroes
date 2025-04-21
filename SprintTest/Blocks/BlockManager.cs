@@ -75,6 +75,10 @@ namespace sprint0Test
             // Add it to the list of blocks in the room
             blocks.Add(newBlock);
         }
+        public void Clear()
+        {
+            blocks.Clear();
+        }
 
         // Optional method to add blocks along the perimeter of the room (if needed)
         // public void InitializePerimeter(int roomWidth, int roomHeight, Rectangle sourceRectangle, float scale = 1.0f)
