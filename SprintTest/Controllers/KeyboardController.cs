@@ -51,11 +51,14 @@ namespace sprint0Test
             singlePressCommands.Add(Keys.Q, new QuitCommand(myGame));
             singlePressCommands.Add(Keys.P, new PauseCommand(myGame));
 
-
-            singlePressCommands.Add(Keys.Z, new LinkAttackCommand(myGame));
+            singlePressCommands.Add(Keys.Space, new LinkAttackCommand(myGame));
             singlePressCommands.Add(Keys.E, new TakeDamageCommand(myGame));
             singlePressCommands.Add(Keys.U, new CycleItemCommand(myGame, -1));
             singlePressCommands.Add(Keys.I, new CycleItemCommand(myGame, 1));
+
+            //Commands for Sprint5 Jazz
+            singlePressCommands.Add(Keys.LeftShift, new LinkDashCommand(myGame));
+            //singlePressCommands.Add(Keys.F12, new HordeModeCommand(myGame));
         }
 
         public void Update()
