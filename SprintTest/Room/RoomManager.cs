@@ -14,7 +14,6 @@ public class RoomManager
 {
     public Dictionary<string, IRoom> Rooms { get; private set; } = new();
     public IRoom CurrentRoom { get; private set; }
-    private ItemFactory itemFactory;
     private DungeonLayout layout = new DungeonLayout(); // At the top of RoomManager
     private double doorCooldown = 0; // in milliseconds
 

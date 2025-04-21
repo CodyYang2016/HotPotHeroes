@@ -24,6 +24,7 @@ namespace sprint0Test.Managers
         public void LoadContent(Game game)
         {
             // Load the sprite sheet containing enemy textures
+            Texture2D HUDSpriteSheet = game.Content.Load<Texture2D>("HUD");
             Texture2D enemySpriteSheet = game.Content.Load<Texture2D>("DungeonEnemy");
             Texture2D bossSpriteSheet = game.Content.Load<Texture2D>("ZeldaBoss");
             Texture2D worldSpriteSheet = game.Content.Load<Texture2D>("ZeldaOverWorld");
@@ -80,7 +81,8 @@ namespace sprint0Test.Managers
             textures["Bat_1"] = CutTexture(enemySpriteSheet, new Rectangle(184, 28, 15, 16));
             textures["Bat_2"] = CutTexture(enemySpriteSheet, new Rectangle(200, 28, 15, 16));
 
-
+            textures["Item_Slot"] = CutTexture(HUDSpriteSheet, new Rectangle(380, 26, 20, 30));
+            textures["Dark_Background"] = CutTexture(HUDSpriteSheet, new Rectangle(1, 11, 10, 17));
 
         }
 

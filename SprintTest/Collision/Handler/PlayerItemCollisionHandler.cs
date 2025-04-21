@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using sprint0Test.Link1;
 using sprint0Test;
+using System.Diagnostics;
+using sprint0Test.Items;
 
 namespace sprint0Test;
 
@@ -23,12 +25,16 @@ namespace sprint0Test;
     {
         if (item != null)
         {
-            if (CollisionDetectItem.isTouching(item))
+            if (CollisionDetectItem.isTouching(item) && item.IsCollected != true)
             {
                 item.Collect();
                 if (item.BehaviorType == ItemBehaviorType.Collectible)
                 {
-                    Link.Instance.AddItem(item);
+                    if (!(item is Bomb bomb))
+                    {
+                        Link.Instance.AddItem(item);
+                    }
+                    else if(bomb.State == Bomb.BombState.InInventory) Link.Instance.AddItem(item);
                 }
                 else { 
                     Link.Instance.Consume(item);

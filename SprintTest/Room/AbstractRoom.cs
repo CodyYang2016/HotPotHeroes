@@ -45,12 +45,13 @@ public abstract class AbstractRoom : IRoom
 
             if (item is Bomb bomb && bomb.HasJustExploded)
             {
-                float visualExplosionRadius = (TextureManager.Instance.GetTexture("Explosion").Width * 0.15f) / 2f;
+                float visualExplosionRadiusX = (TextureManager.Instance.GetTexture("Explosion").Width * 0.15f) / 2f;
+                float visualExplosionRadiusY= (TextureManager.Instance.GetTexture("Explosion").Height * 0.15f) / 2f;
 
                 foreach (var enemy in Enemies)
                 {
                     float distance = Vector2.Distance(bomb.Position, enemy.GetPosition());
-                    if (distance <= visualExplosionRadius)
+                    if (distance <= visualExplosionRadiusX && distance <= visualExplosionRadiusY)
                     {
                         enemy.TakeDamage(3);
                     }

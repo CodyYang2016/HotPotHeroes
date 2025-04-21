@@ -14,6 +14,9 @@ using sprint0Test.Managers;
 using System.Diagnostics;
 using sprint0Test.Enemy;
 using sprint0Test.Room;
+using static System.Formats.Asn1.AsnWriter;
+using System.Xml.Schema;
+using static System.Net.Mime.MediaTypeNames;
 namespace sprint0Test;
 
 public class Game1 : Game
@@ -34,6 +37,7 @@ public class Game1 : Game
     List<IController> controllerList;
     public ISprite sprite;
     private SpriteFont _menuFont;
+    private SpriteFont uiFont;
     private ItemFactory itemFactory;
     public List<IItem> itemList;
     public int currentItemIndex;
@@ -57,10 +61,15 @@ public class Game1 : Game
 
     // Code for the new Link Health
     private Texture2D heartTexture;
+    private Texture2D multiplicationTexture;
     private List<Vector2> heartPositions;
+    private List<Vector2> multiplicationPositions;
+    private Vector2 bombPosition;
+    private Vector2 applePosition;
+    private Vector2 crystalPosition;
     private int collisionCount;
-    private int maxHearts = 3;
-    private int currentHearts;
+    private float maxHearts = 3f;
+    private float currentHearts;
     private bool isPlayerDead;
     private float respawnTimer;
     private Vector2 playerRespawnPosition;
@@ -112,13 +121,15 @@ public class Game1 : Game
         //Register Textures
         // Heart working 
         heartTexture = Content.Load<Texture2D>("heart");
+        multiplicationTexture = Content.Load<Texture2D>("multiplication");
+        uiFont = Content.Load<SpriteFont>("UIFont");
         itemFactory.RegisterTexture("Heart", Content.Load<Texture2D>("heart"));
-        itemFactory.RegisterTexture("RedPotion", Content.Load<Texture2D>("red-potion"));
-        itemFactory.RegisterTexture("BluePotion", Content.Load<Texture2D>("blue-potion"));
-        itemFactory.RegisterTexture("GreenPotion", Content.Load<Texture2D>("green-potion"));
-        itemFactory.RegisterTexture("RedRupee", Content.Load<Texture2D>("red-rupee"));
-        itemFactory.RegisterTexture("BlueRupee", Content.Load<Texture2D>("blue-rupee"));
-        itemFactory.RegisterTexture("GreenRupee", Content.Load<Texture2D>("green-rupee"));
+        //itemFactory.RegisterTexture("RedPotion", Content.Load<Texture2D>("red-potion"));
+        //itemFactory.RegisterTexture("BluePotion", Content.Load<Texture2D>("blue-potion"));
+        //itemFactory.RegisterTexture("GreenPotion", Content.Load<Texture2D>("green-potion"));
+        //itemFactory.RegisterTexture("RedRupee", Content.Load<Texture2D>("red-rupee"));
+        //itemFactory.RegisterTexture("BlueRupee", Content.Load<Texture2D>("blue-rupee"));
+        //itemFactory.RegisterTexture("GreenRupee", Content.Load<Texture2D>("green-rupee"));
         itemFactory.RegisterTexture("Apple", Content.Load<Texture2D>("apple"));
         itemFactory.RegisterTexture("Crystal", Content.Load<Texture2D>("crystal"));
         itemFactory.RegisterTexture("Bomb", Content.Load<Texture2D>("bomb"));
@@ -127,12 +138,12 @@ public class Game1 : Game
 
         //Register Item Creation Logic
         itemFactory.RegisterItem("Heart", position => new Heart("Heart", itemFactory.GetTexture("Heart"), position));
-        itemFactory.RegisterItem("RedPotion", position => new Potion("RedPotion", itemFactory.GetTexture("RedPotion"), position));
-        itemFactory.RegisterItem("BluePotion", position => new Potion("BluePotion", itemFactory.GetTexture("BluePotion"), position));
-        itemFactory.RegisterItem("GreenPotion", position => new Potion("GreenPotion", itemFactory.GetTexture("GreenPotion"), position));
-        itemFactory.RegisterItem("RedRupee", position => new Rupee("RedRupee", itemFactory.GetTexture("RedRupee"), position));
-        itemFactory.RegisterItem("BlueRupee", position => new Rupee("BlueRupee", itemFactory.GetTexture("BlueRupee"), position));
-        itemFactory.RegisterItem("GreenRupee", position => new Rupee("GreenRupee", itemFactory.GetTexture("GreenRupee"), position));
+        //itemFactory.RegisterItem("RedPotion", position => new Potion("RedPotion", itemFactory.GetTexture("RedPotion"), position));
+        //itemFactory.RegisterItem("BluePotion", position => new Potion("BluePotion", itemFactory.GetTexture("BluePotion"), position));
+        //itemFactory.RegisterItem("GreenPotion", position => new Potion("GreenPotion", itemFactory.GetTexture("GreenPotion"), position));
+        //itemFactory.RegisterItem("RedRupee", position => new Rupee("RedRupee", itemFactory.GetTexture("RedRupee"), position));
+        //itemFactory.RegisterItem("BlueRupee", position => new Rupee("BlueRupee", itemFactory.GetTexture("BlueRupee"), position));
+        //itemFactory.RegisterItem("GreenRupee", position => new Rupee("GreenRupee", itemFactory.GetTexture("GreenRupee"), position));
         itemFactory.RegisterItem("Apple", position => new Apple("Apple", itemFactory.GetTexture("Apple"), position));
         itemFactory.RegisterItem("Crystal", position => new Crystal("Crystal", itemFactory.GetTexture("Crystal"), position));
         itemFactory.RegisterItem("Bomb", position => new Bomb("Bomb", itemFactory.GetTexture("Bomb"), position));
@@ -236,6 +247,8 @@ public class Game1 : Game
         collisionCount = 0;
         isPlayerDead = false;
 
+        InitializeItemsPositions();
+
         masterCollisionHandler.HandleCollisions(
 
             roomManager.GetCurrentRoomItems(),
@@ -272,17 +285,15 @@ public class Game1 : Game
             }
     }
 
-    public void HandlePlayerHealed() {
-        if (currentHearts < maxHearts)
-        {
-            currentHearts++;
-        }
+    public void HandlePlayerHealed(float amount) {
+        currentHearts = Math.Min(currentHearts + amount, maxHearts);
+        InitializeHeartPositions();
     }
 
     private void InitializeHeartPositions()
     {
         heartPositions.Clear();  // Reset positions
-        float heartSpacing = 30f;
+        float heartSpacing = 40f;
         Vector2 heartPosition = new Vector2(10, 10);
 
         for (int i = 0; i < currentHearts; i++)  // Draw only current hearts
@@ -292,12 +303,123 @@ public class Game1 : Game
         }
     }
 
+    private void InitializeItemsPositions() {
+        bombPosition = new Vector2(10, 360);
+        applePosition = new Vector2(10, 400);
+        crystalPosition = new Vector2(10, 440);
+        multiplicationPositions = new List<Vector2>();
+        multiplicationPositions.Add(new Vector2(50,365));
+        multiplicationPositions.Add(new Vector2(50, 405));
+        multiplicationPositions.Add(new Vector2(50, 445));
+    }
+
     private void RestartGame()
     {
         Initialize();
         _currentGameState = GameState.Playing;
     }
 
+    private void DrawItems() {
+        _spriteBatch.Draw(
+                itemFactory.GetTexture("Bomb"),
+                bombPosition,
+                null,
+                Color.White,
+                0f,
+                Vector2.Zero,
+                0.15f,
+                SpriteEffects.None,
+        0f
+            );
+        _spriteBatch.DrawString(uiFont,Link.Instance.GetItemCount("Bomb").ToString(), new Vector2(90, 360), Color.White);
+        _spriteBatch.Draw(
+            itemFactory.GetTexture("Crystal"),
+            crystalPosition,
+            null,
+            Color.White,
+            0f,
+            Vector2.Zero,
+            0.15f,
+            SpriteEffects.None,
+            0f
+        );
+        _spriteBatch.DrawString(uiFont, Link.Instance.GetItemCount("Apple").ToString(), new Vector2(90, 400), Color.White);
+        _spriteBatch.Draw(
+            itemFactory.GetTexture("Apple"),
+            applePosition,
+            null,
+            Color.White,
+            0f,
+            Vector2.Zero,
+            0.5f,
+            SpriteEffects.None,
+            0f
+        );
+        _spriteBatch.DrawString(uiFont, Link.Instance.CrystalCount.ToString(), new Vector2(90, 440), Color.White);
+        for (int i = 0; i < 3; i++) {
+            _spriteBatch.Draw(
+            multiplicationTexture,
+            multiplicationPositions[i],
+            null,
+            Color.White,
+            0f,
+            Vector2.Zero,
+            1.5f,
+            SpriteEffects.None,
+            0f
+        );
+        }
+        _spriteBatch.Draw(
+            TextureManager.Instance.GetTexture("Item_Slot"),
+            new Vector2(120, 365),
+            null,
+            Color.White,
+            0f,
+            Vector2.Zero,
+            4f,
+            SpriteEffects.None,
+            0f
+        );
+        _spriteBatch.Draw(
+            TextureManager.Instance.GetTexture("Dark_Background"),
+            new Vector2(140, 400),
+            null,
+            Color.White,
+            0f,
+            Vector2.Zero,
+            4.0f,
+            SpriteEffects.None,
+            0f
+        );
+        string name = Link.Instance.CurrentSelectedItemName;
+        if (name == "Bomb")
+        {
+            _spriteBatch.Draw(
+            itemFactory.GetTexture(name),
+            new Vector2(138, 405),
+            null,
+            Color.White,
+            0f,
+            Vector2.Zero,
+            0.2f,
+            SpriteEffects.None,
+            0f
+        );
+        }
+        else if (name == "Apple") {
+            _spriteBatch.Draw(
+            itemFactory.GetTexture(name),
+            new Vector2(138, 405),
+            null,
+            Color.White,
+            0f,
+            Vector2.Zero,
+            0.8f,
+            SpriteEffects.None,
+            0f
+        );
+        }
+    }
     protected override void Update(GameTime gameTime)
     {
         if (_currentGameState == GameState.Paused)
@@ -402,12 +524,19 @@ public class Game1 : Game
 
         if (!isPlayerDead)
         {
-            // Draw hearts based on currentHearts
-            for (int i = 0; i < currentHearts; i++)
+            for (int i = 0; i < (int)currentHearts; i++)
             {
                 _spriteBatch.Draw(heartTexture, heartPositions[i], Color.White);
-                Console.WriteLine($"Drawing heart at position {heartPositions[i]}"); // Debugging heart drawing
             }
+
+            if (currentHearts % 1 != 0)
+            {
+                int halfIndex = (int)currentHearts;
+                Rectangle sourceRect = new Rectangle(0, 0, heartTexture.Width / 2, heartTexture.Height);
+                _spriteBatch.Draw(heartTexture, heartPositions[halfIndex], sourceRect, Color.White);
+            }
+
+            DrawItems();
 
             Link.Instance.Draw(_spriteBatch); // Draw Link
         }

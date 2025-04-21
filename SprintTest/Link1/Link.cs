@@ -22,10 +22,20 @@ namespace sprint0Test.Link1
         private bool isUsingItem = false;
         private int attackFrameCounter = 0;
         private int itemFrameCounter = 0;
-        private int currentItemIndex = 0;
-        private int currentHealth = 6;
+        public int currentItemIndex = 0;
+        //private int currentHealth = 6;
         private int currentCrystal = 0;
-        private List<IItem> inventory = new List<IItem>();
+        //private int currentBomb = 0;
+        //private int currentApple = 0;
+        //public int AppleCount => currentApple;
+        public int CrystalCount => currentCrystal;
+        //public int BombCount => currentBomb;
+        public string CurrentSelectedItemName => inventoryKeys.Count > 0 ? inventoryKeys[currentItemIndex] : "";
+
+        private Dictionary<string, List<IItem>> inventory = new();
+        private List<string> inventoryKeys = new();
+
+        public List<string> InventoryKeys => inventoryKeys;
         private RoomManager roomManager;
         private readonly int screenMinX = 0;
         private readonly int screenMinY = 0;
@@ -47,7 +57,6 @@ namespace sprint0Test.Link1
         }
 
         public Vector2 Position => position;
-        public IReadOnlyList<IItem> Inventory => inventory.AsReadOnly();
 
         public bool IsVisible // Add IsVisible property
         {
@@ -152,17 +161,50 @@ namespace sprint0Test.Link1
 
         public void UseItem()
         {
-            if (!isAttacking && !isUsingItem && inventory.Count > 0)
+            // Early exit if inventory is empty or index is out of range
+            if (inventoryKeys.Count == 0 || currentItemIndex >= inventoryKeys.Count)
+                return;
+
+            string CurrentSelectedItemName = inventoryKeys[currentItemIndex];
+
+            // Double-check that this key exists and has items
+            if (!inventory.ContainsKey(CurrentSelectedItemName) || inventory[CurrentSelectedItemName].Count == 0)
+                return;
+
+            // Use the item
+            IItem item = inventory[CurrentSelectedItemName][0];
+            item.Use();
+
+            // Special case: planted bomb should be added to room
+            if (item is Bomb bomb && bomb.State == Bomb.BombState.Planted)
             {
-                isUsingItem = true;
-                itemFrameCounter = 0;
-                sprite.SetState(LinkAction.UsingItem, sprite.CurrentDirection);
-                inventory[currentItemIndex].Use();
-                if (inventory[currentItemIndex] is Bomb bomb && bomb.State == BombState.Planted)
+                roomManager.CurrentRoom.Items.Add(bomb);
+            }
+
+            // Remove used item
+            inventory[CurrentSelectedItemName].RemoveAt(0);
+
+            // If no more items of that type, clean up
+            if (inventory[CurrentSelectedItemName].Count == 0)
+            {
+                inventory.Remove(CurrentSelectedItemName);
+                inventoryKeys.RemoveAt(currentItemIndex);
+
+                // Prevent out-of-bounds index after removal
+                if (inventoryKeys.Count > 0)
                 {
-                    roomManager.CurrentRoom.Items.Add(bomb);
+                    currentItemIndex = Math.Clamp(currentItemIndex, 0, inventoryKeys.Count - 1);
+                }
+                else
+                {
+                    currentItemIndex = 0;
                 }
             }
+
+            // Trigger animation lock
+            isUsingItem = true;
+            itemFrameCounter = 0;
+            sprite.SetState(LinkAction.UsingItem, sprite.CurrentDirection);
         }
 
         // int damage
@@ -181,7 +223,7 @@ namespace sprint0Test.Link1
         public void Consume(IItem item) {
             if (item.name == "Heart")
             {
-                //Game1.Instance.HandlePlayerHealed();
+                Game1.Instance.HandlePlayerHealed(1f);
             }
             else if (item.name == "Crystal") { 
                 currentCrystal += 1;
@@ -190,15 +232,34 @@ namespace sprint0Test.Link1
 
         public void SwitchItem(int direction)
         {
-            if (inventory.Count > 0)
+            if (inventoryKeys.Count > 0)
             {
-                currentItemIndex = (currentItemIndex + direction + inventory.Count) % inventory.Count;
+                currentItemIndex = (currentItemIndex + direction + inventoryKeys.Count) % inventoryKeys.Count;
             }
         }
 
         public void AddItem(IItem item)
         {
-            inventory.Add(item);
+            string itemName = item.name;
+
+            if (!inventory.ContainsKey(itemName))
+            {
+                inventory[itemName] = new List<IItem>();
+                inventoryKeys.Add(itemName); // Track order of discovery
+            }
+
+            inventory[itemName].Add(item);
+        }
+
+        public int GetItemCount(string itemName)
+        {
+            return inventory.TryGetValue(itemName, out var items) ? items.Count : 0;
+        }
+
+        public IItem GetCurrentItem()
+        {
+            string key = CurrentSelectedItemName;
+            return inventory.TryGetValue(key, out var list) && list.Count > 0 ? list[0] : null;
         }
 
         public void Update()

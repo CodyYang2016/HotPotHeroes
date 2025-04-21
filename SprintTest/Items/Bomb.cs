@@ -14,68 +14,63 @@ namespace sprint0Test.Items
 {
     public class Bomb : IItem
     {
-        public enum BombState { InWorld, Collected, Planted, Exploded }
+        public enum BombState { InWorld, InInventory, Planted, Exploding, Done }
+
         private StaticSprite bomb;
         private StaticSprite explodedBomb;
         private BombState state = BombState.InWorld;
         public Vector2 Position { get; private set; }
-        private bool isCollected = false;
-        public bool IsCollected => state == BombState.Exploded && timer >= explosionDuration;
-        private bool hasJustExploded = false;
-        public bool HasJustExploded => state == BombState.Exploded && hasJustExploded;
+        public bool IsCollected => state == BombState.InInventory || state == BombState.Done;
         public BombState State => state;
         public string name { get; private set; }
         private double timer = 0;
-        private readonly double explodeTime = 1000;      // 1 second after planting
-        private readonly double explosionDuration = 2000; // Show explosion for 1s
+        private readonly double explodeTime = 1000;
+        private readonly double explosionDuration = 2000;
         public ItemBehaviorType BehaviorType => ItemBehaviorType.Collectible;
+        public bool HasJustExploded { get; private set; } = false;
 
         public Bomb(string name, Texture2D bombTexture, Vector2 position)
         {
             this.name = name;
-            this.bomb = new StaticSprite(bombTexture, 0.3f);
+            this.bomb = new StaticSprite(bombTexture, 0.15f);
             this.Position = position;
             this.explodedBomb = new StaticSprite(TextureManager.Instance.GetTexture("Explosion"), 0.15f);
         }
 
         public void Update(GameTime gameTime)
         {
-            Debug.WriteLine($"Bomb update: State = {state}, Timer = {timer}");
             if (state == BombState.Planted)
             {
                 timer += gameTime.ElapsedGameTime.TotalMilliseconds;
-
                 if (timer >= explodeTime)
                 {
-                    state = BombState.Exploded;
-                    hasJustExploded = true;
+                    state = BombState.Exploding;
                     timer = 0;
+                    HasJustExploded = true;
                 }
             }
-            else if (state == BombState.Exploded)
+            else if (state == BombState.Exploding)
             {
                 timer += gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (timer >= explosionDuration)
                 {
-                    isCollected = true;
+                    state = BombState.Done;
                 }
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (state == BombState.Planted)
+            switch (state)
             {
-                Console.WriteLine($"🧨 Drawing Bomb at {Position}, State = {state}");
-                bomb.Draw(spriteBatch, Position);
-            }
-            else if (state == BombState.Exploded && timer < explosionDuration)
-            {
-                explodedBomb.Draw(spriteBatch, Position);
-            }
-            else if (state == BombState.InWorld)
-            {
-                bomb.Draw(spriteBatch, Position);
+                case BombState.InWorld:
+                case BombState.Planted:
+                    bomb.Draw(spriteBatch, Position);
+                    break;
+
+                case BombState.Exploding:
+                    explodedBomb.Draw(spriteBatch, Position);
+                    break;
             }
         }
 
@@ -83,15 +78,13 @@ namespace sprint0Test.Items
         {
             if (state == BombState.InWorld)
             {
-                state = BombState.Collected;
+                state = BombState.InInventory;
             }
         }
 
         public void Use()
         {
-            Debug.WriteLine($"Bomb use: State = {state}");
-
-            if (state == BombState.Collected)
+            if (state == BombState.InInventory)
             {
                 Position = Link.Instance.Position;
                 state = BombState.Planted;
@@ -101,7 +94,7 @@ namespace sprint0Test.Items
 
         public void MarkExplosionHandled()
         {
-            hasJustExploded = false;
+            HasJustExploded = false;
         }
     }
 }
