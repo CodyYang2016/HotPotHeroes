@@ -111,7 +111,13 @@ namespace sprint0Test.Link1
         {
             if (isAttacking || isUsingItem) return;
 
-            sprite.SetState(LinkAction.Walking, direction);
+            isMovingThisFrame = true;
+
+            if (sprite.CurrentAction != LinkAction.Walking || sprite.CurrentDirection != direction)
+            {
+                sprite.SetState(LinkAction.Walking, direction);
+            }
+
             switch (direction)
             {
                 case LinkDirection.Up: position.Y -= speed; break;
