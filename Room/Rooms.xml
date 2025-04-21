@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Rooms>
+	<Room id="1">
+		<Blocks>
+			<!-- Each block references the 'type' you already handle (tile, brick, sand, etc.).
+           The positions (x,y) and scale are arbitrary examples. -->
+			<Block type="tile" x="100" y="80" scale="3.0" />
+			<Block type="brick" x="150" y="120" scale="2.0" />
+		</Blocks>
+		<Enemies>
+			<!-- We can specify Octorok, Aquamentus, etc. as recognized in your EnemyManager or factories. -->
+			<Enemy type="Octorok" x="300" y="100" />
+		</Enemies>
+		<Items>
+			<!-- We can specify "Heart" or "Boomerang" as recognized in your ItemFactory. -->
+			<Item type="Heart" x="350" y="150" />
+		</Items>
+		<!-- A single door in each room. The door leads to a targetRoomId. You can store direction as well. -->
+		<Door direction="Down" targetRoomId="2" />
+	</Room>
+
+	<Room id="2">
+		<Blocks>
+			<Block type="sand" x="100" y="200" scale="3.0" />
+		</Blocks>
+		<Enemies>
+			<Enemy type="Aquamentus" x="300" y="200" />
+		</Enemies>
+		<Items>
+			<Item type="Boomerang" x="350" y="250" />
+		</Items>
+		<Door direction="Up" targetRoomId="3" />
+	</Room>
+
+	<Room id="3">
+		<Blocks>
+			<Block type="blue" x="400" y="80" scale="3.0" />
+		</Blocks>
+		<Enemies>
+			<Enemy type="Octorok" x="450" y="100" />
+		</Enemies>
+		<Items>
+			<Item type="Heart" x="500" y="150" />
+		</Items>
+		<Door direction="Down" targetRoomId="1" />
+	</Room>
+</Rooms>
