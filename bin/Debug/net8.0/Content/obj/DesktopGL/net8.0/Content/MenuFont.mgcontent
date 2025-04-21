@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/david/OneDrive/Documents/Sprint5vMerge/bin/Debug/net8.0/Content/MenuFont.spritefont</SourceFile>
+  <SourceTime>2025-04-18T03:44:15.4619509-04:00</SourceTime>
+  <DestFile>C:/Users/david/OneDrive/Documents/Sprint5vMerge/bin/Debug/net8.0/Content/bin/DesktopGL/Content/MenuFont.xnb</DestFile>
+  <DestTime>2025-04-21T00:42:56.3116338-04:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
+  <Processor>LocalizedFontProcessor</Processor>
+  <ProcessorTime>2024-08-16T13:05:56-04:00</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
