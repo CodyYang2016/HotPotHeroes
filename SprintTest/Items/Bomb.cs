@@ -28,6 +28,7 @@ namespace sprint0Test.Items
         private readonly double explosionDuration = 2000;
         public ItemBehaviorType BehaviorType => ItemBehaviorType.Collectible;
         public bool HasJustExploded { get; private set; } = false;
+        public static event EventHandler<BombPlantedEventArgs> OnBombPlanted;
 
         public Bomb(string name, Texture2D bombTexture, Vector2 position)
         {
@@ -89,6 +90,7 @@ namespace sprint0Test.Items
                 Position = Link.Instance.Position;
                 state = BombState.Planted;
                 timer = 0;
+                OnBombPlanted?.Invoke(this, new BombPlantedEventArgs(this));
             }
         }
 

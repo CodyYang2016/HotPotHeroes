@@ -22,21 +22,15 @@ namespace sprint0Test.Link1
         private bool isUsingItem = false;
         private int attackFrameCounter = 0;
         private int itemFrameCounter = 0;
-        public int currentItemIndex = 0;
-        //private int currentHealth = 6;
+        private int currentItemIndex = 0;
         private int currentCrystal = 0;
-        //private int currentBomb = 0;
-        //private int currentApple = 0;
-        //public int AppleCount => currentApple;
         public int CrystalCount => currentCrystal;
-        //public int BombCount => currentBomb;
         public string CurrentSelectedItemName => inventoryKeys.Count > 0 ? inventoryKeys[currentItemIndex] : "";
 
         private Dictionary<string, List<IItem>> inventory = new();
         private List<string> inventoryKeys = new();
 
         public List<string> InventoryKeys => inventoryKeys;
-        private RoomManager roomManager;
         private readonly int screenMinX = 0;
         private readonly int screenMinY = 0;
         private readonly int screenMaxX = 800;
@@ -75,21 +69,20 @@ namespace sprint0Test.Link1
         }
 
         // ? Private constructor to prevent direct instantiation
-        private Link(LinkSprite linkSprite, Vector2 startPos, RoomManager roomManager)
+        private Link(LinkSprite linkSprite, Vector2 startPos)
         {
             sprite = linkSprite;
             position = startPos;
-            this.roomManager = roomManager;
             sprite.Scale = 2f;
             sprite.SetState(LinkAction.Idle, LinkDirection.Down);
         }
 
         // ? Public method to initialize the singleton
-        public static void Initialize(LinkSprite sprite, Vector2 startPos, RoomManager roomManager)
+        public static void Initialize(LinkSprite sprite, Vector2 startPos)
         {
             if (instance == null)
             {
-                instance = new Link(sprite, startPos, roomManager);
+                instance = new Link(sprite, startPos);
             }
             else
             {
@@ -175,12 +168,6 @@ namespace sprint0Test.Link1
             IItem item = inventory[CurrentSelectedItemName][0];
             item.Use();
 
-            // Special case: planted bomb should be added to room
-            if (item is Bomb bomb && bomb.State == Bomb.BombState.Planted)
-            {
-                roomManager.CurrentRoom.Items.Add(bomb);
-            }
-
             // Remove used item
             inventory[CurrentSelectedItemName].RemoveAt(0);
 
@@ -261,6 +248,15 @@ namespace sprint0Test.Link1
             string key = CurrentSelectedItemName;
             return inventory.TryGetValue(key, out var list) && list.Count > 0 ? list[0] : null;
         }
+
+        public void CycleItem(int direction)
+        {
+            if (inventoryKeys.Count > 0)
+            {
+                currentItemIndex = (currentItemIndex + direction + inventoryKeys.Count) % inventoryKeys.Count;
+            }
+        }
+
 
         public void Update()
         {

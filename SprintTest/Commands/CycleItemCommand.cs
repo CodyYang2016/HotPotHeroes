@@ -19,12 +19,7 @@ namespace sprint0Test.Commands
 
         public void Execute()
         {
-            var keys = Link.Instance.InventoryKeys;
-
-            if (keys.Count == 0) return;
-
-            Link.Instance.currentItemIndex =
-                (Link.Instance.currentItemIndex + direction + keys.Count) % keys.Count;
+            Link.Instance.CycleItem(direction);
         }
     }
 

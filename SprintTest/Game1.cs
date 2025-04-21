@@ -91,7 +91,10 @@ public class Game1 : Game
         controllerList = new List<IController>();
         //controllerList.Add(new KeyboardController(this, Link, blockSprites));
         controllerList.Add(new MouseController(this));
-
+        Bomb.OnBombPlanted += (sender, args) =>
+        {
+            roomManager.CurrentRoom.Items.Add(args.Bomb);
+        };
         GraphicsDeviceHelper.Device = GraphicsDevice;
         base.Initialize();
     }
@@ -224,7 +227,7 @@ public class Game1 : Game
         Console.WriteLine("enemies: " + (EnemyManager.Instance.GetActiveEnemy() != null));
         Console.WriteLine("projectiles: " + (ProjectileManager.Instance.GetActiveProjectiles() != null));
         Console.WriteLine("blocks: " + (BlockManager.Instance.GetActiveBlocks() != null));
-        Link.Initialize(linkSprite, new Vector2(200, 200), roomManager);
+        Link.Initialize(linkSprite, new Vector2(200, 200));
 
         heartPositions = new List<Vector2> {
         new Vector2(10, 10),
