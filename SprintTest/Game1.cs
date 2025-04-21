@@ -124,12 +124,6 @@ public class Game1 : Game
         multiplicationTexture = Content.Load<Texture2D>("multiplication");
         uiFont = Content.Load<SpriteFont>("UIFont");
         itemFactory.RegisterTexture("Heart", Content.Load<Texture2D>("heart"));
-        //itemFactory.RegisterTexture("RedPotion", Content.Load<Texture2D>("red-potion"));
-        //itemFactory.RegisterTexture("BluePotion", Content.Load<Texture2D>("blue-potion"));
-        //itemFactory.RegisterTexture("GreenPotion", Content.Load<Texture2D>("green-potion"));
-        //itemFactory.RegisterTexture("RedRupee", Content.Load<Texture2D>("red-rupee"));
-        //itemFactory.RegisterTexture("BlueRupee", Content.Load<Texture2D>("blue-rupee"));
-        //itemFactory.RegisterTexture("GreenRupee", Content.Load<Texture2D>("green-rupee"));
         itemFactory.RegisterTexture("Apple", Content.Load<Texture2D>("apple"));
         itemFactory.RegisterTexture("Crystal", Content.Load<Texture2D>("crystal"));
         itemFactory.RegisterTexture("Bomb", Content.Load<Texture2D>("bomb"));
@@ -138,12 +132,6 @@ public class Game1 : Game
 
         //Register Item Creation Logic
         itemFactory.RegisterItem("Heart", position => new Heart("Heart", itemFactory.GetTexture("Heart"), position));
-        //itemFactory.RegisterItem("RedPotion", position => new Potion("RedPotion", itemFactory.GetTexture("RedPotion"), position));
-        //itemFactory.RegisterItem("BluePotion", position => new Potion("BluePotion", itemFactory.GetTexture("BluePotion"), position));
-        //itemFactory.RegisterItem("GreenPotion", position => new Potion("GreenPotion", itemFactory.GetTexture("GreenPotion"), position));
-        //itemFactory.RegisterItem("RedRupee", position => new Rupee("RedRupee", itemFactory.GetTexture("RedRupee"), position));
-        //itemFactory.RegisterItem("BlueRupee", position => new Rupee("BlueRupee", itemFactory.GetTexture("BlueRupee"), position));
-        //itemFactory.RegisterItem("GreenRupee", position => new Rupee("GreenRupee", itemFactory.GetTexture("GreenRupee"), position));
         itemFactory.RegisterItem("Apple", position => new Apple("Apple", itemFactory.GetTexture("Apple"), position));
         itemFactory.RegisterItem("Crystal", position => new Crystal("Crystal", itemFactory.GetTexture("Crystal"), position));
         itemFactory.RegisterItem("Bomb", position => new Bomb("Bomb", itemFactory.GetTexture("Bomb"), position));
