@@ -73,8 +73,8 @@ namespace sprint0Test.Dungeon
                 spawnTimer = 0;
 
                 spawnInterval *= spawnIntervalScale;
-                if (spawnInterval < 2.0)
-                    spawnInterval = 2.0;  // ⏳ Minimum of 2 seconds between waves
+                if (spawnInterval < 10.0)
+                    spawnInterval = 10.0;  // ⏳ Minimum of 2 seconds between waves
 
             }
         }
