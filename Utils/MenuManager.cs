@@ -13,6 +13,7 @@ using sprint0Test;
 using System.Diagnostics;
 using sprint0Test.Enemy;
 using sprint0Test.Room;
+using sprint0Test.Audio;
 namespace sprint0Test;
 
 public class MenuManager
@@ -49,6 +50,7 @@ private KeyboardState _previousKeyboardState; // Tracks previous state
             {
             case 0:
                 game.ChangeGameState(Game1.GameState.Playing);
+                AudioManager.Instance.SetSong(SongList.Dungeon);
                 break;
             case 1:
                 game.ChangeGameState(Game1.GameState.Options);

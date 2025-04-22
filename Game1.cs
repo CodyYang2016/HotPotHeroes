@@ -130,6 +130,7 @@ public class Game1 : Game
         //SHaders
         AudioManager.Instance.LoadContent(Content);
         AudioManager.Instance.SetSong(SongList.Title);
+        SoundManager.Instance.LoadContent(Content);
         ShaderManager.Instance.LoadContent(Content);
 
         sceneRenderTarget = new RenderTarget2D(
@@ -506,8 +507,7 @@ public class Game1 : Game
                 ProjectileManager.Instance.Draw(_spriteBatch);
                 BlockManager.Instance.Draw(_spriteBatch);
 
-                _spriteBatch.Draw(rupeeIcon, rupeePosition, Color.White);
-                _spriteBatch.DrawString(_menuFont, "x " + rupeeCount.ToString(), rupeePosition + new Vector2(rupeeIcon.Width + 5, 0), Color.White);
+                
                 var items = roomManager.GetCurrentRoomItems();
                 if (items != null)
                 {
@@ -516,17 +516,7 @@ public class Game1 : Game
                         item.Draw(_spriteBatch);
                     }
                 }
-                if (!isPlayerDead)
-                {
-                    // Draw hearts based on currentHearts
-                    for (int i = 0; i < currentHearts; i++)
-                    {
-                        _spriteBatch.Draw(heartTexture, heartPositions[i], Color.White);
-                        Console.WriteLine($"Drawing heart at position {heartPositions[i]}"); // Debugging heart drawing
-                    }
-
-                    Link.Instance.Draw(_spriteBatch); // Draw Link
-                }
+                
                 if (godModeTimer > 0)
                 {
                     string msg = isGodMode
@@ -568,25 +558,7 @@ public class Game1 : Game
 
                 EnemyManager.Instance.Draw(_spriteBatch);
 
-                if (showFullMap)
-                {
-                    _spriteBatch.Draw(mapTexture, new Rectangle(0, 0, 800, 600), Color.White);
-
-                    if (roomMapPositions.TryGetValue(roomManager.CurrentRoom.RoomID, out Point mapPos))
-                    {
-                    }
-                }
-                else if (roomManager.CurrentRoom.RoomID != "r8c")
-                {
-                    _spriteBatch.Draw(mapTexture, new Rectangle(650, 380, 100, 100), Color.White);
-
-                    if (roomMapPositions.TryGetValue(roomManager.CurrentRoom.RoomID, out Point mapPos))
-                    {
-                        int scaledX = (int)(mapPos.X * 100f / 300f);
-                        int scaledY = (int)(mapPos.Y * 100f / 300f);
-                        _spriteBatch.Draw(dotTexture, new Rectangle(650 + scaledX, 380 + scaledY, 3, 3), Color.Red);
-                    }
-                }
+                
 
                 break;
             case GameState.Options:
@@ -594,39 +566,10 @@ public class Game1 : Game
                 break;
         }
 
-        if (isPaused)
-        {
-            string pauseText = "Game Paused\nPress 'Tab' to Resume";
-            Vector2 textSize = _menuFont.MeasureString(pauseText);
-            Vector2 position = new Vector2(
-                (_graphics.PreferredBackBufferWidth - textSize.X) / 2,
-                (_graphics.PreferredBackBufferHeight - textSize.Y) / 2);
-            _spriteBatch.DrawString(_menuFont, pauseText, position, Color.White);
-        }
-
-        if (isGameOver)
-        {
-            string loseMessage = "You lose!\nPress 'Esc' to quit";
-            Vector2 size = _menuFont.MeasureString(loseMessage);
-            Vector2 center = new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2);
-            Vector2 position = center - (size / 2);
-
-            _spriteBatch.DrawString(_menuFont, loseMessage, position, Color.White);
-        }
-
-        if (isGameWon)
-        {
-            string winMessage = "You win!\nPress 'Esc' to quit";
-            Vector2 size = _menuFont.MeasureString(winMessage);
-            Vector2 center = new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2);
-            Vector2 position = center - (size / 2);
-
-            _spriteBatch.DrawString(_menuFont, winMessage, position, Color.White);
-        }
+        
 
         _spriteBatch.End();
 
-        //shaders
         if (_currentGameState == GameState.Playing)
         {
             GraphicsDevice.SetRenderTarget(null);
@@ -637,6 +580,77 @@ public class Game1 : Game
                 sceneRenderTarget,
                 GraphicsDevice
             );
+
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null);
+            
+            _spriteBatch.Draw(rupeeIcon, rupeePosition, Color.White);
+            _spriteBatch.DrawString(_menuFont, "x " + rupeeCount.ToString(), rupeePosition + new Vector2(rupeeIcon.Width + 5, 0), Color.White);
+
+            if (!isPlayerDead)
+            {
+                // Draw hearts based on currentHearts
+                for (int i = 0; i < currentHearts; i++)
+                {
+                    _spriteBatch.Draw(heartTexture, heartPositions[i], Color.White);
+                    Console.WriteLine($"Drawing heart at position {heartPositions[i]}"); // Debugging heart drawing
+                }
+
+                Link.Instance.Draw(_spriteBatch); // Draw Link
+            }
+
+            if (showFullMap)
+            {
+                _spriteBatch.Draw(mapTexture, new Rectangle(0, 0, 800, 600), Color.White);
+
+                if (roomMapPositions.TryGetValue(roomManager.CurrentRoom.RoomID, out Point mapPos))
+                {
+                }
+            }
+            else if (roomManager.CurrentRoom.RoomID != "r8c")
+            {
+                _spriteBatch.Draw(mapTexture, new Rectangle(650, 380, 100, 100), Color.White);
+
+                if (roomMapPositions.TryGetValue(roomManager.CurrentRoom.RoomID, out Point mapPos))
+                {
+                    int scaledX = (int)(mapPos.X * 100f / 300f);
+                    int scaledY = (int)(mapPos.Y * 100f / 300f);
+                    _spriteBatch.Draw(dotTexture, new Rectangle(650 + scaledX, 380 + scaledY, 3, 3), Color.Red);
+                }
+            }
+            
+            if (isPaused)
+            {
+                string pauseText = "Game Paused\nPress 'Tab' to Resume";
+                Vector2 textSize = _menuFont.MeasureString(pauseText);
+                Vector2 position = new Vector2(
+                    (_graphics.PreferredBackBufferWidth - textSize.X) / 2,
+                    (_graphics.PreferredBackBufferHeight - textSize.Y) / 2);
+                _spriteBatch.DrawString(_menuFont, pauseText, position, Color.White);
+            }
+
+            if (isGameOver)
+            {
+                string loseMessage = "You lose!\nPress 'Esc' to quit";
+                Vector2 size = _menuFont.MeasureString(loseMessage);
+                Vector2 center = new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2);
+                Vector2 position = center - (size / 2);
+
+                _spriteBatch.DrawString(_menuFont, loseMessage, position, Color.White);
+            }
+
+            if (isGameWon)
+            {
+                AudioManager.Instance.SetSong(SongList.Title);
+
+                string winMessage = "You win!\nPress 'Esc' to quit";
+                Vector2 size = _menuFont.MeasureString(winMessage);
+                Vector2 center = new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2);
+                Vector2 position = center - (size / 2);
+
+                _spriteBatch.DrawString(_menuFont, winMessage, position, Color.White);
+            }
+
+            _spriteBatch.End();
 
 
         }

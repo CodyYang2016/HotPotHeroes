@@ -34,6 +34,7 @@ namespace sprint0Test.Dungeon
             if (!RoomData.HasBeenCleared)
             {
                 AudioManager.Instance.SetSong(SongList.Boss);
+                ShaderManager.DisableDarkness();
                 Enemies.Add(EnemyManager.Instance.CreateAquamentus(new Vector2(500, 235)));
             }
 

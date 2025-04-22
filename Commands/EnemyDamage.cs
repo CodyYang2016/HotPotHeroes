@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using sprint0Test.Interfaces;
+using sprint0Test.Audio;
 
 
 namespace sprint0Test
@@ -12,6 +13,7 @@ namespace sprint0Test
     {
         public void Execute()
         {
+            SoundManager.Instance.PlaySound(SoundList.scream);
             EnemyCommands.EnemyTakeDamage();
         }
     }
