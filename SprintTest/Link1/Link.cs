@@ -11,6 +11,11 @@ using static sprint0Test.Items.Bomb;
 
 namespace sprint0Test.Link1
 {
+    public enum WeaponType
+    {
+        Sword,
+        Bow
+    }
     public class Link
     {
         private static Link instance; // Singleton instance
@@ -25,6 +30,7 @@ namespace sprint0Test.Link1
         private int currentItemIndex = 0;
         private int currentCrystal = 0;
         public int CrystalCount => currentCrystal;
+        private WeaponType currentWeapon = WeaponType.Sword;
         public string CurrentSelectedItemName => inventoryKeys.Count > 0 ? inventoryKeys[currentItemIndex] : "";
 
         private Dictionary<string, List<IItem>> inventory = new();
@@ -125,66 +131,89 @@ namespace sprint0Test.Link1
                 attackFrameCounter = 0;
                 sprite.SetState(LinkAction.Attacking, sprite.CurrentDirection);
 
-                Vector2 direction = position;
-                int offset = 45;
-                if (sprite.CurrentDirection == LinkDirection.Up)
-                {
-                    direction.Y -= offset;
-                    //Console.WriteLine("Attack UP");
-                }
-                if (sprite.CurrentDirection == LinkDirection.Down)
-                {
-                    direction.Y += offset;
-                    //Console.WriteLine("Attack Down");
-                }
-                if (sprite.CurrentDirection == LinkDirection.Left)
-                {
-                    direction.X -= offset;
-                    //Console.WriteLine("Attack Left");
-                }
-                if (sprite.CurrentDirection == LinkDirection.Right)
-                {
-                    direction.X += offset;
-                    //Console.WriteLine("Attack Right");
-                }
-                ProjectileManager.Instance.SpawnProjectile(direction, direction, "Sword");
-            }
+                Vector2 linkCenter = position + GetScaledDimensions() / 2f;
+                Vector2 direction = Vector2.Zero;
+                Vector2 spawnOffset = Vector2.Zero;
 
+                switch (sprite.CurrentDirection)
+                {
+                    case LinkDirection.Up:
+                        direction = new Vector2(0, -1);
+                        spawnOffset = new Vector2(0, -20);
+                        break;
+                    case LinkDirection.Down:
+                        direction = new Vector2(0, 1);
+                        spawnOffset = new Vector2(0, 20);
+                        break;
+                    case LinkDirection.Left:
+                        direction = new Vector2(-1, 0);
+                        spawnOffset = new Vector2(-20, 0);
+                        break;
+                    case LinkDirection.Right:
+                        direction = new Vector2(1, 0);
+                        spawnOffset = new Vector2(20, 0);
+                        break;
+                }
+
+                Vector2 spawnPosition = linkCenter + spawnOffset;
+
+                IItem equipped = GetCurrentItem();
+                if (equipped != null && equipped.name == "Bow" && equipped.BehaviorType == ItemBehaviorType.Equipable)
+                {
+                    currentWeapon = WeaponType.Bow;
+                }
+                else
+                {
+                    currentWeapon = WeaponType.Sword;
+                }
+
+                string weapon = currentWeapon == WeaponType.Bow ? "Arrow" : "Sword";
+                ProjectileManager.Instance.SpawnProjectile(spawnPosition, direction, weapon);
+            }
+        }
+
+        private Vector2 GetDirectionVector(LinkDirection direction)
+        {
+            return direction switch
+            {
+                LinkDirection.Up => new Vector2(0, -1),
+                LinkDirection.Down => new Vector2(0, 1),
+                LinkDirection.Left => new Vector2(-1, 0),
+                LinkDirection.Right => new Vector2(1, 0),
+                _ => Vector2.Zero
+            };
         }
 
         public void UseItem()
         {
-            // Early exit if inventory is empty or index is out of range
             if (inventoryKeys.Count == 0 || currentItemIndex >= inventoryKeys.Count)
                 return;
 
-            string CurrentSelectedItemName = inventoryKeys[currentItemIndex];
+            string selectedItem = inventoryKeys[currentItemIndex];
 
-            // Double-check that this key exists and has items
-            if (!inventory.ContainsKey(CurrentSelectedItemName) || inventory[CurrentSelectedItemName].Count == 0)
+            if (!inventory.ContainsKey(selectedItem) || inventory[selectedItem].Count == 0)
                 return;
 
-            // Use the item
-            IItem item = inventory[CurrentSelectedItemName][0];
+            IItem item = inventory[selectedItem][0];
             item.Use();
 
-            // Remove used item
-            inventory[CurrentSelectedItemName].RemoveAt(0);
-
-            // If no more items of that type, clean up
-            if (inventory[CurrentSelectedItemName].Count == 0)
+            if (item.BehaviorType != ItemBehaviorType.Equipable)
             {
-                inventory.Remove(CurrentSelectedItemName);
-                inventoryKeys.RemoveAt(currentItemIndex);
+                inventory[selectedItem].RemoveAt(0);
 
-                // Prevent out-of-bounds index after removal
-                if (inventoryKeys.Count > 0)
+                if (inventory[selectedItem].Count == 0)
                 {
-                    currentItemIndex = Math.Clamp(currentItemIndex, 0, inventoryKeys.Count - 1);
-                }
-                else
-                {
-                    currentItemIndex = 0;
+                    inventory.Remove(selectedItem);
+                    inventoryKeys.RemoveAt(currentItemIndex);
+
+                    if (inventoryKeys.Count > 0)
+                    {
+                        currentItemIndex = Math.Clamp(currentItemIndex, 0, inventoryKeys.Count - 1);
+                    }
+                    else
+                    {
+                        currentItemIndex = 0;
+                    }
                 }
             }
 
@@ -255,6 +284,11 @@ namespace sprint0Test.Link1
             {
                 currentItemIndex = (currentItemIndex + direction + inventoryKeys.Count) % inventoryKeys.Count;
             }
+        }
+
+        public void SetCurrentWeapon(WeaponType weapon)
+        {
+            currentWeapon = weapon;
         }
 
 

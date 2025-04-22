@@ -65,7 +65,11 @@ namespace sprint0Test.Managers
                         projectile = new Sword(position, fireball);
                         Debug.WriteLine($"Created new Sword at {position}");
                         break;
-                    default:
+                    case "Arrow":
+                        projectile = new Arrow(position, direction, TextureManager.Instance.GetTexture("Arrow"));
+                        Debug.WriteLine($"Created new Arrow at {position}");
+                        break;
+                default:
                         Debug.WriteLine($"Unknown projectile type: {projectileType}");
                         return;
                 }
@@ -81,7 +85,6 @@ namespace sprint0Test.Managers
         public void Update(GameTime gameTime)
         {
             //Debug.WriteLine($"Updating projectiles. Active count: {activeProjectiles.Count}");
-
             for (int i = activeProjectiles.Count - 1; i >= 0; i--)
             {
                 activeProjectiles[i].Update(gameTime);

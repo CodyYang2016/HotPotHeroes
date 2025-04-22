@@ -111,7 +111,7 @@ public class Game1 : Game
         //pauseFont = Content.Load<SpriteFont>("PauseFont"); // Load the font
 
         masterCollisionHandler = new MasterCollisionHandler(); // Initialize the collision handler
-
+        
 
         var dungeonTexture = Content.Load<Texture2D>("TileSetDungeon");
         TextureManager.Instance.LoadContent(this);
@@ -130,10 +130,12 @@ public class Game1 : Game
         itemFactory.RegisterTexture("Apple", Content.Load<Texture2D>("apple"));
         itemFactory.RegisterTexture("Crystal", Content.Load<Texture2D>("crystal"));
         itemFactory.RegisterTexture("Bomb", Content.Load<Texture2D>("bomb"));
-
-        //itemFactory.RegisterTexture("Boomerang", Content.Load<Texture2D>("boomerang"));
+        itemFactory.RegisterTexture("Bow", Content.Load<Texture2D>("bow"));
+        itemFactory.RegisterTexture("Sword", Content.Load<Texture2D>("sword"));
 
         //Register Item Creation Logic
+        itemFactory.RegisterItem("Bow", position => new Bow("Bow", itemFactory.GetTexture("Bow"), position));
+        itemFactory.RegisterItem("Sword", position => new Sword("Sword", itemFactory.GetTexture("Sword"), position));
         itemFactory.RegisterItem("Heart", position => new Heart("Heart", itemFactory.GetTexture("Heart"), position));
         itemFactory.RegisterItem("Apple", position => new Apple("Apple", itemFactory.GetTexture("Apple"), position));
         itemFactory.RegisterItem("Crystal", position => new Crystal("Crystal", itemFactory.GetTexture("Crystal"), position));
@@ -142,6 +144,7 @@ public class Game1 : Game
         //itemFactory.RegisterItem("Boomerang", position => new Boomerang(itemFactory.GetTexture("Boomerang"), position, 1, 8));
         ItemManager.Initialize(itemFactory);
         ItemManager.Instance.LoadFromCSV("Content/room_items.csv");
+        
 
         // 6) 初始化房间管理器
         //   原房间尺寸256×176，窗口800×480，计算缩放
@@ -228,6 +231,7 @@ public class Game1 : Game
         Console.WriteLine("projectiles: " + (ProjectileManager.Instance.GetActiveProjectiles() != null));
         Console.WriteLine("blocks: " + (BlockManager.Instance.GetActiveBlocks() != null));
         Link.Initialize(linkSprite, new Vector2(200, 200));
+        Link.Instance.AddItem(new Sword("Sword", itemFactory.GetTexture("Sword"), new Vector2(0, 0)));
 
         heartPositions = new List<Vector2> {
         new Vector2(10, 10),
@@ -410,6 +414,34 @@ public class Game1 : Game
             0f
         );
         }
+        else if (name == "Bow")
+        {
+            _spriteBatch.Draw(
+            itemFactory.GetTexture(name),
+            new Vector2(145, 405),
+            null,
+            Color.White,
+            0f,
+            Vector2.Zero,
+            0.2f,
+            SpriteEffects.None,
+            0f
+        );
+        }
+        else if (name == "Sword")
+        {
+            _spriteBatch.Draw(
+            itemFactory.GetTexture(name),
+            new Vector2(145, 405),
+            null,
+            Color.White,
+            0f,
+            Vector2.Zero,
+            0.2f,
+            SpriteEffects.None,
+            0f
+        );
+        }
     }
     protected override void Update(GameTime gameTime)
     {
@@ -427,7 +459,7 @@ public class Game1 : Game
             roomManager.CurrentRoom.Enemies,
             ProjectileManager.Instance.GetActiveProjectiles(),
             BlockManager.Instance.GetActiveBlocks());
-        base.Update(gameTime);
+        //base.Update(gameTime);
         Vector2 linkSize = Link.Instance.GetScaledDimensions();
         roomManager.Update(gameTime); // ✅ This is crucial    
 
