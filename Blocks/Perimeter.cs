@@ -35,6 +35,7 @@ public class Perimeter
             else
             {
                 BlockManager.Instance.CreateBlock(topPos, BlockType.Blue, 3f, false, false);
+                BlockManager.Instance.CreateBlock(new Vector2(topPos.X, topPos.Y - 32), BlockType.Tile, 3f, false);
             }
             if ((bottomPos != bottomDoor) && (bottomPos.X != bottomDoor.X - tileSize) || !room.HasDoor("Down")) // Don't place brick at the bottom door
             {
@@ -43,6 +44,7 @@ public class Perimeter
             else
             {
                 BlockManager.Instance.CreateBlock(bottomPos, BlockType.Blue, 3f, false, false);
+                BlockManager.Instance.CreateBlock(new Vector2(bottomPos.X, bottomPos.Y + 32), BlockType.Tile, 3f, false);
             }
         };
 
@@ -58,6 +60,7 @@ public class Perimeter
             else
             {
                 BlockManager.Instance.CreateBlock(leftPos, BlockType.Blue, 3f, false, false);
+                BlockManager.Instance.CreateBlock(new Vector2(leftPos.X - 32, leftPos.Y), BlockType.Tile, 3f, false);
             }
 
             if (rightPos != rightDoor && (rightPos.Y != rightDoor.Y - tileSize) && (rightPos.Y != rightDoor.Y + tileSize) || !room.HasDoor("Right"))  // Don't place brick at the right door
@@ -67,6 +70,7 @@ public class Perimeter
             else
             {
                 BlockManager.Instance.CreateBlock(rightPos, BlockType.Blue, 3f, false, false);
+                BlockManager.Instance.CreateBlock(new Vector2(rightPos.X + 32, rightPos.Y), BlockType.Tile, 3f, false);
             }
 
         };

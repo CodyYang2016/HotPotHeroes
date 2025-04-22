@@ -108,8 +108,9 @@ namespace sprint0Test.Managers
 
             foreach (var projectile in activeProjectiles)
             {
-                //Debug.WriteLine($"Drawing projectile at {projectile.Position}");
-                projectile.Draw(spriteBatch);
+                if(projectile is AbstractProjectile){
+                    projectile.Draw(spriteBatch);
+                }
             }
         }
 

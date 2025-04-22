@@ -118,7 +118,16 @@ namespace sprint0Test.Link1
         {
             if (isAttacking || isUsingItem) return;
 
-            sprite.SetState(LinkAction.Walking, direction);
+            isMovingThisFrame = true;               
+
+            // 只有在“动作或朝向变化”时才重设动画
+            if (sprite.CurrentAction != LinkAction.Walking ||
+                sprite.CurrentDirection != direction)
+            {
+                sprite.SetState(LinkAction.Walking, direction);
+            }
+
+            // 真正移动
             switch (direction)
             {
                 case LinkDirection.Up: position.Y -= speed; break;
@@ -127,6 +136,7 @@ namespace sprint0Test.Link1
                 case LinkDirection.Right: position.X += speed; break;
             }
         }
+
         public void Dash()
         {
             if (!isDashing && dashCooldownCounter <= 0)

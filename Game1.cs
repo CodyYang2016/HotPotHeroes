@@ -287,6 +287,8 @@ public class Game1 : Game
 
     public void HandlePlayerDamage()
     {
+        SoundManager.Instance.PlaySound(SoundList.scream);
+
         collisionCount++; // Track hits
         totalHits++;
         Console.WriteLine($"Collision Count: {collisionCount}");

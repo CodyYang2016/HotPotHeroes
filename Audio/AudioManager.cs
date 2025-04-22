@@ -40,10 +40,15 @@ namespace sprint0Test.Audio
 
         public void SetSong(SongList newSong)
         {
-            MediaPlayer.Stop();
-            currentSong = listToSong[newSong];
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(currentSong);
+            Song selectedSong = listToSong[newSong];
+
+            if (currentSong != selectedSong)
+            {
+                MediaPlayer.Stop();
+                currentSong = selectedSong;
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Play(currentSong);
+            }
         }
 
         public static void PauseMusic()
@@ -66,6 +71,7 @@ namespace sprint0Test.Audio
         public static void Mute()
         {
             MediaPlayer.Volume = 0;
+            
         }
 
         public static void VolumeUp()
