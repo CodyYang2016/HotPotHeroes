@@ -34,14 +34,14 @@ namespace sprint0Test.Dungeon
                 Enemies.Add(EnemyManager.Instance.CreateKeese(new Vector2(200, 200)));
             }
 
-            
-            BlockManager.Instance.CreateBlock(new Vector2(250,250), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(240,300), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(230,350), BlockType.Block);
-            
-            BlockManager.Instance.CreateBlock(new Vector2(400,250), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(400,300), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(400,350), BlockType.Block);
+
+            BlockManager.Instance.CreateBlock(new Vector2(250, 250), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(240, 300), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(230, 350), BlockType.Block);
+
+            BlockManager.Instance.CreateBlock(new Vector2(400, 250), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(400, 300), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(400, 350), BlockType.Block);
 
         }
     }

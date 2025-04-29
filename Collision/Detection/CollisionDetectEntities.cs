@@ -32,7 +32,7 @@ public class CollisionDetectEntities
         return RectB.Left < RectA.Right &&
             RectB.Right > RectA.Right &&
             RectB.Bottom > RectA.Top &&
-            RectB.Top < RectA.Bottom; 
+            RectB.Top < RectA.Bottom;
     }
 
     // Check if the B is touching the bottom side of the A
@@ -55,9 +55,9 @@ public class CollisionDetectEntities
         Rectangle RectA = DetectionMethods.GetCollidableRectangle(blockA);
 
         return RectB.Bottom > RectA.Top &&
-           RectB.Top < RectA.Top && 
+           RectB.Top < RectA.Top &&
            RectB.Left < RectA.Right &&
            RectB.Right > RectA.Left;
-            
+
     }
 }

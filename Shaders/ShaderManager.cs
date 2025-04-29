@@ -44,20 +44,19 @@ namespace sprint0Test.Managers
         {
             graphics.Clear(Color.CornflowerBlue);
 
-            // Choose null or shader based on flag
             Effect effectToUse = applyDarkness ? Darkness : null;
 
             if (applyDarkness)
             {
                 Vector2 linkPos = Link.Instance.Position + (Link.Instance.GetScaledDimensions() / 2f);
-
+                linkPos.Y += Game1.HudHeight / 2;
                 Darkness.Parameters["screenSize"].SetValue(new Vector2(graphics.Viewport.Width, graphics.Viewport.Height));
                 Darkness.Parameters["linkPosition"].SetValue(linkPos);
                 Darkness.Parameters["visibilityRadius"].SetValue(50f);
             }
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, effectToUse);
-            spriteBatch.Draw(sceneTexture, Vector2.Zero, Color.White);
+            spriteBatch.Draw(sceneTexture, new Vector2(0, Game1.HudHeight), Color.White);
             spriteBatch.End();
         }
 

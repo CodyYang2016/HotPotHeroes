@@ -8,7 +8,6 @@ using sprint0Test.Commands;
 using sprint0Test.Link1;
 using System.Linq;
 
-
 // DISCUSS KEYBOARD STATES
 
 namespace sprint0Test
@@ -39,7 +38,6 @@ namespace sprint0Test
            Keys.Right, Keys.Right,
            Keys.B,    Keys.A
          };
-        //private BlockSprites blockSprites;
 
         public KeyboardController(Game1 game, Link link)
         {
@@ -61,26 +59,23 @@ namespace sprint0Test
             continuousCommands.Add(Keys.A, new MoveLeftCommand(myGame));
             continuousCommands.Add(Keys.S, new MoveDownCommand(myGame));
             continuousCommands.Add(Keys.D, new MoveRightCommand(myGame));
-
-            // Commands that should execute once when key is pressed
             singlePressCommands.Add(Keys.Q, new QuitCommand(myGame));
             singlePressCommands.Add(Keys.P, new PauseCommand(myGame));
-
-
+            // Commands that should execute once when key is pressed
             singlePressCommands.Add(Keys.Space, new LinkAttackCommand(myGame));
             singlePressCommands.Add(Keys.E, new TakeDamageCommand(myGame));
-
+            singlePressCommands.Add(Keys.T, new ToggleDark(myGame));
             singlePressCommands.Add(Keys.H, new HordeModeCommand(myGame));
             singlePressCommands.Add(Keys.M, new ShowFullMapCommand(myGame));
-            singlePressCommands.Add(Keys.U, new MoveToTestingRoomCommand(myGame));
-            singlePressCommands.Add(Keys.I, new MoveToStartRoomCommand(myGame));
-            singlePressCommands.Add(Keys.T, new ToggleDark(myGame));
-
+            singlePressCommands.Add(Keys.B, new UseItemCommand(myGame));
+            singlePressCommands.Add(Keys.N, new MoveToTestingRoomCommand(myGame));
+            singlePressCommands.Add(Keys.U, new CycleItemCommand(-1));
+            singlePressCommands.Add(Keys.I, new CycleItemCommand(1));
+            singlePressCommands.Add(Keys.R, new CycleWeaponCommand());
             singlePressCommands.Add(Keys.PageUp, new VolumeUp(myGame));
             singlePressCommands.Add(Keys.PageDown, new VolumeDown(myGame));
             singlePressCommands.Add(Keys.RightAlt, new Mute(myGame));
             singlePressCommands.Add(Keys.LeftShift, new LinkDashCommand(myGame));
-
         }
 
         public void Update()
@@ -106,7 +101,7 @@ namespace sprint0Test
                     command.Execute();
                 }
             }
-            // �� ????? �� //
+
             foreach (var key in pressedKeys)
             {
                 if (previousKeyboardState.IsKeyUp(key))
@@ -119,7 +114,7 @@ namespace sprint0Test
                         Game1.Instance.ToggleGodMode();
                         cheatBuffer.Clear();
                     }
-                        else if (cheatBuffer.SequenceEqual(refillSeq))
+                    else if (cheatBuffer.SequenceEqual(refillSeq))
                     {
                         Game1.Instance.RefillHealth();
                         cheatBuffer.Clear();

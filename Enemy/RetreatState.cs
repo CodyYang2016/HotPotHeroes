@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿
+using Microsoft.Xna.Framework;
 using sprint0Test.Enemy;
 using System;
 using System.Collections.Generic;

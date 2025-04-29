@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>c:/Users/elija/OneDrive/Desktop/Cody/Content/blue-rupee.png</SourceFile>
-  <SourceTime>2025-04-21T17:37:24.0321153-04:00</SourceTime>
-  <DestFile>c:/Users/elija/OneDrive/Desktop/Cody/Content/bin/DesktopGL/blue-rupee.xnb</DestFile>
-  <DestTime>2025-04-21T19:12:37.227234-04:00</DestTime>
+  <SourceFile>C:/CSE3902/Sprint4Test/sprint0Test/Content/blue-rupee.png</SourceFile>
+  <SourceTime>2025-03-07T19:47:13.1204256-05:00</SourceTime>
+  <DestFile>C:/CSE3902/Sprint4Test/sprint0Test/Content/bin/DesktopGL/blue-rupee.xnb</DestFile>
+  <DestTime>2025-04-22T02:10:05.6774232-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

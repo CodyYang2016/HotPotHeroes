@@ -1,3 +1,4 @@
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,10 +8,14 @@ using sprint0Test.Sprites;
 using sprint0Test.Managers;
 using System.Diagnostics;
 using static sprint0Test.Items.Bomb;
-using sprint0Test.Dungeon;
 
 namespace sprint0Test.Link1
 {
+    public enum WeaponType
+    {
+        Sword,
+        Bow
+    }
     public class Link
     {
         private static Link instance; // Singleton instance
@@ -23,15 +28,21 @@ namespace sprint0Test.Link1
         private int attackFrameCounter = 0;
         private int itemFrameCounter = 0;
         private int currentItemIndex = 0;
+        private int currentWeaponIndex = 0;
         private int currentCrystal = 0;
-        private List<IItem> inventory = new List<IItem>();
-        private RoomManager roomManager;
+        public int CrystalCount => currentCrystal;
+        private WeaponType currentWeapon = WeaponType.Sword;
+        public string CurrentSelectedItemName => inventoryKeys.Count > 0 ? inventoryKeys[currentItemIndex] : "";
+
+        private Dictionary<string, List<IItem>> inventory = new();
+        private List<string> inventoryKeys = new();
+        private List<IItem> weapons = new();
+        public List<string> InventoryKeys => inventoryKeys;
         private readonly int screenMinX = 0;
         private readonly int screenMinY = 0;
-        private readonly int screenMaxX = 800;
-        private readonly int screenMaxY = 480;
+        private readonly int screenMaxX = Game1.RoomWidth;
+        private readonly int screenMaxY = Game1.RoomHeight;
         private bool isVisible = true; // This will track visibility
-        //sprint5 Link update
         private double damageCooldownTimer = 0;
         private const double DamageCooldownDuration = 0.5; // in seconds
 
@@ -52,8 +63,6 @@ namespace sprint0Test.Link1
             get => isInvulnerable;
             set => isInvulnerable = value;
         }
-
-
         // ? Singleton access property
         public static Link Instance
         {
@@ -68,7 +77,6 @@ namespace sprint0Test.Link1
         }
 
         public Vector2 Position => position;
-        public IReadOnlyList<IItem> Inventory => inventory.AsReadOnly();
 
         public bool IsVisible // Add IsVisible property
         {
@@ -87,21 +95,21 @@ namespace sprint0Test.Link1
         }
 
         // ? Private constructor to prevent direct instantiation
-        private Link(LinkSprite linkSprite, Vector2 startPos, RoomManager roomManager)
+        private Link(LinkSprite linkSprite, Vector2 startPos)
         {
             sprite = linkSprite;
             position = startPos;
-            this.roomManager = roomManager;
+            Debug.WriteLine($"Link is being spawned at Pos: {position}");
             sprite.Scale = 2f;
             sprite.SetState(LinkAction.Idle, LinkDirection.Down);
         }
 
         // ? Public method to initialize the singleton
-        public static void Initialize(LinkSprite sprite, Vector2 startPos, RoomManager roomManager)
+        public static void Initialize(LinkSprite sprite, Vector2 startPos)
         {
             if (instance == null)
             {
-                instance = new Link(sprite, startPos, roomManager);
+                instance = new Link(sprite, startPos);
             }
             else
             {
@@ -118,16 +126,14 @@ namespace sprint0Test.Link1
         {
             if (isAttacking || isUsingItem) return;
 
-            isMovingThisFrame = true;               
+            isMovingThisFrame = true;
 
-            // 只有在“动作或朝向变化”时才重设动画
             if (sprite.CurrentAction != LinkAction.Walking ||
                 sprite.CurrentDirection != direction)
             {
                 sprite.SetState(LinkAction.Walking, direction);
             }
 
-            // 真正移动
             switch (direction)
             {
                 case LinkDirection.Up: position.Y -= speed; break;
@@ -164,46 +170,84 @@ namespace sprint0Test.Link1
                 attackFrameCounter = 0;
                 sprite.SetState(LinkAction.Attacking, sprite.CurrentDirection);
 
-                Vector2 direction = position;
-                int offset = 45;
-                if (sprite.CurrentDirection == LinkDirection.Up)
-                {
-                    direction.Y -= offset;
-                    //Console.WriteLine("Attack UP");
-                }
-                if (sprite.CurrentDirection == LinkDirection.Down)
-                {
-                    direction.Y += offset;
-                    //Console.WriteLine("Attack Down");
-                }
-                if (sprite.CurrentDirection == LinkDirection.Left)
-                {
-                    direction.X -= offset;
-                    //Console.WriteLine("Attack Left");
-                }
-                if (sprite.CurrentDirection == LinkDirection.Right)
-                {
-                    direction.X += offset;
-                    //Console.WriteLine("Attack Right");
-                }
-                ProjectileManager.Instance.SpawnProjectile(direction, direction, "Sword");
-            }
+                Vector2 linkCenter = position + GetScaledDimensions() / 2f;
+                Vector2 direction = Vector2.Zero;
+                Vector2 spawnOffset = Vector2.Zero;
 
+                switch (sprite.CurrentDirection)
+                {
+                    case LinkDirection.Up:
+                        direction = new Vector2(0, -1);
+                        spawnOffset = new Vector2(0, -20);
+                        break;
+                    case LinkDirection.Down:
+                        direction = new Vector2(0, 1);
+                        spawnOffset = new Vector2(0, 20);
+                        break;
+                    case LinkDirection.Left:
+                        direction = new Vector2(-1, 0);
+                        spawnOffset = new Vector2(-20, 0);
+                        break;
+                    case LinkDirection.Right:
+                        direction = new Vector2(1, 0);
+                        spawnOffset = new Vector2(20, 0);
+                        break;
+                }
+
+                Vector2 spawnPosition = linkCenter + spawnOffset;
+
+                IItem equipped = GetCurrentWeapon();
+                if (equipped != null && equipped.name == "Bow" && equipped.BehaviorType == ItemBehaviorType.Equipable)
+                {
+                    currentWeapon = WeaponType.Bow;
+                }
+                else
+                {
+                    currentWeapon = WeaponType.Sword;
+                }
+
+                string weapon = currentWeapon == WeaponType.Bow ? "Arrow" : "Sword";
+                ProjectileManager.Instance.SpawnProjectile(spawnPosition, direction, weapon);
+            }
         }
 
         public void UseItem()
         {
-            if (!isAttacking && !isUsingItem && inventory.Count > 0)
+            if (inventoryKeys.Count == 0 || currentItemIndex >= inventoryKeys.Count)
+                return;
+
+            string selectedItem = inventoryKeys[currentItemIndex];
+
+            if (!inventory.ContainsKey(selectedItem) || inventory[selectedItem].Count == 0)
+                return;
+
+            IItem item = inventory[selectedItem][0];
+            item.Use();
+
+            if (item.BehaviorType != ItemBehaviorType.Equipable)
             {
-                isUsingItem = true;
-                itemFrameCounter = 0;
-                sprite.SetState(LinkAction.UsingItem, sprite.CurrentDirection);
-                inventory[currentItemIndex].Use();
-                if (inventory[currentItemIndex] is Bomb bomb && bomb.State == BombState.Planted)
+                inventory[selectedItem].RemoveAt(0);
+
+                if (inventory[selectedItem].Count == 0)
                 {
-                    roomManager.CurrentRoom.Items.Add(bomb);
+                    inventory.Remove(selectedItem);
+                    inventoryKeys.RemoveAt(currentItemIndex);
+
+                    if (inventoryKeys.Count > 0)
+                    {
+                        currentItemIndex = Math.Clamp(currentItemIndex, 0, inventoryKeys.Count - 1);
+                    }
+                    else
+                    {
+                        currentItemIndex = 0;
+                    }
                 }
             }
+
+            // Trigger animation lock
+            isUsingItem = true;
+            itemFrameCounter = 0;
+            sprite.SetState(LinkAction.UsingItem, sprite.CurrentDirection);
         }
 
         // int damage
@@ -223,31 +267,78 @@ namespace sprint0Test.Link1
             damageCooldownTimer = DamageCooldownDuration; // ? Start cooldown
         }
 
-
-        public void Consume(IItem item)
-        {
+        public void Consume(IItem item) {
             if (item.name == "Heart")
             {
-                //Game1.Instance.HandlePlayerHealed();
+                Game1.Instance.HandlePlayerHealed(1f);
             }
-            else if (item.name == "Crystal")
-            {
+            else if (item.name == "Crystal") { 
                 currentCrystal += 1;
             }
         }
 
         public void SwitchItem(int direction)
         {
-            if (inventory.Count > 0)
+            if (inventoryKeys.Count > 0)
             {
-                currentItemIndex = (currentItemIndex + direction + inventory.Count) % inventory.Count;
+                currentItemIndex = (currentItemIndex + direction + inventoryKeys.Count) % inventoryKeys.Count;
             }
         }
 
         public void AddItem(IItem item)
         {
-            inventory.Add(item);
+            string itemName = item.name;
+            if (item.BehaviorType != ItemBehaviorType.Equipable)
+            {
+                if (!inventory.ContainsKey(itemName))
+                {
+                    inventory[itemName] = new List<IItem>();
+                    inventoryKeys.Add(itemName); // Track order of discovery
+                }
+                inventory[itemName].Add(item);
+            }
+            else {
+                weapons.Add(item);
+            }
         }
+
+        public int GetItemCount(string itemName)
+        {
+            return inventory.TryGetValue(itemName, out var items) ? items.Count : 0;
+        }
+
+        public IItem GetCurrentItem()
+        {
+            string key = CurrentSelectedItemName;
+            return inventory.TryGetValue(key, out var list) && list.Count > 0 ? list[0] : null;
+        }
+
+        public void CycleItem(int direction)
+        {
+            if (inventoryKeys.Count > 0)
+            {
+                currentItemIndex = (currentItemIndex + direction + inventoryKeys.Count) % inventoryKeys.Count;
+            }
+        }
+
+        public IItem GetCurrentWeapon()
+        {
+            return weapons[currentWeaponIndex];
+        }
+
+        public void SetCurrentWeapon(WeaponType weapon)
+        {
+            currentWeapon = weapon;
+        }
+
+        public void CycleWeapon()
+        {
+            if (weapons.Count > 0)
+            {
+                currentWeaponIndex = (currentWeaponIndex + 1) % weapons.Count;
+            }
+        }
+
 
         public void Update(GameTime gameTime)
         {
@@ -294,17 +385,31 @@ namespace sprint0Test.Link1
             }
 
 
-
             Vector2 scaledSize = sprite.GetScaledDimensions();
+            //const int TOP_MARGIN = 88;
+            ////const int BOTTOM_MARGIN = 88;
+
+            //int ROOM_HEIGHT = 480;
+            //int ROOM_WIDTH = 735;
+
+            //position.Y = MathHelper.Clamp(
+            //    position.Y,
+            //    TOP_MARGIN,
+            //    ROOM_HEIGHT
+            //);
+
+            //position.X = MathHelper.Clamp(
+            //    position.X,
+            //    0,
+            //    ROOM_WIDTH
+            //);
             position.X = MathHelper.Clamp(position.X, screenMinX, screenMaxX - scaledSize.X);
             position.Y = MathHelper.Clamp(position.Y, screenMinY, screenMaxY - scaledSize.Y);
-
             if (!isMovingThisFrame && !isAttacking && !isUsingItem)
             {
                 sprite.SetState(LinkAction.Idle, sprite.CurrentDirection);
             }
 
-            // ???????
             isMovingThisFrame = false;
         }
 

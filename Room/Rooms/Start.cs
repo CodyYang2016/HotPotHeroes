@@ -30,12 +30,12 @@ namespace sprint0Test.Dungeon
             // Add nothing 
             base.Initialize();
 
-            
+
             ShaderManager.DisableDarkness();
 
             if (!RoomData.HasBeenCleared)
             {
-                
+
             }
 
             // (Item and block spawning can stay or follow similar logic)
@@ -60,5 +60,3 @@ namespace sprint0Test.Dungeon
     }
 
 }
-
-

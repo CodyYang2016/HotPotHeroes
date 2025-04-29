@@ -1,3 +1,4 @@
+
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -109,6 +110,11 @@ namespace sprint0Test.Link1
             linkMap.Add((LinkAction.Damaged, LinkDirection.Right),
                 new List<Texture2D> { linkH });
 
+            // Using Items
+            linkMap.Add((LinkAction.UsingItem, LinkDirection.Down), new List<Texture2D> { link1 });
+            linkMap.Add((LinkAction.UsingItem, LinkDirection.Up), new List<Texture2D> { linkB1 });
+            linkMap.Add((LinkAction.UsingItem, LinkDirection.Left), new List<Texture2D> { linkL1 });
+            linkMap.Add((LinkAction.UsingItem, LinkDirection.Right), new List<Texture2D> { linkR1 });
             return linkMap;
         }
 

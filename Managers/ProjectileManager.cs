@@ -35,40 +35,44 @@ namespace sprint0Test.Managers
 
             IProjectile projectile = null;
 
-            /*            if (projectilePool.Count > 0)
-                        {
-                            projectile = projectilePool.Dequeue();
-                            Debug.WriteLine($"Reusing projectile from pool: {projectileType}");
-                        }
-                        else
-                        {*/
-            Texture2D fireball = TextureManager.Instance.GetTexture("Fireball");
-            Texture2D rockTexture = TextureManager.Instance.GetTexture("Rock");
-
-            if (fireball == null)
+/*            if (projectilePool.Count > 0)
             {
-                Debug.WriteLine("Fireball texture is NULL!");
-                return;
+                projectile = projectilePool.Dequeue();
+                Debug.WriteLine($"Reusing projectile from pool: {projectileType}");
             }
+            else
+            {*/
+                Texture2D fireball = TextureManager.Instance.GetTexture("Fireball");
+                Texture2D rockTexture = TextureManager.Instance.GetTexture("Rock");
 
-            switch (projectileType)
-            {
-                case "Fireball":
-                    projectile = new Fireball(position, direction, fireball);
-                    Debug.WriteLine($"Created new Fireball at {position}");
-                    break;
-                case "Rock":
-                    projectile = new Rock(position, direction, rockTexture);
-                    Debug.WriteLine($"Created new Rock at {position}");
-                    break;
-                case "Sword":
-                    projectile = new Sword(position, fireball);
-                    Debug.WriteLine($"Created new Sword at {position}");
-                    break;
-                default:
-                    Debug.WriteLine($"Unknown projectile type: {projectileType}");
+                if (fireball == null)
+                {
+                    Debug.WriteLine("Fireball texture is NULL!");
                     return;
-            }
+                }
+
+                switch (projectileType)
+                {
+                    case "Fireball":
+                        projectile = new Fireball(position, direction, fireball);
+                        Debug.WriteLine($"Created new Fireball at {position}");
+                        break;
+                    case "Rock":
+                        projectile = new Rock(position, direction, rockTexture);
+                        Debug.WriteLine($"Created new Rock at {position}");
+                        break;
+                    case "Sword":
+                        projectile = new Sword(position, fireball);
+                        Debug.WriteLine($"Created new Sword at {position}");
+                        break;
+                    case "Arrow":
+                        projectile = new Arrow(position, direction, TextureManager.Instance.GetTexture("Arrow"));
+                        Debug.WriteLine($"Created new Arrow at {position}");
+                        break;
+                default:
+                        Debug.WriteLine($"Unknown projectile type: {projectileType}");
+                        return;
+                }
             // }
 
             (projectile as AbstractProjectile)?.Reset(position, direction);
@@ -77,6 +81,7 @@ namespace sprint0Test.Managers
             activeProjectiles.Add(projectile);
             Debug.WriteLine($"Spawned {projectileType} at {position}, moving {direction}. Active projectiles: {activeProjectiles.Count}");
         }
+
         public void Clear()
         {
             activeProjectiles.Clear();
@@ -86,7 +91,6 @@ namespace sprint0Test.Managers
         public void Update(GameTime gameTime)
         {
             //Debug.WriteLine($"Updating projectiles. Active count: {activeProjectiles.Count}");
-
             for (int i = activeProjectiles.Count - 1; i >= 0; i--)
             {
                 activeProjectiles[i].Update(gameTime);
@@ -108,11 +112,13 @@ namespace sprint0Test.Managers
 
             foreach (var projectile in activeProjectiles)
             {
-                if(projectile is AbstractProjectile){
+                if (projectile is AbstractProjectile)
+                {
                     projectile.Draw(spriteBatch);
                 }
             }
         }
+
 
         public List<IProjectile> GetActiveProjectiles()
         {

@@ -41,11 +41,10 @@ namespace sprint0Test.Managers
         {
             roomItems.Clear();
 
-            if (!File.Exists(filePath))
-            {
+            if (!File.Exists(filePath)) {
                 return;
             }
-
+                
 
             string[] lines = File.ReadAllLines(filePath);
 

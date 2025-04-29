@@ -40,7 +40,7 @@ namespace sprint0Test.Dungeon
             }
 
             // (Item and block spawning can stay or follow similar logic)
-        
+
 
             Texture2D appleTexture = TextureManager.Instance.GetTexture("Apple");
             Texture2D heartTexture = TextureManager.Instance.GetTexture("Heart");

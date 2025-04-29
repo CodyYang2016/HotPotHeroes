@@ -79,7 +79,7 @@ namespace sprint0Test.Dungeon
             room.TilesetTexture = TextureManager.Instance.GetTexture("tileSheet");
             room.ExteriorSource = RoomData.ExteriorSource;
             room.InteriorSource = RoomData.InteriorSource;
-
+            room.Items = ItemManager.Instance.GetItemsForRoom(roomID);
             room.Initialize();
             CurrentRoom = room;
 

@@ -22,7 +22,7 @@ namespace sprint0Test.Items
         public Apple(string name, Texture2D texture, Vector2 position)
         {
             this.name = name;
-            this.sprite = new StaticSprite(texture, 0.3f);
+            this.sprite = new StaticSprite(texture, 0.5f);
             this.Position = position;
             this.isCollected = false; // Initially not collected
         }
@@ -46,7 +46,9 @@ namespace sprint0Test.Items
             isCollected = true;
         }
 
-        public void Use() { }
+        public void Use() {
+            Game1.Instance.HandlePlayerHealed(0.5f);
+        }
 
     }
 }

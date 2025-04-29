@@ -1,3 +1,4 @@
+
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -25,7 +26,8 @@ namespace sprint0Test
 
         public void HandleCollision(IEnemy enemy, IProjectile projectile)
         {
-            if (projectile.IsFriendly()) {
+            if (projectile.IsFriendly())
+            {
                 if (CollisionDetectEntities.isTouchingLeft(enemy, projectile))
                 {
                     projectile.Deactivate();

@@ -41,7 +41,7 @@ namespace sprint0Test
             }
         }
 
-                // Helper method to create the player's collision rectangle
+        // Helper method to create the player's collision rectangle
         public static Rectangle GetPlayerRectangle()
         {
             Vector2 linkSize = Link.Instance.GetScaledDimensions();

@@ -4,64 +4,71 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/apple.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/blue-potion.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/blue-rupee.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/bomb.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/boomerang.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/crystal.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/Darkness.fx</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/Dot.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/DungeonEnemy.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/Explosion.jpg</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/ganons_message.mp3</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/green-potion.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/green-rupee.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/heart.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/Link1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/Link2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkB1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkB2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkBS1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkBS2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkBS3.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkBS4.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/Linkh.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkL1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkL2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkLS1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkLS2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkLS3.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkLS4.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkR1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkR2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkRS1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkRS2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkRS3.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkRS4.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkS1.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkS2.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkS3.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/LinkS4.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/Map.jpg</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/MC_Boss_Hit.wav</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/MC_Cucco5.wav</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/MC_Door1.wav</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/MC_Epona.wav</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/MC_Link_Sword.wav</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/MC_Minish_Inaudible.wav</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/MC_Swiftblade.wav</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/MC_Zelda_Hey.wav</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/MC_Zelda_Scream.wav</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/MenuFont.spritefont</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/red-potion.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/red-rupee.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/sanctuary_dungeon.mp3</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/the-legend-of-zelda-nes-title-screen-246988.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/TileSetDungeon.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/title.mp3</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/ZeldaBoss.png</File>
-    <File>C:/Users/elija/OneDrive/Desktop/Cody/Content/ZeldaOverWorld.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/apple.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/arrow.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/blue-potion.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/blue-rupee.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/bomb.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/boomerang.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/bow.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/crystal.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/Dot.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/DungeonEnemy.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/Explosion.jpg</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/ganons_message.mp3</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/green-potion.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/green-rupee.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/heart.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/HUD.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LIFEFont.spritefont</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/Link1.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/Link2.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkB1.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkB2.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkBS1.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkBS2.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkBS3.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkBS4.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/Linkh.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkL1.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkL2.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkLS1.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkLS2.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkLS3.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkLS4.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkR1.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkR2.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkRS1.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkRS2.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkRS3.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkRS4.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkS1.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkS2.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkS3.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/LinkS4.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/Map.jpg</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/MC_Boss_Hit.wav</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/MC_Cucco5.wav</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/MC_Door1.wav</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/MC_Epona.wav</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/MC_Link_Sword.wav</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/MC_Minish_Inaudible.wav</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/MC_Swiftblade.wav</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/MC_Zelda_Hey.wav</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/MC_Zelda_Scream.wav</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/MenuFont.spritefont</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/multiplication.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/red-potion.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/red-rupee.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/sanctuary_dungeon.mp3</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/sword.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/the-legend-of-zelda-nes-title-screen-246988.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/TileSetDungeon.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/title.mp3</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/UIFont.spritefont</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/ZeldaBoss.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/zeldaenemy.png</File>
+    <File>C:/CSE3902/Sprint4Test/sprint0Test/Content/ZeldaOverWorld.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
@@ -117,7 +124,14 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
-    <File>StartScreen.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
