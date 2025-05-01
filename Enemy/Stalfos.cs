@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using sprint0Test.Enemy;
 using sprint0Test.Link1;
@@ -17,7 +18,7 @@ public class Stalfos : AbstractEnemy
 
     public Stalfos(Vector2 startPosition, Dictionary<string, Texture2D> Stalfos_textures)
         : base(startPosition, new Texture2D[] {
-            Stalfos_textures["Skeleton"] 
+            Stalfos_textures["Skeleton"]
         })
     {
         random = new Random();

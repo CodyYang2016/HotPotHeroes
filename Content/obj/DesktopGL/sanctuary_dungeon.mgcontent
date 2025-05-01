@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/CSE3902/Sprint4Test/sprint0Test/Content/sanctuary_dungeon.mp3</SourceFile>
+  <SourceTime>2025-04-21T22:50:44.0508342-04:00</SourceTime>
+  <DestFile>C:/CSE3902/Sprint4Test/sprint0Test/Content/bin/DesktopGL/sanctuary_dungeon.xnb</DestFile>
+  <DestTime>2025-04-22T02:10:09.6934332-04:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2024-08-16T13:05:56-04:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/CSE3902/Sprint4Test/sprint0Test/Content/bin/DesktopGL/sanctuary_dungeon.ogg</string>
+  </BuildOutput>
+</PipelineBuildEvent>

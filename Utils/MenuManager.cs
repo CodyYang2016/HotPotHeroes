@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using sprint0Test.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,6 +13,7 @@ using sprint0Test;
 using System.Diagnostics;
 using sprint0Test.Enemy;
 using sprint0Test.Room;
+using sprint0Test.Audio;
 namespace sprint0Test;
 
 public class MenuManager
@@ -21,7 +22,7 @@ public class MenuManager
     private Texture2D backgroundTexture;
     private int _selectedIndex = 0;
     private string[] menuItems = { "Start Game", "Controls", "Exit" };
-private KeyboardState _previousKeyboardState; // Tracks previous state
+    private KeyboardState _previousKeyboardState; // Tracks previous state
     public Action<int> OnOptionSelected;
 
 
@@ -47,19 +48,20 @@ private KeyboardState _previousKeyboardState; // Tracks previous state
         {
             switch (_selectedIndex)
             {
-            case 0:
-                game.ChangeGameState(Game1.GameState.Playing);
-                break;
-            case 1:
-                game.ChangeGameState(Game1.GameState.Options);
-                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                {
-                    game._currentGameState = Game1.GameState.StartMenu;
-                }
-                break;
-            case 2:
-                game.ChangeGameState(Game1.GameState.Exiting);
-                break;
+                case 0:
+                    game.ChangeGameState(Game1.GameState.Playing);
+                    AudioManager.Instance.SetSong(SongList.Dungeon);
+                    break;
+                case 1:
+                    game.ChangeGameState(Game1.GameState.Options);
+                    if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    {
+                        game._currentGameState = Game1.GameState.StartMenu;
+                    }
+                    break;
+                case 2:
+                    game.ChangeGameState(Game1.GameState.Exiting);
+                    break;
             }
         }
         _previousKeyboardState = currentKeyboardState; // Save state for next frame
@@ -83,13 +85,13 @@ private KeyboardState _previousKeyboardState; // Tracks previous state
         for (int i = 0; i < menuItems.Length; i++)
         {
             Color color = (i == _selectedIndex) ? Color.Yellow : Color.White;
-            spriteBatch.DrawString(font, menuItems[i], new Vector2(300, 300 + i * 40), color);
+            spriteBatch.DrawString(font, menuItems[i], new Vector2(300, 360 + i * 40), color);
         }
 
     }
 
     private bool WasKeyPressed(Keys key, KeyboardState currentState)
-        {
-            return currentState.IsKeyDown(key) && _previousKeyboardState.IsKeyUp(key);
-        }
+    {
+        return currentState.IsKeyDown(key) && _previousKeyboardState.IsKeyUp(key);
+    }
 }

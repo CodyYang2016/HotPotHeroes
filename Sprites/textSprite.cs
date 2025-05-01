@@ -17,7 +17,7 @@ namespace sprint0Test.Sprites
         //private Vector2 location; 
 
 
-        public textSprite (Game1 myGame, String text, Vector2 loc)
+        public textSprite(Game1 myGame, String text, Vector2 loc)
         {
             game = myGame;
             location = loc;
@@ -29,15 +29,15 @@ namespace sprint0Test.Sprites
         {
             Rectangle sourceRectangle;
             Rectangle destinationRectangle;
-           
+
             sourceRectangle = new Rectangle(28, 0, 28, 36);
             destinationRectangle = new Rectangle(300,
             200, 108, 144);
-            
+
             //spriteBatch.Begin();
             //spriteBatch.DrawString(spriteFont, text, center, Color.Black, 0f, new Vector2(0, 0), 1f, SpriteEffects.None,);
             //spriteBatch.End();
-            }
+        }
         public void Update()
         {
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint0Test.Enemy;
 using sprint0Test.Items;
@@ -20,7 +21,7 @@ namespace sprint0Test.Dungeon
 
         public override void Initialize()
         {
-
+            ShaderManager.EnableDarkness();
 
             // Clear the enemies list 
             // if isCleared == FALSE:
@@ -39,7 +40,7 @@ namespace sprint0Test.Dungeon
             }
 
             // (Item and block spawning can stay or follow similar logic)
-        
+
 
             Texture2D appleTexture = TextureManager.Instance.GetTexture("Apple");
             Texture2D heartTexture = TextureManager.Instance.GetTexture("Heart");

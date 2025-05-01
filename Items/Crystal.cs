@@ -21,7 +21,7 @@ namespace sprint0Test.Items
         public Crystal(string name, Texture2D texture, Vector2 position)
         {
             this.name = name;
-            this.sprite = new StaticSprite(texture, 0.1f);
+            this.sprite = new StaticSprite(texture, 0.15f);
             this.Position = position;
             this.isCollected = false;
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using sprint0Test.Enemy;
 using sprint0Test.Link1;

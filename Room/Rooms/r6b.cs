@@ -40,15 +40,15 @@ namespace sprint0Test.Dungeon
                 Enemies.Add(EnemyManager.Instance.CreateStalfos(new Vector2(300, 100)));
             }
 
-            
-            BlockManager.Instance.CreateBlock(new Vector2(225,170), BlockType.Block);
-            
-            BlockManager.Instance.CreateBlock(new Vector2(225,300), BlockType.Block);
 
-            BlockManager.Instance.CreateBlock(new Vector2(400,170), BlockType.Block);
-            
-            BlockManager.Instance.CreateBlock(new Vector2(400,300), BlockType.Block);
-            
+            BlockManager.Instance.CreateBlock(new Vector2(225, 170), BlockType.Block);
+
+            BlockManager.Instance.CreateBlock(new Vector2(225, 300), BlockType.Block);
+
+            BlockManager.Instance.CreateBlock(new Vector2(400, 170), BlockType.Block);
+
+            BlockManager.Instance.CreateBlock(new Vector2(400, 300), BlockType.Block);
+
         }
     }
 

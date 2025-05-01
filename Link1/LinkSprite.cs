@@ -1,3 +1,5 @@
+
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,9 +10,15 @@ using sprint0Test;
 
 namespace sprint0Test.Link1
 {
-    public enum LinkDirection { Up, Down, Left, Right }
-    public enum LinkAction { Idle, Walking, Attacking, Damaged, UsingItem }
+    public enum LinkDirection
+    {
+        Up, Down, Left, Right
+    }
 
+    public enum LinkAction
+    {
+        Idle, Walking, Attacking, Damaged, UsingItem
+    }
     public class LinkSprite
     {
         private const int FramesPerImage = 8;
@@ -25,16 +33,6 @@ namespace sprint0Test.Link1
         public LinkAction CurrentAction => _animationManager.CurrentAction;
         public LinkDirection CurrentDirection => _animationManager.CurrentDirection;
         public bool IsVisible { get; set; } = true;
-        
-        private Dictionary<(LinkAction, LinkDirection), List<Texture2D>> spriteMap;
-        private List<Texture2D> currentFrames = new List<Texture2D>();
-        private int currentFrameIndex;
-        private int frameCounter;
-
-        private int framesPerImage = 8;
-
-        private bool isVisible = true; // Track visibility
-
 
         public static Dictionary<(LinkAction, LinkDirection), List<Texture2D>> CreateDefaultSpriteMap(ContentManager content)
         {
@@ -112,8 +110,14 @@ namespace sprint0Test.Link1
             linkMap.Add((LinkAction.Damaged, LinkDirection.Right),
                 new List<Texture2D> { linkH });
 
-                return linkMap;
+            // Using Items
+            linkMap.Add((LinkAction.UsingItem, LinkDirection.Down), new List<Texture2D> { link1 });
+            linkMap.Add((LinkAction.UsingItem, LinkDirection.Up), new List<Texture2D> { linkB1 });
+            linkMap.Add((LinkAction.UsingItem, LinkDirection.Left), new List<Texture2D> { linkL1 });
+            linkMap.Add((LinkAction.UsingItem, LinkDirection.Right), new List<Texture2D> { linkR1 });
+            return linkMap;
         }
+
         public LinkSprite(Dictionary<(LinkAction, LinkDirection), List<Texture2D>> spriteMap)
         {
             ValidateSpriteMap(spriteMap);
@@ -122,8 +126,7 @@ namespace sprint0Test.Link1
             _baselineSizes = CalculateBaselineSizes(spriteMap);
             _spriteDimensions = new SpriteDimensions(this);
         }
-            
-        
+
         public void SetState(LinkAction action, LinkDirection direction)
             => _animationManager.SetState(action, direction);
 

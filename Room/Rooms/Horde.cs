@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using sprint0Test.Audio;
 using sprint0Test.Managers;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,9 @@ namespace sprint0Test.Dungeon
         public override void Initialize()
         {
             base.Initialize();
+            Perimeter perimeter = new Perimeter(this);
+
+            AudioManager.Instance.SetSong(SongList.Title);
 
             RoomData.HasBeenCleared = false; // ✅ allow waves to spawn again
             Enemies.Clear();
@@ -92,7 +96,7 @@ namespace sprint0Test.Dungeon
             var boss = EnemyManager.Instance.CreateAquamentus(new Vector2(128, 80));
             Enemies.Add(boss);
 
-            Debug.WriteLine($"👹 Boss spawned at {totalElapsedTime / 60:0.0} min.");
+            Debug.WriteLine($"👹 Boss spawned at {totalElapsedTime / 1.0} min.");
         }
     }
 }

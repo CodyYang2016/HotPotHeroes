@@ -26,7 +26,8 @@ namespace sprint0Test
         {
             if (projectile != null)
             {
-                if (!projectile.IsFriendly()) {
+                if (!projectile.IsFriendly())
+                {
                     if (CollisionDetectEntity.isTouchingLeft(projectile))
                     {
                         Link.Instance.MoveLeft();

@@ -12,13 +12,13 @@ namespace sprint0Test.Dungeon
 {
     public class r4b : AbstractRoom
     {
-        
+
         public r4b(RoomData data)
         {
             RoomID = data.RoomID;
             RoomData = data; // ✅ GOOD: keeps all door info
         }
-        
+
 
 
         public override void Initialize()
@@ -42,16 +42,16 @@ namespace sprint0Test.Dungeon
             }
 
             // (Item and block spawning can stay or follow similar logic)
-            
-            BlockManager.Instance.CreateBlock(new Vector2(225,220), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(225,270), BlockType.Block);
 
-            BlockManager.Instance.CreateBlock(new Vector2(275,220), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(275,270), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(225, 220), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(225, 270), BlockType.Block);
 
-            BlockManager.Instance.CreateBlock(new Vector2(325,220), BlockType.Block);
-            BlockManager.Instance.CreateBlock(new Vector2(325,270), BlockType.Block);
-            
+            BlockManager.Instance.CreateBlock(new Vector2(275, 220), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(275, 270), BlockType.Block);
+
+            BlockManager.Instance.CreateBlock(new Vector2(325, 220), BlockType.Block);
+            BlockManager.Instance.CreateBlock(new Vector2(325, 270), BlockType.Block);
+
         }
     }
 

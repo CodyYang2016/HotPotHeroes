@@ -24,6 +24,9 @@ namespace sprint0Test.Enemy
         protected double frameTimer = 0.0;
         public bool IsDead => currentState is DeadState;
 
+        private double damageCooldownTimer = 0;
+        private const double DamageCooldownDuration = 0.5; // in seconds
+
 
         public AbstractEnemy(Vector2 startPosition, Texture2D[] textures)
         {
@@ -75,9 +78,13 @@ namespace sprint0Test.Enemy
 
         public virtual void TakeDamage(int damage)
         {
+            if (damageCooldownTimer > 0) return; // ? Still on cooldown
+
             health -= damage;
             if (health <= 0)
                 ChangeState(new DeadState(this));
+
+            damageCooldownTimer = DamageCooldownDuration; // ? Start cooldown
         }
 
         public void ChangeState(IEnemyState newState)

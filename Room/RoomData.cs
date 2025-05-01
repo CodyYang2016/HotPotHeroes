@@ -43,7 +43,7 @@ public class RoomData
     public static readonly Rectangle Door_Left = new Rectangle(849, 44, 32, 32);
     public static readonly Rectangle Door_Bottom = new Rectangle(849, 110, 32, 32);
     public static readonly Rectangle Door_Right = new Rectangle(849, 77, 32, 32);
-    public static readonly Rectangle Not_Door_Top = new Rectangle(817,11, 32, 32);
+    public static readonly Rectangle Not_Door_Top = new Rectangle(817, 11, 32, 32);
     public static readonly Rectangle Not_Door_Left = new Rectangle(817, 44, 32, 32);
     public static readonly Rectangle Not_Door_Bottom = new Rectangle(817, 110, 32, 32);
     public static readonly Rectangle Not_Door_Right = new Rectangle(817, 77, 32, 32);

@@ -14,7 +14,7 @@ namespace sprint0Test.Enemy
         private float upperLimit;
         private float lowerLimit;
         private int direction = 1; // 1 for down, -1 for up
-        private int health = 6;
+        private int health = 30;
 
         public Aquamentus(Vector2 startPosition, float movementRange)
             : base(startPosition, new Texture2D[]

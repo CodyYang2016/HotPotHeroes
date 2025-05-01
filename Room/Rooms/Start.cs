@@ -7,6 +7,7 @@ using sprint0Test.Sprites;
 using System;
 using sprint0Test.Enemy;
 using System.Collections.Generic;
+using sprint0Test.Audio;
 
 namespace sprint0Test.Dungeon
 {
@@ -29,6 +30,8 @@ namespace sprint0Test.Dungeon
             // Add nothing 
             base.Initialize();
 
+
+            ShaderManager.DisableDarkness();
 
             if (!RoomData.HasBeenCleared)
             {
@@ -57,5 +60,3 @@ namespace sprint0Test.Dungeon
     }
 
 }
-
-

@@ -14,13 +14,13 @@ namespace sprint0Test.Dungeon
 {
     public class r4a : AbstractRoom
     {
-        
+
         public r4a(RoomData data)
         {
             RoomID = data.RoomID;
             RoomData = data; // ✅ GOOD: keeps all door info
         }
-        
+
 
 
         public override void Initialize()

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using sprint0Test.Enemy;
 using sprint0Test.Items;
@@ -20,6 +21,7 @@ namespace sprint0Test.Dungeon
 
         public override void Initialize()
         {
+            ShaderManager.DisableDarkness();
 
 
             // Clear the enemies list 

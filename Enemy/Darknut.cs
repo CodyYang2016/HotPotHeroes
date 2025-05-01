@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using sprint0Test.Enemy;
 using sprint0Test.Link1;
@@ -40,7 +41,7 @@ public class Darknut : AbstractEnemy
             moveTimer = 0;
             direction *= -1; // Change direction
         }
-        
+
         // Sprint5 Movement Speed
         position.X += direction * 0.8f;
 

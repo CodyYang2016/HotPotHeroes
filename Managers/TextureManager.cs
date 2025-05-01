@@ -24,12 +24,13 @@ namespace sprint0Test.Managers
         public void LoadContent(Game game)
         {
             // Load the sprite sheet containing enemy textures
+            Texture2D HUDSpriteSheet = game.Content.Load<Texture2D>("HUD");
             Texture2D enemySpriteSheet = game.Content.Load<Texture2D>("DungeonEnemy");
             Texture2D bossSpriteSheet = game.Content.Load<Texture2D>("ZeldaBoss");
             Texture2D worldSpriteSheet = game.Content.Load<Texture2D>("ZeldaOverWorld");
             Texture2D tileSheet = game.Content.Load<Texture2D>("TileSetDungeon");
             Texture2D explosion = game.Content.Load<Texture2D>("Explosion");
-
+            Texture2D arrow = game.Content.Load<Texture2D>("arrow");
             //Room Exteriors if neccesary
             textures["Room_Exterior"] = CutTexture(tileSheet, new Rectangle(521, 11, 256, 176));
             textures["ExteriorDest"] = CutTexture(tileSheet, new Rectangle(0, 0, 256, 176));
@@ -40,6 +41,7 @@ namespace sprint0Test.Managers
             textures["Door_D"] = CutTexture(tileSheet, new Rectangle(849, 77, 32, 32));
             textures["tileSheet"] = tileSheet;
             textures["Explosion"] = explosion;
+            textures["Arrow"] = arrow;
 
 
             /*            //Items
@@ -80,7 +82,9 @@ namespace sprint0Test.Managers
             textures["Bat_1"] = CutTexture(enemySpriteSheet, new Rectangle(184, 28, 15, 16));
             textures["Bat_2"] = CutTexture(enemySpriteSheet, new Rectangle(200, 28, 15, 16));
 
-
+            textures["Item_Slot_B"] = CutTexture(HUDSpriteSheet, new Rectangle(380, 26, 20, 30));
+            textures["Item_Slot_A"] = CutTexture(HUDSpriteSheet, new Rectangle(405, 26, 20, 30));
+            textures["Dark_Background"] = CutTexture(HUDSpriteSheet, new Rectangle(1, 11, 10, 17));
 
         }
 
